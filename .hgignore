@@ -1,0 +1,8 @@
+syntax: glob
+target
+.settings
+.classpath
+.project
+.directory
+.stfolder
+.stignore
