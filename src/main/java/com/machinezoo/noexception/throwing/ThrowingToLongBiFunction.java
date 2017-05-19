@@ -1,5 +1,5 @@
 package com.machinezoo.noexception.throwing;
 
 @FunctionalInterface public interface ThrowingToLongBiFunction<T, U> {
-    long applyAsLong(T t, U u) throws Exception;
+	long applyAsLong(T t, U u) throws Exception;
 }
