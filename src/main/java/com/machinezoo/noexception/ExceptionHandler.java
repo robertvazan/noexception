@@ -37,7 +37,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalIntSupplier atIntSupplier(IntSupplier supplier) {
+	public final OptionalIntSupplier fromIntSupplier(IntSupplier supplier) {
 		return new CatchingIntSupplier(supplier);
 	}
 	@RequiredArgsConstructor private final class CatchingIntSupplier implements OptionalIntSupplier {
@@ -53,7 +53,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalLongSupplier atLongSupplier(LongSupplier supplier) {
+	public final OptionalLongSupplier fromLongSupplier(LongSupplier supplier) {
 		return new CatchingLongSupplier(supplier);
 	}
 	@RequiredArgsConstructor private final class CatchingLongSupplier implements OptionalLongSupplier {
@@ -69,7 +69,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalDoubleSupplier atDoubleSupplier(DoubleSupplier supplier) {
+	public final OptionalDoubleSupplier fromDoubleSupplier(DoubleSupplier supplier) {
 		return new CatchingDoubleSupplier(supplier);
 	}
 	@RequiredArgsConstructor private final class CatchingDoubleSupplier implements OptionalDoubleSupplier {
@@ -85,7 +85,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalBooleanSupplier atBooleanSupplier(BooleanSupplier supplier) {
+	public final OptionalBooleanSupplier fromBooleanSupplier(BooleanSupplier supplier) {
 		return new CatchingBooleanSupplier(supplier);
 	}
 	@RequiredArgsConstructor private final class CatchingBooleanSupplier implements OptionalBooleanSupplier {
@@ -115,7 +115,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final IntConsumer atIntConsumer(IntConsumer consumer) {
+	public final IntConsumer fromIntConsumer(IntConsumer consumer) {
 		return new CatchingIntConsumer(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingIntConsumer implements IntConsumer {
@@ -129,7 +129,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final LongConsumer atLongConsumer(LongConsumer consumer) {
+	public final LongConsumer fromLongConsumer(LongConsumer consumer) {
 		return new CatchingLongConsumer(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingLongConsumer implements LongConsumer {
@@ -143,7 +143,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final DoubleConsumer atDoubleConsumer(DoubleConsumer consumer) {
+	public final DoubleConsumer fromDoubleConsumer(DoubleConsumer consumer) {
 		return new CatchingDoubleConsumer(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingDoubleConsumer implements DoubleConsumer {
@@ -157,7 +157,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T, U> BiConsumer<T, U> atBiConsumer(BiConsumer<T, U> consumer) {
+	public final <T, U> BiConsumer<T, U> fromBiConsumer(BiConsumer<T, U> consumer) {
 		return new CatchingBiConsumer<T, U>(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingBiConsumer<T, U> implements BiConsumer<T, U> {
@@ -171,7 +171,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> ObjIntConsumer<T> atObjIntConsumer(ObjIntConsumer<T> consumer) {
+	public final <T> ObjIntConsumer<T> fromObjIntConsumer(ObjIntConsumer<T> consumer) {
 		return new CatchingObjIntConsumer<T>(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingObjIntConsumer<T> implements ObjIntConsumer<T> {
@@ -185,7 +185,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> ObjLongConsumer<T> atObjLongConsumer(ObjLongConsumer<T> consumer) {
+	public final <T> ObjLongConsumer<T> fromObjLongConsumer(ObjLongConsumer<T> consumer) {
 		return new CatchingObjLongConsumer<T>(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingObjLongConsumer<T> implements ObjLongConsumer<T> {
@@ -199,7 +199,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> ObjDoubleConsumer<T> atObjDoubleConsumer(ObjDoubleConsumer<T> consumer) {
+	public final <T> ObjDoubleConsumer<T> fromObjDoubleConsumer(ObjDoubleConsumer<T> consumer) {
 		return new CatchingObjDoubleConsumer<T>(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingObjDoubleConsumer<T> implements ObjDoubleConsumer<T> {
@@ -229,7 +229,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> OptionalToIntFunction<T> atToIntFunction(ToIntFunction<T> function) {
+	public final <T> OptionalToIntFunction<T> fromToIntFunction(ToIntFunction<T> function) {
 		return new CatchingToIntFunction<T>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingToIntFunction<T> implements OptionalToIntFunction<T> {
@@ -245,7 +245,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <R> OptionalIntFunction<R> atIntFunction(IntFunction<R> function) {
+	public final <R> OptionalIntFunction<R> fromIntFunction(IntFunction<R> function) {
 		return new CatchingIntFunction<R>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingIntFunction<R> implements OptionalIntFunction<R> {
@@ -261,7 +261,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalIntToLongFunction atIntToLongFunction(IntToLongFunction function) {
+	public final OptionalIntToLongFunction fromIntToLongFunction(IntToLongFunction function) {
 		return new CatchingIntToLongFunction(function);
 	}
 	@RequiredArgsConstructor private final class CatchingIntToLongFunction implements OptionalIntToLongFunction {
@@ -277,7 +277,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalIntToDoubleFunction atIntToDoubleFunction(IntToDoubleFunction function) {
+	public final OptionalIntToDoubleFunction fromIntToDoubleFunction(IntToDoubleFunction function) {
 		return new CatchingIntToDoubleFunction(function);
 	}
 	@RequiredArgsConstructor private final class CatchingIntToDoubleFunction implements OptionalIntToDoubleFunction {
@@ -293,7 +293,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> OptionalToLongFunction<T> atToLongFunction(ToLongFunction<T> function) {
+	public final <T> OptionalToLongFunction<T> fromToLongFunction(ToLongFunction<T> function) {
 		return new CatchingToLongFunction<T>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingToLongFunction<T> implements OptionalToLongFunction<T> {
@@ -309,7 +309,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <R> OptionalLongFunction<R> atLongFunction(LongFunction<R> function) {
+	public final <R> OptionalLongFunction<R> fromLongFunction(LongFunction<R> function) {
 		return new CatchingLongFunction<R>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingLongFunction<R> implements OptionalLongFunction<R> {
@@ -325,7 +325,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalLongToIntFunction atLongToIntFunction(LongToIntFunction function) {
+	public final OptionalLongToIntFunction fromLongToIntFunction(LongToIntFunction function) {
 		return new CatchingLongToIntFunction(function);
 	}
 	@RequiredArgsConstructor private final class CatchingLongToIntFunction implements OptionalLongToIntFunction {
@@ -341,7 +341,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalLongToDoubleFunction atLongToDoubleFunction(LongToDoubleFunction function) {
+	public final OptionalLongToDoubleFunction fromLongToDoubleFunction(LongToDoubleFunction function) {
 		return new CatchingLongToDoubleFunction(function);
 	}
 	@RequiredArgsConstructor private final class CatchingLongToDoubleFunction implements OptionalLongToDoubleFunction {
@@ -357,7 +357,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> OptionalToDoubleFunction<T> atToDoubleFunction(ToDoubleFunction<T> function) {
+	public final <T> OptionalToDoubleFunction<T> fromToDoubleFunction(ToDoubleFunction<T> function) {
 		return new CatchingToDoubleFunction<T>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingToDoubleFunction<T> implements OptionalToDoubleFunction<T> {
@@ -373,7 +373,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <R> OptionalDoubleFunction<R> atDoubleFunction(DoubleFunction<R> function) {
+	public final <R> OptionalDoubleFunction<R> fromDoubleFunction(DoubleFunction<R> function) {
 		return new CatchingDoubleFunction<R>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingDoubleFunction<R> implements OptionalDoubleFunction<R> {
@@ -389,7 +389,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalDoubleToIntFunction atDoubleToIntFunction(DoubleToIntFunction function) {
+	public final OptionalDoubleToIntFunction fromDoubleToIntFunction(DoubleToIntFunction function) {
 		return new CatchingDoubleToIntFunction(function);
 	}
 	@RequiredArgsConstructor private final class CatchingDoubleToIntFunction implements OptionalDoubleToIntFunction {
@@ -405,7 +405,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalDoubleToLongFunction atDoubleToLongFunction(DoubleToLongFunction function) {
+	public final OptionalDoubleToLongFunction fromDoubleToLongFunction(DoubleToLongFunction function) {
 		return new CatchingDoubleToLongFunction(function);
 	}
 	@RequiredArgsConstructor private final class CatchingDoubleToLongFunction implements OptionalDoubleToLongFunction {
@@ -421,7 +421,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> OptionalUnaryOperator<T> atUnaryOperator(UnaryOperator<T> operator) {
+	public final <T> OptionalUnaryOperator<T> fromUnaryOperator(UnaryOperator<T> operator) {
 		return new CatchingUnaryOperator<T>(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingUnaryOperator<T> implements OptionalUnaryOperator<T> {
@@ -437,7 +437,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalIntUnaryOperator atIntUnaryOperator(IntUnaryOperator operator) {
+	public final OptionalIntUnaryOperator fromIntUnaryOperator(IntUnaryOperator operator) {
 		return new CatchingIntUnaryOperator(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingIntUnaryOperator implements OptionalIntUnaryOperator {
@@ -453,7 +453,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalLongUnaryOperator atLongUnaryOperator(LongUnaryOperator operator) {
+	public final OptionalLongUnaryOperator fromLongUnaryOperator(LongUnaryOperator operator) {
 		return new CatchingLongUnaryOperator(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingLongUnaryOperator implements OptionalLongUnaryOperator {
@@ -469,7 +469,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalDoubleUnaryOperator atDoubleUnaryOperator(DoubleUnaryOperator operator) {
+	public final OptionalDoubleUnaryOperator fromDoubleUnaryOperator(DoubleUnaryOperator operator) {
 		return new CatchingDoubleUnaryOperator(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingDoubleUnaryOperator implements OptionalDoubleUnaryOperator {
@@ -485,7 +485,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T, U, R> OptionalBiFunction<T, U, R> atBiFunction(BiFunction<T, U, R> function) {
+	public final <T, U, R> OptionalBiFunction<T, U, R> fromBiFunction(BiFunction<T, U, R> function) {
 		return new CatchingBiFunction<T, U, R>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingBiFunction<T, U, R> implements OptionalBiFunction<T, U, R> {
@@ -501,7 +501,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T, U> OptionalToIntBiFunction<T, U> atToIntBiFunction(ToIntBiFunction<T, U> function) {
+	public final <T, U> OptionalToIntBiFunction<T, U> fromToIntBiFunction(ToIntBiFunction<T, U> function) {
 		return new CatchingToIntBiFunction<T, U>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingToIntBiFunction<T, U> implements OptionalToIntBiFunction<T, U> {
@@ -517,7 +517,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T, U> OptionalToLongBiFunction<T, U> atToLongBiFunction(ToLongBiFunction<T, U> function) {
+	public final <T, U> OptionalToLongBiFunction<T, U> fromToLongBiFunction(ToLongBiFunction<T, U> function) {
 		return new CatchingToLongBiFunction<T, U>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingToLongBiFunction<T, U> implements OptionalToLongBiFunction<T, U> {
@@ -533,7 +533,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T, U> OptionalToDoubleBiFunction<T, U> atToDoubleBiFunction(ToDoubleBiFunction<T, U> function) {
+	public final <T, U> OptionalToDoubleBiFunction<T, U> fromToDoubleBiFunction(ToDoubleBiFunction<T, U> function) {
 		return new CatchingToDoubleBiFunction<T, U>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingToDoubleBiFunction<T, U> implements OptionalToDoubleBiFunction<T, U> {
@@ -549,7 +549,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> OptionalBinaryOperator<T> atBinaryOperator(BinaryOperator<T> operator) {
+	public final <T> OptionalBinaryOperator<T> fromBinaryOperator(BinaryOperator<T> operator) {
 		return new CatchingBinaryOperator<T>(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingBinaryOperator<T> implements OptionalBinaryOperator<T> {
@@ -565,7 +565,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalIntBinaryOperator atIntBinaryOperator(IntBinaryOperator operator) {
+	public final OptionalIntBinaryOperator fromIntBinaryOperator(IntBinaryOperator operator) {
 		return new CatchingIntBinaryOperator(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingIntBinaryOperator implements OptionalIntBinaryOperator {
@@ -581,7 +581,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalLongBinaryOperator atLongBinaryOperator(LongBinaryOperator operator) {
+	public final OptionalLongBinaryOperator fromLongBinaryOperator(LongBinaryOperator operator) {
 		return new CatchingLongBinaryOperator(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingLongBinaryOperator implements OptionalLongBinaryOperator {
@@ -597,7 +597,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalDoubleBinaryOperator atDoubleBinaryOperator(DoubleBinaryOperator operator) {
+	public final OptionalDoubleBinaryOperator fromDoubleBinaryOperator(DoubleBinaryOperator operator) {
 		return new CatchingDoubleBinaryOperator(operator);
 	}
 	@RequiredArgsConstructor private final class CatchingDoubleBinaryOperator implements OptionalDoubleBinaryOperator {
@@ -629,7 +629,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalIntPredicate atIntPredicate(IntPredicate predicate) {
+	public final OptionalIntPredicate fromIntPredicate(IntPredicate predicate) {
 		return new CatchingIntPredicate(predicate);
 	}
 	@RequiredArgsConstructor private final class CatchingIntPredicate implements OptionalIntPredicate {
@@ -645,7 +645,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalLongPredicate atLongPredicate(LongPredicate predicate) {
+	public final OptionalLongPredicate fromLongPredicate(LongPredicate predicate) {
 		return new CatchingLongPredicate(predicate);
 	}
 	@RequiredArgsConstructor private final class CatchingLongPredicate implements OptionalLongPredicate {
@@ -661,7 +661,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final OptionalDoublePredicate atDoublePredicate(DoublePredicate predicate) {
+	public final OptionalDoublePredicate fromDoublePredicate(DoublePredicate predicate) {
 		return new CatchingDoublePredicate(predicate);
 	}
 	@RequiredArgsConstructor private final class CatchingDoublePredicate implements OptionalDoublePredicate {
