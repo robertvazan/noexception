@@ -632,6 +632,70 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	public final <T> OptionalPredicate<T> atPredicate(Predicate<T> predicate) {
+		return new CatchingPredicate<T>(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingPredicate<T> implements OptionalPredicate<T> {
+		private final Predicate<T> predicate;
+		@Override public OptionalBoolean test(T t) {
+			try {
+				return OptionalBoolean.of(predicate.test(t));
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalBoolean.empty();
+				else
+					throw exception;
+			}
+		}
+	}
+	public final OptionalIntPredicate atIntPredicate(IntPredicate predicate) {
+		return new CatchingIntPredicate(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingIntPredicate implements OptionalIntPredicate {
+		private final IntPredicate predicate;
+		@Override public OptionalBoolean test(int value) {
+			try {
+				return OptionalBoolean.of(predicate.test(value));
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalBoolean.empty();
+				else
+					throw exception;
+			}
+		}
+	}
+	public final OptionalLongPredicate atLongPredicate(LongPredicate predicate) {
+		return new CatchingLongPredicate(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingLongPredicate implements OptionalLongPredicate {
+		private final LongPredicate predicate;
+		@Override public OptionalBoolean test(long value) {
+			try {
+				return OptionalBoolean.of(predicate.test(value));
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalBoolean.empty();
+				else
+					throw exception;
+			}
+		}
+	}
+	public final OptionalDoublePredicate atDoublePredicate(DoublePredicate predicate) {
+		return new CatchingDoublePredicate(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingDoublePredicate implements OptionalDoublePredicate {
+		private final DoublePredicate predicate;
+		@Override public OptionalBoolean test(double value) {
+			try {
+				return OptionalBoolean.of(predicate.test(value));
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalBoolean.empty();
+				else
+					throw exception;
+			}
+		}
+	}
 	public final void run(Runnable runnable) {
 		try {
 			runnable.run();
