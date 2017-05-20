@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultSupplier<T> implements Supplier<T> {
 	private final OptionalSupplier<T> inner;
-	private final T value;
+	private final T defaultValue;
 	@Override public T get() {
-		return inner.get().orElse(value);
+		return inner.get().orElse(defaultValue);
 	}
 }
