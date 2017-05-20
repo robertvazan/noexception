@@ -104,6 +104,118 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	public final <T> Consumer<T> atConsumer(Consumer<T> consumer) {
+		return new CatchingConsumer<T>(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingConsumer<T> implements Consumer<T> {
+		private final Consumer<T> consumer;
+		@Override public void accept(T t) {
+			try {
+				consumer.accept(t);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	public final IntConsumer atIntConsumer(IntConsumer consumer) {
+		return new CatchingIntConsumer(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingIntConsumer implements IntConsumer {
+		private final IntConsumer consumer;
+		@Override public void accept(int value) {
+			try {
+				consumer.accept(value);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	public final LongConsumer atLongConsumer(LongConsumer consumer) {
+		return new CatchingLongConsumer(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingLongConsumer implements LongConsumer {
+		private final LongConsumer consumer;
+		@Override public void accept(long value) {
+			try {
+				consumer.accept(value);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	public final DoubleConsumer atDoubleConsumer(DoubleConsumer consumer) {
+		return new CatchingDoubleConsumer(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingDoubleConsumer implements DoubleConsumer {
+		private final DoubleConsumer consumer;
+		@Override public void accept(double value) {
+			try {
+				consumer.accept(value);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	public final <T, U> BiConsumer<T, U> atBiConsumer(BiConsumer<T, U> consumer) {
+		return new CatchingBiConsumer<T, U>(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingBiConsumer<T, U> implements BiConsumer<T, U> {
+		private final BiConsumer<T, U> consumer;
+		@Override public void accept(T t, U u) {
+			try {
+				consumer.accept(t, u);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	public final <T> ObjIntConsumer<T> atObjIntConsumer(ObjIntConsumer<T> consumer) {
+		return new CatchingObjIntConsumer<T>(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingObjIntConsumer<T> implements ObjIntConsumer<T> {
+		private final ObjIntConsumer<T> consumer;
+		@Override public void accept(T t, int value) {
+			try {
+				consumer.accept(t, value);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	public final <T> ObjLongConsumer<T> atObjLongConsumer(ObjLongConsumer<T> consumer) {
+		return new CatchingObjLongConsumer<T>(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingObjLongConsumer<T> implements ObjLongConsumer<T> {
+		private final ObjLongConsumer<T> consumer;
+		@Override public void accept(T t, long value) {
+			try {
+				consumer.accept(t, value);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	public final <T> ObjDoubleConsumer<T> atObjDoubleConsumer(ObjDoubleConsumer<T> consumer) {
+		return new CatchingObjDoubleConsumer<T>(consumer);
+	}
+	@RequiredArgsConstructor private final class CatchingObjDoubleConsumer<T> implements ObjDoubleConsumer<T> {
+		private final ObjDoubleConsumer<T> consumer;
+		@Override public void accept(T t, double value) {
+			try {
+				consumer.accept(t, value);
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
 	public final <T, R> OptionalFunction<T, R> atFunction(Function<T, R> function) {
 		return new CatchingFunction<T, R>(function);
 	}
