@@ -104,6 +104,22 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	public final OptionalBooleanSupplier atBooleanSupplier(BooleanSupplier supplier) {
+		return new CatchingBooleanSupplier(supplier);
+	}
+	@RequiredArgsConstructor private final class CatchingBooleanSupplier implements OptionalBooleanSupplier {
+		private final BooleanSupplier supplier;
+		@Override public OptionalBoolean get() {
+			try {
+				return OptionalBoolean.of(supplier.getAsBoolean());
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalBoolean.empty();
+				else
+					throw exception;
+			}
+		}
+	}
 	public final <T> Consumer<T> atConsumer(Consumer<T> consumer) {
 		return new CatchingConsumer<T>(consumer);
 	}
