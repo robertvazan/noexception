@@ -89,19 +89,51 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
-	public final void run(Runnable runnable) {
+	public final void run(ThrowingRunnable runnable) {
 		try {
 			runnable.run();
 		} catch (Throwable exception) {
 			handle(exception);
 		}
 	}
-	public final <T> T get(Supplier<T> supplier) {
+	public final <T> T get(ThrowingSupplier<T> supplier) {
 		try {
 			return supplier.get();
 		} catch (Throwable exception) {
 			handle(exception);
 			return null;
+		}
+	}
+	public final int getAsInt(ThrowingIntSupplier supplier) {
+		try {
+			return supplier.getAsInt();
+		} catch (Throwable exception) {
+			handle(exception);
+			return 0;
+		}
+	}
+	public final long getAsLong(ThrowingLongSupplier supplier) {
+		try {
+			return supplier.getAsLong();
+		} catch (Throwable exception) {
+			handle(exception);
+			return 0;
+		}
+	}
+	public final double getAsDouble(ThrowingDoubleSupplier supplier) {
+		try {
+			return supplier.getAsDouble();
+		} catch (Throwable exception) {
+			handle(exception);
+			return 0;
+		}
+	}
+	public final boolean getAsBoolean(ThrowingBooleanSupplier supplier) {
+		try {
+			return supplier.getAsBoolean();
+		} catch (Throwable exception) {
+			handle(exception);
+			return false;
 		}
 	}
 }
