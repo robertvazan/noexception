@@ -677,6 +677,22 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	public final <T, U> OptionalBiPredicate<T, U> fromBiPredicate(BiPredicate<T, U> predicate) {
+		return new CatchingBiPredicate<T, U>(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingBiPredicate<T, U> implements OptionalBiPredicate<T, U> {
+		private final BiPredicate<T, U> predicate;
+		@Override public OptionalBoolean test(T t, U u) {
+			try {
+				return OptionalBoolean.of(predicate.test(t, u));
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalBoolean.empty();
+				else
+					throw exception;
+			}
+		}
+	}
 	public final void run(Runnable runnable) {
 		try {
 			runnable.run();

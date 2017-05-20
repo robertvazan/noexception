@@ -249,6 +249,20 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	public final <T, U> BiPredicate<T, U> fromBiPredicate(ThrowingBiPredicate<T, U> predicate) {
+		return new CheckedBiPredicate<T, U>(predicate);
+	}
+	@RequiredArgsConstructor private final class CheckedBiPredicate<T, U> implements BiPredicate<T, U> {
+		private final ThrowingBiPredicate<T, U> predicate;
+		@Override public boolean test(T t, U u) {
+			try {
+				return predicate.test(t, u);
+			} catch (Throwable exception) {
+				handle(exception);
+				return false;
+			}
+		}
+	}
 	public final <T, R> Function<T, R> function(ThrowingFunction<T, R> function) {
 		return new CheckedFunction<T, R>(function);
 	}
