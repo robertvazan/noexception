@@ -2,30 +2,11 @@ package com.machinezoo.noexception;
 
 import java.util.*;
 import java.util.function.*;
-import org.slf4j.*;
 import com.machinezoo.noexception.optional.*;
 import lombok.*;
 
 public abstract class ExceptionHandler {
-	private static final ExceptionPassThrough pass = new ExceptionPassThrough();
-	private static final ExceptionLogger log = new ExceptionLogger();
-	private static final ExceptionSilencer silence = new ExceptionSilencer();
 	public abstract boolean handle(Throwable exception);
-	public static ExceptionHandler pass() {
-		return pass;
-	}
-	public static ExceptionHandler log() {
-		return log;
-	}
-	public static ExceptionHandler log(Logger logger) {
-		return new CustomExceptionLogger(logger, "Caught exception");
-	}
-	public static ExceptionHandler log(Logger logger, String message) {
-		return new CustomExceptionLogger(logger, message);
-	}
-	public static ExceptionHandler silence() {
-		return silence;
-	}
 	public final Runnable runnable(Runnable runnable) {
 		return new CatchingRunnable(runnable);
 	}

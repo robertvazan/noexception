@@ -1,11 +1,13 @@
 package com.machinezoo.noexception;
 
 import org.slf4j.*;
+import lombok.*;
 
-final class ExceptionLogger extends ExceptionHandler {
-	private static final Logger logger = LoggerFactory.getLogger(ExceptionLogger.class);
+@RequiredArgsConstructor final class ExceptionLogger extends ExceptionHandler {
+	private final Logger logger;
+	private final String message;
 	@Override public boolean handle(Throwable exception) {
-		logger.error("Caught exception", exception);
+		logger.error(message, exception);
 		return true;
 	}
 }
