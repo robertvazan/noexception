@@ -695,4 +695,44 @@ public abstract class ExceptionHandler {
 				throw exception;
 		}
 	}
+	public final OptionalInt getAsInt(IntSupplier supplier) {
+		try {
+			return OptionalInt.of(supplier.getAsInt());
+		} catch (Throwable exception) {
+			if (handle(exception))
+				return OptionalInt.empty();
+			else
+				throw exception;
+		}
+	}
+	public final OptionalLong getAsLong(LongSupplier supplier) {
+		try {
+			return OptionalLong.of(supplier.getAsLong());
+		} catch (Throwable exception) {
+			if (handle(exception))
+				return OptionalLong.empty();
+			else
+				throw exception;
+		}
+	}
+	public final OptionalDouble getAsDouble(DoubleSupplier supplier) {
+		try {
+			return OptionalDouble.of(supplier.getAsDouble());
+		} catch (Throwable exception) {
+			if (handle(exception))
+				return OptionalDouble.empty();
+			else
+				throw exception;
+		}
+	}
+	public final OptionalBoolean getAsBoolean(BooleanSupplier supplier) {
+		try {
+			return OptionalBoolean.of(supplier.getAsBoolean());
+		} catch (Throwable exception) {
+			if (handle(exception))
+				return OptionalBoolean.empty();
+			else
+				throw exception;
+		}
+	}
 }
