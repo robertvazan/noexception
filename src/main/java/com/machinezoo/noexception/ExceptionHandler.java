@@ -26,7 +26,7 @@ public abstract class ExceptionHandler {
 	public static ExceptionHandler silence() {
 		return silence;
 	}
-	public final Runnable atRunnable(Runnable runnable) {
+	public final Runnable runnable(Runnable runnable) {
 		return new CatchingRunnable(runnable);
 	}
 	@RequiredArgsConstructor private final class CatchingRunnable implements Runnable {
@@ -40,7 +40,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> OptionalSupplier<T> atSupplier(Supplier<T> supplier) {
+	public final <T> OptionalSupplier<T> supplier(Supplier<T> supplier) {
 		return new CatchingSupplier<T>(supplier);
 	}
 	@RequiredArgsConstructor private final class CatchingSupplier<T> implements OptionalSupplier<T> {
@@ -120,7 +120,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> Consumer<T> atConsumer(Consumer<T> consumer) {
+	public final <T> Consumer<T> consumer(Consumer<T> consumer) {
 		return new CatchingConsumer<T>(consumer);
 	}
 	@RequiredArgsConstructor private final class CatchingConsumer<T> implements Consumer<T> {
@@ -232,7 +232,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T, R> OptionalFunction<T, R> atFunction(Function<T, R> function) {
+	public final <T, R> OptionalFunction<T, R> function(Function<T, R> function) {
 		return new CatchingFunction<T, R>(function);
 	}
 	@RequiredArgsConstructor private final class CatchingFunction<T, R> implements OptionalFunction<T, R> {
@@ -632,7 +632,7 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
-	public final <T> OptionalPredicate<T> atPredicate(Predicate<T> predicate) {
+	public final <T> OptionalPredicate<T> predicate(Predicate<T> predicate) {
 		return new CatchingPredicate<T>(predicate);
 	}
 	@RequiredArgsConstructor private final class CatchingPredicate<T> implements OptionalPredicate<T> {
