@@ -41,7 +41,7 @@ public abstract class ExceptionHandler {
 		}
 	}
 	public final <T> OptionalSupplier<T> supplier(Supplier<T> supplier) {
-		return new CatchingSupplier<>(supplier);
+		return new CatchingSupplier<T>(supplier);
 	}
 	@RequiredArgsConstructor private final class CatchingSupplier<T> implements OptionalSupplier<T> {
 		private final Supplier<T> supplier;
@@ -51,6 +51,54 @@ public abstract class ExceptionHandler {
 			} catch (Throwable exception) {
 				if (handle(exception))
 					return Optional.empty();
+				else
+					throw exception;
+			}
+		}
+	}
+	public final OptionalIntSupplier intSupplier(IntSupplier intSupplier) {
+		return new CatchingIntSupplier(intSupplier);
+	}
+	@RequiredArgsConstructor private final class CatchingIntSupplier implements OptionalIntSupplier {
+		private final IntSupplier intSupplier;
+		@Override public OptionalInt get() {
+			try {
+				return OptionalInt.of(intSupplier.getAsInt());
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalInt.empty();
+				else
+					throw exception;
+			}
+		}
+	}
+	public final OptionalLongSupplier longSupplier(LongSupplier longSupplier) {
+		return new CatchingLongSupplier(longSupplier);
+	}
+	@RequiredArgsConstructor private final class CatchingLongSupplier implements OptionalLongSupplier {
+		private final LongSupplier longSupplier;
+		@Override public OptionalLong get() {
+			try {
+				return OptionalLong.of(longSupplier.getAsLong());
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalLong.empty();
+				else
+					throw exception;
+			}
+		}
+	}
+	public final OptionalDoubleSupplier doubleSupplier(DoubleSupplier doubleSupplier) {
+		return new CatchingDoubleSupplier(doubleSupplier);
+	}
+	@RequiredArgsConstructor private final class CatchingDoubleSupplier implements OptionalDoubleSupplier {
+		private final DoubleSupplier doubleSupplier;
+		@Override public OptionalDouble get() {
+			try {
+				return OptionalDouble.of(doubleSupplier.getAsDouble());
+			} catch (Throwable exception) {
+				if (handle(exception))
+					return OptionalDouble.empty();
 				else
 					throw exception;
 			}
