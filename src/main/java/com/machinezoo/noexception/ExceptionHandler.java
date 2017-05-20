@@ -26,9 +26,6 @@ public abstract class ExceptionHandler {
 	public static ExceptionHandler silence() {
 		return silence;
 	}
-	public static ExceptionHandler define(Predicate<Throwable> handler) {
-		return new CustomExceptionHandler(handler);
-	}
 	public final Runnable runnable(Runnable runnable) {
 		return new CatchingRunnable(runnable);
 	}
