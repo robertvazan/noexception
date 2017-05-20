@@ -33,7 +33,7 @@ public final class Exceptions {
 	public static CheckedExceptionHandler wrap() {
 		return wrap;
 	}
-	public static CheckedExceptionHandler wrap(Function<Throwable, RuntimeException> wrapper) {
+	public static CheckedExceptionHandler wrap(Function<Exception, RuntimeException> wrapper) {
 		return new ExceptionTransform(wrapper);
 	}
 }
