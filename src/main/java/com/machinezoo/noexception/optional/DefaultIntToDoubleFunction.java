@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultIntToDoubleFunction implements IntToDoubleFunction {
 	private final OptionalIntToDoubleFunction inner;
-	private final double defaultValue;
+	private final double result;
 	@Override public double applyAsDouble(int value) {
-		return inner.apply(value).orElse(defaultValue);
+		return inner.apply(value).orElse(result);
 	}
 }

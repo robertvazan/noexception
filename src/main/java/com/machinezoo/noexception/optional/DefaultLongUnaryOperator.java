@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultLongUnaryOperator implements LongUnaryOperator {
 	private final OptionalLongUnaryOperator inner;
-	private final long defaultValue;
+	private final long result;
 	@Override public long applyAsLong(long operand) {
-		return inner.apply(operand).orElse(defaultValue);
+		return inner.apply(operand).orElse(result);
 	}
 }

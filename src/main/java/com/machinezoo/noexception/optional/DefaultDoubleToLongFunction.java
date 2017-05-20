@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultDoubleToLongFunction implements DoubleToLongFunction {
 	private final OptionalDoubleToLongFunction inner;
-	private final long defaultValue;
+	private final long result;
 	@Override public long applyAsLong(double value) {
-		return inner.apply(value).orElse(defaultValue);
+		return inner.apply(value).orElse(result);
 	}
 }

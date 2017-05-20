@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultDoubleSupplier implements DoubleSupplier {
 	private final OptionalDoubleSupplier inner;
-	private final double defaultValue;
+	private final double result;
 	@Override public double getAsDouble() {
-		return inner.get().orElse(defaultValue);
+		return inner.get().orElse(result);
 	}
 }

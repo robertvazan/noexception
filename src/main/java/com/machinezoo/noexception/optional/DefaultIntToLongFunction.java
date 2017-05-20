@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultIntToLongFunction implements IntToLongFunction {
 	private final OptionalIntToLongFunction inner;
-	private final long defaultValue;
+	private final long result;
 	@Override public long applyAsLong(int value) {
-		return inner.apply(value).orElse(defaultValue);
+		return inner.apply(value).orElse(result);
 	}
 }

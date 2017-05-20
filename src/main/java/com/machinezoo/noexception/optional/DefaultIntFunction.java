@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultIntFunction<R> implements IntFunction<R> {
 	private final OptionalIntFunction<R> inner;
-	private final R defaultValue;
+	private final R result;
 	@Override public R apply(int value) {
-		return inner.apply(value).orElse(defaultValue);
+		return inner.apply(value).orElse(result);
 	}
 }

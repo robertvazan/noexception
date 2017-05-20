@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultToLongBiFunction<T, U> implements ToLongBiFunction<T, U> {
 	private final OptionalToLongBiFunction<T, U> inner;
-	private final long defaultValue;
+	private final long result;
 	@Override public long applyAsLong(T t, U u) {
-		return inner.apply(t, u).orElse(defaultValue);
+		return inner.apply(t, u).orElse(result);
 	}
 }

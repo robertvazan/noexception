@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultLongSupplier implements LongSupplier {
 	private final OptionalLongSupplier inner;
-	private final long defaultValue;
+	private final long result;
 	@Override public long getAsLong() {
-		return inner.get().orElse(defaultValue);
+		return inner.get().orElse(result);
 	}
 }

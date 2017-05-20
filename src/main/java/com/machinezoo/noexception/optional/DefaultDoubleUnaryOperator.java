@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultDoubleUnaryOperator implements DoubleUnaryOperator {
 	private final OptionalDoubleUnaryOperator inner;
-	private final double defaultValue;
+	private final double result;
 	@Override public double applyAsDouble(double operand) {
-		return inner.apply(operand).orElse(defaultValue);
+		return inner.apply(operand).orElse(result);
 	}
 }

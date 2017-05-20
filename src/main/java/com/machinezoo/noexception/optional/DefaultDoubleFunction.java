@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultDoubleFunction<R> implements DoubleFunction<R> {
 	private final OptionalDoubleFunction<R> inner;
-	private final R defaultValue;
+	private final R result;
 	@Override public R apply(double value) {
-		return inner.apply(value).orElse(defaultValue);
+		return inner.apply(value).orElse(result);
 	}
 }

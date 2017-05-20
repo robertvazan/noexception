@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultIntBinaryOperator implements IntBinaryOperator {
 	private final OptionalIntBinaryOperator inner;
-	private final int defaultValue;
+	private final int result;
 	@Override public int applyAsInt(int left, int right) {
-		return inner.apply(left, right).orElse(defaultValue);
+		return inner.apply(left, right).orElse(result);
 	}
 }

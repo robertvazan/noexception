@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultLongFunction<R> implements LongFunction<R> {
 	private final OptionalLongFunction<R> inner;
-	private final R defaultValue;
+	private final R result;
 	@Override public R apply(long value) {
-		return inner.apply(value).orElse(defaultValue);
+		return inner.apply(value).orElse(result);
 	}
 }

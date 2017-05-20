@@ -5,8 +5,8 @@ import lombok.*;
 
 @RequiredArgsConstructor final class DefaultToDoubleBiFunction<T, U> implements ToDoubleBiFunction<T, U> {
 	private final OptionalToDoubleBiFunction<T, U> inner;
-	private final double defaultValue;
+	private final double result;
 	@Override public double applyAsDouble(T t, U u) {
-		return inner.apply(t, u).orElse(defaultValue);
+		return inner.apply(t, u).orElse(result);
 	}
 }
