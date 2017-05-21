@@ -4,12 +4,33 @@
 
 	<groupId>com.machinezoo.noexception</groupId>
 	<artifactId>noexception</artifactId>
-	<version>1.0.0</version>
+	<version>0.1.0</version>
 	<packaging>jar</packaging>
 
 	<name>noexception</name>
 	<url>https://noexception.machinezoo.com/</url>
-	<description>Exception handling code can be concise and beautiful, yet architecturally clean and flexible. This lambda-friendly library lets you deal with checked exceptions, logging, fallback values, and fallback suppliers while increasing readability and correctness of your exception handlers.</description>
+	<description>Makes exception handling concise and beautiful, yet architecturally clean and flexible.</description>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Robert Važan</name>
+			<email>robvcode@gmail.com</email>
+			<url>https://robert.machinezoo.com/</url>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:hg:https://bitbucket.org/robertvazan/noexception</connection>
+		<developerConnection>scm:hg:https://bitbucket.org/robertvazan/noexception</developerConnection>
+		<url>https://bitbucket.org/robertvazan/noexception</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
