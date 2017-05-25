@@ -6,6 +6,8 @@ import java.util.function.*;
 
 public class OptionalBoolean {
 	private static final OptionalBoolean empty = new OptionalBoolean(false, false);
+	private static final OptionalBoolean optionalFalse = new OptionalBoolean(true, false);
+	private static final OptionalBoolean optionalTrue = new OptionalBoolean(true, true);
 	private final boolean present;
 	private final boolean value;
 	private OptionalBoolean(boolean present, boolean value) {
@@ -16,7 +18,7 @@ public class OptionalBoolean {
 		return empty;
 	}
 	public static OptionalBoolean of(boolean value) {
-		return new OptionalBoolean(true, value);
+		return value ? optionalTrue : optionalFalse;
 	}
 	public boolean isPresent() {
 		return present;
@@ -42,10 +44,7 @@ public class OptionalBoolean {
 			consumer.accept(value ? 1 : 0);
 	}
 	@Override public boolean equals(Object obj) {
-		if (!(obj instanceof OptionalBoolean))
-			return false;
-		OptionalBoolean other = (OptionalBoolean)obj;
-		return present == other.present && value == other.value;
+		return obj == this;
 	}
 	@Override public int hashCode() {
 		return !present ? 531664329 : value ? 911124333 : 657981802;
