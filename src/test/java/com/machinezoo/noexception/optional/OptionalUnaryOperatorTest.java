@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.*;
 
-public class OptionalFunctionTest {
+public class OptionalUnaryOperatorTest {
 	@Test public void conversions() {
 		assertEquals(Optional.of("value"), create(x -> Optional.of("value")).apply("input"));
 		assertEquals("value", create(x -> Optional.of("value")).orElse("default").apply("input"));
@@ -14,7 +14,7 @@ public class OptionalFunctionTest {
 		assertEquals("default", create(x -> Optional.empty()).orElse("default").apply("input"));
 		assertEquals("fallback", create(x -> Optional.empty()).orElseGet(() -> "fallback").apply("input"));
 	}
-	private OptionalFunction<String, String> create(OptionalFunction<String, String> lambda) {
+	private OptionalUnaryOperator<String> create(OptionalUnaryOperator<String> lambda) {
 		return lambda;
 	}
 }
