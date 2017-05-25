@@ -4,7 +4,7 @@ package com.machinezoo.noexception.optional;
 import java.util.*;
 import java.util.function.*;
 
-public class OptionalBoolean {
+public final class OptionalBoolean {
 	private static final OptionalBoolean empty = new OptionalBoolean(false, false);
 	private static final OptionalBoolean optionalFalse = new OptionalBoolean(true, false);
 	private static final OptionalBoolean optionalTrue = new OptionalBoolean(true, true);
