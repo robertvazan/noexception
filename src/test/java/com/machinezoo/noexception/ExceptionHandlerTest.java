@@ -60,6 +60,32 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+	@Test public void fromToIntFunction_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		@SuppressWarnings("unchecked") ToIntFunction<String> lambda = mock(ToIntFunction.class);
+		when(lambda.applyAsInt("input")).thenReturn(2);
+		assertEquals(OptionalInt.of(2), collector.fromToIntFunction(lambda).apply("input"));
+		verify(lambda, only()).applyAsInt("input");
+		assertTrue(collector.empty());
+	}
+	@Test public void fromToIntFunction_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalInt.empty(), collector.fromToIntFunction(x -> {
+			throw new NumberFormatException();
+		}).apply("input"));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromToIntFunction_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.fromToIntFunction(x -> {
+				throw new NumberFormatException();
+			}).apply("input");
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
 	@RequiredArgsConstructor private static class ExceptionCollector extends ExceptionHandler {
 		final boolean swallow;
 		final List<Throwable> collected = new ArrayList<>();
