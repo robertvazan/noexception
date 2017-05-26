@@ -6,13 +6,13 @@ import lombok.*;
 
 @RequiredArgsConstructor final class ExceptionTransform extends CheckedExceptionHandler {
 	private final Function<Exception, RuntimeException> wrapper;
-	@Override public void handle(Throwable exception) {
+	@Override public RuntimeException handle(Throwable exception) {
 		if (exception instanceof RuntimeException)
-			throw (RuntimeException)exception;
+			return (RuntimeException)exception;
 		if (exception instanceof Error)
 			throw (Error)exception;
 		if (exception instanceof Exception)
-			throw wrapper.apply((Exception)exception);
-		throw new WrappedException(exception);
+			return wrapper.apply((Exception)exception);
+		return new WrappedException(exception);
 	}
 }

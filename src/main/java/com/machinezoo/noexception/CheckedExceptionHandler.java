@@ -6,7 +6,7 @@ import com.machinezoo.noexception.throwing.*;
 import lombok.*;
 
 public abstract class CheckedExceptionHandler {
-	public abstract void handle(Throwable exception);
+	public abstract RuntimeException handle(Throwable exception);
 	public final Runnable runnable(ThrowingRunnable runnable) {
 		return new CheckedRunnable(runnable);
 	}
@@ -16,7 +16,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				runnable.run();
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -29,8 +29,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return supplier.get();
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -43,8 +42,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return supplier.getAsInt();
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -57,8 +55,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return supplier.getAsLong();
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -71,8 +68,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return supplier.getAsDouble();
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -85,8 +81,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return supplier.getAsBoolean();
 			} catch (Throwable exception) {
-				handle(exception);
-				return false;
+				throw handle(exception);
 			}
 		}
 	}
@@ -99,7 +94,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(t);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -112,7 +107,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -125,7 +120,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -138,7 +133,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -151,7 +146,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(t, u);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -164,7 +159,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -177,7 +172,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -190,7 +185,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
-				handle(exception);
+				throw handle(exception);
 			}
 		}
 	}
@@ -203,8 +198,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return predicate.test(t);
 			} catch (Throwable exception) {
-				handle(exception);
-				return false;
+				throw handle(exception);
 			}
 		}
 	}
@@ -217,8 +211,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return predicate.test(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return false;
+				throw handle(exception);
 			}
 		}
 	}
@@ -231,8 +224,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return predicate.test(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return false;
+				throw handle(exception);
 			}
 		}
 	}
@@ -245,8 +237,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return predicate.test(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return false;
+				throw handle(exception);
 			}
 		}
 	}
@@ -259,8 +250,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return predicate.test(t, u);
 			} catch (Throwable exception) {
-				handle(exception);
-				return false;
+				throw handle(exception);
 			}
 		}
 	}
@@ -273,8 +263,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.apply(t);
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -287,8 +276,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsInt(t);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -301,8 +289,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.apply(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -315,8 +302,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsLong(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -329,8 +315,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsDouble(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -343,8 +328,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsLong(t);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -357,8 +341,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.apply(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -371,8 +354,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsInt(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -385,8 +367,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsDouble(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -399,8 +380,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsDouble(t);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -413,8 +393,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.apply(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -427,8 +406,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsInt(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -441,8 +419,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsLong(value);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -455,8 +432,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.apply(operand);
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -469,8 +445,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.applyAsInt(operand);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -483,8 +458,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.applyAsLong(operand);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -497,8 +471,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.applyAsDouble(operand);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -511,8 +484,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.apply(t, u);
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -525,8 +497,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsInt(t, u);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -539,8 +510,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsLong(t, u);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -553,8 +523,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return function.applyAsDouble(t, u);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -567,8 +536,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.apply(left, right);
 			} catch (Throwable exception) {
-				handle(exception);
-				return null;
+				throw handle(exception);
 			}
 		}
 	}
@@ -581,8 +549,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.applyAsInt(left, right);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -595,8 +562,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.applyAsLong(left, right);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -609,8 +575,7 @@ public abstract class CheckedExceptionHandler {
 			try {
 				return operator.applyAsDouble(left, right);
 			} catch (Throwable exception) {
-				handle(exception);
-				return 0;
+				throw handle(exception);
 			}
 		}
 	}
@@ -618,47 +583,42 @@ public abstract class CheckedExceptionHandler {
 		try {
 			runnable.run();
 		} catch (Throwable exception) {
-			handle(exception);
+			throw handle(exception);
 		}
 	}
 	public final <T> T get(ThrowingSupplier<T> supplier) {
 		try {
 			return supplier.get();
 		} catch (Throwable exception) {
-			handle(exception);
-			return null;
+			throw handle(exception);
 		}
 	}
 	public final int getAsInt(ThrowingIntSupplier supplier) {
 		try {
 			return supplier.getAsInt();
 		} catch (Throwable exception) {
-			handle(exception);
-			return 0;
+			throw handle(exception);
 		}
 	}
 	public final long getAsLong(ThrowingLongSupplier supplier) {
 		try {
 			return supplier.getAsLong();
 		} catch (Throwable exception) {
-			handle(exception);
-			return 0;
+			throw handle(exception);
 		}
 	}
 	public final double getAsDouble(ThrowingDoubleSupplier supplier) {
 		try {
 			return supplier.getAsDouble();
 		} catch (Throwable exception) {
-			handle(exception);
-			return 0;
+			throw handle(exception);
 		}
 	}
 	public final boolean getAsBoolean(ThrowingBooleanSupplier supplier) {
 		try {
 			return supplier.getAsBoolean();
 		} catch (Throwable exception) {
-			handle(exception);
-			return false;
+			throw handle(exception);
 		}
 	}
 }
