@@ -1145,4 +1145,159 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+	@Test public void run_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		Runnable lambda = mock(Runnable.class);
+		collector.run(lambda);
+		verify(lambda, only()).run();
+		assertTrue(collector.empty());
+	}
+	@Test public void run_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		collector.run(() -> {
+			throw new NumberFormatException();
+		});
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void run_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.run(() -> {
+				throw new NumberFormatException();
+			});
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void get_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		@SuppressWarnings("unchecked") Supplier<String> lambda = mock(Supplier.class);
+		when(lambda.get()).thenReturn("value");
+		assertEquals(Optional.of("value"), collector.get(lambda));
+		verify(lambda, only()).get();
+		assertTrue(collector.empty());
+	}
+	@Test public void get_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(Optional.empty(), collector.get(() -> {
+			throw new NumberFormatException();
+		}));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void get_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.get(() -> {
+				throw new NumberFormatException();
+			});
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsInt_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		IntSupplier lambda = mock(IntSupplier.class);
+		when(lambda.getAsInt()).thenReturn(2);
+		assertEquals(OptionalInt.of(2), collector.getAsInt(lambda));
+		verify(lambda, only()).getAsInt();
+		assertTrue(collector.empty());
+	}
+	@Test public void getAsInt_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalInt.empty(), collector.getAsInt(() -> {
+			throw new NumberFormatException();
+		}));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsInt_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.getAsInt(() -> {
+				throw new NumberFormatException();
+			});
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsLong_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		LongSupplier lambda = mock(LongSupplier.class);
+		when(lambda.getAsLong()).thenReturn(2L);
+		assertEquals(OptionalLong.of(2L), collector.getAsLong(lambda));
+		verify(lambda, only()).getAsLong();
+		assertTrue(collector.empty());
+	}
+	@Test public void getAsLong_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalLong.empty(), collector.getAsLong(() -> {
+			throw new NumberFormatException();
+		}));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsLong_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.getAsLong(() -> {
+				throw new NumberFormatException();
+			});
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsDouble_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		DoubleSupplier lambda = mock(DoubleSupplier.class);
+		when(lambda.getAsDouble()).thenReturn(2.0);
+		assertEquals(OptionalDouble.of(2.0), collector.getAsDouble(lambda));
+		verify(lambda, only()).getAsDouble();
+		assertTrue(collector.empty());
+	}
+	@Test public void getAsDouble_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalDouble.empty(), collector.getAsDouble(() -> {
+			throw new NumberFormatException();
+		}));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsDouble_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.getAsDouble(() -> {
+				throw new NumberFormatException();
+			});
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsBoolean_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		BooleanSupplier lambda = mock(BooleanSupplier.class);
+		when(lambda.getAsBoolean()).thenReturn(true);
+		assertEquals(OptionalBoolean.of(true), collector.getAsBoolean(lambda));
+		verify(lambda, only()).getAsBoolean();
+		assertTrue(collector.empty());
+	}
+	@Test public void getAsBoolean_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalBoolean.empty(), collector.getAsBoolean(() -> {
+			throw new NumberFormatException();
+		}));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void getAsBoolean_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.getAsBoolean(() -> {
+				throw new NumberFormatException();
+			});
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
 }
