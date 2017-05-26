@@ -1,3 +1,4 @@
+// Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
 import static org.hamcrest.core.IsInstanceOf.*;
@@ -6,7 +7,6 @@ import static org.mockito.Mockito.*;
 import java.util.*;
 import java.util.function.*;
 import org.junit.*;
-import lombok.*;
 
 public class ExceptionHandlerTest {
 	@Test public void runnable_complete() {
@@ -85,23 +85,5 @@ public class ExceptionHandlerTest {
 		} catch (NumberFormatException e) {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@RequiredArgsConstructor private static class ExceptionCollector extends ExceptionHandler {
-		final boolean swallow;
-		final List<Throwable> collected = new ArrayList<>();
-		public int size() {
-			return collected.size();
-		}
-		public boolean empty() {
-			return size() == 0;
-		}
-		public Throwable single() {
-			assertEquals(1, size());
-			return collected.get(0);
-		}
-		@Override public boolean handle(Throwable exception) {
-			collected.add(exception);
-			return swallow;
-		}
 	}
 }
