@@ -6,8 +6,71 @@ import java.util.function.*;
 import com.machinezoo.noexception.optional.*;
 import lombok.*;
 
+/**
+ * Represents exception handling policy.
+ * Methods of this class apply the exception policy to functional interfaces by wrapping them in a try-catch block.
+ * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
+ * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * <p>
+ * Wrapping methods for all standard functional interfaces are provided.
+ * Simple interfaces have short method names, e.g. {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
+ * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(UnaryOperator)}.
+ * Parameterless functional interfaces can be called directly by methods {@link #run(Runnable)}, {@link #get(Supplier)},
+ * and the various {@code getAsX} variants.
+ * <p>
+ * All wrapping methods surround the functional interface with a try-catch block.
+ * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
+ * {@code NullPointerException} from null functional interface is caught too.
+ * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete silently
+ * while non-void functional interfaces return empty {@link Optional}.
+ * <p>
+ * All non-void wrappers conform to some {@code OptionalX} functional interface, e.g. {@link OptionalSupplier},
+ * that is identical to its non-optional variant from JDK except it returns {@code Optional} instead of raw value.
+ * This {@code Optional} is empty in case of exception.
+ * Callers can use {@link Optional#orElse(Object)} and {@link Optional#orElseGet(Supplier)} and their
+ * equivalents on {@code OptionalX} interfaces to provide fallback values.
+ * 
+ * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+ * @see #handle(Throwable)
+ * @see Exceptions
+ * @see OptionalSupplier
+ * @see Optional
+ * @see CheckedExceptionHandler
+ */
 public abstract class ExceptionHandler {
+	/**
+	 * Handle exception in a generic way. This method must be defined in a derived class.
+	 * Several implementations are provided by methods on {@link Exceptions} class.
+	 * All other methods of the {@code ExceptionHandler} call this method, but it can be also called directly.
+	 * <p>
+	 * This method represents reusable catch block that handles all exceptions in the same way.
+	 * When invoked, it must somehow handle the provided exception, e.g. by logging it.
+	 * <p>
+	 * This method does not have to handle all exceptions.
+	 * It can indicate through return value whether it has accepted or rejected the exception.
+	 * When an exception is rejected, caller of this method is expected to rethrow the exception.
+	 * All other methods of this class fulfill this requirement.
+	 * 
+	 * @param exception
+	 *            the exception to handle
+	 * @return {@code true} when exception is handled, {@code false} if the exception should be rethrown
+	 * @throws NullPointerException
+	 *             if {@code exception} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public abstract boolean handle(Throwable exception);
+	/**
+	 * Wraps {@code Runnable} in a try-catch block.
+	 * <p>
+	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code runnable} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param runnable
+	 *            the {@code Runnable} to wrap
+	 * @return wrapper that runs {@code runnable} in a try-catch block
+	 */
 	public final Runnable runnable(Runnable runnable) {
 		return new CatchingRunnable(runnable);
 	}
@@ -22,6 +85,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code Supplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code Supplier} to wrap
+	 * @return wrapper that runs {@code supplier} in a try-catch block
+	 */
 	public final <T> OptionalSupplier<T> supplier(Supplier<T> supplier) {
 		return new CatchingSupplier<T>(supplier);
 	}
@@ -38,6 +112,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * Wrapper then returns empty {@code IntSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code IntSupplier} to wrap
+	 * @return wrapper that runs {@code supplier} in a try-catch block
+	 */
 	public final OptionalIntSupplier fromIntSupplier(IntSupplier supplier) {
 		return new CatchingIntSupplier(supplier);
 	}
@@ -54,6 +139,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * Wrapper then returns empty {@code LongSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code LongSupplier} to wrap
+	 * @return wrapper that runs {@code supplier} in a try-catch block
+	 */
 	public final OptionalLongSupplier fromLongSupplier(LongSupplier supplier) {
 		return new CatchingLongSupplier(supplier);
 	}
@@ -70,6 +166,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoubleSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * Wrapper then returns empty {@code DoubleSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code DoubleSupplier} to wrap
+	 * @return wrapper that runs {@code supplier} in a try-catch block
+	 */
 	public final OptionalDoubleSupplier fromDoubleSupplier(DoubleSupplier supplier) {
 		return new CatchingDoubleSupplier(supplier);
 	}
@@ -86,6 +193,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code BooleanSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * Wrapper then returns empty {@code BooleanSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code BooleanSupplier} to wrap
+	 * @return wrapper that runs {@code supplier} in a try-catch block
+	 */
 	public final OptionalBooleanSupplier fromBooleanSupplier(BooleanSupplier supplier) {
 		return new CatchingBooleanSupplier(supplier);
 	}
@@ -102,6 +220,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code Consumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code Consumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final <T> Consumer<T> consumer(Consumer<T> consumer) {
 		return new CatchingConsumer<T>(consumer);
 	}
@@ -116,6 +245,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntConsumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code IntConsumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final IntConsumer fromIntConsumer(IntConsumer consumer) {
 		return new CatchingIntConsumer(consumer);
 	}
@@ -130,6 +270,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongConsumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code LongConsumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final LongConsumer fromLongConsumer(LongConsumer consumer) {
 		return new CatchingLongConsumer(consumer);
 	}
@@ -144,6 +295,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoubleConsumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code DoubleConsumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final DoubleConsumer fromDoubleConsumer(DoubleConsumer consumer) {
 		return new CatchingDoubleConsumer(consumer);
 	}
@@ -158,6 +320,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code BiConsumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code BiConsumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final <T, U> BiConsumer<T, U> fromBiConsumer(BiConsumer<T, U> consumer) {
 		return new CatchingBiConsumer<T, U>(consumer);
 	}
@@ -172,6 +345,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ObjIntConsumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code ObjIntConsumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final <T> ObjIntConsumer<T> fromObjIntConsumer(ObjIntConsumer<T> consumer) {
 		return new CatchingObjIntConsumer<T>(consumer);
 	}
@@ -186,6 +370,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ObjLongConsumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code ObjLongConsumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final <T> ObjLongConsumer<T> fromObjLongConsumer(ObjLongConsumer<T> consumer) {
 		return new CatchingObjLongConsumer<T>(consumer);
 	}
@@ -200,6 +395,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ObjDoubleConsumer} in a try-catch block.
+	 * <p>
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param consumer
+	 *            the {@code ObjDoubleConsumer} to wrap
+	 * @return wrapper that runs {@code consumer} in a try-catch block
+	 */
 	public final <T> ObjDoubleConsumer<T> fromObjDoubleConsumer(ObjDoubleConsumer<T> consumer) {
 		return new CatchingObjDoubleConsumer<T>(consumer);
 	}
@@ -214,6 +420,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code Function} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code Function} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T, R> OptionalFunction<T, R> function(Function<T, R> function) {
 		return new CatchingFunction<T, R>(function);
 	}
@@ -230,6 +447,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ToIntFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code ToIntFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code ToIntFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T> OptionalToIntFunction<T> fromToIntFunction(ToIntFunction<T> function) {
 		return new CatchingToIntFunction<T>(function);
 	}
@@ -246,6 +474,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code IntFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <R> OptionalIntFunction<R> fromIntFunction(IntFunction<R> function) {
 		return new CatchingIntFunction<R>(function);
 	}
@@ -262,6 +501,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntToLongFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code IntToLongFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code IntToLongFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final OptionalIntToLongFunction fromIntToLongFunction(IntToLongFunction function) {
 		return new CatchingIntToLongFunction(function);
 	}
@@ -278,6 +528,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntToDoubleFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code IntToDoubleFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code IntToDoubleFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final OptionalIntToDoubleFunction fromIntToDoubleFunction(IntToDoubleFunction function) {
 		return new CatchingIntToDoubleFunction(function);
 	}
@@ -294,6 +555,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ToLongFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code ToLongFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code ToLongFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T> OptionalToLongFunction<T> fromToLongFunction(ToLongFunction<T> function) {
 		return new CatchingToLongFunction<T>(function);
 	}
@@ -310,6 +582,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code LongFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <R> OptionalLongFunction<R> fromLongFunction(LongFunction<R> function) {
 		return new CatchingLongFunction<R>(function);
 	}
@@ -326,6 +609,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongToIntFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code LongToIntFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code LongToIntFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final OptionalLongToIntFunction fromLongToIntFunction(LongToIntFunction function) {
 		return new CatchingLongToIntFunction(function);
 	}
@@ -342,6 +636,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongToDoubleFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code LongToDoubleFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code LongToDoubleFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final OptionalLongToDoubleFunction fromLongToDoubleFunction(LongToDoubleFunction function) {
 		return new CatchingLongToDoubleFunction(function);
 	}
@@ -358,6 +663,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ToDoubleFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code ToDoubleFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code ToDoubleFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T> OptionalToDoubleFunction<T> fromToDoubleFunction(ToDoubleFunction<T> function) {
 		return new CatchingToDoubleFunction<T>(function);
 	}
@@ -374,6 +690,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoubleFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code DoubleFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <R> OptionalDoubleFunction<R> fromDoubleFunction(DoubleFunction<R> function) {
 		return new CatchingDoubleFunction<R>(function);
 	}
@@ -390,6 +717,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoubleToIntFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code DoubleToIntFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code DoubleToIntFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final OptionalDoubleToIntFunction fromDoubleToIntFunction(DoubleToIntFunction function) {
 		return new CatchingDoubleToIntFunction(function);
 	}
@@ -406,6 +744,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoubleToLongFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code DoubleToLongFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code DoubleToLongFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final OptionalDoubleToLongFunction fromDoubleToLongFunction(DoubleToLongFunction function) {
 		return new CatchingDoubleToLongFunction(function);
 	}
@@ -422,6 +771,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code UnaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code UnaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final <T> OptionalUnaryOperator<T> fromUnaryOperator(UnaryOperator<T> operator) {
 		return new CatchingUnaryOperator<T>(operator);
 	}
@@ -438,6 +798,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntUnaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code IntUnaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code IntUnaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final OptionalIntUnaryOperator fromIntUnaryOperator(IntUnaryOperator operator) {
 		return new CatchingIntUnaryOperator(operator);
 	}
@@ -454,6 +825,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongUnaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code LongUnaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code LongUnaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final OptionalLongUnaryOperator fromLongUnaryOperator(LongUnaryOperator operator) {
 		return new CatchingLongUnaryOperator(operator);
 	}
@@ -470,6 +852,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoubleUnaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code DoubleUnaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code DoubleUnaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final OptionalDoubleUnaryOperator fromDoubleUnaryOperator(DoubleUnaryOperator operator) {
 		return new CatchingDoubleUnaryOperator(operator);
 	}
@@ -486,6 +879,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code BiFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code BiFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T, U, R> OptionalBiFunction<T, U, R> fromBiFunction(BiFunction<T, U, R> function) {
 		return new CatchingBiFunction<T, U, R>(function);
 	}
@@ -502,6 +906,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ToIntBiFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code ToIntBiFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code ToIntBiFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T, U> OptionalToIntBiFunction<T, U> fromToIntBiFunction(ToIntBiFunction<T, U> function) {
 		return new CatchingToIntBiFunction<T, U>(function);
 	}
@@ -518,6 +933,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ToLongBiFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code ToLongBiFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code ToLongBiFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T, U> OptionalToLongBiFunction<T, U> fromToLongBiFunction(ToLongBiFunction<T, U> function) {
 		return new CatchingToLongBiFunction<T, U>(function);
 	}
@@ -534,6 +960,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code ToDoubleBiFunction} in a try-catch block.
+	 * <p>
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * Wrapper then returns empty {@code ToDoubleBiFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param function
+	 *            the {@code ToDoubleBiFunction} to wrap
+	 * @return wrapper that runs {@code function} in a try-catch block
+	 */
 	public final <T, U> OptionalToDoubleBiFunction<T, U> fromToDoubleBiFunction(ToDoubleBiFunction<T, U> function) {
 		return new CatchingToDoubleBiFunction<T, U>(function);
 	}
@@ -550,6 +987,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code BinaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code BinaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final <T> OptionalBinaryOperator<T> fromBinaryOperator(BinaryOperator<T> operator) {
 		return new CatchingBinaryOperator<T>(operator);
 	}
@@ -566,6 +1014,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntBinaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code IntBinaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code IntBinaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final OptionalIntBinaryOperator fromIntBinaryOperator(IntBinaryOperator operator) {
 		return new CatchingIntBinaryOperator(operator);
 	}
@@ -582,6 +1041,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongBinaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code LongBinaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code LongBinaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final OptionalLongBinaryOperator fromLongBinaryOperator(LongBinaryOperator operator) {
 		return new CatchingLongBinaryOperator(operator);
 	}
@@ -598,6 +1068,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoubleBinaryOperator} in a try-catch block.
+	 * <p>
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * Wrapper then returns empty {@code DoubleBinaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param operator
+	 *            the {@code DoubleBinaryOperator} to wrap
+	 * @return wrapper that runs {@code operator} in a try-catch block
+	 */
 	public final OptionalDoubleBinaryOperator fromDoubleBinaryOperator(DoubleBinaryOperator operator) {
 		return new CatchingDoubleBinaryOperator(operator);
 	}
@@ -614,6 +1095,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code Predicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code Predicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code Predicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
 	public final <T> OptionalPredicate<T> predicate(Predicate<T> predicate) {
 		return new CatchingPredicate<T>(predicate);
 	}
@@ -630,6 +1122,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code IntPredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code IntPredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code IntPredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
 	public final OptionalIntPredicate fromIntPredicate(IntPredicate predicate) {
 		return new CatchingIntPredicate(predicate);
 	}
@@ -646,6 +1149,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code LongPredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code LongPredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code LongPredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
 	public final OptionalLongPredicate fromLongPredicate(LongPredicate predicate) {
 		return new CatchingLongPredicate(predicate);
 	}
@@ -662,6 +1176,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code DoublePredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code DoublePredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code DoublePredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
 	public final OptionalDoublePredicate fromDoublePredicate(DoublePredicate predicate) {
 		return new CatchingDoublePredicate(predicate);
 	}
@@ -678,6 +1203,17 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Wraps {@code BiPredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code BiPredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code BiPredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
 	public final <T, U> OptionalBiPredicate<T, U> fromBiPredicate(BiPredicate<T, U> predicate) {
 		return new CatchingBiPredicate<T, U>(predicate);
 	}
@@ -694,6 +1230,16 @@ public abstract class ExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Runs {@code Runnable} in a try-catch block.
+	 * <p>
+	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code runnable} is caught too.
+	 * This method then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param runnable
+	 *            the {@code Runnable} to run
+	 */
 	public final void run(Runnable runnable) {
 		try {
 			runnable.run();
@@ -702,6 +1248,17 @@ public abstract class ExceptionHandler {
 				throw exception;
 		}
 	}
+	/**
+	 * Runs {@code Supplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * This method then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code Supplier} to run
+	 * @return an {@code Optional} carrying {@code supplier} result or an empty {@code Optional} if exception was caught
+	 */
 	public final <T> Optional<T> get(Supplier<T> supplier) {
 		try {
 			return Optional.ofNullable(supplier.get());
@@ -712,6 +1269,17 @@ public abstract class ExceptionHandler {
 				throw exception;
 		}
 	}
+	/**
+	 * Runs {@code IntSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * This method then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code IntSupplier} to run
+	 * @return an {@code OptionalInt} carrying {@code supplier} result or an empty {@code OptionalInt} if exception was caught
+	 */
 	public final OptionalInt getAsInt(IntSupplier supplier) {
 		try {
 			return OptionalInt.of(supplier.getAsInt());
@@ -722,6 +1290,17 @@ public abstract class ExceptionHandler {
 				throw exception;
 		}
 	}
+	/**
+	 * Runs {@code LongSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * This method then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code LongSupplier} to run
+	 * @return an {@code OptionalLong} carrying {@code supplier} result or an empty {@code OptionalLong} if exception was caught
+	 */
 	public final OptionalLong getAsLong(LongSupplier supplier) {
 		try {
 			return OptionalLong.of(supplier.getAsLong());
@@ -732,6 +1311,17 @@ public abstract class ExceptionHandler {
 				throw exception;
 		}
 	}
+	/**
+	 * Runs {@code DoubleSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * This method then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code DoubleSupplier} to run
+	 * @return an {@code OptionalDouble} carrying {@code supplier} result or an empty {@code OptionalDouble} if exception was caught
+	 */
 	public final OptionalDouble getAsDouble(DoubleSupplier supplier) {
 		try {
 			return OptionalDouble.of(supplier.getAsDouble());
@@ -742,6 +1332,17 @@ public abstract class ExceptionHandler {
 				throw exception;
 		}
 	}
+	/**
+	 * Runs {@code BooleanSupplier} in a try-catch block.
+	 * <p>
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * This method then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param supplier
+	 *            the {@code BooleanSupplier} to run
+	 * @return an {@code OptionalBoolean} carrying {@code supplier} result or an empty {@code OptionalBoolean} if exception was caught
+	 */
 	public final OptionalBoolean getAsBoolean(BooleanSupplier supplier) {
 		try {
 			return OptionalBoolean.of(supplier.getAsBoolean());
