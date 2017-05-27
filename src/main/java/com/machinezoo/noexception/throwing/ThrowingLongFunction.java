@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <R>
- *            See {@link LongFunction}.
+ *            see {@link LongFunction}
  * @see CheckedExceptionHandler#fromLongFunction(ThrowingLongFunction)
  * @see LongFunction
  */
@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link LongFunction#apply(long)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link LongFunction#apply(long)}
-	 * @return See {@link LongFunction#apply(long)}
+	 *            see {@link LongFunction#apply(long)}
+	 * @return see {@link LongFunction#apply(long)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongFunction(ThrowingLongFunction)
 	 * @see LongFunction#apply(long)
 	 */

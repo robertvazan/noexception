@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link ToLongFunction}.
+ *            see {@link ToLongFunction}
  * @see CheckedExceptionHandler#fromToLongFunction(ThrowingToLongFunction)
  * @see ToLongFunction
  */
@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link ToLongFunction#applyAsLong(Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link ToLongFunction#applyAsLong(Object)}
-	 * @return See {@link ToLongFunction#applyAsLong(Object)}
+	 *            see {@link ToLongFunction#applyAsLong(Object)}
+	 * @return see {@link ToLongFunction#applyAsLong(Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToLongFunction(ThrowingToLongFunction)
 	 * @see ToLongFunction#applyAsLong(Object)
 	 */

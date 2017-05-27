@@ -17,9 +17,9 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link BooleanSupplier#getAsBoolean()} that allows throwing checked exceptions.
 	 * 
-	 * @return See {@link BooleanSupplier#getAsBoolean()}
+	 * @return see {@link BooleanSupplier#getAsBoolean()}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromBooleanSupplier(ThrowingBooleanSupplier)
 	 * @see BooleanSupplier#getAsBoolean()
 	 */

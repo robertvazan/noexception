@@ -11,9 +11,9 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link Function}.
+ *            see {@link Function}
  * @param <R>
- *            See {@link Function}.
+ *            see {@link Function}
  * @see CheckedExceptionHandler#function(ThrowingFunction)
  * @see Function
  */
@@ -22,10 +22,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link Function#apply(Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t
-	 *            See {@link Function#apply(Object)}
-	 * @return See {@link Function#apply(Object)}
+	 *            see {@link Function#apply(Object)}
+	 * @return see {@link Function#apply(Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#function(ThrowingFunction)
 	 * @see Function#apply(Object)
 	 */

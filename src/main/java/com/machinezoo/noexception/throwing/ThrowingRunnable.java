@@ -17,7 +17,7 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link Runnable#run()} that allows throwing checked exceptions.
 	 * 
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#runnable(ThrowingRunnable)
 	 * @see Runnable#run()
 	 */

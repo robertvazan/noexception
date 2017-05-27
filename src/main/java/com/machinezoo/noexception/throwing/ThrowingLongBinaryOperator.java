@@ -18,12 +18,12 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that allows throwing checked exceptions.
 	 * 
 	 * @param left,
-	 *            See {@link LongBinaryOperator#applyAsLong(long, long)}
+	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @param right
-	 *            See {@link LongBinaryOperator#applyAsLong(long, long)}
-	 * @return See {@link LongBinaryOperator#applyAsLong(long, long)}
+	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
+	 * @return see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongBinaryOperator(ThrowingLongBinaryOperator)
 	 * @see LongBinaryOperator#applyAsLong(long, long)
 	 */

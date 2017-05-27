@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link DoubleUnaryOperator#applyAsDouble(double)} that allows throwing checked exceptions.
 	 * 
 	 * @param operand
-	 *            See {@link DoubleUnaryOperator#applyAsDouble(double)}
-	 * @return See {@link DoubleUnaryOperator#applyAsDouble(double)}
+	 *            see {@link DoubleUnaryOperator#applyAsDouble(double)}
+	 * @return see {@link DoubleUnaryOperator#applyAsDouble(double)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator)
 	 * @see DoubleUnaryOperator#applyAsDouble(double)
 	 */

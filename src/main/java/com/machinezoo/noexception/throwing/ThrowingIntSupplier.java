@@ -17,9 +17,9 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link IntSupplier#getAsInt()} that allows throwing checked exceptions.
 	 * 
-	 * @return See {@link IntSupplier#getAsInt()}
+	 * @return see {@link IntSupplier#getAsInt()}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntSupplier(ThrowingIntSupplier)
 	 * @see IntSupplier#getAsInt()
 	 */

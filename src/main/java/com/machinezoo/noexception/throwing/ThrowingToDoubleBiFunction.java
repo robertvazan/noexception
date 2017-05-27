@@ -11,9 +11,9 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link ToDoubleBiFunction}.
+ *            see {@link ToDoubleBiFunction}
  * @param <U>
- *            See {@link ToDoubleBiFunction}.
+ *            see {@link ToDoubleBiFunction}
  * @see CheckedExceptionHandler#fromToDoubleBiFunction(ThrowingToDoubleBiFunction)
  * @see ToDoubleBiFunction
  */
@@ -22,12 +22,12 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t,
-	 *            See {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
+	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @param u
-	 *            See {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
-	 * @return See {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
+	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
+	 * @return see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToDoubleBiFunction(ThrowingToDoubleBiFunction)
 	 * @see ToDoubleBiFunction#applyAsDouble(Object, Object)
 	 */

@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link Predicate}.
+ *            see {@link Predicate}
  * @see CheckedExceptionHandler#predicate(ThrowingPredicate)
  * @see Predicate
  */
@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link Predicate#test(Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t
-	 *            See {@link Predicate#test(Object)}
-	 * @return See {@link Predicate#test(Object)}
+	 *            see {@link Predicate#test(Object)}
+	 * @return see {@link Predicate#test(Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#predicate(ThrowingPredicate)
 	 * @see Predicate#test(Object)
 	 */

@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link LongToDoubleFunction#applyAsDouble(long)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link LongToDoubleFunction#applyAsDouble(long)}
-	 * @return See {@link LongToDoubleFunction#applyAsDouble(long)}
+	 *            see {@link LongToDoubleFunction#applyAsDouble(long)}
+	 * @return see {@link LongToDoubleFunction#applyAsDouble(long)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongToDoubleFunction(ThrowingLongToDoubleFunction)
 	 * @see LongToDoubleFunction#applyAsDouble(long)
 	 */

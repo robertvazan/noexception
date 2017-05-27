@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link IntPredicate#test(int)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link IntPredicate#test(int)}
-	 * @return See {@link IntPredicate#test(int)}
+	 *            see {@link IntPredicate#test(int)}
+	 * @return see {@link IntPredicate#test(int)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntPredicate(ThrowingIntPredicate)
 	 * @see IntPredicate#test(int)
 	 */

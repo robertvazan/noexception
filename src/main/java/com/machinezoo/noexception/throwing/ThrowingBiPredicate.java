@@ -11,9 +11,9 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link BiPredicate}.
+ *            see {@link BiPredicate}
  * @param <U>
- *            See {@link BiPredicate}.
+ *            see {@link BiPredicate}
  * @see CheckedExceptionHandler#fromBiPredicate(ThrowingBiPredicate)
  * @see BiPredicate
  */
@@ -22,12 +22,12 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link BiPredicate#test(Object, Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t,
-	 *            See {@link BiPredicate#test(Object, Object)}
+	 *            see {@link BiPredicate#test(Object, Object)}
 	 * @param u
-	 *            See {@link BiPredicate#test(Object, Object)}
-	 * @return See {@link BiPredicate#test(Object, Object)}
+	 *            see {@link BiPredicate#test(Object, Object)}
+	 * @return see {@link BiPredicate#test(Object, Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromBiPredicate(ThrowingBiPredicate)
 	 * @see BiPredicate#test(Object, Object)
 	 */

@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link Supplier}.
+ *            see {@link Supplier}
  * @see CheckedExceptionHandler#supplier(ThrowingSupplier)
  * @see Supplier
  */
@@ -19,9 +19,9 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link Supplier#get()} that allows throwing checked exceptions.
 	 * 
-	 * @return See {@link Supplier#get()}
+	 * @return see {@link Supplier#get()}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#supplier(ThrowingSupplier)
 	 * @see Supplier#get()
 	 */

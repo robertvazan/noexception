@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link DoubleToIntFunction#applyAsInt(double)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link DoubleToIntFunction#applyAsInt(double)}
-	 * @return See {@link DoubleToIntFunction#applyAsInt(double)}
+	 *            see {@link DoubleToIntFunction#applyAsInt(double)}
+	 * @return see {@link DoubleToIntFunction#applyAsInt(double)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleToIntFunction(ThrowingDoubleToIntFunction)
 	 * @see DoubleToIntFunction#applyAsInt(double)
 	 */

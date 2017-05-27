@@ -11,9 +11,9 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link BiConsumer}.
+ *            see {@link BiConsumer}
  * @param <U>
- *            See {@link BiConsumer}.
+ *            see {@link BiConsumer}
  * @see CheckedExceptionHandler#fromBiConsumer(ThrowingBiConsumer)
  * @see BiConsumer
  */
@@ -22,11 +22,11 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link BiConsumer#accept(Object, Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t,
-	 *            See {@link BiConsumer#accept(Object, Object)}
+	 *            see {@link BiConsumer#accept(Object, Object)}
 	 * @param u
-	 *            See {@link BiConsumer#accept(Object, Object)}
+	 *            see {@link BiConsumer#accept(Object, Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromBiConsumer(ThrowingBiConsumer)
 	 * @see BiConsumer#accept(Object, Object)
 	 */

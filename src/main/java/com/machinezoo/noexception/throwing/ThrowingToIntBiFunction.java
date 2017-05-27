@@ -11,9 +11,9 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link ToIntBiFunction}.
+ *            see {@link ToIntBiFunction}
  * @param <U>
- *            See {@link ToIntBiFunction}.
+ *            see {@link ToIntBiFunction}
  * @see CheckedExceptionHandler#fromToIntBiFunction(ThrowingToIntBiFunction)
  * @see ToIntBiFunction
  */
@@ -22,12 +22,12 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link ToIntBiFunction#applyAsInt(Object, Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t,
-	 *            See {@link ToIntBiFunction#applyAsInt(Object, Object)}
+	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @param u
-	 *            See {@link ToIntBiFunction#applyAsInt(Object, Object)}
-	 * @return See {@link ToIntBiFunction#applyAsInt(Object, Object)}
+	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
+	 * @return see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToIntBiFunction(ThrowingToIntBiFunction)
 	 * @see ToIntBiFunction#applyAsInt(Object, Object)
 	 */

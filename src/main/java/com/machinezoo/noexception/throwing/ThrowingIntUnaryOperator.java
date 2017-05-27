@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link IntUnaryOperator#applyAsInt(int)} that allows throwing checked exceptions.
 	 * 
 	 * @param operand
-	 *            See {@link IntUnaryOperator#applyAsInt(int)}
-	 * @return See {@link IntUnaryOperator#applyAsInt(int)}
+	 *            see {@link IntUnaryOperator#applyAsInt(int)}
+	 * @return see {@link IntUnaryOperator#applyAsInt(int)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntUnaryOperator(ThrowingIntUnaryOperator)
 	 * @see IntUnaryOperator#applyAsInt(int)
 	 */

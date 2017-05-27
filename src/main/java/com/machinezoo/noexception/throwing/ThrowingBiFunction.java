@@ -11,11 +11,11 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link BiFunction}.
+ *            see {@link BiFunction}
  * @param <U>
- *            See {@link BiFunction}.
+ *            see {@link BiFunction}
  * @param <R>
- *            See {@link BiFunction}.
+ *            see {@link BiFunction}
  * @see CheckedExceptionHandler#fromBiFunction(ThrowingBiFunction)
  * @see BiFunction
  */
@@ -24,12 +24,12 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link BiFunction#apply(Object, Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t,
-	 *            See {@link BiFunction#apply(Object, Object)}
+	 *            see {@link BiFunction#apply(Object, Object)}
 	 * @param u
-	 *            See {@link BiFunction#apply(Object, Object)}
-	 * @return See {@link BiFunction#apply(Object, Object)}
+	 *            see {@link BiFunction#apply(Object, Object)}
+	 * @return see {@link BiFunction#apply(Object, Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromBiFunction(ThrowingBiFunction)
 	 * @see BiFunction#apply(Object, Object)
 	 */

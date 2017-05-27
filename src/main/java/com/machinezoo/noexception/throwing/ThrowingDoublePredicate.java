@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link DoublePredicate#test(double)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link DoublePredicate#test(double)}
-	 * @return See {@link DoublePredicate#test(double)}
+	 *            see {@link DoublePredicate#test(double)}
+	 * @return see {@link DoublePredicate#test(double)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoublePredicate(ThrowingDoublePredicate)
 	 * @see DoublePredicate#test(double)
 	 */

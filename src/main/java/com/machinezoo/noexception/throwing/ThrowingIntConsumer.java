@@ -18,9 +18,9 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link IntConsumer#accept(int)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link IntConsumer#accept(int)}
+	 *            see {@link IntConsumer#accept(int)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntConsumer(ThrowingIntConsumer)
 	 * @see IntConsumer#accept(int)
 	 */

@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <R>
- *            See {@link IntFunction}.
+ *            see {@link IntFunction}
  * @see CheckedExceptionHandler#fromIntFunction(ThrowingIntFunction)
  * @see IntFunction
  */
@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link IntFunction#apply(int)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link IntFunction#apply(int)}
-	 * @return See {@link IntFunction#apply(int)}
+	 *            see {@link IntFunction#apply(int)}
+	 * @return see {@link IntFunction#apply(int)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntFunction(ThrowingIntFunction)
 	 * @see IntFunction#apply(int)
 	 */

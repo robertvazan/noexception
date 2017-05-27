@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <R>
- *            See {@link DoubleFunction}.
+ *            see {@link DoubleFunction}
  * @see CheckedExceptionHandler#fromDoubleFunction(ThrowingDoubleFunction)
  * @see DoubleFunction
  */
@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link DoubleFunction#apply(double)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link DoubleFunction#apply(double)}
-	 * @return See {@link DoubleFunction#apply(double)}
+	 *            see {@link DoubleFunction#apply(double)}
+	 * @return see {@link DoubleFunction#apply(double)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleFunction(ThrowingDoubleFunction)
 	 * @see DoubleFunction#apply(double)
 	 */

@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link Consumer}.
+ *            see {@link Consumer}
  * @see CheckedExceptionHandler#consumer(ThrowingConsumer)
  * @see Consumer
  */
@@ -20,9 +20,9 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link Consumer#accept(Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t
-	 *            See {@link Consumer#accept(Object)}
+	 *            see {@link Consumer#accept(Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#consumer(ThrowingConsumer)
 	 * @see Consumer#accept(Object)
 	 */

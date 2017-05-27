@@ -11,9 +11,9 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link ToLongBiFunction}.
+ *            see {@link ToLongBiFunction}
  * @param <U>
- *            See {@link ToLongBiFunction}.
+ *            see {@link ToLongBiFunction}
  * @see CheckedExceptionHandler#fromToLongBiFunction(ThrowingToLongBiFunction)
  * @see ToLongBiFunction
  */
@@ -22,12 +22,12 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param t,
-	 *            See {@link ToLongBiFunction#applyAsLong(Object, Object)}
+	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @param u
-	 *            See {@link ToLongBiFunction#applyAsLong(Object, Object)}
-	 * @return See {@link ToLongBiFunction#applyAsLong(Object, Object)}
+	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
+	 * @return see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToLongBiFunction(ThrowingToLongBiFunction)
 	 * @see ToLongBiFunction#applyAsLong(Object, Object)
 	 */

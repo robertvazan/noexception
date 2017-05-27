@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link LongPredicate#test(long)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link LongPredicate#test(long)}
-	 * @return See {@link LongPredicate#test(long)}
+	 *            see {@link LongPredicate#test(long)}
+	 * @return see {@link LongPredicate#test(long)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongPredicate(ThrowingLongPredicate)
 	 * @see LongPredicate#test(long)
 	 */

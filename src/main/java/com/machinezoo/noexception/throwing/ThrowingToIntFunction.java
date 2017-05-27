@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link ToIntFunction}.
+ *            see {@link ToIntFunction}
  * @see CheckedExceptionHandler#fromToIntFunction(ThrowingToIntFunction)
  * @see ToIntFunction
  */
@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link ToIntFunction#applyAsInt(Object)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link ToIntFunction#applyAsInt(Object)}
-	 * @return See {@link ToIntFunction#applyAsInt(Object)}
+	 *            see {@link ToIntFunction#applyAsInt(Object)}
+	 * @return see {@link ToIntFunction#applyAsInt(Object)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToIntFunction(ThrowingToIntFunction)
 	 * @see ToIntFunction#applyAsInt(Object)
 	 */

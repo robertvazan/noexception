@@ -17,9 +17,9 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link LongSupplier#getAsLong()} that allows throwing checked exceptions.
 	 * 
-	 * @return See {@link LongSupplier#getAsLong()}
+	 * @return see {@link LongSupplier#getAsLong()}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongSupplier(ThrowingLongSupplier)
 	 * @see LongSupplier#getAsLong()
 	 */

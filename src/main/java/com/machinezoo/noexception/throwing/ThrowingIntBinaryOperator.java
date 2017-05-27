@@ -18,12 +18,12 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link IntBinaryOperator#applyAsInt(int, int)} that allows throwing checked exceptions.
 	 * 
 	 * @param left,
-	 *            See {@link IntBinaryOperator#applyAsInt(int, int)}
+	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @param right
-	 *            See {@link IntBinaryOperator#applyAsInt(int, int)}
-	 * @return See {@link IntBinaryOperator#applyAsInt(int, int)}
+	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
+	 * @return see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntBinaryOperator(ThrowingIntBinaryOperator)
 	 * @see IntBinaryOperator#applyAsInt(int, int)
 	 */

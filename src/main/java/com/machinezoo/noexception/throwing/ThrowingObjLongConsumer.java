@@ -11,7 +11,7 @@ import com.machinezoo.noexception.*;
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * 
  * @param <T>
- *            See {@link ObjLongConsumer}.
+ *            see {@link ObjLongConsumer}
  * @see CheckedExceptionHandler#fromObjLongConsumer(ThrowingObjLongConsumer)
  * @see ObjLongConsumer
  */
@@ -20,11 +20,11 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link ObjLongConsumer#accept(Object, long)} that allows throwing checked exceptions.
 	 * 
 	 * @param t,
-	 *            See {@link ObjLongConsumer#accept(Object, long)}
+	 *            see {@link ObjLongConsumer#accept(Object, long)}
 	 * @param value
-	 *            See {@link ObjLongConsumer#accept(Object, long)}
+	 *            see {@link ObjLongConsumer#accept(Object, long)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromObjLongConsumer(ThrowingObjLongConsumer)
 	 * @see ObjLongConsumer#accept(Object, long)
 	 */

@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link IntToLongFunction#applyAsLong(int)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link IntToLongFunction#applyAsLong(int)}
-	 * @return See {@link IntToLongFunction#applyAsLong(int)}
+	 *            see {@link IntToLongFunction#applyAsLong(int)}
+	 * @return see {@link IntToLongFunction#applyAsLong(int)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntToLongFunction(ThrowingIntToLongFunction)
 	 * @see IntToLongFunction#applyAsLong(int)
 	 */

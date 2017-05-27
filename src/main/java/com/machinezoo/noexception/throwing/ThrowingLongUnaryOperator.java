@@ -18,10 +18,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link LongUnaryOperator#applyAsLong(long)} that allows throwing checked exceptions.
 	 * 
 	 * @param operand
-	 *            See {@link LongUnaryOperator#applyAsLong(long)}
-	 * @return See {@link LongUnaryOperator#applyAsLong(long)}
+	 *            see {@link LongUnaryOperator#applyAsLong(long)}
+	 * @return see {@link LongUnaryOperator#applyAsLong(long)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongUnaryOperator(ThrowingLongUnaryOperator)
 	 * @see LongUnaryOperator#applyAsLong(long)
 	 */

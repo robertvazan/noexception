@@ -18,9 +18,9 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link LongConsumer#accept(long)} that allows throwing checked exceptions.
 	 * 
 	 * @param value
-	 *            See {@link LongConsumer#accept(long)}
+	 *            see {@link LongConsumer#accept(long)}
 	 * @throws Exception
-	 *             Whenever necessary.
+	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongConsumer(ThrowingLongConsumer)
 	 * @see LongConsumer#accept(long)
 	 */
