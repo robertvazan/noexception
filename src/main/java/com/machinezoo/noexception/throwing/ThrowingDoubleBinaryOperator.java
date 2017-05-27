@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link DoubleBinaryOperator} that allows throwing checked exceptions.
- * 
  * {@code ThrowingDoubleBinaryOperator} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

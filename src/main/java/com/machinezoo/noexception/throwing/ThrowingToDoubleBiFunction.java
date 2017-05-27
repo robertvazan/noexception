@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ToDoubleBiFunction} that allows throwing checked exceptions.
- * 
  * {@code ThrowingToDoubleBiFunction} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromToDoubleBiFunction(ThrowingToDoubleBiFunction)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

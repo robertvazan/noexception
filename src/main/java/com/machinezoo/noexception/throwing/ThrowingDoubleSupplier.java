@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link DoubleSupplier} that allows throwing checked exceptions.
- * 
  * {@code ThrowingDoubleSupplier} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromDoubleSupplier(ThrowingDoubleSupplier)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link LongSupplier} that allows throwing checked exceptions.
- * 
  * {@code ThrowingLongSupplier} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromLongSupplier(ThrowingLongSupplier)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

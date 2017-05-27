@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link BiConsumer} that allows throwing checked exceptions.
- * 
  * {@code ThrowingBiConsumer} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromBiConsumer(ThrowingBiConsumer)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

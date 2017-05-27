@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link Predicate} that allows throwing checked exceptions.
- * 
  * {@code ThrowingPredicate} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#predicate(ThrowingPredicate)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

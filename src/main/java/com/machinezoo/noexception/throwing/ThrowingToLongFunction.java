@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ToLongFunction} that allows throwing checked exceptions.
- * 
  * {@code ThrowingToLongFunction} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromToLongFunction(ThrowingToLongFunction)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ToIntFunction} that allows throwing checked exceptions.
- * 
  * {@code ThrowingToIntFunction} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromToIntFunction(ThrowingToIntFunction)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

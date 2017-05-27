@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link IntBinaryOperator} that allows throwing checked exceptions.
- * 
  * {@code ThrowingIntBinaryOperator} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromIntBinaryOperator(ThrowingIntBinaryOperator)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

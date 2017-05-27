@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link IntUnaryOperator} that allows throwing checked exceptions.
- * 
  * {@code ThrowingIntUnaryOperator} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromIntUnaryOperator(ThrowingIntUnaryOperator)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

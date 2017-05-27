@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ObjIntConsumer} that allows throwing checked exceptions.
- * 
  * {@code ThrowingObjIntConsumer} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromObjIntConsumer(ThrowingObjIntConsumer)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

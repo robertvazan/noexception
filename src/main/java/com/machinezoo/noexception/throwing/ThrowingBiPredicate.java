@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link BiPredicate} that allows throwing checked exceptions.
- * 
  * {@code ThrowingBiPredicate} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromBiPredicate(ThrowingBiPredicate)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

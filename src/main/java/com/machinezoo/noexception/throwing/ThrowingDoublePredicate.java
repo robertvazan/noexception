@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link DoublePredicate} that allows throwing checked exceptions.
- * 
  * {@code ThrowingDoublePredicate} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromDoublePredicate(ThrowingDoublePredicate)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

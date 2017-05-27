@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link BooleanSupplier} that allows throwing checked exceptions.
- * 
  * {@code ThrowingBooleanSupplier} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromBooleanSupplier(ThrowingBooleanSupplier)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.

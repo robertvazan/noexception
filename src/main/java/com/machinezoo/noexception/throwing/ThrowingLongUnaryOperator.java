@@ -6,7 +6,6 @@ import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link LongUnaryOperator} that allows throwing checked exceptions.
- * 
  * {@code ThrowingLongUnaryOperator} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromLongUnaryOperator(ThrowingLongUnaryOperator)}.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
