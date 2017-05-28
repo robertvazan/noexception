@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ToLongBiFunction} that returns {@code OptionalLong} instead of the raw value.
@@ -25,9 +26,9 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code ToLongBiFunction}.
 	 * 
 	 * @param t,
-	 *            see {@link ToLongBiFunction#apply(Object, Object)}
+	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @param u
-	 *            see {@link ToLongBiFunction#apply(Object, Object)}
+	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @return {@code OptionalLong} typically wrapping return value of {@link ToLongBiFunction#applyAsLong(Object, Object)},
 	 *         or an empty {@code OptionalLong} (typically signifying an exception)
 	 * @see ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)
@@ -36,7 +37,7 @@ import java.util.function.*;
 	@Override OptionalLong apply(T t, U u);
 	/**
 	 * Convert this {@code OptionalToLongBiFunction} to plain {@code ToLongBiFunction} using default value.
-	 * The returned {@code ToLongBiFunction} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code ToLongBiFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param result
@@ -50,7 +51,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalToLongBiFunction} to plain {@code ToLongBiFunction} using fallback {@code LongSupplier}.
-	 * The returned {@code ToLongBiFunction} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code ToLongBiFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param source

@@ -43,7 +43,7 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElse(Object)
 	 */
 	default LongFunction<R> orElse(R result) {
-		return new DefaultLongFunction<>(this, result);
+		return new DefaultLongFunction<R>(this, result);
 	}
 	/**
 	 * Convert this {@code OptionalLongFunction} to plain {@code LongFunction} using fallback {@code Supplier}.
@@ -57,6 +57,6 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElseGet(Supplier)
 	 */
 	default LongFunction<R> orElseGet(Supplier<R> source) {
-		return new FallbackLongFunction<>(this, source);
+		return new FallbackLongFunction<R>(this, source);
 	}
 }

@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link DoubleSupplier} that returns {@code OptionalDouble} instead of the raw value.
@@ -28,7 +29,7 @@ import java.util.function.*;
 	@Override OptionalDouble get();
 	/**
 	 * Convert this {@code OptionalDoubleSupplier} to plain {@code DoubleSupplier} using default value.
-	 * The returned {@code DoubleSupplier} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code DoubleSupplier} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param result
@@ -42,7 +43,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalDoubleSupplier} to plain {@code DoubleSupplier} using fallback {@code DoubleSupplier}.
-	 * The returned {@code DoubleSupplier} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code DoubleSupplier} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param source

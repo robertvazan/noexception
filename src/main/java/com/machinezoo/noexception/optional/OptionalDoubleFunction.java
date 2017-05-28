@@ -43,7 +43,7 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElse(Object)
 	 */
 	default DoubleFunction<R> orElse(R result) {
-		return new DefaultDoubleFunction<>(this, result);
+		return new DefaultDoubleFunction<R>(this, result);
 	}
 	/**
 	 * Convert this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using fallback {@code Supplier}.
@@ -57,6 +57,6 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElseGet(Supplier)
 	 */
 	default DoubleFunction<R> orElseGet(Supplier<R> source) {
-		return new FallbackDoubleFunction<>(this, source);
+		return new FallbackDoubleFunction<R>(this, source);
 	}
 }

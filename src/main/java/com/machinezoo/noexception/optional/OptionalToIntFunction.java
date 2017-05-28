@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ToIntFunction} that returns {@code OptionalInt} instead of the raw value.
@@ -22,17 +23,17 @@ import java.util.function.*;
 	 * the {@code OptionalInt} will be empty only if the underlying {@code ToIntFunction} throws.
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code ToIntFunction}.
 	 * 
-	 * @param t
-	 *            see {@link ToIntFunction#apply(Object)}
+	 * @param value
+	 *            see {@link ToIntFunction#applyAsInt(Object)}
 	 * @return {@code OptionalInt} typically wrapping return value of {@link ToIntFunction#applyAsInt(Object)},
 	 *         or an empty {@code OptionalInt} (typically signifying an exception)
 	 * @see ExceptionHandler#fromToIntFunction(ToIntFunction)
 	 * @see ToIntFunction#applyAsInt(Object)
 	 */
-	@Override OptionalInt apply(T t);
+	@Override OptionalInt apply(T value);
 	/**
 	 * Convert this {@code OptionalToIntFunction} to plain {@code ToIntFunction} using default value.
-	 * The returned {@code ToIntFunction} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code ToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param result
@@ -46,7 +47,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalToIntFunction} to plain {@code ToIntFunction} using fallback {@code IntSupplier}.
-	 * The returned {@code ToIntFunction} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code ToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param source

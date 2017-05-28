@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link LongSupplier} that returns {@code OptionalLong} instead of the raw value.
@@ -28,7 +29,7 @@ import java.util.function.*;
 	@Override OptionalLong get();
 	/**
 	 * Convert this {@code OptionalLongSupplier} to plain {@code LongSupplier} using default value.
-	 * The returned {@code LongSupplier} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code LongSupplier} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param result
@@ -42,7 +43,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalLongSupplier} to plain {@code LongSupplier} using fallback {@code LongSupplier}.
-	 * The returned {@code LongSupplier} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code LongSupplier} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param source

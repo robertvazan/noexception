@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link DoubleToIntFunction} that returns {@code OptionalInt} instead of the raw value.
@@ -21,7 +22,7 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code DoubleToIntFunction}.
 	 * 
 	 * @param value
-	 *            see {@link DoubleToIntFunction#apply(double)}
+	 *            see {@link DoubleToIntFunction#applyAsInt(double)}
 	 * @return {@code OptionalInt} typically wrapping return value of {@link DoubleToIntFunction#applyAsInt(double)},
 	 *         or an empty {@code OptionalInt} (typically signifying an exception)
 	 * @see ExceptionHandler#fromDoubleToIntFunction(DoubleToIntFunction)
@@ -30,7 +31,7 @@ import java.util.function.*;
 	@Override OptionalInt apply(double value);
 	/**
 	 * Convert this {@code OptionalDoubleToIntFunction} to plain {@code DoubleToIntFunction} using default value.
-	 * The returned {@code DoubleToIntFunction} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code DoubleToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param result
@@ -44,7 +45,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalDoubleToIntFunction} to plain {@code DoubleToIntFunction} using fallback {@code IntSupplier}.
-	 * The returned {@code DoubleToIntFunction} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code DoubleToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param source

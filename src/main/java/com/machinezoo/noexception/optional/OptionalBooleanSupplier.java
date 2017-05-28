@@ -2,6 +2,7 @@
 package com.machinezoo.noexception.optional;
 
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link BooleanSupplier} that returns {@code OptionalBoolean} instead of the raw value.
@@ -27,7 +28,7 @@ import java.util.function.*;
 	@Override OptionalBoolean get();
 	/**
 	 * Convert this {@code OptionalBooleanSupplier} to plain {@code BooleanSupplier} using default value.
-	 * The returned {@code BooleanSupplier} will unwrap present value from {@code OptionalBoolean} if possible,
+	 * The returned {@code BooleanSupplier} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
 	 * @param result
@@ -41,7 +42,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalBooleanSupplier} to plain {@code BooleanSupplier} using fallback {@code BooleanSupplier}.
-	 * The returned {@code BooleanSupplier} will unwrap present value from {@code OptionalBoolean} if possible,
+	 * The returned {@code BooleanSupplier} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 
 	 * @param source

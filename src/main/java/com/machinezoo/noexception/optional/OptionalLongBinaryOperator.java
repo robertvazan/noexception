@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link LongBinaryOperator} that returns {@code OptionalLong} instead of the raw value.
@@ -21,9 +22,9 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code LongBinaryOperator}.
 	 * 
 	 * @param left,
-	 *            see {@link LongBinaryOperator#apply(long, long)}
+	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @param right
-	 *            see {@link LongBinaryOperator#apply(long, long)}
+	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @return {@code OptionalLong} typically wrapping return value of {@link LongBinaryOperator#applyAsLong(long, long)},
 	 *         or an empty {@code OptionalLong} (typically signifying an exception)
 	 * @see ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)
@@ -32,7 +33,7 @@ import java.util.function.*;
 	OptionalLong apply(long left, long right);
 	/**
 	 * Convert this {@code OptionalLongBinaryOperator} to plain {@code LongBinaryOperator} using default value.
-	 * The returned {@code LongBinaryOperator} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code LongBinaryOperator} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param result
@@ -46,7 +47,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalLongBinaryOperator} to plain {@code LongBinaryOperator} using fallback {@code LongSupplier}.
-	 * The returned {@code LongBinaryOperator} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code LongBinaryOperator} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param source

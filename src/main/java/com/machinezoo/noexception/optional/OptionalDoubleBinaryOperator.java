@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link DoubleBinaryOperator} that returns {@code OptionalDouble} instead of the raw value.
@@ -21,9 +22,9 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code DoubleBinaryOperator}.
 	 * 
 	 * @param left,
-	 *            see {@link DoubleBinaryOperator#apply(double, double)}
+	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
 	 * @param right
-	 *            see {@link DoubleBinaryOperator#apply(double, double)}
+	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
 	 * @return {@code OptionalDouble} typically wrapping return value of {@link DoubleBinaryOperator#applyAsDouble(double, double)},
 	 *         or an empty {@code OptionalDouble} (typically signifying an exception)
 	 * @see ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)
@@ -32,7 +33,7 @@ import java.util.function.*;
 	OptionalDouble apply(double left, double right);
 	/**
 	 * Convert this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using default value.
-	 * The returned {@code DoubleBinaryOperator} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code DoubleBinaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param result
@@ -46,7 +47,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using fallback {@code DoubleSupplier}.
-	 * The returned {@code DoubleBinaryOperator} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code DoubleBinaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param source

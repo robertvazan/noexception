@@ -49,7 +49,7 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElse(Object)
 	 */
 	default BiFunction<T, U, R> orElse(R result) {
-		return new DefaultBiFunction<>(this, result);
+		return new DefaultBiFunction<T, U, R>(this, result);
 	}
 	/**
 	 * Convert this {@code OptionalBiFunction} to plain {@code BiFunction} using fallback {@code Supplier}.
@@ -63,6 +63,6 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElseGet(Supplier)
 	 */
 	default BiFunction<T, U, R> orElseGet(Supplier<R> source) {
-		return new FallbackBiFunction<>(this, source);
+		return new FallbackBiFunction<T, U, R>(this, source);
 	}
 }

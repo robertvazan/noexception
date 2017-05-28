@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ToDoubleBiFunction} that returns {@code OptionalDouble} instead of the raw value.
@@ -25,9 +26,9 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code ToDoubleBiFunction}.
 	 * 
 	 * @param t,
-	 *            see {@link ToDoubleBiFunction#apply(Object, Object)}
+	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @param u
-	 *            see {@link ToDoubleBiFunction#apply(Object, Object)}
+	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @return {@code OptionalDouble} typically wrapping return value of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)},
 	 *         or an empty {@code OptionalDouble} (typically signifying an exception)
 	 * @see ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)
@@ -36,7 +37,7 @@ import java.util.function.*;
 	@Override OptionalDouble apply(T t, U u);
 	/**
 	 * Convert this {@code OptionalToDoubleBiFunction} to plain {@code ToDoubleBiFunction} using default value.
-	 * The returned {@code ToDoubleBiFunction} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code ToDoubleBiFunction} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param result
@@ -50,7 +51,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalToDoubleBiFunction} to plain {@code ToDoubleBiFunction} using fallback {@code DoubleSupplier}.
-	 * The returned {@code ToDoubleBiFunction} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code ToDoubleBiFunction} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param source

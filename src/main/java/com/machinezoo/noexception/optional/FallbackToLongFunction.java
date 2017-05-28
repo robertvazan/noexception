@@ -7,7 +7,7 @@ import lombok.*;
 @RequiredArgsConstructor final class FallbackToLongFunction<T> implements ToLongFunction<T> {
 	private final OptionalToLongFunction<T> inner;
 	private final LongSupplier source;
-	@Override public long applyAsLong(T t) {
-		return inner.apply(t).orElseGet(source);
+	@Override public long applyAsLong(T value) {
+		return inner.apply(value).orElseGet(source);
 	}
 }

@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link IntSupplier} that returns {@code OptionalInt} instead of the raw value.
@@ -28,7 +29,7 @@ import java.util.function.*;
 	@Override OptionalInt get();
 	/**
 	 * Convert this {@code OptionalIntSupplier} to plain {@code IntSupplier} using default value.
-	 * The returned {@code IntSupplier} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code IntSupplier} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param result
@@ -42,7 +43,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalIntSupplier} to plain {@code IntSupplier} using fallback {@code IntSupplier}.
-	 * The returned {@code IntSupplier} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code IntSupplier} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param source

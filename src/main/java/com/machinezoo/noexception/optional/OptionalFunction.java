@@ -45,7 +45,7 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElse(Object)
 	 */
 	default Function<T, R> orElse(R result) {
-		return new DefaultFunction<>(this, result);
+		return new DefaultFunction<T, R>(this, result);
 	}
 	/**
 	 * Convert this {@code OptionalFunction} to plain {@code Function} using fallback {@code Supplier}.
@@ -59,6 +59,6 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElseGet(Supplier)
 	 */
 	default Function<T, R> orElseGet(Supplier<R> source) {
-		return new FallbackFunction<>(this, source);
+		return new FallbackFunction<T, R>(this, source);
 	}
 }

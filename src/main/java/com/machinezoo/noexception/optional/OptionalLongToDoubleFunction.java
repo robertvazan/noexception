@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link LongToDoubleFunction} that returns {@code OptionalDouble} instead of the raw value.
@@ -21,7 +22,7 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code LongToDoubleFunction}.
 	 * 
 	 * @param value
-	 *            see {@link LongToDoubleFunction#apply(long)}
+	 *            see {@link LongToDoubleFunction#applyAsDouble(long)}
 	 * @return {@code OptionalDouble} typically wrapping return value of {@link LongToDoubleFunction#applyAsDouble(long)},
 	 *         or an empty {@code OptionalDouble} (typically signifying an exception)
 	 * @see ExceptionHandler#fromLongToDoubleFunction(LongToDoubleFunction)
@@ -30,7 +31,7 @@ import java.util.function.*;
 	@Override OptionalDouble apply(long value);
 	/**
 	 * Convert this {@code OptionalLongToDoubleFunction} to plain {@code LongToDoubleFunction} using default value.
-	 * The returned {@code LongToDoubleFunction} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code LongToDoubleFunction} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param result
@@ -44,7 +45,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalLongToDoubleFunction} to plain {@code LongToDoubleFunction} using fallback {@code DoubleSupplier}.
-	 * The returned {@code LongToDoubleFunction} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code LongToDoubleFunction} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param source

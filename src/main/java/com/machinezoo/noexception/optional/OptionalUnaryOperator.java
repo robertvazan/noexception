@@ -43,7 +43,7 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElse(Object)
 	 */
 	default UnaryOperator<T> orElse(T result) {
-		return new DefaultUnaryOperator<>(this, result);
+		return new DefaultUnaryOperator<T>(this, result);
 	}
 	/**
 	 * Convert this {@code OptionalUnaryOperator} to plain {@code UnaryOperator} using fallback {@code Supplier}.
@@ -57,6 +57,6 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElseGet(Supplier)
 	 */
 	default UnaryOperator<T> orElseGet(Supplier<T> source) {
-		return new FallbackUnaryOperator<>(this, source);
+		return new FallbackUnaryOperator<T>(this, source);
 	}
 }

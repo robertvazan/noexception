@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link DoubleUnaryOperator} that returns {@code OptionalDouble} instead of the raw value.
@@ -21,7 +22,7 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code DoubleUnaryOperator}.
 	 * 
 	 * @param operand
-	 *            see {@link DoubleUnaryOperator#apply(double)}
+	 *            see {@link DoubleUnaryOperator#applyAsDouble(double)}
 	 * @return {@code OptionalDouble} typically wrapping return value of {@link DoubleUnaryOperator#applyAsDouble(double)},
 	 *         or an empty {@code OptionalDouble} (typically signifying an exception)
 	 * @see ExceptionHandler#fromDoubleUnaryOperator(DoubleUnaryOperator)
@@ -30,7 +31,7 @@ import java.util.function.*;
 	@Override OptionalDouble apply(double operand);
 	/**
 	 * Convert this {@code OptionalDoubleUnaryOperator} to plain {@code DoubleUnaryOperator} using default value.
-	 * The returned {@code DoubleUnaryOperator} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code DoubleUnaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param result
@@ -44,7 +45,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalDoubleUnaryOperator} to plain {@code DoubleUnaryOperator} using fallback {@code DoubleSupplier}.
-	 * The returned {@code DoubleUnaryOperator} will unwrap present value from {@code OptionalDouble} if possible,
+	 * The returned {@code DoubleUnaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 
 	 * @param source

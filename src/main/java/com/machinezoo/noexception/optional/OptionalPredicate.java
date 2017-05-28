@@ -2,6 +2,7 @@
 package com.machinezoo.noexception.optional;
 
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link Predicate} that returns {@code OptionalBoolean} instead of the raw value.
@@ -31,7 +32,7 @@ import java.util.function.*;
 	OptionalBoolean test(T t);
 	/**
 	 * Convert this {@code OptionalPredicate} to plain {@code Predicate} using default value.
-	 * The returned {@code Predicate} will unwrap present value from {@code OptionalBoolean} if possible,
+	 * The returned {@code Predicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
 	 * @param result
@@ -45,7 +46,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalPredicate} to plain {@code Predicate} using fallback {@code BooleanSupplier}.
-	 * The returned {@code Predicate} will unwrap present value from {@code OptionalBoolean} if possible,
+	 * The returned {@code Predicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 
 	 * @param source

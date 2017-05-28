@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link IntUnaryOperator} that returns {@code OptionalInt} instead of the raw value.
@@ -21,7 +22,7 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code IntUnaryOperator}.
 	 * 
 	 * @param operand
-	 *            see {@link IntUnaryOperator#apply(int)}
+	 *            see {@link IntUnaryOperator#applyAsInt(int)}
 	 * @return {@code OptionalInt} typically wrapping return value of {@link IntUnaryOperator#applyAsInt(int)},
 	 *         or an empty {@code OptionalInt} (typically signifying an exception)
 	 * @see ExceptionHandler#fromIntUnaryOperator(IntUnaryOperator)
@@ -30,7 +31,7 @@ import java.util.function.*;
 	@Override OptionalInt apply(int operand);
 	/**
 	 * Convert this {@code OptionalIntUnaryOperator} to plain {@code IntUnaryOperator} using default value.
-	 * The returned {@code IntUnaryOperator} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code IntUnaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param result
@@ -44,7 +45,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalIntUnaryOperator} to plain {@code IntUnaryOperator} using fallback {@code IntSupplier}.
-	 * The returned {@code IntUnaryOperator} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code IntUnaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param source

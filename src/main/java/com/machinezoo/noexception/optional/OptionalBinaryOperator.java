@@ -45,7 +45,7 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElse(Object)
 	 */
 	default BinaryOperator<T> orElse(T result) {
-		return new DefaultBinaryOperator<>(this, result);
+		return new DefaultBinaryOperator<T>(this, result);
 	}
 	/**
 	 * Convert this {@code OptionalBinaryOperator} to plain {@code BinaryOperator} using fallback {@code Supplier}.
@@ -59,6 +59,6 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElseGet(Supplier)
 	 */
 	default BinaryOperator<T> orElseGet(Supplier<T> source) {
-		return new FallbackBinaryOperator<>(this, source);
+		return new FallbackBinaryOperator<T>(this, source);
 	}
 }

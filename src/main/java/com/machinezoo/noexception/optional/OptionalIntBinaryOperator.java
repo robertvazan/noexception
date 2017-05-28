@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link IntBinaryOperator} that returns {@code OptionalInt} instead of the raw value.
@@ -21,9 +22,9 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code IntBinaryOperator}.
 	 * 
 	 * @param left,
-	 *            see {@link IntBinaryOperator#apply(int, int)}
+	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @param right
-	 *            see {@link IntBinaryOperator#apply(int, int)}
+	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @return {@code OptionalInt} typically wrapping return value of {@link IntBinaryOperator#applyAsInt(int, int)},
 	 *         or an empty {@code OptionalInt} (typically signifying an exception)
 	 * @see ExceptionHandler#fromIntBinaryOperator(IntBinaryOperator)
@@ -32,7 +33,7 @@ import java.util.function.*;
 	OptionalInt apply(int left, int right);
 	/**
 	 * Convert this {@code OptionalIntBinaryOperator} to plain {@code IntBinaryOperator} using default value.
-	 * The returned {@code IntBinaryOperator} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code IntBinaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param result
@@ -46,7 +47,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalIntBinaryOperator} to plain {@code IntBinaryOperator} using fallback {@code IntSupplier}.
-	 * The returned {@code IntBinaryOperator} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code IntBinaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param source

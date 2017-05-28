@@ -7,7 +7,7 @@ import lombok.*;
 @RequiredArgsConstructor final class DefaultToDoubleFunction<T> implements ToDoubleFunction<T> {
 	private final OptionalToDoubleFunction<T> inner;
 	private final double result;
-	@Override public double applyAsDouble(T t) {
-		return inner.apply(t).orElse(result);
+	@Override public double applyAsDouble(T value) {
+		return inner.apply(value).orElse(result);
 	}
 }

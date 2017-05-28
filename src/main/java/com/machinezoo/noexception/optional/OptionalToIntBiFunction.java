@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link ToIntBiFunction} that returns {@code OptionalInt} instead of the raw value.
@@ -25,9 +26,9 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code ToIntBiFunction}.
 	 * 
 	 * @param t,
-	 *            see {@link ToIntBiFunction#apply(Object, Object)}
+	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @param u
-	 *            see {@link ToIntBiFunction#apply(Object, Object)}
+	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @return {@code OptionalInt} typically wrapping return value of {@link ToIntBiFunction#applyAsInt(Object, Object)},
 	 *         or an empty {@code OptionalInt} (typically signifying an exception)
 	 * @see ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)
@@ -36,7 +37,7 @@ import java.util.function.*;
 	@Override OptionalInt apply(T t, U u);
 	/**
 	 * Convert this {@code OptionalToIntBiFunction} to plain {@code ToIntBiFunction} using default value.
-	 * The returned {@code ToIntBiFunction} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code ToIntBiFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param result
@@ -50,7 +51,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalToIntBiFunction} to plain {@code ToIntBiFunction} using fallback {@code IntSupplier}.
-	 * The returned {@code ToIntBiFunction} will unwrap present value from {@code OptionalInt} if possible,
+	 * The returned {@code ToIntBiFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 
 	 * @param source

@@ -41,7 +41,7 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElse(Object)
 	 */
 	default Supplier<T> orElse(T result) {
-		return new DefaultSupplier<>(this, result);
+		return new DefaultSupplier<T>(this, result);
 	}
 	/**
 	 * Convert this {@code OptionalSupplier} to plain {@code Supplier} using fallback {@code Supplier}.
@@ -55,6 +55,6 @@ import com.machinezoo.noexception.*;
 	 * @see Optional#orElseGet(Supplier)
 	 */
 	default Supplier<T> orElseGet(Supplier<T> source) {
-		return new FallbackSupplier<>(this, source);
+		return new FallbackSupplier<T>(this, source);
 	}
 }

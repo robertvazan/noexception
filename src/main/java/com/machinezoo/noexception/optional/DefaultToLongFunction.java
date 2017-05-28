@@ -7,7 +7,7 @@ import lombok.*;
 @RequiredArgsConstructor final class DefaultToLongFunction<T> implements ToLongFunction<T> {
 	private final OptionalToLongFunction<T> inner;
 	private final long result;
-	@Override public long applyAsLong(T t) {
-		return inner.apply(t).orElse(result);
+	@Override public long applyAsLong(T value) {
+		return inner.apply(value).orElse(result);
 	}
 }

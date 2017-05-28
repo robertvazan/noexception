@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.noexception.*;
 
 /**
  * Variation of {@link IntToLongFunction} that returns {@code OptionalLong} instead of the raw value.
@@ -21,7 +22,7 @@ import java.util.function.*;
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code IntToLongFunction}.
 	 * 
 	 * @param value
-	 *            see {@link IntToLongFunction#apply(int)}
+	 *            see {@link IntToLongFunction#applyAsLong(int)}
 	 * @return {@code OptionalLong} typically wrapping return value of {@link IntToLongFunction#applyAsLong(int)},
 	 *         or an empty {@code OptionalLong} (typically signifying an exception)
 	 * @see ExceptionHandler#fromIntToLongFunction(IntToLongFunction)
@@ -30,7 +31,7 @@ import java.util.function.*;
 	@Override OptionalLong apply(int value);
 	/**
 	 * Convert this {@code OptionalIntToLongFunction} to plain {@code IntToLongFunction} using default value.
-	 * The returned {@code IntToLongFunction} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code IntToLongFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param result
@@ -44,7 +45,7 @@ import java.util.function.*;
 	}
 	/**
 	 * Convert this {@code OptionalIntToLongFunction} to plain {@code IntToLongFunction} using fallback {@code LongSupplier}.
-	 * The returned {@code IntToLongFunction} will unwrap present value from {@code OptionalLong} if possible,
+	 * The returned {@code IntToLongFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 
 	 * @param source
