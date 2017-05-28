@@ -2,11 +2,7 @@
 package com.machinezoo.noexception;
 
 final class ExceptionWrapper extends CheckedExceptionHandler {
-	@Override public RuntimeException handle(Throwable exception) {
-		if (exception instanceof RuntimeException)
-			return (RuntimeException)exception;
-		if (exception instanceof Error)
-			throw (Error)exception;
+	@Override public RuntimeException handle(Exception exception) {
 		return new WrappedException(exception);
 	}
 }

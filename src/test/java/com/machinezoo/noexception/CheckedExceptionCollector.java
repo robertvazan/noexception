@@ -16,7 +16,7 @@ class CheckedExceptionCollector extends CheckedExceptionHandler {
 		assertEquals(1, size());
 		return collected.get(0);
 	}
-	@Override public RuntimeException handle(Throwable exception) {
+	@Override public RuntimeException handle(Exception exception) {
 		collected.add(exception);
 		return new CollectedException(exception);
 	}
