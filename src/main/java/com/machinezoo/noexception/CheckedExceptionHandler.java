@@ -7,6 +7,21 @@ import lombok.*;
 
 public abstract class CheckedExceptionHandler {
 	public abstract RuntimeException handle(Exception exception);
+	/**
+	 * Remove checked exceptions from method signature of {@code Runnable}.
+	 * <p>
+	 * If {@code runnable} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code runnable} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingRunnable(Exceptions.sneak().runnable(() -> my_throwing_lambda))}
+	 * 
+	 * @param runnable
+	 *            the {@code ThrowingRunnable} to be converted, usually a lambda
+	 * @return converted {@code Runnable} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final Runnable runnable(ThrowingRunnable runnable) {
 		return new CheckedRunnable(runnable);
 	}
@@ -22,6 +37,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code Supplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingSupplier(Exceptions.sneak().supplier( -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingSupplier} to be converted, usually a lambda
+	 * @return converted {@code Supplier} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> Supplier<T> supplier(ThrowingSupplier<T> supplier) {
 		return new CheckedSupplier<T>(supplier);
 	}
@@ -37,6 +67,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntSupplier(Exceptions.sneak().fromIntSupplier( -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingIntSupplier} to be converted, usually a lambda
+	 * @return converted {@code IntSupplier} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final IntSupplier fromIntSupplier(ThrowingIntSupplier supplier) {
 		return new CheckedIntSupplier(supplier);
 	}
@@ -52,6 +97,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongSupplier(Exceptions.sneak().fromLongSupplier( -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingLongSupplier} to be converted, usually a lambda
+	 * @return converted {@code LongSupplier} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final LongSupplier fromLongSupplier(ThrowingLongSupplier supplier) {
 		return new CheckedLongSupplier(supplier);
 	}
@@ -67,6 +127,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoubleSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoubleSupplier(Exceptions.sneak().fromDoubleSupplier( -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingDoubleSupplier} to be converted, usually a lambda
+	 * @return converted {@code DoubleSupplier} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final DoubleSupplier fromDoubleSupplier(ThrowingDoubleSupplier supplier) {
 		return new CheckedDoubleSupplier(supplier);
 	}
@@ -82,6 +157,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code BooleanSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingBooleanSupplier(Exceptions.sneak().fromBooleanSupplier( -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingBooleanSupplier} to be converted, usually a lambda
+	 * @return converted {@code BooleanSupplier} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final BooleanSupplier fromBooleanSupplier(ThrowingBooleanSupplier supplier) {
 		return new CheckedBooleanSupplier(supplier);
 	}
@@ -97,6 +187,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code Consumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingConsumer(Exceptions.sneak().consumer((t) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingConsumer} to be converted, usually a lambda
+	 * @return converted {@code Consumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> Consumer<T> consumer(ThrowingConsumer<T> consumer) {
 		return new CheckedConsumer<T>(consumer);
 	}
@@ -112,6 +217,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntConsumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntConsumer(Exceptions.sneak().fromIntConsumer((value) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingIntConsumer} to be converted, usually a lambda
+	 * @return converted {@code IntConsumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final IntConsumer fromIntConsumer(ThrowingIntConsumer consumer) {
 		return new CheckedIntConsumer(consumer);
 	}
@@ -127,6 +247,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongConsumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongConsumer(Exceptions.sneak().fromLongConsumer((value) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingLongConsumer} to be converted, usually a lambda
+	 * @return converted {@code LongConsumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final LongConsumer fromLongConsumer(ThrowingLongConsumer consumer) {
 		return new CheckedLongConsumer(consumer);
 	}
@@ -142,6 +277,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoubleConsumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoubleConsumer(Exceptions.sneak().fromDoubleConsumer((value) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingDoubleConsumer} to be converted, usually a lambda
+	 * @return converted {@code DoubleConsumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final DoubleConsumer fromDoubleConsumer(ThrowingDoubleConsumer consumer) {
 		return new CheckedDoubleConsumer(consumer);
 	}
@@ -157,6 +307,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code BiConsumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingBiConsumer(Exceptions.sneak().fromBiConsumer((t, u) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingBiConsumer} to be converted, usually a lambda
+	 * @return converted {@code BiConsumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T, U> BiConsumer<T, U> fromBiConsumer(ThrowingBiConsumer<T, U> consumer) {
 		return new CheckedBiConsumer<T, U>(consumer);
 	}
@@ -172,6 +337,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ObjIntConsumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingObjIntConsumer(Exceptions.sneak().fromObjIntConsumer((t, value) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingObjIntConsumer} to be converted, usually a lambda
+	 * @return converted {@code ObjIntConsumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> ObjIntConsumer<T> fromObjIntConsumer(ThrowingObjIntConsumer<T> consumer) {
 		return new CheckedObjIntConsumer<T>(consumer);
 	}
@@ -187,6 +367,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ObjLongConsumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingObjLongConsumer(Exceptions.sneak().fromObjLongConsumer((t, value) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingObjLongConsumer} to be converted, usually a lambda
+	 * @return converted {@code ObjLongConsumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> ObjLongConsumer<T> fromObjLongConsumer(ThrowingObjLongConsumer<T> consumer) {
 		return new CheckedObjLongConsumer<T>(consumer);
 	}
@@ -202,6 +397,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ObjDoubleConsumer}.
+	 * <p>
+	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingObjDoubleConsumer(Exceptions.sneak().fromObjDoubleConsumer((t, value) -> my_throwing_lambda))}
+	 * 
+	 * @param consumer
+	 *            the {@code ThrowingObjDoubleConsumer} to be converted, usually a lambda
+	 * @return converted {@code ObjDoubleConsumer} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> ObjDoubleConsumer<T> fromObjDoubleConsumer(ThrowingObjDoubleConsumer<T> consumer) {
 		return new CheckedObjDoubleConsumer<T>(consumer);
 	}
@@ -217,6 +427,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code Predicate}.
+	 * <p>
+	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingPredicate(Exceptions.sneak().predicate(t -> my_throwing_lambda))}
+	 * 
+	 * @param predicate
+	 *            the {@code ThrowingPredicate} to be converted, usually a lambda
+	 * @return converted {@code Predicate} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> Predicate<T> predicate(ThrowingPredicate<T> predicate) {
 		return new CheckedPredicate<T>(predicate);
 	}
@@ -232,6 +457,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntPredicate}.
+	 * <p>
+	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntPredicate(Exceptions.sneak().fromIntPredicate(value -> my_throwing_lambda))}
+	 * 
+	 * @param predicate
+	 *            the {@code ThrowingIntPredicate} to be converted, usually a lambda
+	 * @return converted {@code IntPredicate} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final IntPredicate fromIntPredicate(ThrowingIntPredicate predicate) {
 		return new CheckedIntPredicate(predicate);
 	}
@@ -247,6 +487,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongPredicate}.
+	 * <p>
+	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongPredicate(Exceptions.sneak().fromLongPredicate(value -> my_throwing_lambda))}
+	 * 
+	 * @param predicate
+	 *            the {@code ThrowingLongPredicate} to be converted, usually a lambda
+	 * @return converted {@code LongPredicate} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final LongPredicate fromLongPredicate(ThrowingLongPredicate predicate) {
 		return new CheckedLongPredicate(predicate);
 	}
@@ -262,6 +517,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoublePredicate}.
+	 * <p>
+	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoublePredicate(Exceptions.sneak().fromDoublePredicate(value -> my_throwing_lambda))}
+	 * 
+	 * @param predicate
+	 *            the {@code ThrowingDoublePredicate} to be converted, usually a lambda
+	 * @return converted {@code DoublePredicate} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final DoublePredicate fromDoublePredicate(ThrowingDoublePredicate predicate) {
 		return new CheckedDoublePredicate(predicate);
 	}
@@ -277,6 +547,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code BiPredicate}.
+	 * <p>
+	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingBiPredicate(Exceptions.sneak().fromBiPredicate(t, u -> my_throwing_lambda))}
+	 * 
+	 * @param predicate
+	 *            the {@code ThrowingBiPredicate} to be converted, usually a lambda
+	 * @return converted {@code BiPredicate} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T, U> BiPredicate<T, U> fromBiPredicate(ThrowingBiPredicate<T, U> predicate) {
 		return new CheckedBiPredicate<T, U>(predicate);
 	}
@@ -292,6 +577,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code Function}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingFunction(Exceptions.sneak().function(t -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingFunction} to be converted, usually a lambda
+	 * @return converted {@code Function} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T, R> Function<T, R> function(ThrowingFunction<T, R> function) {
 		return new CheckedFunction<T, R>(function);
 	}
@@ -307,6 +607,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ToIntFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingToIntFunction(Exceptions.sneak().fromToIntFunction(t -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingToIntFunction} to be converted, usually a lambda
+	 * @return converted {@code ToIntFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> ToIntFunction<T> fromToIntFunction(ThrowingToIntFunction<T> function) {
 		return new CheckedToIntFunction<T>(function);
 	}
@@ -322,6 +637,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntFunction(Exceptions.sneak().fromIntFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingIntFunction} to be converted, usually a lambda
+	 * @return converted {@code IntFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <R> IntFunction<R> fromIntFunction(ThrowingIntFunction<R> function) {
 		return new CheckedIntFunction<R>(function);
 	}
@@ -337,6 +667,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntToLongFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntToLongFunction(Exceptions.sneak().fromIntToLongFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingIntToLongFunction} to be converted, usually a lambda
+	 * @return converted {@code IntToLongFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final IntToLongFunction fromIntToLongFunction(ThrowingIntToLongFunction function) {
 		return new CheckedIntToLongFunction(function);
 	}
@@ -352,6 +697,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntToDoubleFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntToDoubleFunction(Exceptions.sneak().fromIntToDoubleFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingIntToDoubleFunction} to be converted, usually a lambda
+	 * @return converted {@code IntToDoubleFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final IntToDoubleFunction fromIntToDoubleFunction(ThrowingIntToDoubleFunction function) {
 		return new CheckedIntToDoubleFunction(function);
 	}
@@ -367,6 +727,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ToLongFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingToLongFunction(Exceptions.sneak().fromToLongFunction(t -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingToLongFunction} to be converted, usually a lambda
+	 * @return converted {@code ToLongFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> ToLongFunction<T> fromToLongFunction(ThrowingToLongFunction<T> function) {
 		return new CheckedToLongFunction<T>(function);
 	}
@@ -382,6 +757,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongFunction(Exceptions.sneak().fromLongFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingLongFunction} to be converted, usually a lambda
+	 * @return converted {@code LongFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <R> LongFunction<R> fromLongFunction(ThrowingLongFunction<R> function) {
 		return new CheckedLongFunction<R>(function);
 	}
@@ -397,6 +787,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongToIntFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongToIntFunction(Exceptions.sneak().fromLongToIntFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingLongToIntFunction} to be converted, usually a lambda
+	 * @return converted {@code LongToIntFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final LongToIntFunction fromLongToIntFunction(ThrowingLongToIntFunction function) {
 		return new CheckedLongToIntFunction(function);
 	}
@@ -412,6 +817,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongToDoubleFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongToDoubleFunction(Exceptions.sneak().fromLongToDoubleFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingLongToDoubleFunction} to be converted, usually a lambda
+	 * @return converted {@code LongToDoubleFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final LongToDoubleFunction fromLongToDoubleFunction(ThrowingLongToDoubleFunction function) {
 		return new CheckedLongToDoubleFunction(function);
 	}
@@ -427,6 +847,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ToDoubleFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingToDoubleFunction(Exceptions.sneak().fromToDoubleFunction(t -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingToDoubleFunction} to be converted, usually a lambda
+	 * @return converted {@code ToDoubleFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> ToDoubleFunction<T> fromToDoubleFunction(ThrowingToDoubleFunction<T> function) {
 		return new CheckedToDoubleFunction<T>(function);
 	}
@@ -442,6 +877,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoubleFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoubleFunction(Exceptions.sneak().fromDoubleFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingDoubleFunction} to be converted, usually a lambda
+	 * @return converted {@code DoubleFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <R> DoubleFunction<R> fromDoubleFunction(ThrowingDoubleFunction<R> function) {
 		return new CheckedDoubleFunction<R>(function);
 	}
@@ -457,6 +907,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoubleToIntFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoubleToIntFunction(Exceptions.sneak().fromDoubleToIntFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingDoubleToIntFunction} to be converted, usually a lambda
+	 * @return converted {@code DoubleToIntFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final DoubleToIntFunction fromDoubleToIntFunction(ThrowingDoubleToIntFunction function) {
 		return new CheckedDoubleToIntFunction(function);
 	}
@@ -472,6 +937,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoubleToLongFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoubleToLongFunction(Exceptions.sneak().fromDoubleToLongFunction(value -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingDoubleToLongFunction} to be converted, usually a lambda
+	 * @return converted {@code DoubleToLongFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final DoubleToLongFunction fromDoubleToLongFunction(ThrowingDoubleToLongFunction function) {
 		return new CheckedDoubleToLongFunction(function);
 	}
@@ -487,6 +967,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code UnaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingUnaryOperator(Exceptions.sneak().fromUnaryOperator(operand -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingUnaryOperator} to be converted, usually a lambda
+	 * @return converted {@code UnaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> UnaryOperator<T> fromUnaryOperator(ThrowingUnaryOperator<T> operator) {
 		return new CheckedUnaryOperator<T>(operator);
 	}
@@ -502,6 +997,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntUnaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntUnaryOperator(Exceptions.sneak().fromIntUnaryOperator(operand -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingIntUnaryOperator} to be converted, usually a lambda
+	 * @return converted {@code IntUnaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final IntUnaryOperator fromIntUnaryOperator(ThrowingIntUnaryOperator operator) {
 		return new CheckedIntUnaryOperator(operator);
 	}
@@ -517,6 +1027,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongUnaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongUnaryOperator(Exceptions.sneak().fromLongUnaryOperator(operand -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingLongUnaryOperator} to be converted, usually a lambda
+	 * @return converted {@code LongUnaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final LongUnaryOperator fromLongUnaryOperator(ThrowingLongUnaryOperator operator) {
 		return new CheckedLongUnaryOperator(operator);
 	}
@@ -532,6 +1057,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoubleUnaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoubleUnaryOperator(Exceptions.sneak().fromDoubleUnaryOperator(operand -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingDoubleUnaryOperator} to be converted, usually a lambda
+	 * @return converted {@code DoubleUnaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final DoubleUnaryOperator fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator operator) {
 		return new CheckedDoubleUnaryOperator(operator);
 	}
@@ -547,6 +1087,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code BiFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingBiFunction(Exceptions.sneak().fromBiFunction(t, u -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingBiFunction} to be converted, usually a lambda
+	 * @return converted {@code BiFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T, U, R> BiFunction<T, U, R> fromBiFunction(ThrowingBiFunction<T, U, R> function) {
 		return new CheckedBiFunction<T, U, R>(function);
 	}
@@ -562,6 +1117,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ToIntBiFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingToIntBiFunction(Exceptions.sneak().fromToIntBiFunction(t, u -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingToIntBiFunction} to be converted, usually a lambda
+	 * @return converted {@code ToIntBiFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T, U> ToIntBiFunction<T, U> fromToIntBiFunction(ThrowingToIntBiFunction<T, U> function) {
 		return new CheckedToIntBiFunction<T, U>(function);
 	}
@@ -577,6 +1147,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ToLongBiFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingToLongBiFunction(Exceptions.sneak().fromToLongBiFunction(t, u -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingToLongBiFunction} to be converted, usually a lambda
+	 * @return converted {@code ToLongBiFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T, U> ToLongBiFunction<T, U> fromToLongBiFunction(ThrowingToLongBiFunction<T, U> function) {
 		return new CheckedToLongBiFunction<T, U>(function);
 	}
@@ -592,6 +1177,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code ToDoubleBiFunction}.
+	 * <p>
+	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingToDoubleBiFunction(Exceptions.sneak().fromToDoubleBiFunction(t, u -> my_throwing_lambda))}
+	 * 
+	 * @param function
+	 *            the {@code ThrowingToDoubleBiFunction} to be converted, usually a lambda
+	 * @return converted {@code ToDoubleBiFunction} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T, U> ToDoubleBiFunction<T, U> fromToDoubleBiFunction(ThrowingToDoubleBiFunction<T, U> function) {
 		return new CheckedToDoubleBiFunction<T, U>(function);
 	}
@@ -607,6 +1207,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code BinaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingBinaryOperator(Exceptions.sneak().fromBinaryOperator(left, right -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingBinaryOperator} to be converted, usually a lambda
+	 * @return converted {@code BinaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> BinaryOperator<T> fromBinaryOperator(ThrowingBinaryOperator<T> operator) {
 		return new CheckedBinaryOperator<T>(operator);
 	}
@@ -622,6 +1237,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code IntBinaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingIntBinaryOperator(Exceptions.sneak().fromIntBinaryOperator(left, right -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingIntBinaryOperator} to be converted, usually a lambda
+	 * @return converted {@code IntBinaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final IntBinaryOperator fromIntBinaryOperator(ThrowingIntBinaryOperator operator) {
 		return new CheckedIntBinaryOperator(operator);
 	}
@@ -637,6 +1267,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code LongBinaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingLongBinaryOperator(Exceptions.sneak().fromLongBinaryOperator(left, right -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingLongBinaryOperator} to be converted, usually a lambda
+	 * @return converted {@code LongBinaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final LongBinaryOperator fromLongBinaryOperator(ThrowingLongBinaryOperator operator) {
 		return new CheckedLongBinaryOperator(operator);
 	}
@@ -652,6 +1297,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Remove checked exceptions from method signature of {@code DoubleBinaryOperator}.
+	 * <p>
+	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingDoubleBinaryOperator(Exceptions.sneak().fromDoubleBinaryOperator(left, right -> my_throwing_lambda))}
+	 * 
+	 * @param operator
+	 *            the {@code ThrowingDoubleBinaryOperator} to be converted, usually a lambda
+	 * @return converted {@code DoubleBinaryOperator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final DoubleBinaryOperator fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator operator) {
 		return new CheckedDoubleBinaryOperator(operator);
 	}
