@@ -15,5 +15,5 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromBinaryOperator(ThrowingBinaryOperator)
  * @see BinaryOperator
  */
-public interface ThrowingBinaryOperator<T> extends ThrowingBiFunction<T, T, T> {
+@FunctionalInterface public interface ThrowingBinaryOperator<T> extends ThrowingBiFunction<T, T, T> {
 }
