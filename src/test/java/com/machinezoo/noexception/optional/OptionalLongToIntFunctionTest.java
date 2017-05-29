@@ -7,12 +7,12 @@ import org.junit.*;
 
 public class OptionalLongToIntFunctionTest {
 	@Test public void conversions() {
-		assertEquals(OptionalInt.of(2), create(x -> OptionalInt.of(2)).apply(1));
-		assertEquals(2, create(x -> OptionalInt.of(2)).orElse(3).applyAsInt(1));
-		assertEquals(2, create(x -> OptionalInt.of(2)).orElseGet(() -> 3).applyAsInt(1));
-		assertEquals(OptionalInt.empty(), create(x -> OptionalInt.empty()).apply(1));
-		assertEquals(3, create(x -> OptionalInt.empty()).orElse(3).applyAsInt(1));
-		assertEquals(3, create(x -> OptionalInt.empty()).orElseGet(() -> 3).applyAsInt(1));
+		assertEquals(OptionalInt.of(2), create(v -> OptionalInt.of(2)).apply(1L));
+		assertEquals(2, create(v -> OptionalInt.of(2)).orElse(3).applyAsInt(1L));
+		assertEquals(2, create(v -> OptionalInt.of(2)).orElseGet(() -> 2).applyAsInt(1L));
+		assertEquals(OptionalInt.empty(), create(v -> OptionalInt.empty()).apply(1L));
+		assertEquals(3, create(v -> OptionalInt.empty()).orElse(3).applyAsInt(1L));
+		assertEquals(3, create(v -> OptionalInt.empty()).orElseGet(() -> 3).applyAsInt(1L));
 	}
 	private OptionalLongToIntFunction create(OptionalLongToIntFunction lambda) {
 		return lambda;

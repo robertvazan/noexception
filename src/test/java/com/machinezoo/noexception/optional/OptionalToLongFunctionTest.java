@@ -7,12 +7,12 @@ import org.junit.*;
 
 public class OptionalToLongFunctionTest {
 	@Test public void conversions() {
-		assertEquals(OptionalLong.of(2L), create(x -> OptionalLong.of(2L)).apply("input"));
-		assertEquals(2L, create(x -> OptionalLong.of(2L)).orElse(3L).applyAsLong("input"));
-		assertEquals(2L, create(x -> OptionalLong.of(2L)).orElseGet(() -> 3L).applyAsLong("input"));
-		assertEquals(OptionalLong.empty(), create(x -> OptionalLong.empty()).apply("input"));
-		assertEquals(3L, create(x -> OptionalLong.empty()).orElse(3L).applyAsLong("input"));
-		assertEquals(3L, create(x -> OptionalLong.empty()).orElseGet(() -> 3L).applyAsLong("input"));
+		assertEquals(OptionalLong.of(2L), create(v -> OptionalLong.of(2L)).apply("input"));
+		assertEquals(2L, create(v -> OptionalLong.of(2L)).orElse(3L).applyAsLong("input"));
+		assertEquals(2L, create(v -> OptionalLong.of(2L)).orElseGet(() -> 2L).applyAsLong("input"));
+		assertEquals(OptionalLong.empty(), create(v -> OptionalLong.empty()).apply("input"));
+		assertEquals(3L, create(v -> OptionalLong.empty()).orElse(3L).applyAsLong("input"));
+		assertEquals(3L, create(v -> OptionalLong.empty()).orElseGet(() -> 3L).applyAsLong("input"));
 	}
 	private OptionalToLongFunction<String> create(OptionalToLongFunction<String> lambda) {
 		return lambda;

@@ -12,7 +12,7 @@ public class FallbackSupplierTest {
 		@SuppressWarnings("unchecked") OptionalSupplier<String> full = mock(OptionalSupplier.class);
 		when(full.get()).thenReturn(Optional.of("value"));
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);
-		when(fallback.get()).thenReturn("fallback");
+		when(fallback.get()).thenReturn("default");
 		assertEquals("value", new FallbackSupplier<String>(full, fallback).get());
 		verify(full, only()).get();
 		verifyNoMoreInteractions(fallback);
@@ -21,8 +21,8 @@ public class FallbackSupplierTest {
 		@SuppressWarnings("unchecked") OptionalSupplier<String> empty = mock(OptionalSupplier.class);
 		when(empty.get()).thenReturn(Optional.empty());
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);
-		when(fallback.get()).thenReturn("fallback");
-		assertEquals("fallback", new FallbackSupplier<String>(empty, fallback).get());
+		when(fallback.get()).thenReturn("default");
+		assertEquals("default", new FallbackSupplier<String>(empty, fallback).get());
 		verify(empty, only()).get();
 		verify(fallback, only()).get();
 	}

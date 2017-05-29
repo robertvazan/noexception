@@ -9,14 +9,14 @@ import org.junit.*;
 public class DefaultDoubleToIntFunctionTest {
 	@Test public void full() {
 		OptionalDoubleToIntFunction full = mock(OptionalDoubleToIntFunction.class);
-		when(full.apply(1)).thenReturn(OptionalInt.of(2));
-		assertEquals(2, new DefaultDoubleToIntFunction(full, 3).applyAsInt(1));
-		verify(full, only()).apply(1);
+		when(full.apply(1.0)).thenReturn(OptionalInt.of(2));
+		assertEquals(2, new DefaultDoubleToIntFunction(full, 3).applyAsInt(1.0));
+		verify(full, only()).apply(1.0);
 	}
 	@Test public void empty() {
 		OptionalDoubleToIntFunction empty = mock(OptionalDoubleToIntFunction.class);
-		when(empty.apply(1)).thenReturn(OptionalInt.empty());
-		assertEquals(3, new DefaultDoubleToIntFunction(empty, 3).applyAsInt(1));
-		verify(empty, only()).apply(1);
+		when(empty.apply(1.0)).thenReturn(OptionalInt.empty());
+		assertEquals(3, new DefaultDoubleToIntFunction(empty, 3).applyAsInt(1.0));
+		verify(empty, only()).apply(1.0);
 	}
 }

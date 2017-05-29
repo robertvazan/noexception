@@ -7,12 +7,12 @@ import org.junit.*;
 
 public class OptionalIntFunctionTest {
 	@Test public void conversions() {
-		assertEquals(Optional.of("value"), create(x -> Optional.of("value")).apply(1));
-		assertEquals("value", create(x -> Optional.of("value")).orElse("default").apply(1));
-		assertEquals("value", create(x -> Optional.of("value")).orElseGet(() -> "fallback").apply(1));
-		assertEquals(Optional.empty(), create(x -> Optional.empty()).apply(1));
-		assertEquals("default", create(x -> Optional.empty()).orElse("default").apply(1));
-		assertEquals("fallback", create(x -> Optional.empty()).orElseGet(() -> "fallback").apply(1));
+		assertEquals(Optional.of("value"), create(v -> Optional.of("value")).apply(1));
+		assertEquals("value", create(v -> Optional.of("value")).orElse("default").apply(1));
+		assertEquals("value", create(v -> Optional.of("value")).orElseGet(() -> "value").apply(1));
+		assertEquals(Optional.empty(), create(v -> Optional.empty()).apply(1));
+		assertEquals("default", create(v -> Optional.empty()).orElse("default").apply(1));
+		assertEquals("default", create(v -> Optional.empty()).orElseGet(() -> "default").apply(1));
 	}
 	private OptionalIntFunction<String> create(OptionalIntFunction<String> lambda) {
 		return lambda;

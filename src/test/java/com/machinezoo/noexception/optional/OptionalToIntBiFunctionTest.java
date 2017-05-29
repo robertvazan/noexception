@@ -7,12 +7,12 @@ import org.junit.*;
 
 public class OptionalToIntBiFunctionTest {
 	@Test public void conversions() {
-		assertEquals(OptionalInt.of(2), create((x, y) -> OptionalInt.of(2)).apply("input1", "input2"));
-		assertEquals(2, create((x, y) -> OptionalInt.of(2)).orElse(3).applyAsInt("input1", "input2"));
-		assertEquals(2, create((x, y) -> OptionalInt.of(2)).orElseGet(() -> 3).applyAsInt("input1", "input2"));
-		assertEquals(OptionalInt.empty(), create((x, y) -> OptionalInt.empty()).apply("input1", "input2"));
-		assertEquals(3, create((x, y) -> OptionalInt.empty()).orElse(3).applyAsInt("input1", "input2"));
-		assertEquals(3, create((x, y) -> OptionalInt.empty()).orElseGet(() -> 3).applyAsInt("input1", "input2"));
+		assertEquals(OptionalInt.of(2), create((t, u) -> OptionalInt.of(2)).apply("input1", "input2"));
+		assertEquals(2, create((t, u) -> OptionalInt.of(2)).orElse(3).applyAsInt("input1", "input2"));
+		assertEquals(2, create((t, u) -> OptionalInt.of(2)).orElseGet(() -> 2).applyAsInt("input1", "input2"));
+		assertEquals(OptionalInt.empty(), create((t, u) -> OptionalInt.empty()).apply("input1", "input2"));
+		assertEquals(3, create((t, u) -> OptionalInt.empty()).orElse(3).applyAsInt("input1", "input2"));
+		assertEquals(3, create((t, u) -> OptionalInt.empty()).orElseGet(() -> 3).applyAsInt("input1", "input2"));
 	}
 	private OptionalToIntBiFunction<String, String> create(OptionalToIntBiFunction<String, String> lambda) {
 		return lambda;

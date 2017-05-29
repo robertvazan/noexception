@@ -9,20 +9,20 @@ import org.junit.*;
 public class FallbackLongPredicateTest {
 	@Test public void full() {
 		OptionalLongPredicate full = mock(OptionalLongPredicate.class);
-		when(full.test(1)).thenReturn(OptionalBoolean.of(true));
+		when(full.test(1L)).thenReturn(OptionalBoolean.of(true));
 		BooleanSupplier fallback = mock(BooleanSupplier.class);
 		when(fallback.getAsBoolean()).thenReturn(false);
-		assertEquals(true, new FallbackLongPredicate(full, fallback).test(1));
-		verify(full, only()).test(1);
+		assertEquals(true, new FallbackLongPredicate(full, fallback).test(1L));
+		verify(full, only()).test(1L);
 		verifyNoMoreInteractions(fallback);
 	}
 	@Test public void empty() {
 		OptionalLongPredicate empty = mock(OptionalLongPredicate.class);
-		when(empty.test(1)).thenReturn(OptionalBoolean.empty());
+		when(empty.test(1L)).thenReturn(OptionalBoolean.empty());
 		BooleanSupplier fallback = mock(BooleanSupplier.class);
 		when(fallback.getAsBoolean()).thenReturn(false);
-		assertEquals(false, new FallbackLongPredicate(empty, fallback).test(1));
-		verify(empty, only()).test(1);
+		assertEquals(false, new FallbackLongPredicate(empty, fallback).test(1L));
+		verify(empty, only()).test(1L);
 		verify(fallback, only()).getAsBoolean();
 	}
 }

@@ -7,12 +7,12 @@ import org.junit.*;
 
 public class OptionalLongUnaryOperatorTest {
 	@Test public void conversions() {
-		assertEquals(OptionalLong.of(2L), create(x -> OptionalLong.of(2L)).apply(1));
-		assertEquals(2L, create(x -> OptionalLong.of(2L)).orElse(3L).applyAsLong(1));
-		assertEquals(2L, create(x -> OptionalLong.of(2L)).orElseGet(() -> 3L).applyAsLong(1));
-		assertEquals(OptionalLong.empty(), create(x -> OptionalLong.empty()).apply(1));
-		assertEquals(3L, create(x -> OptionalLong.empty()).orElse(3L).applyAsLong(1));
-		assertEquals(3L, create(x -> OptionalLong.empty()).orElseGet(() -> 3L).applyAsLong(1));
+		assertEquals(OptionalLong.of(2L), create(o -> OptionalLong.of(2L)).apply(1L));
+		assertEquals(2L, create(o -> OptionalLong.of(2L)).orElse(3L).applyAsLong(1L));
+		assertEquals(2L, create(o -> OptionalLong.of(2L)).orElseGet(() -> 2L).applyAsLong(1L));
+		assertEquals(OptionalLong.empty(), create(o -> OptionalLong.empty()).apply(1L));
+		assertEquals(3L, create(o -> OptionalLong.empty()).orElse(3L).applyAsLong(1L));
+		assertEquals(3L, create(o -> OptionalLong.empty()).orElseGet(() -> 3L).applyAsLong(1L));
 	}
 	private OptionalLongUnaryOperator create(OptionalLongUnaryOperator lambda) {
 		return lambda;

@@ -8,7 +8,7 @@ public class OptionalBooleanSupplierTest {
 	@Test public void conversions() {
 		assertEquals(OptionalBoolean.of(true), create(() -> OptionalBoolean.of(true)).get());
 		assertEquals(true, create(() -> OptionalBoolean.of(true)).orElse(false).getAsBoolean());
-		assertEquals(true, create(() -> OptionalBoolean.of(true)).orElseGet(() -> false).getAsBoolean());
+		assertEquals(true, create(() -> OptionalBoolean.of(true)).orElseGet(() -> true).getAsBoolean());
 		assertEquals(OptionalBoolean.empty(), create(() -> OptionalBoolean.empty()).get());
 		assertEquals(false, create(() -> OptionalBoolean.empty()).orElse(false).getAsBoolean());
 		assertEquals(false, create(() -> OptionalBoolean.empty()).orElseGet(() -> false).getAsBoolean());

@@ -9,14 +9,14 @@ import org.junit.*;
 public class DefaultDoubleBinaryOperatorTest {
 	@Test public void full() {
 		OptionalDoubleBinaryOperator full = mock(OptionalDoubleBinaryOperator.class);
-		when(full.apply(11, 12)).thenReturn(OptionalDouble.of(2.0));
-		assertEquals(2.0, new DefaultDoubleBinaryOperator(full, 3.0).applyAsDouble(11, 12), 0.1);
-		verify(full, only()).apply(11, 12);
+		when(full.apply(1.1, 1.2)).thenReturn(OptionalDouble.of(2.0));
+		assertEquals(2.0, new DefaultDoubleBinaryOperator(full, 3.0).applyAsDouble(1.1, 1.2), 0.1);
+		verify(full, only()).apply(1.1, 1.2);
 	}
 	@Test public void empty() {
 		OptionalDoubleBinaryOperator empty = mock(OptionalDoubleBinaryOperator.class);
-		when(empty.apply(11, 12)).thenReturn(OptionalDouble.empty());
-		assertEquals(3.0, new DefaultDoubleBinaryOperator(empty, 3.0).applyAsDouble(11, 12), 0.1);
-		verify(empty, only()).apply(11, 12);
+		when(empty.apply(1.1, 1.2)).thenReturn(OptionalDouble.empty());
+		assertEquals(3.0, new DefaultDoubleBinaryOperator(empty, 3.0).applyAsDouble(1.1, 1.2), 0.1);
+		verify(empty, only()).apply(1.1, 1.2);
 	}
 }

@@ -9,14 +9,14 @@ import org.junit.*;
 public class DefaultLongUnaryOperatorTest {
 	@Test public void full() {
 		OptionalLongUnaryOperator full = mock(OptionalLongUnaryOperator.class);
-		when(full.apply(1)).thenReturn(OptionalLong.of(2L));
-		assertEquals(2L, new DefaultLongUnaryOperator(full, 3L).applyAsLong(1));
-		verify(full, only()).apply(1);
+		when(full.apply(1L)).thenReturn(OptionalLong.of(2L));
+		assertEquals(2L, new DefaultLongUnaryOperator(full, 3L).applyAsLong(1L));
+		verify(full, only()).apply(1L);
 	}
 	@Test public void empty() {
 		OptionalLongUnaryOperator empty = mock(OptionalLongUnaryOperator.class);
-		when(empty.apply(1)).thenReturn(OptionalLong.empty());
-		assertEquals(3L, new DefaultLongUnaryOperator(empty, 3L).applyAsLong(1));
-		verify(empty, only()).apply(1);
+		when(empty.apply(1L)).thenReturn(OptionalLong.empty());
+		assertEquals(3L, new DefaultLongUnaryOperator(empty, 3L).applyAsLong(1L));
+		verify(empty, only()).apply(1L);
 	}
 }
