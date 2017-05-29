@@ -105,10 +105,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(supplier.get());
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -117,7 +116,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code IntSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param supplier
 	 *            the {@code IntSupplier} to wrap
@@ -132,10 +131,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(supplier.getAsInt());
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalInt.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalInt.empty();
 			}
 		}
 	}
@@ -144,7 +142,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code LongSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param supplier
 	 *            the {@code LongSupplier} to wrap
@@ -159,10 +157,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(supplier.getAsLong());
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalLong.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalLong.empty();
 			}
 		}
 	}
@@ -171,7 +168,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code DoubleSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param supplier
 	 *            the {@code DoubleSupplier} to wrap
@@ -186,10 +183,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(supplier.getAsDouble());
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalDouble.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalDouble.empty();
 			}
 		}
 	}
@@ -198,7 +194,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code BooleanSupplier} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param supplier
 	 *            the {@code BooleanSupplier} to wrap
@@ -213,10 +209,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(supplier.getAsBoolean());
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalBoolean.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalBoolean.empty();
 			}
 		}
 	}
@@ -440,10 +435,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(t));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -452,7 +446,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code ToIntFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code ToIntFunction} to wrap
@@ -463,14 +457,13 @@ public abstract class ExceptionHandler {
 	}
 	@RequiredArgsConstructor private final class CatchingToIntFunction<T> implements OptionalToIntFunction<T> {
 		private final ToIntFunction<T> function;
-		@Override public OptionalInt apply(T t) {
+		@Override public OptionalInt apply(T value) {
 			try {
-				return OptionalInt.of(function.applyAsInt(t));
+				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalInt.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalInt.empty();
 			}
 		}
 	}
@@ -494,10 +487,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -506,7 +498,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code IntToLongFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code IntToLongFunction} to wrap
@@ -521,10 +513,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalLong.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalLong.empty();
 			}
 		}
 	}
@@ -533,7 +524,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code IntToDoubleFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code IntToDoubleFunction} to wrap
@@ -548,10 +539,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalDouble.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalDouble.empty();
 			}
 		}
 	}
@@ -560,7 +550,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code ToLongFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code ToLongFunction} to wrap
@@ -571,14 +561,13 @@ public abstract class ExceptionHandler {
 	}
 	@RequiredArgsConstructor private final class CatchingToLongFunction<T> implements OptionalToLongFunction<T> {
 		private final ToLongFunction<T> function;
-		@Override public OptionalLong apply(T t) {
+		@Override public OptionalLong apply(T value) {
 			try {
-				return OptionalLong.of(function.applyAsLong(t));
+				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalLong.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalLong.empty();
 			}
 		}
 	}
@@ -602,10 +591,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -614,7 +602,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code LongToIntFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code LongToIntFunction} to wrap
@@ -629,10 +617,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalInt.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalInt.empty();
 			}
 		}
 	}
@@ -641,7 +628,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code LongToDoubleFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code LongToDoubleFunction} to wrap
@@ -656,10 +643,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalDouble.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalDouble.empty();
 			}
 		}
 	}
@@ -668,7 +654,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code ToDoubleFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code ToDoubleFunction} to wrap
@@ -679,14 +665,13 @@ public abstract class ExceptionHandler {
 	}
 	@RequiredArgsConstructor private final class CatchingToDoubleFunction<T> implements OptionalToDoubleFunction<T> {
 		private final ToDoubleFunction<T> function;
-		@Override public OptionalDouble apply(T t) {
+		@Override public OptionalDouble apply(T value) {
 			try {
-				return OptionalDouble.of(function.applyAsDouble(t));
+				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalDouble.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalDouble.empty();
 			}
 		}
 	}
@@ -710,10 +695,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -722,7 +706,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code DoubleToIntFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code DoubleToIntFunction} to wrap
@@ -737,10 +721,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalInt.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalInt.empty();
 			}
 		}
 	}
@@ -749,7 +732,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code DoubleToLongFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code DoubleToLongFunction} to wrap
@@ -764,10 +747,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalLong.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalLong.empty();
 			}
 		}
 	}
@@ -791,10 +773,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(operator.apply(operand));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -803,7 +784,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code IntUnaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param operator
 	 *            the {@code IntUnaryOperator} to wrap
@@ -818,10 +799,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(operator.applyAsInt(operand));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalInt.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalInt.empty();
 			}
 		}
 	}
@@ -830,7 +810,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code LongUnaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param operator
 	 *            the {@code LongUnaryOperator} to wrap
@@ -845,10 +825,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(operator.applyAsLong(operand));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalLong.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalLong.empty();
 			}
 		}
 	}
@@ -857,7 +836,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code DoubleUnaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param operator
 	 *            the {@code DoubleUnaryOperator} to wrap
@@ -872,10 +851,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(operator.applyAsDouble(operand));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalDouble.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalDouble.empty();
 			}
 		}
 	}
@@ -899,10 +877,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(t, u));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -911,7 +888,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code ToIntBiFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code ToIntBiFunction} to wrap
@@ -926,10 +903,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(function.applyAsInt(t, u));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalInt.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalInt.empty();
 			}
 		}
 	}
@@ -938,7 +914,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code ToLongBiFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code ToLongBiFunction} to wrap
@@ -953,10 +929,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(function.applyAsLong(t, u));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalLong.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalLong.empty();
 			}
 		}
 	}
@@ -965,7 +940,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code ToDoubleBiFunction} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param function
 	 *            the {@code ToDoubleBiFunction} to wrap
@@ -980,10 +955,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(t, u));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalDouble.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalDouble.empty();
 			}
 		}
 	}
@@ -1007,10 +981,9 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(operator.apply(left, right));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return Optional.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return Optional.empty();
 			}
 		}
 	}
@@ -1019,7 +992,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code IntBinaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param operator
 	 *            the {@code IntBinaryOperator} to wrap
@@ -1034,10 +1007,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(operator.applyAsInt(left, right));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalInt.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalInt.empty();
 			}
 		}
 	}
@@ -1046,7 +1018,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code LongBinaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param operator
 	 *            the {@code LongBinaryOperator} to wrap
@@ -1061,10 +1033,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(operator.applyAsLong(left, right));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalLong.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalLong.empty();
 			}
 		}
 	}
@@ -1073,7 +1044,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code DoubleBinaryOperator} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param operator
 	 *            the {@code DoubleBinaryOperator} to wrap
@@ -1088,10 +1059,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(operator.applyAsDouble(left, right));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalDouble.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalDouble.empty();
 			}
 		}
 	}
@@ -1100,7 +1070,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code Predicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param predicate
 	 *            the {@code Predicate} to wrap
@@ -1115,10 +1085,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(t));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalBoolean.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalBoolean.empty();
 			}
 		}
 	}
@@ -1127,7 +1096,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code IntPredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param predicate
 	 *            the {@code IntPredicate} to wrap
@@ -1142,10 +1111,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalBoolean.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalBoolean.empty();
 			}
 		}
 	}
@@ -1154,7 +1122,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code LongPredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param predicate
 	 *            the {@code LongPredicate} to wrap
@@ -1169,10 +1137,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalBoolean.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalBoolean.empty();
 			}
 		}
 	}
@@ -1181,7 +1148,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code DoublePredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param predicate
 	 *            the {@code DoublePredicate} to wrap
@@ -1196,10 +1163,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalBoolean.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalBoolean.empty();
 			}
 		}
 	}
@@ -1208,7 +1174,7 @@ public abstract class ExceptionHandler {
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code BiPredicate} unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * 
 	 * @param predicate
 	 *            the {@code BiPredicate} to wrap
@@ -1223,10 +1189,9 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(t, u));
 			} catch (Throwable exception) {
-				if (handle(exception))
-					return OptionalBoolean.empty();
-				else
+				if (!handle(exception))
 					throw exception;
+				return OptionalBoolean.empty();
 			}
 		}
 	}
