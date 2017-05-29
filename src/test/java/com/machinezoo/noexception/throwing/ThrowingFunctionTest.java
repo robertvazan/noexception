@@ -12,9 +12,9 @@ public class ThrowingFunctionTest {
 	void takeNonThrowing(Function<String, String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> "value");
-		takeThrowing(x -> "value");
-		takeThrowing(x -> {
+		takeNonThrowing(t -> "value");
+		takeThrowing(t -> "value");
+		takeThrowing(t -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

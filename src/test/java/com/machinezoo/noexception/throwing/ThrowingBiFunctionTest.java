@@ -12,9 +12,9 @@ public class ThrowingBiFunctionTest {
 	void takeNonThrowing(BiFunction<String, String, String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing((x, y) -> "value");
-		takeThrowing((x, y) -> "value");
-		takeThrowing((x, y) -> {
+		takeNonThrowing((t, u) -> "value");
+		takeThrowing((t, u) -> "value");
+		takeThrowing((t, u) -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

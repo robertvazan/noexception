@@ -12,9 +12,9 @@ public class ThrowingPredicateTest {
 	void takeNonThrowing(Predicate<String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> true);
-		takeThrowing(x -> true);
-		takeThrowing(x -> {
+		takeNonThrowing(t -> true);
+		takeThrowing(t -> true);
+		takeThrowing(t -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

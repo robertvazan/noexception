@@ -12,13 +12,13 @@ public class ThrowingDoubleUnaryOperatorTest {
 	void takeNonThrowing(DoubleUnaryOperator functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> 0);
-		takeThrowing(x -> 0);
-		takeThrowing(x -> {
+		takeNonThrowing(o -> 2.0);
+		takeThrowing(o -> 2.0);
+		takeThrowing(o -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return 0;
+				return 2.0;
 		});
 	}
 }

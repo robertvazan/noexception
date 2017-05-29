@@ -12,13 +12,13 @@ public class ThrowingToDoubleFunctionTest {
 	void takeNonThrowing(ToDoubleFunction<String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> 0);
-		takeThrowing(x -> 0);
-		takeThrowing(x -> {
+		takeNonThrowing(v -> 2.0);
+		takeThrowing(v -> 2.0);
+		takeThrowing(v -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return 0;
+				return 2.0;
 		});
 	}
 }

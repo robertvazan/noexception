@@ -12,13 +12,13 @@ public class ThrowingToLongBiFunctionTest {
 	void takeNonThrowing(ToLongBiFunction<String, String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing((x, y) -> 0);
-		takeThrowing((x, y) -> 0);
-		takeThrowing((x, y) -> {
+		takeNonThrowing((t, u) -> 2L);
+		takeThrowing((t, u) -> 2L);
+		takeThrowing((t, u) -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return 0;
+				return 2L;
 		});
 	}
 }

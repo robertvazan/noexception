@@ -11,8 +11,10 @@ public class ThrowingRunnableTest {
 	void takeNonThrowing(Runnable functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(() -> {});
-		takeThrowing(() -> {});
+		takeNonThrowing(() -> {
+		});
+		takeThrowing(() -> {
+		});
 		takeThrowing(() -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();

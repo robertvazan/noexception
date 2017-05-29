@@ -12,9 +12,9 @@ public class ThrowingUnaryOperatorTest {
 	void takeNonThrowing(UnaryOperator<String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> "value");
-		takeThrowing(x -> "value");
-		takeThrowing(x -> {
+		takeNonThrowing(o -> "value");
+		takeThrowing(o -> "value");
+		takeThrowing(o -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

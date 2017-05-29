@@ -12,9 +12,9 @@ public class ThrowingDoubleFunctionTest {
 	void takeNonThrowing(DoubleFunction<String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> "value");
-		takeThrowing(x -> "value");
-		takeThrowing(x -> {
+		takeNonThrowing(v -> "value");
+		takeThrowing(v -> "value");
+		takeThrowing(v -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

@@ -12,13 +12,13 @@ public class ThrowingLongUnaryOperatorTest {
 	void takeNonThrowing(LongUnaryOperator functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> 0);
-		takeThrowing(x -> 0);
-		takeThrowing(x -> {
+		takeNonThrowing(o -> 2L);
+		takeThrowing(o -> 2L);
+		takeThrowing(o -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return 0;
+				return 2L;
 		});
 	}
 }

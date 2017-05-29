@@ -12,9 +12,9 @@ public class ThrowingBinaryOperatorTest {
 	void takeNonThrowing(BinaryOperator<String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing((x, y) -> "value");
-		takeThrowing((x, y) -> "value");
-		takeThrowing((x, y) -> {
+		takeNonThrowing((l, r) -> "value");
+		takeThrowing((l, r) -> "value");
+		takeThrowing((l, r) -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

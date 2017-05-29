@@ -12,9 +12,11 @@ public class ThrowingConsumerTest {
 	void takeNonThrowing(Consumer<String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(x -> {});
-		takeThrowing(x -> {});
-		takeThrowing(x -> {
+		takeNonThrowing(t -> {
+		});
+		takeThrowing(t -> {
+		});
+		takeThrowing(t -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

@@ -12,9 +12,9 @@ public class ThrowingBiPredicateTest {
 	void takeNonThrowing(BiPredicate<String, String> functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing((x, y) -> true);
-		takeThrowing((x, y) -> true);
-		takeThrowing((x, y) -> {
+		takeNonThrowing((t, u) -> true);
+		takeThrowing((t, u) -> true);
+		takeThrowing((t, u) -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else

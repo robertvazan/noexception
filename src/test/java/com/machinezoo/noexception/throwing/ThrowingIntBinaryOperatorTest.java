@@ -12,13 +12,13 @@ public class ThrowingIntBinaryOperatorTest {
 	void takeNonThrowing(IntBinaryOperator functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing((x, y) -> 0);
-		takeThrowing((x, y) -> 0);
-		takeThrowing((x, y) -> {
+		takeNonThrowing((l, r) -> 2);
+		takeThrowing((l, r) -> 2);
+		takeThrowing((l, r) -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return 0;
+				return 2;
 		});
 	}
 }

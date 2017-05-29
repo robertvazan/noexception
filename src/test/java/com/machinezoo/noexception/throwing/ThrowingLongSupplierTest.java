@@ -12,13 +12,13 @@ public class ThrowingLongSupplierTest {
 	void takeNonThrowing(LongSupplier functional) {
 	}
 	@Test public void lambdas() {
-		takeNonThrowing(() -> 0);
-		takeThrowing(() -> 0);
+		takeNonThrowing(() -> 2L);
+		takeThrowing(() -> 2L);
 		takeThrowing(() -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return 0;
+				return 2L;
 		});
 	}
 }
