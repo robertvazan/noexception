@@ -12,17 +12,19 @@ import lombok.*;
  * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
  * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
  * <p>
- * Wrapping methods for all standard functional interfaces are provided.
- * Simple interfaces have short method names, e.g. {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
- * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(UnaryOperator)}.
- * Parameterless functional interfaces can be called directly by methods {@link #run(Runnable)}, {@link #get(Supplier)},
- * and the various {@code getAsX} variants.
+ * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda).orElse(fallback)}
  * <p>
  * All wrapping methods surround the functional interface with a try-catch block.
  * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
  * {@code NullPointerException} from null functional interface is caught too.
  * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete silently
  * while non-void functional interfaces return empty {@link Optional}.
+ * <p>
+ * Wrapping methods for all standard functional interfaces are provided.
+ * Simple interfaces have short method names, e.g. {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
+ * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(UnaryOperator)}.
+ * Parameterless functional interfaces can be called directly by methods {@link #run(Runnable)}, {@link #get(Supplier)},
+ * and the various {@code getAsX} variants.
  * <p>
  * All non-void wrappers conform to some {@code OptionalX} functional interface, e.g. {@link OptionalSupplier},
  * that is identical to its non-optional variant from JDK except it returns {@code Optional} instead of raw value.

@@ -5,6 +5,40 @@ import java.util.function.*;
 import com.machinezoo.noexception.throwing.*;
 import lombok.*;
 
+/**
+ * Represents downgrading policy for checked exceptions.
+ * The exception policy is akin to a reusable {@code catch} block that catches checked exception and throws an unchecked one.
+ * Method {@link #handle(Exception)} defines downgrading mechanism, typically by wrapping the checked exception in an unchecked one,
+ * but there are special cases like {@link Exceptions#sneak()}, which downgrade only method signature without altering the exception itself.
+ * Methods of this class apply the exception policy to functional interfaces by wrapping them in a try-catch block.
+ * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * <p>
+ * Typical usage: {@code Exceptions.sneak().get(() -> my_throwing_lambda)}
+ * <p>
+ * {@code CheckedExceptionHandler} doesn't stop propagation of any exceptions (checked or unchecked).
+ * {@link ExceptionHandler} is used for that purpose.
+ * The two classes can be used together by first downgrading checked exceptions with {@code CheckedExceptionHandler}
+ * and then applying exception handling policy with {@code ExceptionHandler}.
+ * <p>
+ * Combined usage: {@code Exceptions.log().get(Exceptions.sneak().supplier(() -> my_throwing_lambda)).orElse(fallback)}
+ * <p>
+ * All wrapping methods surround the functional interface with a try-catch block.
+ * Only checked exceptions are handled. Unchecked exceptions are propagated to caller.
+ * If the functional interface throws checked exception, the exception is caught and passed to {@link #handle(Exception)},
+ * which converts it to an unchecked exception, which is then thrown.
+ * <p>
+ * Wrapping methods for all standard functional interfaces are provided.
+ * Simple interfaces have short method names, e.g. {@link #runnable(ThrowingRunnable)} or {@link #supplier(ThrowingSupplier)}.
+ * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(ThrowingUnaryOperator)}.
+ * Parameterless functional interfaces can be called directly by methods {@link #run(ThrowingRunnable)}, {@link #get(ThrowingSupplier)},
+ * and the various {@code getAsX} variants.
+ * All methods take throwing versions of standard functional interfaces, e.g. {@link ThrowingRunnable} or {@link ThrowingSupplier}.
+ * 
+ * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+ * @see #handle(Exception)
+ * @see Exceptions
+ * @see ExceptionHandler
+ */
 public abstract class CheckedExceptionHandler {
 	/**
 	 * Convert checked exception into an unchecked one. This method must be defined in a derived class.
@@ -12,12 +46,13 @@ public abstract class CheckedExceptionHandler {
 	 * All other methods of the {@code CheckedExceptionHandler} call this method, but it can be also called directly.
 	 * <p>
 	 * This method represents reusable catch block that handles all checked exceptions in the same way.
-	 * When invoked, it must somehow convert the checked exception into an unchecked one, e.g. by wrapping it.
-	 * If this method returns {@code null}, methods of this class will throw {@code NullPointerException}.
+	 * When invoked, it must somehow convert the checked exception into an unchecked one, usually by wrapping it.
+	 * Caller is then expected to throw the returned exception.
+	 * There can be special cases like {@link Exceptions#sneak()}, which don't return at all.
 	 * <p>
 	 * Callers should not pass in {@code RuntimeException} or other unchecked exceptions.
-	 * This method might erroneously wrap such exception as if it is checked exception.
-	 * Methods of this class never pass unchecked exception to this method.
+	 * This method might erroneously wrap such exceptions as if they are checked exceptions.
+	 * Methods of this class never pass unchecked exceptions to this method.
 	 * 
 	 * @param exception
 	 *            checked exception to convert
