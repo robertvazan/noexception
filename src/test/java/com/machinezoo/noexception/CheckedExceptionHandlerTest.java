@@ -133,7 +133,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void consumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.consumer(x -> {
+			collector.consumer(t -> {
 				throw new PrinterException();
 			}).accept("input");
 			fail();
@@ -144,16 +144,16 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromIntConsumer_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntConsumer lambda = mock(ThrowingIntConsumer.class);
-		collector.fromIntConsumer(lambda).accept(2);
-		verify(lambda, only()).accept(2);
+		collector.fromIntConsumer(lambda).accept(1);
+		verify(lambda, only()).accept(1);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromIntConsumer(x -> {
+			collector.fromIntConsumer(v -> {
 				throw new PrinterException();
-			}).accept(2);
+			}).accept(1);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -162,16 +162,16 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromLongConsumer_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongConsumer lambda = mock(ThrowingLongConsumer.class);
-		collector.fromLongConsumer(lambda).accept(2);
-		verify(lambda, only()).accept(2);
+		collector.fromLongConsumer(lambda).accept(1L);
+		verify(lambda, only()).accept(1L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromLongConsumer(x -> {
+			collector.fromLongConsumer(v -> {
 				throw new PrinterException();
-			}).accept(2);
+			}).accept(1L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -180,16 +180,16 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromDoubleConsumer_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleConsumer lambda = mock(ThrowingDoubleConsumer.class);
-		collector.fromDoubleConsumer(lambda).accept(2);
-		verify(lambda, only()).accept(2);
+		collector.fromDoubleConsumer(lambda).accept(1.0);
+		verify(lambda, only()).accept(1.0);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromDoubleConsumer(x -> {
+			collector.fromDoubleConsumer(v -> {
 				throw new PrinterException();
-			}).accept(2);
+			}).accept(1.0);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -205,7 +205,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromBiConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromBiConsumer((x, y) -> {
+			collector.fromBiConsumer((t, u) -> {
 				throw new PrinterException();
 			}).accept("input1", "input2");
 			fail();
@@ -216,16 +216,16 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromObjIntConsumer_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjIntConsumer<String> lambda = mock(ThrowingObjIntConsumer.class);
-		collector.fromObjIntConsumer(lambda).accept("input", 2);
-		verify(lambda, only()).accept("input", 2);
+		collector.fromObjIntConsumer(lambda).accept("input", 1);
+		verify(lambda, only()).accept("input", 1);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromObjIntConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromObjIntConsumer((x, y) -> {
+			collector.fromObjIntConsumer((t, v) -> {
 				throw new PrinterException();
-			}).accept("input", 2);
+			}).accept("input", 1);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -234,16 +234,16 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromObjLongConsumer_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjLongConsumer<String> lambda = mock(ThrowingObjLongConsumer.class);
-		collector.fromObjLongConsumer(lambda).accept("input", 2);
-		verify(lambda, only()).accept("input", 2);
+		collector.fromObjLongConsumer(lambda).accept("input", 1L);
+		verify(lambda, only()).accept("input", 1L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromObjLongConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromObjLongConsumer((x, y) -> {
+			collector.fromObjLongConsumer((t, v) -> {
 				throw new PrinterException();
-			}).accept("input", 2);
+			}).accept("input", 1L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -252,16 +252,16 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromObjDoubleConsumer_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjDoubleConsumer<String> lambda = mock(ThrowingObjDoubleConsumer.class);
-		collector.fromObjDoubleConsumer(lambda).accept("input", 2);
-		verify(lambda, only()).accept("input", 2);
+		collector.fromObjDoubleConsumer(lambda).accept("input", 1.0);
+		verify(lambda, only()).accept("input", 1.0);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromObjDoubleConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromObjDoubleConsumer((x, y) -> {
+			collector.fromObjDoubleConsumer((t, v) -> {
 				throw new PrinterException();
-			}).accept("input", 2);
+			}).accept("input", 1.0);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -278,7 +278,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void predicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.predicate(x -> {
+			collector.predicate(t -> {
 				throw new PrinterException();
 			}).test("input");
 			fail();
@@ -289,17 +289,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromIntPredicate_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntPredicate lambda = mock(ThrowingIntPredicate.class);
-		when(lambda.test(2)).thenReturn(true);
-		assertEquals(true, collector.fromIntPredicate(lambda).test(2));
-		verify(lambda, only()).test(2);
+		when(lambda.test(1)).thenReturn(true);
+		assertEquals(true, collector.fromIntPredicate(lambda).test(1));
+		verify(lambda, only()).test(1);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntPredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromIntPredicate(x -> {
+			collector.fromIntPredicate(v -> {
 				throw new PrinterException();
-			}).test(2);
+			}).test(1);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -308,17 +308,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromLongPredicate_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongPredicate lambda = mock(ThrowingLongPredicate.class);
-		when(lambda.test(2)).thenReturn(true);
-		assertEquals(true, collector.fromLongPredicate(lambda).test(2));
-		verify(lambda, only()).test(2);
+		when(lambda.test(1L)).thenReturn(true);
+		assertEquals(true, collector.fromLongPredicate(lambda).test(1L));
+		verify(lambda, only()).test(1L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongPredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromLongPredicate(x -> {
+			collector.fromLongPredicate(v -> {
 				throw new PrinterException();
-			}).test(2);
+			}).test(1L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -327,17 +327,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromDoublePredicate_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoublePredicate lambda = mock(ThrowingDoublePredicate.class);
-		when(lambda.test(2)).thenReturn(true);
-		assertEquals(true, collector.fromDoublePredicate(lambda).test(2));
-		verify(lambda, only()).test(2);
+		when(lambda.test(1.0)).thenReturn(true);
+		assertEquals(true, collector.fromDoublePredicate(lambda).test(1.0));
+		verify(lambda, only()).test(1.0);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoublePredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromDoublePredicate(x -> {
+			collector.fromDoublePredicate(v -> {
 				throw new PrinterException();
-			}).test(2);
+			}).test(1.0);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -354,7 +354,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromBiPredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromBiPredicate((x, y) -> {
+			collector.fromBiPredicate((t, u) -> {
 				throw new PrinterException();
 			}).test("input1", "input2");
 			fail();
@@ -373,7 +373,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void function_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.function(x -> {
+			collector.function(t -> {
 				throw new PrinterException();
 			}).apply("input");
 			fail();
@@ -392,7 +392,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromToIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromToIntFunction(x -> {
+			collector.fromToIntFunction(v -> {
 				throw new PrinterException();
 			}).applyAsInt("input");
 			fail();
@@ -403,17 +403,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromIntFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingIntFunction<String> lambda = mock(ThrowingIntFunction.class);
-		when(lambda.apply(2)).thenReturn("value");
-		assertEquals("value", collector.fromIntFunction(lambda).apply(2));
-		verify(lambda, only()).apply(2);
+		when(lambda.apply(1)).thenReturn("value");
+		assertEquals("value", collector.fromIntFunction(lambda).apply(1));
+		verify(lambda, only()).apply(1);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromIntFunction(x -> {
+			collector.fromIntFunction(v -> {
 				throw new PrinterException();
-			}).apply(2);
+			}).apply(1);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -422,17 +422,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromIntToLongFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntToLongFunction lambda = mock(ThrowingIntToLongFunction.class);
-		when(lambda.applyAsLong(2)).thenReturn(2L);
-		assertEquals(2L, collector.fromIntToLongFunction(lambda).applyAsLong(2));
-		verify(lambda, only()).applyAsLong(2);
+		when(lambda.applyAsLong(1)).thenReturn(2L);
+		assertEquals(2L, collector.fromIntToLongFunction(lambda).applyAsLong(1));
+		verify(lambda, only()).applyAsLong(1);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntToLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromIntToLongFunction(x -> {
+			collector.fromIntToLongFunction(v -> {
 				throw new PrinterException();
-			}).applyAsLong(2);
+			}).applyAsLong(1);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -441,17 +441,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromIntToDoubleFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntToDoubleFunction lambda = mock(ThrowingIntToDoubleFunction.class);
-		when(lambda.applyAsDouble(2)).thenReturn(2.0);
-		assertEquals(2.0, collector.fromIntToDoubleFunction(lambda).applyAsDouble(2), 0.1);
-		verify(lambda, only()).applyAsDouble(2);
+		when(lambda.applyAsDouble(1)).thenReturn(2.0);
+		assertEquals(2.0, collector.fromIntToDoubleFunction(lambda).applyAsDouble(1), 0.1);
+		verify(lambda, only()).applyAsDouble(1);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntToDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromIntToDoubleFunction(x -> {
+			collector.fromIntToDoubleFunction(v -> {
 				throw new PrinterException();
-			}).applyAsDouble(2);
+			}).applyAsDouble(1);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -468,7 +468,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromToLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromToLongFunction(x -> {
+			collector.fromToLongFunction(v -> {
 				throw new PrinterException();
 			}).applyAsLong("input");
 			fail();
@@ -479,17 +479,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromLongFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingLongFunction<String> lambda = mock(ThrowingLongFunction.class);
-		when(lambda.apply(2)).thenReturn("value");
-		assertEquals("value", collector.fromLongFunction(lambda).apply(2));
-		verify(lambda, only()).apply(2);
+		when(lambda.apply(1L)).thenReturn("value");
+		assertEquals("value", collector.fromLongFunction(lambda).apply(1L));
+		verify(lambda, only()).apply(1L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromLongFunction(x -> {
+			collector.fromLongFunction(v -> {
 				throw new PrinterException();
-			}).apply(2);
+			}).apply(1L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -498,17 +498,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromLongToIntFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongToIntFunction lambda = mock(ThrowingLongToIntFunction.class);
-		when(lambda.applyAsInt(2)).thenReturn(2);
-		assertEquals(2, collector.fromLongToIntFunction(lambda).applyAsInt(2));
-		verify(lambda, only()).applyAsInt(2);
+		when(lambda.applyAsInt(1L)).thenReturn(2);
+		assertEquals(2, collector.fromLongToIntFunction(lambda).applyAsInt(1L));
+		verify(lambda, only()).applyAsInt(1L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongToIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromLongToIntFunction(x -> {
+			collector.fromLongToIntFunction(v -> {
 				throw new PrinterException();
-			}).applyAsInt(2);
+			}).applyAsInt(1L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -517,17 +517,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromLongToDoubleFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongToDoubleFunction lambda = mock(ThrowingLongToDoubleFunction.class);
-		when(lambda.applyAsDouble(2)).thenReturn(2.0);
-		assertEquals(2.0, collector.fromLongToDoubleFunction(lambda).applyAsDouble(2), 0.1);
-		verify(lambda, only()).applyAsDouble(2);
+		when(lambda.applyAsDouble(1L)).thenReturn(2.0);
+		assertEquals(2.0, collector.fromLongToDoubleFunction(lambda).applyAsDouble(1L), 0.1);
+		verify(lambda, only()).applyAsDouble(1L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongToDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromLongToDoubleFunction(x -> {
+			collector.fromLongToDoubleFunction(v -> {
 				throw new PrinterException();
-			}).applyAsDouble(2);
+			}).applyAsDouble(1L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -544,7 +544,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromToDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromToDoubleFunction(x -> {
+			collector.fromToDoubleFunction(v -> {
 				throw new PrinterException();
 			}).applyAsDouble("input");
 			fail();
@@ -555,17 +555,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromDoubleFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingDoubleFunction<String> lambda = mock(ThrowingDoubleFunction.class);
-		when(lambda.apply(2)).thenReturn("value");
-		assertEquals("value", collector.fromDoubleFunction(lambda).apply(2));
-		verify(lambda, only()).apply(2);
+		when(lambda.apply(1.0)).thenReturn("value");
+		assertEquals("value", collector.fromDoubleFunction(lambda).apply(1.0));
+		verify(lambda, only()).apply(1.0);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromDoubleFunction(x -> {
+			collector.fromDoubleFunction(v -> {
 				throw new PrinterException();
-			}).apply(2);
+			}).apply(1.0);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -574,17 +574,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromDoubleToIntFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleToIntFunction lambda = mock(ThrowingDoubleToIntFunction.class);
-		when(lambda.applyAsInt(2)).thenReturn(2);
-		assertEquals(2, collector.fromDoubleToIntFunction(lambda).applyAsInt(2));
-		verify(lambda, only()).applyAsInt(2);
+		when(lambda.applyAsInt(1.0)).thenReturn(2);
+		assertEquals(2, collector.fromDoubleToIntFunction(lambda).applyAsInt(1.0));
+		verify(lambda, only()).applyAsInt(1.0);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleToIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromDoubleToIntFunction(x -> {
+			collector.fromDoubleToIntFunction(v -> {
 				throw new PrinterException();
-			}).applyAsInt(2);
+			}).applyAsInt(1.0);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -593,17 +593,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromDoubleToLongFunction_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleToLongFunction lambda = mock(ThrowingDoubleToLongFunction.class);
-		when(lambda.applyAsLong(2)).thenReturn(2L);
-		assertEquals(2L, collector.fromDoubleToLongFunction(lambda).applyAsLong(2));
-		verify(lambda, only()).applyAsLong(2);
+		when(lambda.applyAsLong(1.0)).thenReturn(2L);
+		assertEquals(2L, collector.fromDoubleToLongFunction(lambda).applyAsLong(1.0));
+		verify(lambda, only()).applyAsLong(1.0);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleToLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromDoubleToLongFunction(x -> {
+			collector.fromDoubleToLongFunction(v -> {
 				throw new PrinterException();
-			}).applyAsLong(2);
+			}).applyAsLong(1.0);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -620,7 +620,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromUnaryOperator(x -> {
+			collector.fromUnaryOperator(o -> {
 				throw new PrinterException();
 			}).apply("input");
 			fail();
@@ -631,17 +631,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromIntUnaryOperator_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntUnaryOperator lambda = mock(ThrowingIntUnaryOperator.class);
-		when(lambda.applyAsInt(2)).thenReturn(2);
-		assertEquals(2, collector.fromIntUnaryOperator(lambda).applyAsInt(2));
-		verify(lambda, only()).applyAsInt(2);
+		when(lambda.applyAsInt(1)).thenReturn(2);
+		assertEquals(2, collector.fromIntUnaryOperator(lambda).applyAsInt(1));
+		verify(lambda, only()).applyAsInt(1);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromIntUnaryOperator(x -> {
+			collector.fromIntUnaryOperator(o -> {
 				throw new PrinterException();
-			}).applyAsInt(2);
+			}).applyAsInt(1);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -650,17 +650,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromLongUnaryOperator_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongUnaryOperator lambda = mock(ThrowingLongUnaryOperator.class);
-		when(lambda.applyAsLong(2)).thenReturn(2L);
-		assertEquals(2L, collector.fromLongUnaryOperator(lambda).applyAsLong(2));
-		verify(lambda, only()).applyAsLong(2);
+		when(lambda.applyAsLong(1L)).thenReturn(2L);
+		assertEquals(2L, collector.fromLongUnaryOperator(lambda).applyAsLong(1L));
+		verify(lambda, only()).applyAsLong(1L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromLongUnaryOperator(x -> {
+			collector.fromLongUnaryOperator(o -> {
 				throw new PrinterException();
-			}).applyAsLong(2);
+			}).applyAsLong(1L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -669,17 +669,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromDoubleUnaryOperator_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleUnaryOperator lambda = mock(ThrowingDoubleUnaryOperator.class);
-		when(lambda.applyAsDouble(2)).thenReturn(2.0);
-		assertEquals(2.0, collector.fromDoubleUnaryOperator(lambda).applyAsDouble(2), 0.1);
-		verify(lambda, only()).applyAsDouble(2);
+		when(lambda.applyAsDouble(1.0)).thenReturn(2.0);
+		assertEquals(2.0, collector.fromDoubleUnaryOperator(lambda).applyAsDouble(1.0), 0.1);
+		verify(lambda, only()).applyAsDouble(1.0);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromDoubleUnaryOperator(x -> {
+			collector.fromDoubleUnaryOperator(o -> {
 				throw new PrinterException();
-			}).applyAsDouble(2);
+			}).applyAsDouble(1.0);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -696,7 +696,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromBiFunction((x, y) -> {
+			collector.fromBiFunction((t, u) -> {
 				throw new PrinterException();
 			}).apply("input1", "input2");
 			fail();
@@ -715,7 +715,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromToIntBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromToIntBiFunction((x, y) -> {
+			collector.fromToIntBiFunction((t, u) -> {
 				throw new PrinterException();
 			}).applyAsInt("input1", "input2");
 			fail();
@@ -734,7 +734,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromToLongBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromToLongBiFunction((x, y) -> {
+			collector.fromToLongBiFunction((t, u) -> {
 				throw new PrinterException();
 			}).applyAsLong("input1", "input2");
 			fail();
@@ -753,7 +753,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromToDoubleBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromToDoubleBiFunction((x, y) -> {
+			collector.fromToDoubleBiFunction((t, u) -> {
 				throw new PrinterException();
 			}).applyAsDouble("input1", "input2");
 			fail();
@@ -772,7 +772,7 @@ public class CheckedExceptionHandlerTest {
 	@Test public void fromBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromBinaryOperator((x, y) -> {
+			collector.fromBinaryOperator((l, r) -> {
 				throw new PrinterException();
 			}).apply("input1", "input2");
 			fail();
@@ -783,17 +783,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromIntBinaryOperator_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntBinaryOperator lambda = mock(ThrowingIntBinaryOperator.class);
-		when(lambda.applyAsInt(21, 22)).thenReturn(2);
-		assertEquals(2, collector.fromIntBinaryOperator(lambda).applyAsInt(21, 22));
-		verify(lambda, only()).applyAsInt(21, 22);
+		when(lambda.applyAsInt(11, 12)).thenReturn(2);
+		assertEquals(2, collector.fromIntBinaryOperator(lambda).applyAsInt(11, 12));
+		verify(lambda, only()).applyAsInt(11, 12);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromIntBinaryOperator((x, y) -> {
+			collector.fromIntBinaryOperator((l, r) -> {
 				throw new PrinterException();
-			}).applyAsInt(21, 22);
+			}).applyAsInt(11, 12);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -802,17 +802,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromLongBinaryOperator_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongBinaryOperator lambda = mock(ThrowingLongBinaryOperator.class);
-		when(lambda.applyAsLong(21, 22)).thenReturn(2L);
-		assertEquals(2L, collector.fromLongBinaryOperator(lambda).applyAsLong(21, 22));
-		verify(lambda, only()).applyAsLong(21, 22);
+		when(lambda.applyAsLong(11L, 12L)).thenReturn(2L);
+		assertEquals(2L, collector.fromLongBinaryOperator(lambda).applyAsLong(11L, 12L));
+		verify(lambda, only()).applyAsLong(11L, 12L);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromLongBinaryOperator((x, y) -> {
+			collector.fromLongBinaryOperator((l, r) -> {
 				throw new PrinterException();
-			}).applyAsLong(21, 22);
+			}).applyAsLong(11L, 12L);
 			fail();
 		} catch (CollectedException e) {
 		}
@@ -821,17 +821,17 @@ public class CheckedExceptionHandlerTest {
 	@Test @SneakyThrows public void fromDoubleBinaryOperator_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleBinaryOperator lambda = mock(ThrowingDoubleBinaryOperator.class);
-		when(lambda.applyAsDouble(21, 22)).thenReturn(2.0);
-		assertEquals(2.0, collector.fromDoubleBinaryOperator(lambda).applyAsDouble(21, 22), 0.1);
-		verify(lambda, only()).applyAsDouble(21, 22);
+		when(lambda.applyAsDouble(1.1, 1.2)).thenReturn(2.0);
+		assertEquals(2.0, collector.fromDoubleBinaryOperator(lambda).applyAsDouble(1.1, 1.2), 0.1);
+		verify(lambda, only()).applyAsDouble(1.1, 1.2);
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		try {
-			collector.fromDoubleBinaryOperator((x, y) -> {
+			collector.fromDoubleBinaryOperator((l, r) -> {
 				throw new PrinterException();
-			}).applyAsDouble(21, 22);
+			}).applyAsDouble(1.1, 1.2);
 			fail();
 		} catch (CollectedException e) {
 		}
