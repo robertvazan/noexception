@@ -6,6 +6,27 @@ import com.machinezoo.noexception.throwing.*;
 import lombok.*;
 
 public abstract class CheckedExceptionHandler {
+	/**
+	 * Convert checked exception into an unchecked one. This method must be defined in a derived class.
+	 * Several implementations are provided by methods on {@link Exceptions} class.
+	 * All other methods of the {@code CheckedExceptionHandler} call this method, but it can be also called directly.
+	 * <p>
+	 * This method represents reusable catch block that handles all checked exceptions in the same way.
+	 * When invoked, it must somehow convert the checked exception into an unchecked one, e.g. by wrapping it.
+	 * If this method returns {@code null}, methods of this class will throw {@code NullPointerException}.
+	 * <p>
+	 * Callers should not pass in {@code RuntimeException} or other unchecked exceptions.
+	 * This method might erroneously wrap such exception as if it is checked exception.
+	 * Methods of this class never pass unchecked exception to this method.
+	 * 
+	 * @param exception
+	 *            checked exception to convert
+	 * @return converted unchecked exception
+	 * @throws NullPointerException
+	 *             if {@code exception} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public abstract RuntimeException handle(Exception exception);
 	/**
 	 * Remove checked exceptions from method signature of {@code Runnable}.
