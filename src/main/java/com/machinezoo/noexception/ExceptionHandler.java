@@ -1228,10 +1228,9 @@ public abstract class ExceptionHandler {
 		try {
 			return Optional.ofNullable(supplier.get());
 		} catch (Throwable exception) {
-			if (handle(exception))
-				return Optional.empty();
-			else
+			if (!handle(exception))
 				throw exception;
+			return Optional.empty();
 		}
 	}
 	/**
@@ -1249,10 +1248,9 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalInt.of(supplier.getAsInt());
 		} catch (Throwable exception) {
-			if (handle(exception))
-				return OptionalInt.empty();
-			else
+			if (!handle(exception))
 				throw exception;
+			return OptionalInt.empty();
 		}
 	}
 	/**
@@ -1270,10 +1268,9 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalLong.of(supplier.getAsLong());
 		} catch (Throwable exception) {
-			if (handle(exception))
-				return OptionalLong.empty();
-			else
+			if (!handle(exception))
 				throw exception;
+			return OptionalLong.empty();
 		}
 	}
 	/**
@@ -1291,10 +1288,9 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalDouble.of(supplier.getAsDouble());
 		} catch (Throwable exception) {
-			if (handle(exception))
-				return OptionalDouble.empty();
-			else
+			if (!handle(exception))
 				throw exception;
+			return OptionalDouble.empty();
 		}
 	}
 	/**
@@ -1312,10 +1308,9 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalBoolean.of(supplier.getAsBoolean());
 		} catch (Throwable exception) {
-			if (handle(exception))
-				return OptionalBoolean.empty();
-			else
+			if (!handle(exception))
 				throw exception;
+			return OptionalBoolean.empty();
 		}
 	}
 }
