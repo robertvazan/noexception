@@ -416,6 +416,136 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
+	 * Wraps {@code Predicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code Predicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
+	public final <T> OptionalPredicate<T> predicate(Predicate<T> predicate) {
+		return new CatchingPredicate<T>(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingPredicate<T> implements OptionalPredicate<T> {
+		private final Predicate<T> predicate;
+		@Override public OptionalBoolean test(T t) {
+			try {
+				return OptionalBoolean.of(predicate.test(t));
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+				return OptionalBoolean.empty();
+			}
+		}
+	}
+	/**
+	 * Wraps {@code IntPredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code IntPredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
+	public final OptionalIntPredicate fromIntPredicate(IntPredicate predicate) {
+		return new CatchingIntPredicate(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingIntPredicate implements OptionalIntPredicate {
+		private final IntPredicate predicate;
+		@Override public OptionalBoolean test(int value) {
+			try {
+				return OptionalBoolean.of(predicate.test(value));
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+				return OptionalBoolean.empty();
+			}
+		}
+	}
+	/**
+	 * Wraps {@code LongPredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code LongPredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
+	public final OptionalLongPredicate fromLongPredicate(LongPredicate predicate) {
+		return new CatchingLongPredicate(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingLongPredicate implements OptionalLongPredicate {
+		private final LongPredicate predicate;
+		@Override public OptionalBoolean test(long value) {
+			try {
+				return OptionalBoolean.of(predicate.test(value));
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+				return OptionalBoolean.empty();
+			}
+		}
+	}
+	/**
+	 * Wraps {@code DoublePredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code DoublePredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
+	public final OptionalDoublePredicate fromDoublePredicate(DoublePredicate predicate) {
+		return new CatchingDoublePredicate(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingDoublePredicate implements OptionalDoublePredicate {
+		private final DoublePredicate predicate;
+		@Override public OptionalBoolean test(double value) {
+			try {
+				return OptionalBoolean.of(predicate.test(value));
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+				return OptionalBoolean.empty();
+			}
+		}
+	}
+	/**
+	 * Wraps {@code BiPredicate} in a try-catch block.
+	 * <p>
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * 
+	 * @param predicate
+	 *            the {@code BiPredicate} to wrap
+	 * @return wrapper that runs {@code predicate} in a try-catch block
+	 */
+	public final <T, U> OptionalBiPredicate<T, U> fromBiPredicate(BiPredicate<T, U> predicate) {
+		return new CatchingBiPredicate<T, U>(predicate);
+	}
+	@RequiredArgsConstructor private final class CatchingBiPredicate<T, U> implements OptionalBiPredicate<T, U> {
+		private final BiPredicate<T, U> predicate;
+		@Override public OptionalBoolean test(T t, U u) {
+			try {
+				return OptionalBoolean.of(predicate.test(t, u));
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+				return OptionalBoolean.empty();
+			}
+		}
+	}
+	/**
 	 * Wraps {@code Function} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
@@ -1062,136 +1192,6 @@ public abstract class ExceptionHandler {
 				if (!handle(exception))
 					throw exception;
 				return OptionalDouble.empty();
-			}
-		}
-	}
-	/**
-	 * Wraps {@code Predicate} in a try-catch block.
-	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
-	 * 
-	 * @param predicate
-	 *            the {@code Predicate} to wrap
-	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 */
-	public final <T> OptionalPredicate<T> predicate(Predicate<T> predicate) {
-		return new CatchingPredicate<T>(predicate);
-	}
-	@RequiredArgsConstructor private final class CatchingPredicate<T> implements OptionalPredicate<T> {
-		private final Predicate<T> predicate;
-		@Override public OptionalBoolean test(T t) {
-			try {
-				return OptionalBoolean.of(predicate.test(t));
-			} catch (Throwable exception) {
-				if (!handle(exception))
-					throw exception;
-				return OptionalBoolean.empty();
-			}
-		}
-	}
-	/**
-	 * Wraps {@code IntPredicate} in a try-catch block.
-	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
-	 * 
-	 * @param predicate
-	 *            the {@code IntPredicate} to wrap
-	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 */
-	public final OptionalIntPredicate fromIntPredicate(IntPredicate predicate) {
-		return new CatchingIntPredicate(predicate);
-	}
-	@RequiredArgsConstructor private final class CatchingIntPredicate implements OptionalIntPredicate {
-		private final IntPredicate predicate;
-		@Override public OptionalBoolean test(int value) {
-			try {
-				return OptionalBoolean.of(predicate.test(value));
-			} catch (Throwable exception) {
-				if (!handle(exception))
-					throw exception;
-				return OptionalBoolean.empty();
-			}
-		}
-	}
-	/**
-	 * Wraps {@code LongPredicate} in a try-catch block.
-	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
-	 * 
-	 * @param predicate
-	 *            the {@code LongPredicate} to wrap
-	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 */
-	public final OptionalLongPredicate fromLongPredicate(LongPredicate predicate) {
-		return new CatchingLongPredicate(predicate);
-	}
-	@RequiredArgsConstructor private final class CatchingLongPredicate implements OptionalLongPredicate {
-		private final LongPredicate predicate;
-		@Override public OptionalBoolean test(long value) {
-			try {
-				return OptionalBoolean.of(predicate.test(value));
-			} catch (Throwable exception) {
-				if (!handle(exception))
-					throw exception;
-				return OptionalBoolean.empty();
-			}
-		}
-	}
-	/**
-	 * Wraps {@code DoublePredicate} in a try-catch block.
-	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
-	 * 
-	 * @param predicate
-	 *            the {@code DoublePredicate} to wrap
-	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 */
-	public final OptionalDoublePredicate fromDoublePredicate(DoublePredicate predicate) {
-		return new CatchingDoublePredicate(predicate);
-	}
-	@RequiredArgsConstructor private final class CatchingDoublePredicate implements OptionalDoublePredicate {
-		private final DoublePredicate predicate;
-		@Override public OptionalBoolean test(double value) {
-			try {
-				return OptionalBoolean.of(predicate.test(value));
-			} catch (Throwable exception) {
-				if (!handle(exception))
-					throw exception;
-				return OptionalBoolean.empty();
-			}
-		}
-	}
-	/**
-	 * Wraps {@code BiPredicate} in a try-catch block.
-	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
-	 * 
-	 * @param predicate
-	 *            the {@code BiPredicate} to wrap
-	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 */
-	public final <T, U> OptionalBiPredicate<T, U> fromBiPredicate(BiPredicate<T, U> predicate) {
-		return new CatchingBiPredicate<T, U>(predicate);
-	}
-	@RequiredArgsConstructor private final class CatchingBiPredicate<T, U> implements OptionalBiPredicate<T, U> {
-		private final BiPredicate<T, U> predicate;
-		@Override public OptionalBoolean test(T t, U u) {
-			try {
-				return OptionalBoolean.of(predicate.test(t, u));
-			} catch (Throwable exception) {
-				if (!handle(exception))
-					throw exception;
-				return OptionalBoolean.empty();
 			}
 		}
 	}
