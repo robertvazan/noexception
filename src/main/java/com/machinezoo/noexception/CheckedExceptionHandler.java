@@ -1327,6 +1327,21 @@ public abstract class CheckedExceptionHandler {
 			}
 		}
 	}
+	/**
+	 * Filter out checked exceptions while running {@code Runnable}.
+	 * <p>
+	 * If {@code runnable} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * <p>
+	 * Typical usage: {@code Exceptions.sneak().run(() -> my_throwing_lambda))}
+	 * 
+	 * @param runnable
+	 *            the {@code ThrowingRunnable} to be converted, usually a lambda
+	 * @throws NullPointerException
+	 *             if {@code runnable} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final void run(ThrowingRunnable runnable) {
 		try {
 			runnable.run();
@@ -1336,6 +1351,22 @@ public abstract class CheckedExceptionHandler {
 			throw handle(exception);
 		}
 	}
+	/**
+	 * Filter out checked exceptions while running {@code Supplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * <p>
+	 * Typical usage: {@code Exceptions.sneak().get(() -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingSupplier} to be converted, usually a lambda
+	 * @return value returned from {@code supplier}
+	 * @throws NullPointerException
+	 *             if {@code supplier} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final <T> T get(ThrowingSupplier<T> supplier) {
 		try {
 			return supplier.get();
@@ -1345,6 +1376,22 @@ public abstract class CheckedExceptionHandler {
 			throw handle(exception);
 		}
 	}
+	/**
+	 * Filter out checked exceptions while running {@code IntSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * <p>
+	 * Typical usage: {@code Exceptions.sneak().getAsInt(() -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingIntSupplier} to be converted, usually a lambda
+	 * @return value returned from {@code supplier}
+	 * @throws NullPointerException
+	 *             if {@code supplier} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final int getAsInt(ThrowingIntSupplier supplier) {
 		try {
 			return supplier.getAsInt();
@@ -1354,6 +1401,22 @@ public abstract class CheckedExceptionHandler {
 			throw handle(exception);
 		}
 	}
+	/**
+	 * Filter out checked exceptions while running {@code LongSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * <p>
+	 * Typical usage: {@code Exceptions.sneak().getAsLong(() -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingLongSupplier} to be converted, usually a lambda
+	 * @return value returned from {@code supplier}
+	 * @throws NullPointerException
+	 *             if {@code supplier} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final long getAsLong(ThrowingLongSupplier supplier) {
 		try {
 			return supplier.getAsLong();
@@ -1363,6 +1426,22 @@ public abstract class CheckedExceptionHandler {
 			throw handle(exception);
 		}
 	}
+	/**
+	 * Filter out checked exceptions while running {@code DoubleSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * <p>
+	 * Typical usage: {@code Exceptions.sneak().getAsDouble(() -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingDoubleSupplier} to be converted, usually a lambda
+	 * @return value returned from {@code supplier}
+	 * @throws NullPointerException
+	 *             if {@code supplier} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final double getAsDouble(ThrowingDoubleSupplier supplier) {
 		try {
 			return supplier.getAsDouble();
@@ -1372,6 +1451,22 @@ public abstract class CheckedExceptionHandler {
 			throw handle(exception);
 		}
 	}
+	/**
+	 * Filter out checked exceptions while running {@code BooleanSupplier}.
+	 * <p>
+	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * <p>
+	 * Typical usage: {@code Exceptions.sneak().getAsBoolean(() -> my_throwing_lambda))}
+	 * 
+	 * @param supplier
+	 *            the {@code ThrowingBooleanSupplier} to be converted, usually a lambda
+	 * @return value returned from {@code supplier}
+	 * @throws NullPointerException
+	 *             if {@code supplier} is {@code null}
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
 	public final boolean getAsBoolean(ThrowingBooleanSupplier supplier) {
 		try {
 			return supplier.getAsBoolean();
