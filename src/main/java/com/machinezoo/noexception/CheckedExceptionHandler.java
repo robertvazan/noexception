@@ -44,7 +44,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingSupplier(Exceptions.sneak().supplier( -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingSupplier(Exceptions.sneak().supplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@code ThrowingSupplier} to be converted, usually a lambda
@@ -74,7 +74,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntSupplier(Exceptions.sneak().fromIntSupplier( -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntSupplier(Exceptions.sneak().fromIntSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@code ThrowingIntSupplier} to be converted, usually a lambda
@@ -104,7 +104,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongSupplier(Exceptions.sneak().fromLongSupplier( -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongSupplier(Exceptions.sneak().fromLongSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@code ThrowingLongSupplier} to be converted, usually a lambda
@@ -134,7 +134,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleSupplier(Exceptions.sneak().fromDoubleSupplier( -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleSupplier(Exceptions.sneak().fromDoubleSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@code ThrowingDoubleSupplier} to be converted, usually a lambda
@@ -164,7 +164,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code supplier} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingBooleanSupplier(Exceptions.sneak().fromBooleanSupplier( -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBooleanSupplier(Exceptions.sneak().fromBooleanSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@code ThrowingBooleanSupplier} to be converted, usually a lambda
@@ -194,7 +194,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingConsumer(Exceptions.sneak().consumer((t) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingConsumer(Exceptions.sneak().consumer(t -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@code ThrowingConsumer} to be converted, usually a lambda
@@ -224,7 +224,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntConsumer(Exceptions.sneak().fromIntConsumer((value) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntConsumer(Exceptions.sneak().fromIntConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@code ThrowingIntConsumer} to be converted, usually a lambda
@@ -254,7 +254,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongConsumer(Exceptions.sneak().fromLongConsumer((value) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongConsumer(Exceptions.sneak().fromLongConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@code ThrowingLongConsumer} to be converted, usually a lambda
@@ -284,7 +284,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleConsumer(Exceptions.sneak().fromDoubleConsumer((value) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleConsumer(Exceptions.sneak().fromDoubleConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@code ThrowingDoubleConsumer} to be converted, usually a lambda
@@ -344,7 +344,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingObjIntConsumer(Exceptions.sneak().fromObjIntConsumer((t, value) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingObjIntConsumer(Exceptions.sneak().fromObjIntConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@code ThrowingObjIntConsumer} to be converted, usually a lambda
@@ -374,7 +374,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingObjLongConsumer(Exceptions.sneak().fromObjLongConsumer((t, value) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingObjLongConsumer(Exceptions.sneak().fromObjLongConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@code ThrowingObjLongConsumer} to be converted, usually a lambda
@@ -404,7 +404,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code consumer} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingObjDoubleConsumer(Exceptions.sneak().fromObjDoubleConsumer((t, value) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingObjDoubleConsumer(Exceptions.sneak().fromObjDoubleConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@code ThrowingObjDoubleConsumer} to be converted, usually a lambda
@@ -464,7 +464,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntPredicate(Exceptions.sneak().fromIntPredicate(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntPredicate(Exceptions.sneak().fromIntPredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
 	 *            the {@code ThrowingIntPredicate} to be converted, usually a lambda
@@ -494,7 +494,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongPredicate(Exceptions.sneak().fromLongPredicate(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongPredicate(Exceptions.sneak().fromLongPredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
 	 *            the {@code ThrowingLongPredicate} to be converted, usually a lambda
@@ -524,7 +524,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoublePredicate(Exceptions.sneak().fromDoublePredicate(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoublePredicate(Exceptions.sneak().fromDoublePredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
 	 *            the {@code ThrowingDoublePredicate} to be converted, usually a lambda
@@ -554,7 +554,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code predicate} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingBiPredicate(Exceptions.sneak().fromBiPredicate(t, u -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBiPredicate(Exceptions.sneak().fromBiPredicate((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
 	 *            the {@code ThrowingBiPredicate} to be converted, usually a lambda
@@ -614,7 +614,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingToIntFunction(Exceptions.sneak().fromToIntFunction(t -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToIntFunction(Exceptions.sneak().fromToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingToIntFunction} to be converted, usually a lambda
@@ -627,9 +627,9 @@ public abstract class CheckedExceptionHandler {
 	}
 	@RequiredArgsConstructor private final class CheckedToIntFunction<T> implements ToIntFunction<T> {
 		private final ThrowingToIntFunction<T> function;
-		@Override public int applyAsInt(T t) {
+		@Override public int applyAsInt(T value) {
 			try {
-				return function.applyAsInt(t);
+				return function.applyAsInt(value);
 			} catch (RuntimeException exception) {
 				throw exception;
 			} catch (Exception exception) {
@@ -644,7 +644,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntFunction(Exceptions.sneak().fromIntFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntFunction(Exceptions.sneak().fromIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingIntFunction} to be converted, usually a lambda
@@ -674,7 +674,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntToLongFunction(Exceptions.sneak().fromIntToLongFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntToLongFunction(Exceptions.sneak().fromIntToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingIntToLongFunction} to be converted, usually a lambda
@@ -704,7 +704,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntToDoubleFunction(Exceptions.sneak().fromIntToDoubleFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntToDoubleFunction(Exceptions.sneak().fromIntToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingIntToDoubleFunction} to be converted, usually a lambda
@@ -734,7 +734,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingToLongFunction(Exceptions.sneak().fromToLongFunction(t -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToLongFunction(Exceptions.sneak().fromToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingToLongFunction} to be converted, usually a lambda
@@ -747,9 +747,9 @@ public abstract class CheckedExceptionHandler {
 	}
 	@RequiredArgsConstructor private final class CheckedToLongFunction<T> implements ToLongFunction<T> {
 		private final ThrowingToLongFunction<T> function;
-		@Override public long applyAsLong(T t) {
+		@Override public long applyAsLong(T value) {
 			try {
-				return function.applyAsLong(t);
+				return function.applyAsLong(value);
 			} catch (RuntimeException exception) {
 				throw exception;
 			} catch (Exception exception) {
@@ -764,7 +764,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongFunction(Exceptions.sneak().fromLongFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongFunction(Exceptions.sneak().fromLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingLongFunction} to be converted, usually a lambda
@@ -794,7 +794,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongToIntFunction(Exceptions.sneak().fromLongToIntFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongToIntFunction(Exceptions.sneak().fromLongToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingLongToIntFunction} to be converted, usually a lambda
@@ -824,7 +824,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongToDoubleFunction(Exceptions.sneak().fromLongToDoubleFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongToDoubleFunction(Exceptions.sneak().fromLongToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingLongToDoubleFunction} to be converted, usually a lambda
@@ -854,7 +854,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingToDoubleFunction(Exceptions.sneak().fromToDoubleFunction(t -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToDoubleFunction(Exceptions.sneak().fromToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingToDoubleFunction} to be converted, usually a lambda
@@ -867,9 +867,9 @@ public abstract class CheckedExceptionHandler {
 	}
 	@RequiredArgsConstructor private final class CheckedToDoubleFunction<T> implements ToDoubleFunction<T> {
 		private final ThrowingToDoubleFunction<T> function;
-		@Override public double applyAsDouble(T t) {
+		@Override public double applyAsDouble(T value) {
 			try {
-				return function.applyAsDouble(t);
+				return function.applyAsDouble(value);
 			} catch (RuntimeException exception) {
 				throw exception;
 			} catch (Exception exception) {
@@ -884,7 +884,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleFunction(Exceptions.sneak().fromDoubleFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleFunction(Exceptions.sneak().fromDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingDoubleFunction} to be converted, usually a lambda
@@ -914,7 +914,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleToIntFunction(Exceptions.sneak().fromDoubleToIntFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleToIntFunction(Exceptions.sneak().fromDoubleToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingDoubleToIntFunction} to be converted, usually a lambda
@@ -944,7 +944,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleToLongFunction(Exceptions.sneak().fromDoubleToLongFunction(value -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleToLongFunction(Exceptions.sneak().fromDoubleToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingDoubleToLongFunction} to be converted, usually a lambda
@@ -974,7 +974,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingUnaryOperator(Exceptions.sneak().fromUnaryOperator(operand -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingUnaryOperator(Exceptions.sneak().fromUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingUnaryOperator} to be converted, usually a lambda
@@ -1004,7 +1004,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntUnaryOperator(Exceptions.sneak().fromIntUnaryOperator(operand -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntUnaryOperator(Exceptions.sneak().fromIntUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingIntUnaryOperator} to be converted, usually a lambda
@@ -1034,7 +1034,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongUnaryOperator(Exceptions.sneak().fromLongUnaryOperator(operand -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongUnaryOperator(Exceptions.sneak().fromLongUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingLongUnaryOperator} to be converted, usually a lambda
@@ -1064,7 +1064,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleUnaryOperator(Exceptions.sneak().fromDoubleUnaryOperator(operand -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleUnaryOperator(Exceptions.sneak().fromDoubleUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingDoubleUnaryOperator} to be converted, usually a lambda
@@ -1094,7 +1094,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingBiFunction(Exceptions.sneak().fromBiFunction(t, u -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBiFunction(Exceptions.sneak().fromBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingBiFunction} to be converted, usually a lambda
@@ -1124,7 +1124,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingToIntBiFunction(Exceptions.sneak().fromToIntBiFunction(t, u -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToIntBiFunction(Exceptions.sneak().fromToIntBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingToIntBiFunction} to be converted, usually a lambda
@@ -1154,7 +1154,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingToLongBiFunction(Exceptions.sneak().fromToLongBiFunction(t, u -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToLongBiFunction(Exceptions.sneak().fromToLongBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingToLongBiFunction} to be converted, usually a lambda
@@ -1184,7 +1184,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code function} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingToDoubleBiFunction(Exceptions.sneak().fromToDoubleBiFunction(t, u -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToDoubleBiFunction(Exceptions.sneak().fromToDoubleBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@code ThrowingToDoubleBiFunction} to be converted, usually a lambda
@@ -1214,7 +1214,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingBinaryOperator(Exceptions.sneak().fromBinaryOperator(left, right -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBinaryOperator(Exceptions.sneak().fromBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingBinaryOperator} to be converted, usually a lambda
@@ -1244,7 +1244,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntBinaryOperator(Exceptions.sneak().fromIntBinaryOperator(left, right -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntBinaryOperator(Exceptions.sneak().fromIntBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingIntBinaryOperator} to be converted, usually a lambda
@@ -1274,7 +1274,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongBinaryOperator(Exceptions.sneak().fromLongBinaryOperator(left, right -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongBinaryOperator(Exceptions.sneak().fromLongBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingLongBinaryOperator} to be converted, usually a lambda
@@ -1304,7 +1304,7 @@ public abstract class CheckedExceptionHandler {
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
 	 * Null {@code operator} is silently wrapped and causes {@code NullPointerException} when executed.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleBinaryOperator(Exceptions.sneak().fromDoubleBinaryOperator(left, right -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleBinaryOperator(Exceptions.sneak().fromDoubleBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@code ThrowingDoubleBinaryOperator} to be converted, usually a lambda
