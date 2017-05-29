@@ -365,6 +365,136 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+	@Test public void predicate_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		@SuppressWarnings("unchecked") Predicate<String> lambda = mock(Predicate.class);
+		when(lambda.test("input")).thenReturn(true);
+		assertEquals(OptionalBoolean.of(true), collector.predicate(lambda).test("input"));
+		verify(lambda, only()).test("input");
+		assertTrue(collector.empty());
+	}
+	@Test public void predicate_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalBoolean.empty(), collector.predicate(t -> {
+			throw new NumberFormatException();
+		}).test("input"));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void predicate_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.predicate(t -> {
+				throw new NumberFormatException();
+			}).test("input");
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromIntPredicate_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		IntPredicate lambda = mock(IntPredicate.class);
+		when(lambda.test(1)).thenReturn(true);
+		assertEquals(OptionalBoolean.of(true), collector.fromIntPredicate(lambda).test(1));
+		verify(lambda, only()).test(1);
+		assertTrue(collector.empty());
+	}
+	@Test public void fromIntPredicate_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalBoolean.empty(), collector.fromIntPredicate(v -> {
+			throw new NumberFormatException();
+		}).test(1));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromIntPredicate_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.fromIntPredicate(v -> {
+				throw new NumberFormatException();
+			}).test(1);
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromLongPredicate_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		LongPredicate lambda = mock(LongPredicate.class);
+		when(lambda.test(1L)).thenReturn(true);
+		assertEquals(OptionalBoolean.of(true), collector.fromLongPredicate(lambda).test(1L));
+		verify(lambda, only()).test(1L);
+		assertTrue(collector.empty());
+	}
+	@Test public void fromLongPredicate_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalBoolean.empty(), collector.fromLongPredicate(v -> {
+			throw new NumberFormatException();
+		}).test(1L));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromLongPredicate_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.fromLongPredicate(v -> {
+				throw new NumberFormatException();
+			}).test(1L);
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromDoublePredicate_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		DoublePredicate lambda = mock(DoublePredicate.class);
+		when(lambda.test(1.0)).thenReturn(true);
+		assertEquals(OptionalBoolean.of(true), collector.fromDoublePredicate(lambda).test(1.0));
+		verify(lambda, only()).test(1.0);
+		assertTrue(collector.empty());
+	}
+	@Test public void fromDoublePredicate_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalBoolean.empty(), collector.fromDoublePredicate(v -> {
+			throw new NumberFormatException();
+		}).test(1.0));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromDoublePredicate_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.fromDoublePredicate(v -> {
+				throw new NumberFormatException();
+			}).test(1.0);
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromBiPredicate_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		@SuppressWarnings("unchecked") BiPredicate<String, String> lambda = mock(BiPredicate.class);
+		when(lambda.test("input1", "input2")).thenReturn(true);
+		assertEquals(OptionalBoolean.of(true), collector.fromBiPredicate(lambda).test("input1", "input2"));
+		verify(lambda, only()).test("input1", "input2");
+		assertTrue(collector.empty());
+	}
+	@Test public void fromBiPredicate_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalBoolean.empty(), collector.fromBiPredicate((t, u) -> {
+			throw new NumberFormatException();
+		}).test("input1", "input2"));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void fromBiPredicate_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.fromBiPredicate((t, u) -> {
+				throw new NumberFormatException();
+			}).test("input1", "input2");
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
 	@Test public void function_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") Function<String, String> lambda = mock(Function.class);
@@ -1010,136 +1140,6 @@ public class ExceptionHandlerTest {
 			collector.fromDoubleBinaryOperator((l, r) -> {
 				throw new NumberFormatException();
 			}).apply(1.1, 1.2);
-			fail();
-		} catch (NumberFormatException e) {
-		}
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void predicate_complete() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		@SuppressWarnings("unchecked") Predicate<String> lambda = mock(Predicate.class);
-		when(lambda.test("input")).thenReturn(true);
-		assertEquals(OptionalBoolean.of(true), collector.predicate(lambda).test("input"));
-		verify(lambda, only()).test("input");
-		assertTrue(collector.empty());
-	}
-	@Test public void predicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		assertEquals(OptionalBoolean.empty(), collector.predicate(t -> {
-			throw new NumberFormatException();
-		}).test("input"));
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void predicate_passException() {
-		ExceptionCollector collector = new ExceptionCollector(false);
-		try {
-			collector.predicate(t -> {
-				throw new NumberFormatException();
-			}).test("input");
-			fail();
-		} catch (NumberFormatException e) {
-		}
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromIntPredicate_complete() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		IntPredicate lambda = mock(IntPredicate.class);
-		when(lambda.test(1)).thenReturn(true);
-		assertEquals(OptionalBoolean.of(true), collector.fromIntPredicate(lambda).test(1));
-		verify(lambda, only()).test(1);
-		assertTrue(collector.empty());
-	}
-	@Test public void fromIntPredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		assertEquals(OptionalBoolean.empty(), collector.fromIntPredicate(v -> {
-			throw new NumberFormatException();
-		}).test(1));
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromIntPredicate_passException() {
-		ExceptionCollector collector = new ExceptionCollector(false);
-		try {
-			collector.fromIntPredicate(v -> {
-				throw new NumberFormatException();
-			}).test(1);
-			fail();
-		} catch (NumberFormatException e) {
-		}
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromLongPredicate_complete() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		LongPredicate lambda = mock(LongPredicate.class);
-		when(lambda.test(1L)).thenReturn(true);
-		assertEquals(OptionalBoolean.of(true), collector.fromLongPredicate(lambda).test(1L));
-		verify(lambda, only()).test(1L);
-		assertTrue(collector.empty());
-	}
-	@Test public void fromLongPredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		assertEquals(OptionalBoolean.empty(), collector.fromLongPredicate(v -> {
-			throw new NumberFormatException();
-		}).test(1L));
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromLongPredicate_passException() {
-		ExceptionCollector collector = new ExceptionCollector(false);
-		try {
-			collector.fromLongPredicate(v -> {
-				throw new NumberFormatException();
-			}).test(1L);
-			fail();
-		} catch (NumberFormatException e) {
-		}
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromDoublePredicate_complete() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		DoublePredicate lambda = mock(DoublePredicate.class);
-		when(lambda.test(1.0)).thenReturn(true);
-		assertEquals(OptionalBoolean.of(true), collector.fromDoublePredicate(lambda).test(1.0));
-		verify(lambda, only()).test(1.0);
-		assertTrue(collector.empty());
-	}
-	@Test public void fromDoublePredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		assertEquals(OptionalBoolean.empty(), collector.fromDoublePredicate(v -> {
-			throw new NumberFormatException();
-		}).test(1.0));
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromDoublePredicate_passException() {
-		ExceptionCollector collector = new ExceptionCollector(false);
-		try {
-			collector.fromDoublePredicate(v -> {
-				throw new NumberFormatException();
-			}).test(1.0);
-			fail();
-		} catch (NumberFormatException e) {
-		}
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromBiPredicate_complete() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		@SuppressWarnings("unchecked") BiPredicate<String, String> lambda = mock(BiPredicate.class);
-		when(lambda.test("input1", "input2")).thenReturn(true);
-		assertEquals(OptionalBoolean.of(true), collector.fromBiPredicate(lambda).test("input1", "input2"));
-		verify(lambda, only()).test("input1", "input2");
-		assertTrue(collector.empty());
-	}
-	@Test public void fromBiPredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
-		assertEquals(OptionalBoolean.empty(), collector.fromBiPredicate((t, u) -> {
-			throw new NumberFormatException();
-		}).test("input1", "input2"));
-		assertThat(collector.single(), instanceOf(NumberFormatException.class));
-	}
-	@Test public void fromBiPredicate_passException() {
-		ExceptionCollector collector = new ExceptionCollector(false);
-		try {
-			collector.fromBiPredicate((t, u) -> {
-				throw new NumberFormatException();
-			}).test("input1", "input2");
 			fail();
 		} catch (NumberFormatException e) {
 		}
