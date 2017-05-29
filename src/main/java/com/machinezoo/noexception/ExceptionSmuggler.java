@@ -4,7 +4,7 @@ package com.machinezoo.noexception;
 import lombok.*;
 
 final class ExceptionSmuggler extends CheckedExceptionHandler {
-	@Override @SneakyThrows public RuntimeException handle(Exception exception) {
+	@Override @SneakyThrows public RuntimeException handle(@NonNull Exception exception) {
 		throw exception;
 	}
 }
