@@ -19,7 +19,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link ObjLongConsumer#accept(Object, long)} that allows throwing checked exceptions.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link ObjLongConsumer#accept(Object, long)}
 	 * @param value
 	 *            see {@link ObjLongConsumer#accept(Object, long)}

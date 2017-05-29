@@ -25,7 +25,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code OptionalLong} will be empty only if the underlying {@code ToLongBiFunction} throws.
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code ToLongBiFunction}.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @param u
 	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}

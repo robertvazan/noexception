@@ -25,7 +25,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code OptionalInt} will be empty only if the underlying {@code ToIntBiFunction} throws.
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code ToIntBiFunction}.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @param u
 	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}

@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link BiConsumer#accept(Object, Object)} that allows throwing checked exceptions.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link BiConsumer#accept(Object, Object)}
 	 * @param u
 	 *            see {@link BiConsumer#accept(Object, Object)}

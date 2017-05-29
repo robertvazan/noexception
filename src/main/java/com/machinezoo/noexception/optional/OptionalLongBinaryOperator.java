@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code OptionalLong} will be empty only if the underlying {@code LongBinaryOperator} throws.
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code LongBinaryOperator}.
 	 * 
-	 * @param left,
+	 * @param left
 	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @param right
 	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}

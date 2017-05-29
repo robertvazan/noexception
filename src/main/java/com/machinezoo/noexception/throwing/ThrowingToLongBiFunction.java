@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that allows throwing checked exceptions.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @param u
 	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}

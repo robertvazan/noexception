@@ -27,7 +27,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code Optional} will be empty only if the underlying {@code BiFunction} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code BiFunction} (possibly {@code null}).
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link BiFunction#apply(Object, Object)}
 	 * @param u
 	 *            see {@link BiFunction#apply(Object, Object)}

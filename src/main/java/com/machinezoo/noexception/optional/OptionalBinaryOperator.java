@@ -23,7 +23,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code Optional} will be empty only if the underlying {@code BinaryOperator} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code BinaryOperator} (possibly {@code null}).
 	 * 
-	 * @param left,
+	 * @param left
 	 *            see {@link BinaryOperator#apply(Object, Object)}
 	 * @param right
 	 *            see {@link BinaryOperator#apply(Object, Object)}

@@ -23,7 +23,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link BiFunction#apply(Object, Object)} that allows throwing checked exceptions.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link BiFunction#apply(Object, Object)}
 	 * @param u
 	 *            see {@link BiFunction#apply(Object, Object)}

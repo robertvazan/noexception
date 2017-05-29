@@ -17,7 +17,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link IntBinaryOperator#applyAsInt(int, int)} that allows throwing checked exceptions.
 	 * 
-	 * @param left,
+	 * @param left
 	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @param right
 	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}

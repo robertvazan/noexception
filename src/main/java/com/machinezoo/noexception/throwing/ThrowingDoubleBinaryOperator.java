@@ -17,7 +17,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that allows throwing checked exceptions.
 	 * 
-	 * @param left,
+	 * @param left
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
 	 * @param right
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}

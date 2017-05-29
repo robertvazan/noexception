@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)} that allows throwing checked exceptions.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @param u
 	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}

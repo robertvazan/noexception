@@ -17,7 +17,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that allows throwing checked exceptions.
 	 * 
-	 * @param left,
+	 * @param left
 	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @param right
 	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}

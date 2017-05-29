@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link BiPredicate#test(Object, Object)} that allows throwing checked exceptions.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link BiPredicate#test(Object, Object)}
 	 * @param u
 	 *            see {@link BiPredicate#test(Object, Object)}

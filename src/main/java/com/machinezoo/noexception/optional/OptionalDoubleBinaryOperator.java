@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code OptionalDouble} will be empty only if the underlying {@code DoubleBinaryOperator} throws.
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code DoubleBinaryOperator}.
 	 * 
-	 * @param left,
+	 * @param left
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
 	 * @param right
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}

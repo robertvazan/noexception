@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code OptionalInt} will be empty only if the underlying {@code IntBinaryOperator} throws.
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code IntBinaryOperator}.
 	 * 
-	 * @param left,
+	 * @param left
 	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @param right
 	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}

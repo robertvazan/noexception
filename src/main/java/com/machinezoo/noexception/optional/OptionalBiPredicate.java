@@ -24,7 +24,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code OptionalBoolean} will be empty only if the underlying {@code BiPredicate} throws.
 	 * Otherwise the returned {@code OptionalBoolean} just wraps the return value of underlying {@code BiPredicate}.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link BiPredicate#test(Object, Object)}
 	 * @param u
 	 *            see {@link BiPredicate#test(Object, Object)}

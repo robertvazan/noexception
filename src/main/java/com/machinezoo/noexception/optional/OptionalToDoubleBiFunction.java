@@ -25,7 +25,7 @@ import com.machinezoo.noexception.*;
 	 * the {@code OptionalDouble} will be empty only if the underlying {@code ToDoubleBiFunction} throws.
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code ToDoubleBiFunction}.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @param u
 	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}

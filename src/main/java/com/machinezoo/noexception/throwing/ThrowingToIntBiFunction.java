@@ -21,7 +21,7 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link ToIntBiFunction#applyAsInt(Object, Object)} that allows throwing checked exceptions.
 	 * 
-	 * @param t,
+	 * @param t
 	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @param u
 	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
