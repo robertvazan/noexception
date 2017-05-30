@@ -98,7 +98,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().supplier(() -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().supplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
 	 *            the {@code Supplier} to wrap, usually a lambda
@@ -128,7 +128,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromIntSupplier(() -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromIntSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
 	 *            the {@code IntSupplier} to wrap, usually a lambda
@@ -158,7 +158,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromLongSupplier(() -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromLongSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
 	 *            the {@code LongSupplier} to wrap, usually a lambda
@@ -188,7 +188,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromDoubleSupplier(() -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromDoubleSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
 	 *            the {@code DoubleSupplier} to wrap, usually a lambda
@@ -218,7 +218,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromBooleanSupplier(() -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromBooleanSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
 	 *            the {@code BooleanSupplier} to wrap, usually a lambda
@@ -480,7 +480,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().predicate(t -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().predicate(t -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
 	 *            the {@code Predicate} to wrap, usually a lambda
@@ -510,7 +510,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromIntPredicate(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromIntPredicate(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
 	 *            the {@code IntPredicate} to wrap, usually a lambda
@@ -540,7 +540,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromLongPredicate(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromLongPredicate(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
 	 *            the {@code LongPredicate} to wrap, usually a lambda
@@ -570,7 +570,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromDoublePredicate(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromDoublePredicate(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
 	 *            the {@code DoublePredicate} to wrap, usually a lambda
@@ -600,7 +600,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromBiPredicate((t, u) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromBiPredicate((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
 	 *            the {@code BiPredicate} to wrap, usually a lambda
@@ -630,7 +630,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().function(t -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().function(t -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code Function} to wrap, usually a lambda
@@ -660,7 +660,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromToIntFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromToIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code ToIntFunction} to wrap, usually a lambda
@@ -690,7 +690,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromIntFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code IntFunction} to wrap, usually a lambda
@@ -720,7 +720,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromIntToLongFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromIntToLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code IntToLongFunction} to wrap, usually a lambda
@@ -750,7 +750,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromIntToDoubleFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromIntToDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code IntToDoubleFunction} to wrap, usually a lambda
@@ -780,7 +780,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromToLongFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromToLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code ToLongFunction} to wrap, usually a lambda
@@ -810,7 +810,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromLongFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code LongFunction} to wrap, usually a lambda
@@ -840,7 +840,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromLongToIntFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromLongToIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code LongToIntFunction} to wrap, usually a lambda
@@ -870,7 +870,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromLongToDoubleFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromLongToDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code LongToDoubleFunction} to wrap, usually a lambda
@@ -900,7 +900,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromToDoubleFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromToDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code ToDoubleFunction} to wrap, usually a lambda
@@ -930,7 +930,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromDoubleFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code DoubleFunction} to wrap, usually a lambda
@@ -960,7 +960,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromDoubleToIntFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromDoubleToIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code DoubleToIntFunction} to wrap, usually a lambda
@@ -990,7 +990,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromDoubleToLongFunction(v -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromDoubleToLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code DoubleToLongFunction} to wrap, usually a lambda
@@ -1020,7 +1020,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromUnaryOperator(o -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code UnaryOperator} to wrap, usually a lambda
@@ -1050,7 +1050,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromIntUnaryOperator(o -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromIntUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code IntUnaryOperator} to wrap, usually a lambda
@@ -1080,7 +1080,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromLongUnaryOperator(o -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromLongUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code LongUnaryOperator} to wrap, usually a lambda
@@ -1110,7 +1110,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromDoubleUnaryOperator(o -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromDoubleUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code DoubleUnaryOperator} to wrap, usually a lambda
@@ -1140,7 +1140,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromBiFunction((t, u) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code BiFunction} to wrap, usually a lambda
@@ -1170,7 +1170,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromToIntBiFunction((t, u) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromToIntBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code ToIntBiFunction} to wrap, usually a lambda
@@ -1200,7 +1200,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromToLongBiFunction((t, u) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromToLongBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code ToLongBiFunction} to wrap, usually a lambda
@@ -1230,7 +1230,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromToDoubleBiFunction((t, u) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromToDoubleBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
 	 *            the {@code ToDoubleBiFunction} to wrap, usually a lambda
@@ -1260,7 +1260,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromBinaryOperator((l, r) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code BinaryOperator} to wrap, usually a lambda
@@ -1290,7 +1290,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromIntBinaryOperator((l, r) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromIntBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code IntBinaryOperator} to wrap, usually a lambda
@@ -1320,7 +1320,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromLongBinaryOperator((l, r) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromLongBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code LongBinaryOperator} to wrap, usually a lambda
@@ -1350,7 +1350,7 @@ public abstract class ExceptionHandler {
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().fromDoubleBinaryOperator((l, r) -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log().fromDoubleBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
 	 *            the {@code DoubleBinaryOperator} to wrap, usually a lambda
