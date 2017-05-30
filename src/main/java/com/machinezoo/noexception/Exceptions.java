@@ -7,6 +7,7 @@ import lombok.*;
 
 /**
  * Static methods for creating predefined exception handlers.
+ * Custom exception handlers can be created by inheriting from {@link ExceptionHandler} and {@link CheckedExceptionHandler}.
  * <p>
  * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda).orElse(fallback)}
  * <p>
