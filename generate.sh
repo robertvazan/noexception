@@ -1,4 +1,5 @@
 #!/bin/bash -euE
+# Part of NoException: https://noexception.machinezoo.com
 set -o pipefail
 export SHELLOPTS
 dest=`dirname $0`/src/main/java/com/machinezoo/noexception
