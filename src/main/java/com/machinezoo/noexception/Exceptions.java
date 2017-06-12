@@ -37,7 +37,7 @@ public final class Exceptions {
 	/**
 	 * Get {@code ExceptionHandler} that writes all exceptions to common logger.
 	 * No exceptions are allowed through, not even {@code Error}s.
-	 * Logs are written to log4j logger named after this class.
+	 * Logs are written to SLF4J logger named after this class.
 	 * This method is convenient and a suitable default choice.
 	 * But the single shared logger can make logs harder to filter.
 	 * Use {@link #log(Logger)} to specify custom logger where filtering is important.
