@@ -7,7 +7,7 @@
 	<version>0.2.0</version>
 	<packaging>jar</packaging>
 
-	<name>noexception</name>
+	<name>NoException</name>
 	<url>https://noexception.machinezoo.com/</url>
 	<description>Makes exception handling concise and beautiful, yet architecturally clean and flexible.</description>
 
@@ -90,6 +90,7 @@
 					<notimestamp>true</notimestamp>
 					<use>false</use>
 					<detectLinks>true</detectLinks>
+					<doctitle>${project.name} API Reference</doctitle>
 				</configuration>
 				<executions>
 					<execution>
