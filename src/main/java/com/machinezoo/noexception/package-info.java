@@ -1,6 +1,6 @@
 // Part of NoException: https://noexception.machinezoo.com
 /**
- * NoException is a library that lets you deal with exceptions in concise, testable, and standardized manner.
+ * Classes implementing all NoException features.
  * Class {@link com.machinezoo.noexception.Exceptions} is the entry point to NoException functionality.
  * After picking one of its predefined exception handlers, you pass your code as a lambda to
  * the appropriate method of {@link com.machinezoo.noexception.ExceptionHandler} or {@link com.machinezoo.noexception.CheckedExceptionHandler}.

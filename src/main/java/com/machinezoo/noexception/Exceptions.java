@@ -3,7 +3,6 @@ package com.machinezoo.noexception;
 
 import java.util.function.*;
 import org.slf4j.*;
-import lombok.*;
 
 /**
  * Static methods for creating predefined exception handlers.
@@ -108,8 +107,9 @@ public final class Exceptions {
 	/**
 	 * Get {@code CheckedExceptionHandler} that lets through checked exceptions without declaring them.
 	 * All exceptions are allowed through unmodified, including checked ones, even though no checked exceptions are declared.
-	 * This exception handler works the same way as lombok's {@link SneakyThrows} and it is actually implemented using said lombok feature.
-	 * This is the recommended {@code CheckedExceptionHandler}, because it doesn't obfuscate the original exception in any way.
+	 * This exception handler works the same way as lombok's <a href="https://projectlombok.org/features/SneakyThrows.html">SneakyThrows</a>
+	 * and it is actually implemented using said lombok feature.
+	 * This is the recommended {@code CheckedExceptionHandler}, because it does not obfuscate the original exception in any way.
 	 * Use {@link #wrap()} if using this method is not possible.
 	 * <p>
 	 * Typical usage: {@code Exceptions.sneak().run(() -> my_throwing_lambda)}
