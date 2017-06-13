@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link ToIntBiFunction} that returns {@code OptionalInt} instead of the raw value.
+ * Variation of {@link ToIntBiFunction} that returns {@link OptionalInt} instead of the raw value.
  * {@code OptionalToIntBiFunction} is typically obtained from {@link ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)},
  * in which case its return value is empty when the underlying {@code ToIntBiFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link ToIntBiFunction}
@@ -20,7 +20,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalToIntBiFunction<T, U> extends BiFunction<T, U, OptionalInt> {
 	/**
-	 * Variation of {@link ToIntBiFunction#applyAsInt(Object, Object)} that returns {@code OptionalInt}.
+	 * Variation of {@link ToIntBiFunction#applyAsInt(Object, Object)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalToIntBiFunction} is obtained from {@link ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)},
 	 * the {@code OptionalInt} will be empty only if the underlying {@code ToIntBiFunction} throws.
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code ToIntBiFunction}.

@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link IntSupplier} that returns {@code OptionalInt} instead of the raw value.
+ * Variation of {@link IntSupplier} that returns {@link OptionalInt} instead of the raw value.
  * {@code OptionalIntSupplier} is typically obtained from {@link ExceptionHandler#fromIntSupplier(IntSupplier)},
  * in which case its return value is empty when the underlying {@code IntSupplier} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromIntSupplier(IntSupplier)
  * @see IntSupplier
  */
 @FunctionalInterface public interface OptionalIntSupplier extends Supplier<OptionalInt> {
 	/**
-	 * Variation of {@link IntSupplier#getAsInt()} that returns {@code OptionalInt}.
+	 * Variation of {@link IntSupplier#getAsInt()} that returns {@link OptionalInt}.
 	 * If this {@code OptionalIntSupplier} is obtained from {@link ExceptionHandler#fromIntSupplier(IntSupplier)},
 	 * the {@code OptionalInt} will be empty only if the underlying {@code IntSupplier} throws.
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code IntSupplier}.

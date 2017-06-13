@@ -8,7 +8,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link LongPredicate} that allows throwing checked exceptions.
  * {@code ThrowingLongPredicate} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromLongPredicate(ThrowingLongPredicate)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see CheckedExceptionHandler#fromLongPredicate(ThrowingLongPredicate)
  * @see LongPredicate

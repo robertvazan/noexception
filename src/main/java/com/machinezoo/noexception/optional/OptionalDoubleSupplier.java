@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link DoubleSupplier} that returns {@code OptionalDouble} instead of the raw value.
+ * Variation of {@link DoubleSupplier} that returns {@link OptionalDouble} instead of the raw value.
  * {@code OptionalDoubleSupplier} is typically obtained from {@link ExceptionHandler#fromDoubleSupplier(DoubleSupplier)},
  * in which case its return value is empty when the underlying {@code DoubleSupplier} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromDoubleSupplier(DoubleSupplier)
  * @see DoubleSupplier
  */
 @FunctionalInterface public interface OptionalDoubleSupplier extends Supplier<OptionalDouble> {
 	/**
-	 * Variation of {@link DoubleSupplier#getAsDouble()} that returns {@code OptionalDouble}.
+	 * Variation of {@link DoubleSupplier#getAsDouble()} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalDoubleSupplier} is obtained from {@link ExceptionHandler#fromDoubleSupplier(DoubleSupplier)},
 	 * the {@code OptionalDouble} will be empty only if the underlying {@code DoubleSupplier} throws.
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code DoubleSupplier}.

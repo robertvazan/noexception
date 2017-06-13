@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link DoubleFunction} that returns {@code Optional} instead of the raw value.
+ * Variation of {@link DoubleFunction} that returns {@link Optional} instead of the raw value.
  * {@code OptionalDoubleFunction} is typically obtained from {@link ExceptionHandler#fromDoubleFunction(DoubleFunction)},
  * in which case its return value is empty when the underlying {@code DoubleFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <R>
  *            see {@link DoubleFunction}
@@ -18,7 +18,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalDoubleFunction<R> extends DoubleFunction<Optional<R>> {
 	/**
-	 * Variation of {@link DoubleFunction#apply(double)} that returns {@code Optional}.
+	 * Variation of {@link DoubleFunction#apply(double)} that returns {@link Optional}.
 	 * If this {@code OptionalDoubleFunction} is obtained from {@link ExceptionHandler#fromDoubleFunction(DoubleFunction)},
 	 * the {@code Optional} will be empty only if the underlying {@code DoubleFunction} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code DoubleFunction} (possibly {@code null}).

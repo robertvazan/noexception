@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link LongSupplier} that returns {@code OptionalLong} instead of the raw value.
+ * Variation of {@link LongSupplier} that returns {@link OptionalLong} instead of the raw value.
  * {@code OptionalLongSupplier} is typically obtained from {@link ExceptionHandler#fromLongSupplier(LongSupplier)},
  * in which case its return value is empty when the underlying {@code LongSupplier} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromLongSupplier(LongSupplier)
  * @see LongSupplier
  */
 @FunctionalInterface public interface OptionalLongSupplier extends Supplier<OptionalLong> {
 	/**
-	 * Variation of {@link LongSupplier#getAsLong()} that returns {@code OptionalLong}.
+	 * Variation of {@link LongSupplier#getAsLong()} that returns {@link OptionalLong}.
 	 * If this {@code OptionalLongSupplier} is obtained from {@link ExceptionHandler#fromLongSupplier(LongSupplier)},
 	 * the {@code OptionalLong} will be empty only if the underlying {@code LongSupplier} throws.
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code LongSupplier}.

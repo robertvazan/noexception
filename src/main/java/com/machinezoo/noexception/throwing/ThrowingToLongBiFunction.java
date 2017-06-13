@@ -8,7 +8,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link ToLongBiFunction} that allows throwing checked exceptions.
  * {@code ThrowingToLongBiFunction} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromToLongBiFunction(ThrowingToLongBiFunction)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link ToLongBiFunction}

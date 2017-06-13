@@ -8,7 +8,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link IntToLongFunction} that allows throwing checked exceptions.
  * {@code ThrowingIntToLongFunction} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromIntToLongFunction(ThrowingIntToLongFunction)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see CheckedExceptionHandler#fromIntToLongFunction(ThrowingIntToLongFunction)
  * @see IntToLongFunction

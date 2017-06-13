@@ -8,25 +8,26 @@ import lombok.*;
 
 /**
  * Represents exception handling policy.
- * Methods of this class apply the exception policy to functional interfaces by wrapping them in a try-catch block.
+ * Methods of this class apply the exception policy to functional interfaces (usually lambdas) by wrapping them in a try-catch block.
  * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * <p>
  * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda).orElse(fallback)}
  * <p>
  * All wrapping methods surround the functional interface with a try-catch block.
- * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
+ * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
+ * which applies exception handling policy (log, ignore, pass, custom).
  * {@code NullPointerException} from null functional interface is caught too.
- * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete silently
+ * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
  * while non-void functional interfaces return empty {@link Optional}.
  * <p>
  * Wrapping methods for all standard functional interfaces are provided.
- * Simple interfaces have short method names, e.g. {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
- * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(UnaryOperator)}.
+ * Simple interfaces have short method names like {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
+ * Interfaces with longer names have methods that follow {@code fromX} naming pattern, for example {@link #fromUnaryOperator(UnaryOperator)}.
  * Parameterless functional interfaces can be called directly by methods {@link #run(Runnable)}, {@link #get(Supplier)},
  * and the various {@code getAsX} variants.
  * <p>
- * All non-void wrappers conform to some {@code OptionalX} functional interface, e.g. {@link OptionalSupplier},
+ * All non-void wrappers conform to some {@code OptionalX} functional interface, for example {@link OptionalSupplier},
  * that is identical to its non-optional variant from JDK except it returns {@code Optional} instead of raw value.
  * This {@code Optional} is empty in case of exception.
  * Callers can use {@link Optional#orElse(Object)} and {@link Optional#orElseGet(Supplier)} and their
@@ -46,7 +47,7 @@ public abstract class ExceptionHandler {
 	 * All other methods of the {@code ExceptionHandler} call this method, but it can be also called directly.
 	 * <p>
 	 * This method represents reusable catch block that handles all exceptions in the same way.
-	 * When invoked, it must somehow handle the provided exception, e.g. by logging it.
+	 * When invoked, it must somehow handle the provided exception, for example by logging it.
 	 * <p>
 	 * This method does not have to handle all exceptions.
 	 * It can indicate through return value whether it has accepted or rejected the exception.
@@ -63,11 +64,17 @@ public abstract class ExceptionHandler {
 	 */
 	public abstract boolean handle(Throwable exception);
 	/**
+	 * Initialize new {@code ExceptionHandler}.
+	 */
+	protected ExceptionHandler() {
+	}
+	/**
 	 * Wraps {@code Runnable} in a try-catch block.
 	 * <p>
-	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code runnable} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().runnable(() -> my_throwing_lambda)}
 	 * 
@@ -94,7 +101,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code Supplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -124,7 +132,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -154,7 +163,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -184,7 +194,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoubleSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -214,7 +225,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code BooleanSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -244,9 +256,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code Consumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().consumer(t -> my_throwing_lambda)}
 	 * 
@@ -273,9 +286,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntConsumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntConsumer(v -> my_throwing_lambda)}
 	 * 
@@ -302,9 +316,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongConsumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongConsumer(v -> my_throwing_lambda)}
 	 * 
@@ -331,9 +346,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoubleConsumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleConsumer(v -> my_throwing_lambda)}
 	 * 
@@ -360,9 +376,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code BiConsumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromBiConsumer((t, u) -> my_throwing_lambda)}
 	 * 
@@ -389,9 +406,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ObjIntConsumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromObjIntConsumer((t, v) -> my_throwing_lambda)}
 	 * 
@@ -418,9 +436,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ObjLongConsumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromObjLongConsumer((t, v) -> my_throwing_lambda)}
 	 * 
@@ -447,9 +466,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ObjDoubleConsumer} in a try-catch block.
 	 * <p>
-	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code consumer} is caught too.
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromObjDoubleConsumer((t, v) -> my_throwing_lambda)}
 	 * 
@@ -476,7 +496,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code Predicate} in a try-catch block.
 	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -506,7 +527,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntPredicate} in a try-catch block.
 	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -536,7 +558,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongPredicate} in a try-catch block.
 	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -566,7 +589,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoublePredicate} in a try-catch block.
 	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -596,7 +620,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code BiPredicate} in a try-catch block.
 	 * <p>
-	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code predicate} is caught too.
 	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -626,7 +651,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code Function} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -656,7 +682,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ToIntFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -686,7 +713,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -716,7 +744,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntToLongFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -746,7 +775,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntToDoubleFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -776,7 +806,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ToLongFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -806,7 +837,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -836,7 +868,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongToIntFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -866,7 +899,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongToDoubleFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -896,7 +930,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ToDoubleFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -926,7 +961,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoubleFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -956,7 +992,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoubleToIntFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -986,7 +1023,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoubleToLongFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1016,7 +1054,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code UnaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1046,7 +1085,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntUnaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1076,7 +1116,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongUnaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1106,7 +1147,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoubleUnaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1136,7 +1178,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code BiFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1166,7 +1209,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ToIntBiFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1196,7 +1240,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ToLongBiFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1226,7 +1271,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code ToDoubleBiFunction} in a try-catch block.
 	 * <p>
-	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code function} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1256,7 +1302,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code BinaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1286,7 +1333,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code IntBinaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1316,7 +1364,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code LongBinaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1346,7 +1395,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Wraps {@code DoubleBinaryOperator} in a try-catch block.
 	 * <p>
-	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code operator} is caught too.
 	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1376,9 +1426,10 @@ public abstract class ExceptionHandler {
 	/**
 	 * Runs {@code Runnable} in a try-catch block.
 	 * <p>
-	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code runnable} is caught too.
-	 * This method then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * This method then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().run(() -> my_throwing_lambda)}
 	 * 
@@ -1398,7 +1449,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Runs {@code Supplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * This method then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1422,7 +1474,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Runs {@code IntSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * This method then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1446,7 +1499,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Runs {@code LongSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * This method then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1470,7 +1524,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Runs {@code DoubleSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * This method then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
@@ -1494,7 +1549,8 @@ public abstract class ExceptionHandler {
 	/**
 	 * Runs {@code BooleanSupplier} in a try-catch block.
 	 * <p>
-	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code supplier} is caught too.
 	 * This method then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>

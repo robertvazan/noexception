@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link IntFunction} that returns {@code Optional} instead of the raw value.
+ * Variation of {@link IntFunction} that returns {@link Optional} instead of the raw value.
  * {@code OptionalIntFunction} is typically obtained from {@link ExceptionHandler#fromIntFunction(IntFunction)},
  * in which case its return value is empty when the underlying {@code IntFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <R>
  *            see {@link IntFunction}
@@ -18,7 +18,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalIntFunction<R> extends IntFunction<Optional<R>> {
 	/**
-	 * Variation of {@link IntFunction#apply(int)} that returns {@code Optional}.
+	 * Variation of {@link IntFunction#apply(int)} that returns {@link Optional}.
 	 * If this {@code OptionalIntFunction} is obtained from {@link ExceptionHandler#fromIntFunction(IntFunction)},
 	 * the {@code Optional} will be empty only if the underlying {@code IntFunction} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code IntFunction} (possibly {@code null}).

@@ -420,7 +420,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link $1} that allows throwing checked exceptions.
  * {@code Throwing$1} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#`from-method $1`(Throwing$1)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
 EOF
 	for typeparam in `type-params $1`; do
@@ -579,10 +579,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link $1} that returns {@code `optional-by-return-type $1`} instead of the raw value.
+ * Variation of {@link $1} that returns {@link `optional-by-return-type $1`} instead of the raw value.
  * {@code Optional$1} is typically obtained from {@link ExceptionHandler#`from-method $1`($1)},
  * in which case its return value is empty when the underlying {@code $1} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
 EOF
 	for typeparam in `type-params $1`; do
@@ -597,7 +597,7 @@ EOF
  */
 @FunctionalInterface public interface Optional$1`type-signature $1``optional-extends $1` {
 	/**
-	 * Variation of {@link $1#`as-method $1`(`erased-params $1`)} that returns {@code `optional-by-return-type $1`}.
+	 * Variation of {@link $1#`as-method $1`(`erased-params $1`)} that returns {@link `optional-by-return-type $1`}.
 	 * If this {@code Optional$1} is obtained from {@link ExceptionHandler#`from-method $1`($1)},
 	 * the {@code `optional-by-return-type $1`} will be empty only if the underlying {@code $1} throws.
 	 * Otherwise the returned {@code `optional-by-return-type $1`} just wraps the return value of underlying {@code $1}`optional-possibly-null $1`.
@@ -669,12 +669,13 @@ function catch-type {
 	/**
 	 * Wraps {@code $1} in a try-catch block.
 	 * <p>
-	 * If {@code `short-name $1`} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code `short-name $1`} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code `short-name $1`} is caught too.
 EOF
 	if is-void $1; then
 		cat <<EOF
-	 * Wrapper then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 EOF
 	else
 		cat <<EOF
@@ -719,12 +720,13 @@ function catch-method {
 	/**
 	 * Runs {@code $1} in a try-catch block.
 	 * <p>
-	 * If {@code `short-name $1`} throws, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * If {@code `short-name $1`} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
 	 * {@code NullPointerException} from null {@code `short-name $1`} is caught too.
 EOF
 	if is-void $1; then
 		cat <<EOF
-	 * This method then completes silently unless {@link #handle(Throwable)} requests a rethrow.
+	 * This method then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 EOF
 	else
 		cat <<EOF
@@ -776,25 +778,26 @@ import lombok.*;
 
 /**
  * Represents exception handling policy.
- * Methods of this class apply the exception policy to functional interfaces by wrapping them in a try-catch block.
+ * Methods of this class apply the exception policy to functional interfaces (usually lambdas) by wrapping them in a try-catch block.
  * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * <p>
  * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda).orElse(fallback)}
  * <p>
  * All wrapping methods surround the functional interface with a try-catch block.
- * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
+ * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
+ * which applies exception handling policy (log, ignore, pass, custom).
  * {@code NullPointerException} from null functional interface is caught too.
- * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete silently
+ * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
  * while non-void functional interfaces return empty {@link Optional}.
  * <p>
  * Wrapping methods for all standard functional interfaces are provided.
- * Simple interfaces have short method names, e.g. {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
- * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(UnaryOperator)}.
+ * Simple interfaces have short method names like {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
+ * Interfaces with longer names have methods that follow {@code fromX} naming pattern, for example {@link #fromUnaryOperator(UnaryOperator)}.
  * Parameterless functional interfaces can be called directly by methods {@link #run(Runnable)}, {@link #get(Supplier)},
  * and the various {@code getAsX} variants.
  * <p>
- * All non-void wrappers conform to some {@code OptionalX} functional interface, e.g. {@link OptionalSupplier},
+ * All non-void wrappers conform to some {@code OptionalX} functional interface, for example {@link OptionalSupplier},
  * that is identical to its non-optional variant from JDK except it returns {@code Optional} instead of raw value.
  * This {@code Optional} is empty in case of exception.
  * Callers can use {@link Optional#orElse(Object)} and {@link Optional#orElseGet(Supplier)} and their
@@ -814,7 +817,7 @@ public abstract class ExceptionHandler {
 	 * All other methods of the {@code ExceptionHandler} call this method, but it can be also called directly.
 	 * <p>
 	 * This method represents reusable catch block that handles all exceptions in the same way.
-	 * When invoked, it must somehow handle the provided exception, e.g. by logging it.
+	 * When invoked, it must somehow handle the provided exception, for example by logging it.
 	 * <p>
 	 * This method does not have to handle all exceptions.
 	 * It can indicate through return value whether it has accepted or rejected the exception.
@@ -830,6 +833,11 @@ public abstract class ExceptionHandler {
 	 * @see Exceptions
 	 */
 	public abstract boolean handle(Throwable exception);
+	/**
+	 * Initialize new {@code ExceptionHandler}.
+	 */
+	protected ExceptionHandler() {
+	}
 EOF
 	for type in `functional-types`; do
 		catch-type $type
@@ -923,12 +931,12 @@ import lombok.*;
  * The exception policy is akin to a reusable {@code catch} block that catches checked exception and throws an unchecked one.
  * Method {@link #handle(Exception)} defines downgrading mechanism, typically by wrapping the checked exception in an unchecked one,
  * but there are special cases like {@link Exceptions#sneak()}, which downgrade only method signature without altering the exception itself.
- * Methods of this class apply the exception policy to functional interfaces by wrapping them in a try-catch block.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * Methods of this class apply the exception policy to functional interfaces (usually lambdas) by wrapping them in a try-catch block.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * <p>
  * Typical usage: {@code Exceptions.sneak().get(() -> my_throwing_lambda)}
  * <p>
- * {@code CheckedExceptionHandler} doesn't stop propagation of any exceptions (checked or unchecked).
+ * {@code CheckedExceptionHandler} does not stop propagation of any exceptions (checked or unchecked).
  * {@link ExceptionHandler} is used for that purpose.
  * The two classes can be used together by first downgrading checked exceptions with {@code CheckedExceptionHandler}
  * and then applying exception handling policy with {@code ExceptionHandler}.
@@ -941,11 +949,11 @@ import lombok.*;
  * which converts it to an unchecked exception, which is then thrown.
  * <p>
  * Wrapping methods for all standard functional interfaces are provided.
- * Simple interfaces have short method names, e.g. {@link #runnable(ThrowingRunnable)} or {@link #supplier(ThrowingSupplier)}.
- * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(ThrowingUnaryOperator)}.
+ * Simple interfaces have short method names, like {@link #runnable(ThrowingRunnable)} or {@link #supplier(ThrowingSupplier)}.
+ * Interfaces with longer names have methods that follow {@code fromX} naming pattern, for example {@link #fromUnaryOperator(ThrowingUnaryOperator)}.
  * Parameterless functional interfaces can be called directly by methods {@link #run(ThrowingRunnable)}, {@link #get(ThrowingSupplier)},
  * and the various {@code getAsX} variants.
- * All methods take throwing versions of standard functional interfaces, e.g. {@link ThrowingRunnable} or {@link ThrowingSupplier}.
+ * All methods take throwing versions of standard functional interfaces, for example {@link ThrowingRunnable} or {@link ThrowingSupplier}.
  * 
  * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
  * @see #handle(Exception)
@@ -976,6 +984,11 @@ public abstract class CheckedExceptionHandler {
 	 * @see Exceptions
 	 */
 	public abstract RuntimeException handle(Exception exception);
+	/**
+	 * Initialize new {@code CheckedExceptionHandler}.
+	 */
+	protected CheckedExceptionHandler() {
+	}
 EOF
 	for type in `functional-types`; do
 		checked-type $type

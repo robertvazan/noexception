@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link BinaryOperator} that returns {@code Optional} instead of the raw value.
+ * Variation of {@link BinaryOperator} that returns {@link Optional} instead of the raw value.
  * {@code OptionalBinaryOperator} is typically obtained from {@link ExceptionHandler#fromBinaryOperator(BinaryOperator)},
  * in which case its return value is empty when the underlying {@code BinaryOperator} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link BinaryOperator}
@@ -18,7 +18,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalBinaryOperator<T> extends BiFunction<T, T, Optional<T>> {
 	/**
-	 * Variation of {@link BinaryOperator#apply(Object, Object)} that returns {@code Optional}.
+	 * Variation of {@link BinaryOperator#apply(Object, Object)} that returns {@link Optional}.
 	 * If this {@code OptionalBinaryOperator} is obtained from {@link ExceptionHandler#fromBinaryOperator(BinaryOperator)},
 	 * the {@code Optional} will be empty only if the underlying {@code BinaryOperator} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code BinaryOperator} (possibly {@code null}).

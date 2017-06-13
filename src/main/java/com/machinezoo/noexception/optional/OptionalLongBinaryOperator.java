@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link LongBinaryOperator} that returns {@code OptionalLong} instead of the raw value.
+ * Variation of {@link LongBinaryOperator} that returns {@link OptionalLong} instead of the raw value.
  * {@code OptionalLongBinaryOperator} is typically obtained from {@link ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)},
  * in which case its return value is empty when the underlying {@code LongBinaryOperator} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)
  * @see LongBinaryOperator
  */
 @FunctionalInterface public interface OptionalLongBinaryOperator {
 	/**
-	 * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that returns {@code OptionalLong}.
+	 * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that returns {@link OptionalLong}.
 	 * If this {@code OptionalLongBinaryOperator} is obtained from {@link ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)},
 	 * the {@code OptionalLong} will be empty only if the underlying {@code LongBinaryOperator} throws.
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code LongBinaryOperator}.

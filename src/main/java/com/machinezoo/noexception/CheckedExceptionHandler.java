@@ -10,12 +10,12 @@ import lombok.*;
  * The exception policy is akin to a reusable {@code catch} block that catches checked exception and throws an unchecked one.
  * Method {@link #handle(Exception)} defines downgrading mechanism, typically by wrapping the checked exception in an unchecked one,
  * but there are special cases like {@link Exceptions#sneak()}, which downgrade only method signature without altering the exception itself.
- * Methods of this class apply the exception policy to functional interfaces by wrapping them in a try-catch block.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * Methods of this class apply the exception policy to functional interfaces (usually lambdas) by wrapping them in a try-catch block.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * <p>
  * Typical usage: {@code Exceptions.sneak().get(() -> my_throwing_lambda)}
  * <p>
- * {@code CheckedExceptionHandler} doesn't stop propagation of any exceptions (checked or unchecked).
+ * {@code CheckedExceptionHandler} does not stop propagation of any exceptions (checked or unchecked).
  * {@link ExceptionHandler} is used for that purpose.
  * The two classes can be used together by first downgrading checked exceptions with {@code CheckedExceptionHandler}
  * and then applying exception handling policy with {@code ExceptionHandler}.
@@ -28,11 +28,11 @@ import lombok.*;
  * which converts it to an unchecked exception, which is then thrown.
  * <p>
  * Wrapping methods for all standard functional interfaces are provided.
- * Simple interfaces have short method names, e.g. {@link #runnable(ThrowingRunnable)} or {@link #supplier(ThrowingSupplier)}.
- * Interfaces with longer names have methods that follow {@code fromX} naming pattern, e.g. {@link #fromUnaryOperator(ThrowingUnaryOperator)}.
+ * Simple interfaces have short method names, like {@link #runnable(ThrowingRunnable)} or {@link #supplier(ThrowingSupplier)}.
+ * Interfaces with longer names have methods that follow {@code fromX} naming pattern, for example {@link #fromUnaryOperator(ThrowingUnaryOperator)}.
  * Parameterless functional interfaces can be called directly by methods {@link #run(ThrowingRunnable)}, {@link #get(ThrowingSupplier)},
  * and the various {@code getAsX} variants.
- * All methods take throwing versions of standard functional interfaces, e.g. {@link ThrowingRunnable} or {@link ThrowingSupplier}.
+ * All methods take throwing versions of standard functional interfaces, for example {@link ThrowingRunnable} or {@link ThrowingSupplier}.
  * 
  * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
  * @see #handle(Exception)
@@ -63,6 +63,11 @@ public abstract class CheckedExceptionHandler {
 	 * @see Exceptions
 	 */
 	public abstract RuntimeException handle(Exception exception);
+	/**
+	 * Initialize new {@code CheckedExceptionHandler}.
+	 */
+	protected CheckedExceptionHandler() {
+	}
 	/**
 	 * Remove checked exceptions from method signature of {@code Runnable}.
 	 * <p>

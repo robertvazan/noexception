@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link LongUnaryOperator} that returns {@code OptionalLong} instead of the raw value.
+ * Variation of {@link LongUnaryOperator} that returns {@link OptionalLong} instead of the raw value.
  * {@code OptionalLongUnaryOperator} is typically obtained from {@link ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)},
  * in which case its return value is empty when the underlying {@code LongUnaryOperator} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)
  * @see LongUnaryOperator
  */
 @FunctionalInterface public interface OptionalLongUnaryOperator extends LongFunction<OptionalLong> {
 	/**
-	 * Variation of {@link LongUnaryOperator#applyAsLong(long)} that returns {@code OptionalLong}.
+	 * Variation of {@link LongUnaryOperator#applyAsLong(long)} that returns {@link OptionalLong}.
 	 * If this {@code OptionalLongUnaryOperator} is obtained from {@link ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)},
 	 * the {@code OptionalLong} will be empty only if the underlying {@code LongUnaryOperator} throws.
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code LongUnaryOperator}.

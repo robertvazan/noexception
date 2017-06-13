@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link BiFunction} that returns {@code Optional} instead of the raw value.
+ * Variation of {@link BiFunction} that returns {@link Optional} instead of the raw value.
  * {@code OptionalBiFunction} is typically obtained from {@link ExceptionHandler#fromBiFunction(BiFunction)},
  * in which case its return value is empty when the underlying {@code BiFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link BiFunction}
@@ -22,7 +22,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalBiFunction<T, U, R> extends BiFunction<T, U, Optional<R>> {
 	/**
-	 * Variation of {@link BiFunction#apply(Object, Object)} that returns {@code Optional}.
+	 * Variation of {@link BiFunction#apply(Object, Object)} that returns {@link Optional}.
 	 * If this {@code OptionalBiFunction} is obtained from {@link ExceptionHandler#fromBiFunction(BiFunction)},
 	 * the {@code Optional} will be empty only if the underlying {@code BiFunction} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code BiFunction} (possibly {@code null}).

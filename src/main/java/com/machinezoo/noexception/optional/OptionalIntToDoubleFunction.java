@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link IntToDoubleFunction} that returns {@code OptionalDouble} instead of the raw value.
+ * Variation of {@link IntToDoubleFunction} that returns {@link OptionalDouble} instead of the raw value.
  * {@code OptionalIntToDoubleFunction} is typically obtained from {@link ExceptionHandler#fromIntToDoubleFunction(IntToDoubleFunction)},
  * in which case its return value is empty when the underlying {@code IntToDoubleFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromIntToDoubleFunction(IntToDoubleFunction)
  * @see IntToDoubleFunction
  */
 @FunctionalInterface public interface OptionalIntToDoubleFunction extends IntFunction<OptionalDouble> {
 	/**
-	 * Variation of {@link IntToDoubleFunction#applyAsDouble(int)} that returns {@code OptionalDouble}.
+	 * Variation of {@link IntToDoubleFunction#applyAsDouble(int)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalIntToDoubleFunction} is obtained from {@link ExceptionHandler#fromIntToDoubleFunction(IntToDoubleFunction)},
 	 * the {@code OptionalDouble} will be empty only if the underlying {@code IntToDoubleFunction} throws.
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code IntToDoubleFunction}.

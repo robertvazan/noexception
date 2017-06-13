@@ -5,17 +5,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link BooleanSupplier} that returns {@code OptionalBoolean} instead of the raw value.
+ * Variation of {@link BooleanSupplier} that returns {@link OptionalBoolean} instead of the raw value.
  * {@code OptionalBooleanSupplier} is typically obtained from {@link ExceptionHandler#fromBooleanSupplier(BooleanSupplier)},
  * in which case its return value is empty when the underlying {@code BooleanSupplier} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromBooleanSupplier(BooleanSupplier)
  * @see BooleanSupplier
  */
 @FunctionalInterface public interface OptionalBooleanSupplier extends Supplier<OptionalBoolean> {
 	/**
-	 * Variation of {@link BooleanSupplier#getAsBoolean()} that returns {@code OptionalBoolean}.
+	 * Variation of {@link BooleanSupplier#getAsBoolean()} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalBooleanSupplier} is obtained from {@link ExceptionHandler#fromBooleanSupplier(BooleanSupplier)},
 	 * the {@code OptionalBoolean} will be empty only if the underlying {@code BooleanSupplier} throws.
 	 * Otherwise the returned {@code OptionalBoolean} just wraps the return value of underlying {@code BooleanSupplier}.

@@ -5,10 +5,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link BiPredicate} that returns {@code OptionalBoolean} instead of the raw value.
+ * Variation of {@link BiPredicate} that returns {@link OptionalBoolean} instead of the raw value.
  * {@code OptionalBiPredicate} is typically obtained from {@link ExceptionHandler#fromBiPredicate(BiPredicate)},
  * in which case its return value is empty when the underlying {@code BiPredicate} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link BiPredicate}
@@ -19,7 +19,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalBiPredicate<T, U> {
 	/**
-	 * Variation of {@link BiPredicate#test(Object, Object)} that returns {@code OptionalBoolean}.
+	 * Variation of {@link BiPredicate#test(Object, Object)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalBiPredicate} is obtained from {@link ExceptionHandler#fromBiPredicate(BiPredicate)},
 	 * the {@code OptionalBoolean} will be empty only if the underlying {@code BiPredicate} throws.
 	 * Otherwise the returned {@code OptionalBoolean} just wraps the return value of underlying {@code BiPredicate}.

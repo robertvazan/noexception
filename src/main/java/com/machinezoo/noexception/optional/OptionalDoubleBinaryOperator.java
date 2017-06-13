@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link DoubleBinaryOperator} that returns {@code OptionalDouble} instead of the raw value.
+ * Variation of {@link DoubleBinaryOperator} that returns {@link OptionalDouble} instead of the raw value.
  * {@code OptionalDoubleBinaryOperator} is typically obtained from {@link ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)},
  * in which case its return value is empty when the underlying {@code DoubleBinaryOperator} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)
  * @see DoubleBinaryOperator
  */
 @FunctionalInterface public interface OptionalDoubleBinaryOperator {
 	/**
-	 * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that returns {@code OptionalDouble}.
+	 * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalDoubleBinaryOperator} is obtained from {@link ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)},
 	 * the {@code OptionalDouble} will be empty only if the underlying {@code DoubleBinaryOperator} throws.
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code DoubleBinaryOperator}.

@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link Supplier} that returns {@code Optional} instead of the raw value.
+ * Variation of {@link Supplier} that returns {@link Optional} instead of the raw value.
  * {@code OptionalSupplier} is typically obtained from {@link ExceptionHandler#supplier(Supplier)},
  * in which case its return value is empty when the underlying {@code Supplier} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link Supplier}
@@ -18,7 +18,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalSupplier<T> extends Supplier<Optional<T>> {
 	/**
-	 * Variation of {@link Supplier#get()} that returns {@code Optional}.
+	 * Variation of {@link Supplier#get()} that returns {@link Optional}.
 	 * If this {@code OptionalSupplier} is obtained from {@link ExceptionHandler#supplier(Supplier)},
 	 * the {@code Optional} will be empty only if the underlying {@code Supplier} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code Supplier} (possibly {@code null}).

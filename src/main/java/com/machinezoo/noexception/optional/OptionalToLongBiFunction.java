@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link ToLongBiFunction} that returns {@code OptionalLong} instead of the raw value.
+ * Variation of {@link ToLongBiFunction} that returns {@link OptionalLong} instead of the raw value.
  * {@code OptionalToLongBiFunction} is typically obtained from {@link ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)},
  * in which case its return value is empty when the underlying {@code ToLongBiFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link ToLongBiFunction}
@@ -20,7 +20,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalToLongBiFunction<T, U> extends BiFunction<T, U, OptionalLong> {
 	/**
-	 * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that returns {@code OptionalLong}.
+	 * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that returns {@link OptionalLong}.
 	 * If this {@code OptionalToLongBiFunction} is obtained from {@link ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)},
 	 * the {@code OptionalLong} will be empty only if the underlying {@code ToLongBiFunction} throws.
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code ToLongBiFunction}.

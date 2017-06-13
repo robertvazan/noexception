@@ -8,7 +8,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link Consumer} that allows throwing checked exceptions.
  * {@code ThrowingConsumer} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#consumer(ThrowingConsumer)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link Consumer}

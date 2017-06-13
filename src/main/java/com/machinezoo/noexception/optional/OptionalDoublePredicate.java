@@ -5,17 +5,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link DoublePredicate} that returns {@code OptionalBoolean} instead of the raw value.
+ * Variation of {@link DoublePredicate} that returns {@link OptionalBoolean} instead of the raw value.
  * {@code OptionalDoublePredicate} is typically obtained from {@link ExceptionHandler#fromDoublePredicate(DoublePredicate)},
  * in which case its return value is empty when the underlying {@code DoublePredicate} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromDoublePredicate(DoublePredicate)
  * @see DoublePredicate
  */
 @FunctionalInterface public interface OptionalDoublePredicate {
 	/**
-	 * Variation of {@link DoublePredicate#test(double)} that returns {@code OptionalBoolean}.
+	 * Variation of {@link DoublePredicate#test(double)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalDoublePredicate} is obtained from {@link ExceptionHandler#fromDoublePredicate(DoublePredicate)},
 	 * the {@code OptionalBoolean} will be empty only if the underlying {@code DoublePredicate} throws.
 	 * Otherwise the returned {@code OptionalBoolean} just wraps the return value of underlying {@code DoublePredicate}.

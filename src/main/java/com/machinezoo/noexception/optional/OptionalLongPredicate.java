@@ -5,17 +5,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link LongPredicate} that returns {@code OptionalBoolean} instead of the raw value.
+ * Variation of {@link LongPredicate} that returns {@link OptionalBoolean} instead of the raw value.
  * {@code OptionalLongPredicate} is typically obtained from {@link ExceptionHandler#fromLongPredicate(LongPredicate)},
  * in which case its return value is empty when the underlying {@code LongPredicate} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromLongPredicate(LongPredicate)
  * @see LongPredicate
  */
 @FunctionalInterface public interface OptionalLongPredicate {
 	/**
-	 * Variation of {@link LongPredicate#test(long)} that returns {@code OptionalBoolean}.
+	 * Variation of {@link LongPredicate#test(long)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalLongPredicate} is obtained from {@link ExceptionHandler#fromLongPredicate(LongPredicate)},
 	 * the {@code OptionalBoolean} will be empty only if the underlying {@code LongPredicate} throws.
 	 * Otherwise the returned {@code OptionalBoolean} just wraps the return value of underlying {@code LongPredicate}.

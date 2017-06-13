@@ -8,7 +8,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link IntToDoubleFunction} that allows throwing checked exceptions.
  * {@code ThrowingIntToDoubleFunction} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromIntToDoubleFunction(ThrowingIntToDoubleFunction)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see CheckedExceptionHandler#fromIntToDoubleFunction(ThrowingIntToDoubleFunction)
  * @see IntToDoubleFunction

@@ -6,17 +6,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link LongToIntFunction} that returns {@code OptionalInt} instead of the raw value.
+ * Variation of {@link LongToIntFunction} that returns {@link OptionalInt} instead of the raw value.
  * {@code OptionalLongToIntFunction} is typically obtained from {@link ExceptionHandler#fromLongToIntFunction(LongToIntFunction)},
  * in which case its return value is empty when the underlying {@code LongToIntFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromLongToIntFunction(LongToIntFunction)
  * @see LongToIntFunction
  */
 @FunctionalInterface public interface OptionalLongToIntFunction extends LongFunction<OptionalInt> {
 	/**
-	 * Variation of {@link LongToIntFunction#applyAsInt(long)} that returns {@code OptionalInt}.
+	 * Variation of {@link LongToIntFunction#applyAsInt(long)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalLongToIntFunction} is obtained from {@link ExceptionHandler#fromLongToIntFunction(LongToIntFunction)},
 	 * the {@code OptionalInt} will be empty only if the underlying {@code LongToIntFunction} throws.
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code LongToIntFunction}.

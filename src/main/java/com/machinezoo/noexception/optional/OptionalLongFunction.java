@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link LongFunction} that returns {@code Optional} instead of the raw value.
+ * Variation of {@link LongFunction} that returns {@link Optional} instead of the raw value.
  * {@code OptionalLongFunction} is typically obtained from {@link ExceptionHandler#fromLongFunction(LongFunction)},
  * in which case its return value is empty when the underlying {@code LongFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <R>
  *            see {@link LongFunction}
@@ -18,7 +18,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalLongFunction<R> extends LongFunction<Optional<R>> {
 	/**
-	 * Variation of {@link LongFunction#apply(long)} that returns {@code Optional}.
+	 * Variation of {@link LongFunction#apply(long)} that returns {@link Optional}.
 	 * If this {@code OptionalLongFunction} is obtained from {@link ExceptionHandler#fromLongFunction(LongFunction)},
 	 * the {@code Optional} will be empty only if the underlying {@code LongFunction} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code LongFunction} (possibly {@code null}).

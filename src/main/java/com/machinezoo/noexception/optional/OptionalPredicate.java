@@ -5,10 +5,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link Predicate} that returns {@code OptionalBoolean} instead of the raw value.
+ * Variation of {@link Predicate} that returns {@link OptionalBoolean} instead of the raw value.
  * {@code OptionalPredicate} is typically obtained from {@link ExceptionHandler#predicate(Predicate)},
  * in which case its return value is empty when the underlying {@code Predicate} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link Predicate}
@@ -17,7 +17,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalPredicate<T> {
 	/**
-	 * Variation of {@link Predicate#test(Object)} that returns {@code OptionalBoolean}.
+	 * Variation of {@link Predicate#test(Object)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalPredicate} is obtained from {@link ExceptionHandler#predicate(Predicate)},
 	 * the {@code OptionalBoolean} will be empty only if the underlying {@code Predicate} throws.
 	 * Otherwise the returned {@code OptionalBoolean} just wraps the return value of underlying {@code Predicate}.

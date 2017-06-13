@@ -8,7 +8,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link DoubleUnaryOperator} that allows throwing checked exceptions.
  * {@code ThrowingDoubleUnaryOperator} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see CheckedExceptionHandler#fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator)
  * @see DoubleUnaryOperator

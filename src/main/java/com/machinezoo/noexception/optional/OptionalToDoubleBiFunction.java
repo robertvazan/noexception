@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link ToDoubleBiFunction} that returns {@code OptionalDouble} instead of the raw value.
+ * Variation of {@link ToDoubleBiFunction} that returns {@link OptionalDouble} instead of the raw value.
  * {@code OptionalToDoubleBiFunction} is typically obtained from {@link ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)},
  * in which case its return value is empty when the underlying {@code ToDoubleBiFunction} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link ToDoubleBiFunction}
@@ -20,7 +20,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalToDoubleBiFunction<T, U> extends BiFunction<T, U, OptionalDouble> {
 	/**
-	 * Variation of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)} that returns {@code OptionalDouble}.
+	 * Variation of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalToDoubleBiFunction} is obtained from {@link ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)},
 	 * the {@code OptionalDouble} will be empty only if the underlying {@code ToDoubleBiFunction} throws.
 	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code ToDoubleBiFunction}.

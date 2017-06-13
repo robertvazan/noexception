@@ -8,7 +8,7 @@ import com.machinezoo.noexception.*;
  * Variation of {@link LongConsumer} that allows throwing checked exceptions.
  * {@code ThrowingLongConsumer} is usually implemented by a lambda
  * and passed to {@link CheckedExceptionHandler#fromLongConsumer(ThrowingLongConsumer)}.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see CheckedExceptionHandler#fromLongConsumer(ThrowingLongConsumer)
  * @see LongConsumer

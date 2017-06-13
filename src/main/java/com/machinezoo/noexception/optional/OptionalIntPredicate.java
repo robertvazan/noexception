@@ -5,17 +5,17 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link IntPredicate} that returns {@code OptionalBoolean} instead of the raw value.
+ * Variation of {@link IntPredicate} that returns {@link OptionalBoolean} instead of the raw value.
  * {@code OptionalIntPredicate} is typically obtained from {@link ExceptionHandler#fromIntPredicate(IntPredicate)},
  * in which case its return value is empty when the underlying {@code IntPredicate} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromIntPredicate(IntPredicate)
  * @see IntPredicate
  */
 @FunctionalInterface public interface OptionalIntPredicate {
 	/**
-	 * Variation of {@link IntPredicate#test(int)} that returns {@code OptionalBoolean}.
+	 * Variation of {@link IntPredicate#test(int)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalIntPredicate} is obtained from {@link ExceptionHandler#fromIntPredicate(IntPredicate)},
 	 * the {@code OptionalBoolean} will be empty only if the underlying {@code IntPredicate} throws.
 	 * Otherwise the returned {@code OptionalBoolean} just wraps the return value of underlying {@code IntPredicate}.

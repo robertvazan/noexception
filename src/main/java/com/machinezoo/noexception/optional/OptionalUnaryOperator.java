@@ -6,10 +6,10 @@ import java.util.function.*;
 import com.machinezoo.noexception.*;
 
 /**
- * Variation of {@link UnaryOperator} that returns {@code Optional} instead of the raw value.
+ * Variation of {@link UnaryOperator} that returns {@link Optional} instead of the raw value.
  * {@code OptionalUnaryOperator} is typically obtained from {@link ExceptionHandler#fromUnaryOperator(UnaryOperator)},
  * in which case its return value is empty when the underlying {@code UnaryOperator} throws an exception.
- * See <a href="https://noexception.machinezoo.com/">NoException tutorial</a>.
+ * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <T>
  *            see {@link UnaryOperator}
@@ -18,7 +18,7 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface public interface OptionalUnaryOperator<T> extends Function<T, Optional<T>> {
 	/**
-	 * Variation of {@link UnaryOperator#apply(Object)} that returns {@code Optional}.
+	 * Variation of {@link UnaryOperator#apply(Object)} that returns {@link Optional}.
 	 * If this {@code OptionalUnaryOperator} is obtained from {@link ExceptionHandler#fromUnaryOperator(UnaryOperator)},
 	 * the {@code Optional} will be empty only if the underlying {@code UnaryOperator} throws.
 	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code UnaryOperator} (possibly {@code null}).
