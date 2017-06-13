@@ -89,8 +89,10 @@
 					<notree>true</notree>
 					<notimestamp>true</notimestamp>
 					<use>false</use>
-					<detectLinks>true</detectLinks>
 					<doctitle>${project.name} API Reference</doctitle>
+					<links>
+						<link>https://www.slf4j.org/apidocs</link>
+					</links>
 				</configuration>
 				<executions>
 					<execution>
