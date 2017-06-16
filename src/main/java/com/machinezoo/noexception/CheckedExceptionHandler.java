@@ -35,7 +35,7 @@ import lombok.*;
  * and the various {@code getAsX} variants.
  * All methods take throwing versions of standard functional interfaces, for example {@link ThrowingRunnable} or {@link ThrowingSupplier}.
  * 
- * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+ * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
  * @see #handle(Exception)
  * @see Exceptions
  * @see ExceptionHandler
@@ -60,7 +60,7 @@ public abstract class CheckedExceptionHandler {
 	 * @return converted unchecked exception
 	 * @throws NullPointerException
 	 *             if {@code exception} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public abstract RuntimeException handle(Exception exception);
@@ -81,7 +81,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param runnable
 	 *            the {@code ThrowingRunnable} to be converted, usually a lambda
 	 * @return converted {@code Runnable} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final Runnable runnable(ThrowingRunnable runnable) {
@@ -111,7 +111,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param supplier
 	 *            the {@code ThrowingSupplier} to be converted, usually a lambda
 	 * @return converted {@code Supplier} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> Supplier<T> supplier(ThrowingSupplier<T> supplier) {
@@ -141,7 +141,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param supplier
 	 *            the {@code ThrowingIntSupplier} to be converted, usually a lambda
 	 * @return converted {@code IntSupplier} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntSupplier fromIntSupplier(ThrowingIntSupplier supplier) {
@@ -171,7 +171,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param supplier
 	 *            the {@code ThrowingLongSupplier} to be converted, usually a lambda
 	 * @return converted {@code LongSupplier} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongSupplier fromLongSupplier(ThrowingLongSupplier supplier) {
@@ -201,7 +201,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param supplier
 	 *            the {@code ThrowingDoubleSupplier} to be converted, usually a lambda
 	 * @return converted {@code DoubleSupplier} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoubleSupplier fromDoubleSupplier(ThrowingDoubleSupplier supplier) {
@@ -231,7 +231,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param supplier
 	 *            the {@code ThrowingBooleanSupplier} to be converted, usually a lambda
 	 * @return converted {@code BooleanSupplier} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final BooleanSupplier fromBooleanSupplier(ThrowingBooleanSupplier supplier) {
@@ -261,7 +261,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingConsumer} to be converted, usually a lambda
 	 * @return converted {@code Consumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> Consumer<T> consumer(ThrowingConsumer<T> consumer) {
@@ -291,7 +291,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingIntConsumer} to be converted, usually a lambda
 	 * @return converted {@code IntConsumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntConsumer fromIntConsumer(ThrowingIntConsumer consumer) {
@@ -321,7 +321,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingLongConsumer} to be converted, usually a lambda
 	 * @return converted {@code LongConsumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongConsumer fromLongConsumer(ThrowingLongConsumer consumer) {
@@ -351,7 +351,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingDoubleConsumer} to be converted, usually a lambda
 	 * @return converted {@code DoubleConsumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoubleConsumer fromDoubleConsumer(ThrowingDoubleConsumer consumer) {
@@ -381,7 +381,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingBiConsumer} to be converted, usually a lambda
 	 * @return converted {@code BiConsumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> BiConsumer<T, U> fromBiConsumer(ThrowingBiConsumer<T, U> consumer) {
@@ -411,7 +411,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingObjIntConsumer} to be converted, usually a lambda
 	 * @return converted {@code ObjIntConsumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ObjIntConsumer<T> fromObjIntConsumer(ThrowingObjIntConsumer<T> consumer) {
@@ -441,7 +441,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingObjLongConsumer} to be converted, usually a lambda
 	 * @return converted {@code ObjLongConsumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ObjLongConsumer<T> fromObjLongConsumer(ThrowingObjLongConsumer<T> consumer) {
@@ -471,7 +471,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param consumer
 	 *            the {@code ThrowingObjDoubleConsumer} to be converted, usually a lambda
 	 * @return converted {@code ObjDoubleConsumer} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ObjDoubleConsumer<T> fromObjDoubleConsumer(ThrowingObjDoubleConsumer<T> consumer) {
@@ -501,7 +501,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param predicate
 	 *            the {@code ThrowingPredicate} to be converted, usually a lambda
 	 * @return converted {@code Predicate} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> Predicate<T> predicate(ThrowingPredicate<T> predicate) {
@@ -531,7 +531,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param predicate
 	 *            the {@code ThrowingIntPredicate} to be converted, usually a lambda
 	 * @return converted {@code IntPredicate} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntPredicate fromIntPredicate(ThrowingIntPredicate predicate) {
@@ -561,7 +561,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param predicate
 	 *            the {@code ThrowingLongPredicate} to be converted, usually a lambda
 	 * @return converted {@code LongPredicate} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongPredicate fromLongPredicate(ThrowingLongPredicate predicate) {
@@ -591,7 +591,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param predicate
 	 *            the {@code ThrowingDoublePredicate} to be converted, usually a lambda
 	 * @return converted {@code DoublePredicate} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoublePredicate fromDoublePredicate(ThrowingDoublePredicate predicate) {
@@ -621,7 +621,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param predicate
 	 *            the {@code ThrowingBiPredicate} to be converted, usually a lambda
 	 * @return converted {@code BiPredicate} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> BiPredicate<T, U> fromBiPredicate(ThrowingBiPredicate<T, U> predicate) {
@@ -651,7 +651,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingFunction} to be converted, usually a lambda
 	 * @return converted {@code Function} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, R> Function<T, R> function(ThrowingFunction<T, R> function) {
@@ -681,7 +681,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingToIntFunction} to be converted, usually a lambda
 	 * @return converted {@code ToIntFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ToIntFunction<T> fromToIntFunction(ThrowingToIntFunction<T> function) {
@@ -711,7 +711,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingIntFunction} to be converted, usually a lambda
 	 * @return converted {@code IntFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <R> IntFunction<R> fromIntFunction(ThrowingIntFunction<R> function) {
@@ -741,7 +741,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingIntToLongFunction} to be converted, usually a lambda
 	 * @return converted {@code IntToLongFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntToLongFunction fromIntToLongFunction(ThrowingIntToLongFunction function) {
@@ -771,7 +771,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingIntToDoubleFunction} to be converted, usually a lambda
 	 * @return converted {@code IntToDoubleFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntToDoubleFunction fromIntToDoubleFunction(ThrowingIntToDoubleFunction function) {
@@ -801,7 +801,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingToLongFunction} to be converted, usually a lambda
 	 * @return converted {@code ToLongFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ToLongFunction<T> fromToLongFunction(ThrowingToLongFunction<T> function) {
@@ -831,7 +831,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingLongFunction} to be converted, usually a lambda
 	 * @return converted {@code LongFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <R> LongFunction<R> fromLongFunction(ThrowingLongFunction<R> function) {
@@ -861,7 +861,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingLongToIntFunction} to be converted, usually a lambda
 	 * @return converted {@code LongToIntFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongToIntFunction fromLongToIntFunction(ThrowingLongToIntFunction function) {
@@ -891,7 +891,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingLongToDoubleFunction} to be converted, usually a lambda
 	 * @return converted {@code LongToDoubleFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongToDoubleFunction fromLongToDoubleFunction(ThrowingLongToDoubleFunction function) {
@@ -921,7 +921,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingToDoubleFunction} to be converted, usually a lambda
 	 * @return converted {@code ToDoubleFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ToDoubleFunction<T> fromToDoubleFunction(ThrowingToDoubleFunction<T> function) {
@@ -951,7 +951,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingDoubleFunction} to be converted, usually a lambda
 	 * @return converted {@code DoubleFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <R> DoubleFunction<R> fromDoubleFunction(ThrowingDoubleFunction<R> function) {
@@ -981,7 +981,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingDoubleToIntFunction} to be converted, usually a lambda
 	 * @return converted {@code DoubleToIntFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoubleToIntFunction fromDoubleToIntFunction(ThrowingDoubleToIntFunction function) {
@@ -1011,7 +1011,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingDoubleToLongFunction} to be converted, usually a lambda
 	 * @return converted {@code DoubleToLongFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoubleToLongFunction fromDoubleToLongFunction(ThrowingDoubleToLongFunction function) {
@@ -1041,7 +1041,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingUnaryOperator} to be converted, usually a lambda
 	 * @return converted {@code UnaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> UnaryOperator<T> fromUnaryOperator(ThrowingUnaryOperator<T> operator) {
@@ -1071,7 +1071,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingIntUnaryOperator} to be converted, usually a lambda
 	 * @return converted {@code IntUnaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntUnaryOperator fromIntUnaryOperator(ThrowingIntUnaryOperator operator) {
@@ -1101,7 +1101,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingLongUnaryOperator} to be converted, usually a lambda
 	 * @return converted {@code LongUnaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongUnaryOperator fromLongUnaryOperator(ThrowingLongUnaryOperator operator) {
@@ -1131,7 +1131,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingDoubleUnaryOperator} to be converted, usually a lambda
 	 * @return converted {@code DoubleUnaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoubleUnaryOperator fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator operator) {
@@ -1161,7 +1161,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingBiFunction} to be converted, usually a lambda
 	 * @return converted {@code BiFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U, R> BiFunction<T, U, R> fromBiFunction(ThrowingBiFunction<T, U, R> function) {
@@ -1191,7 +1191,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingToIntBiFunction} to be converted, usually a lambda
 	 * @return converted {@code ToIntBiFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> ToIntBiFunction<T, U> fromToIntBiFunction(ThrowingToIntBiFunction<T, U> function) {
@@ -1221,7 +1221,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingToLongBiFunction} to be converted, usually a lambda
 	 * @return converted {@code ToLongBiFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> ToLongBiFunction<T, U> fromToLongBiFunction(ThrowingToLongBiFunction<T, U> function) {
@@ -1251,7 +1251,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param function
 	 *            the {@code ThrowingToDoubleBiFunction} to be converted, usually a lambda
 	 * @return converted {@code ToDoubleBiFunction} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> ToDoubleBiFunction<T, U> fromToDoubleBiFunction(ThrowingToDoubleBiFunction<T, U> function) {
@@ -1281,7 +1281,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingBinaryOperator} to be converted, usually a lambda
 	 * @return converted {@code BinaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> BinaryOperator<T> fromBinaryOperator(ThrowingBinaryOperator<T> operator) {
@@ -1311,7 +1311,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingIntBinaryOperator} to be converted, usually a lambda
 	 * @return converted {@code IntBinaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntBinaryOperator fromIntBinaryOperator(ThrowingIntBinaryOperator operator) {
@@ -1341,7 +1341,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingLongBinaryOperator} to be converted, usually a lambda
 	 * @return converted {@code LongBinaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongBinaryOperator fromLongBinaryOperator(ThrowingLongBinaryOperator operator) {
@@ -1371,7 +1371,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param operator
 	 *            the {@code ThrowingDoubleBinaryOperator} to be converted, usually a lambda
 	 * @return converted {@code DoubleBinaryOperator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoubleBinaryOperator fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator operator) {
@@ -1401,7 +1401,7 @@ public abstract class CheckedExceptionHandler {
 	 * @param comparator
 	 *            the {@code ThrowingComparator} to be converted, usually a lambda
 	 * @return converted {@code Comparator} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> Comparator<T> comparator(ThrowingComparator<T> comparator) {
@@ -1431,7 +1431,7 @@ public abstract class CheckedExceptionHandler {
 	 *            the {@code ThrowingRunnable} to be converted, usually a lambda
 	 * @throws NullPointerException
 	 *             if {@code runnable} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final void run(ThrowingRunnable runnable) {
@@ -1456,7 +1456,7 @@ public abstract class CheckedExceptionHandler {
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> T get(ThrowingSupplier<T> supplier) {
@@ -1481,7 +1481,7 @@ public abstract class CheckedExceptionHandler {
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final int getAsInt(ThrowingIntSupplier supplier) {
@@ -1506,7 +1506,7 @@ public abstract class CheckedExceptionHandler {
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final long getAsLong(ThrowingLongSupplier supplier) {
@@ -1531,7 +1531,7 @@ public abstract class CheckedExceptionHandler {
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final double getAsDouble(ThrowingDoubleSupplier supplier) {
@@ -1556,7 +1556,7 @@ public abstract class CheckedExceptionHandler {
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final boolean getAsBoolean(ThrowingBooleanSupplier supplier) {

@@ -33,7 +33,7 @@ import lombok.*;
  * Callers can use {@link Optional#orElse(Object)} and {@link Optional#orElseGet(Supplier)} and their
  * equivalents on {@code OptionalX} interfaces to provide fallback values.
  * 
- * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+ * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
  * @see #handle(Throwable)
  * @see Exceptions
  * @see OptionalSupplier
@@ -59,7 +59,7 @@ public abstract class ExceptionHandler {
 	 * @return {@code true} when exception is handled, {@code false} if the exception should be rethrown
 	 * @throws NullPointerException
 	 *             if {@code exception} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public abstract boolean handle(Throwable exception);
@@ -81,7 +81,7 @@ public abstract class ExceptionHandler {
 	 * @param runnable
 	 *            the {@code Runnable} to wrap, usually a lambda
 	 * @return wrapper that runs {@code runnable} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final Runnable runnable(Runnable runnable) {
@@ -111,7 +111,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code Supplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalSupplier<T> supplier(Supplier<T> supplier) {
@@ -142,7 +142,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code IntSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalIntSupplier fromIntSupplier(IntSupplier supplier) {
@@ -173,7 +173,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code LongSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalLongSupplier fromLongSupplier(LongSupplier supplier) {
@@ -204,7 +204,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code DoubleSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalDoubleSupplier fromDoubleSupplier(DoubleSupplier supplier) {
@@ -235,7 +235,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code BooleanSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalBooleanSupplier fromBooleanSupplier(BooleanSupplier supplier) {
@@ -266,7 +266,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code Consumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> Consumer<T> consumer(Consumer<T> consumer) {
@@ -296,7 +296,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code IntConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final IntConsumer fromIntConsumer(IntConsumer consumer) {
@@ -326,7 +326,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code LongConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final LongConsumer fromLongConsumer(LongConsumer consumer) {
@@ -356,7 +356,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code DoubleConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final DoubleConsumer fromDoubleConsumer(DoubleConsumer consumer) {
@@ -386,7 +386,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code BiConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> BiConsumer<T, U> fromBiConsumer(BiConsumer<T, U> consumer) {
@@ -416,7 +416,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code ObjIntConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ObjIntConsumer<T> fromObjIntConsumer(ObjIntConsumer<T> consumer) {
@@ -446,7 +446,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code ObjLongConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ObjLongConsumer<T> fromObjLongConsumer(ObjLongConsumer<T> consumer) {
@@ -476,7 +476,7 @@ public abstract class ExceptionHandler {
 	 * @param consumer
 	 *            the {@code ObjDoubleConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> ObjDoubleConsumer<T> fromObjDoubleConsumer(ObjDoubleConsumer<T> consumer) {
@@ -506,7 +506,7 @@ public abstract class ExceptionHandler {
 	 * @param predicate
 	 *            the {@code Predicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalPredicate<T> predicate(Predicate<T> predicate) {
@@ -537,7 +537,7 @@ public abstract class ExceptionHandler {
 	 * @param predicate
 	 *            the {@code IntPredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalIntPredicate fromIntPredicate(IntPredicate predicate) {
@@ -568,7 +568,7 @@ public abstract class ExceptionHandler {
 	 * @param predicate
 	 *            the {@code LongPredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalLongPredicate fromLongPredicate(LongPredicate predicate) {
@@ -599,7 +599,7 @@ public abstract class ExceptionHandler {
 	 * @param predicate
 	 *            the {@code DoublePredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalDoublePredicate fromDoublePredicate(DoublePredicate predicate) {
@@ -630,7 +630,7 @@ public abstract class ExceptionHandler {
 	 * @param predicate
 	 *            the {@code BiPredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> OptionalBiPredicate<T, U> fromBiPredicate(BiPredicate<T, U> predicate) {
@@ -661,7 +661,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code Function} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, R> OptionalFunction<T, R> function(Function<T, R> function) {
@@ -692,7 +692,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code ToIntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalToIntFunction<T> fromToIntFunction(ToIntFunction<T> function) {
@@ -723,7 +723,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code IntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <R> OptionalIntFunction<R> fromIntFunction(IntFunction<R> function) {
@@ -754,7 +754,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code IntToLongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalIntToLongFunction fromIntToLongFunction(IntToLongFunction function) {
@@ -785,7 +785,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code IntToDoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalIntToDoubleFunction fromIntToDoubleFunction(IntToDoubleFunction function) {
@@ -816,7 +816,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code ToLongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalToLongFunction<T> fromToLongFunction(ToLongFunction<T> function) {
@@ -847,7 +847,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code LongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <R> OptionalLongFunction<R> fromLongFunction(LongFunction<R> function) {
@@ -878,7 +878,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code LongToIntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalLongToIntFunction fromLongToIntFunction(LongToIntFunction function) {
@@ -909,7 +909,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code LongToDoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalLongToDoubleFunction fromLongToDoubleFunction(LongToDoubleFunction function) {
@@ -940,7 +940,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code ToDoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalToDoubleFunction<T> fromToDoubleFunction(ToDoubleFunction<T> function) {
@@ -971,7 +971,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code DoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <R> OptionalDoubleFunction<R> fromDoubleFunction(DoubleFunction<R> function) {
@@ -1002,7 +1002,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code DoubleToIntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalDoubleToIntFunction fromDoubleToIntFunction(DoubleToIntFunction function) {
@@ -1033,7 +1033,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code DoubleToLongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalDoubleToLongFunction fromDoubleToLongFunction(DoubleToLongFunction function) {
@@ -1064,7 +1064,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code UnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalUnaryOperator<T> fromUnaryOperator(UnaryOperator<T> operator) {
@@ -1095,7 +1095,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code IntUnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalIntUnaryOperator fromIntUnaryOperator(IntUnaryOperator operator) {
@@ -1126,7 +1126,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code LongUnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalLongUnaryOperator fromLongUnaryOperator(LongUnaryOperator operator) {
@@ -1157,7 +1157,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code DoubleUnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalDoubleUnaryOperator fromDoubleUnaryOperator(DoubleUnaryOperator operator) {
@@ -1188,7 +1188,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code BiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U, R> OptionalBiFunction<T, U, R> fromBiFunction(BiFunction<T, U, R> function) {
@@ -1219,7 +1219,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code ToIntBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> OptionalToIntBiFunction<T, U> fromToIntBiFunction(ToIntBiFunction<T, U> function) {
@@ -1250,7 +1250,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code ToLongBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> OptionalToLongBiFunction<T, U> fromToLongBiFunction(ToLongBiFunction<T, U> function) {
@@ -1281,7 +1281,7 @@ public abstract class ExceptionHandler {
 	 * @param function
 	 *            the {@code ToDoubleBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T, U> OptionalToDoubleBiFunction<T, U> fromToDoubleBiFunction(ToDoubleBiFunction<T, U> function) {
@@ -1312,7 +1312,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code BinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalBinaryOperator<T> fromBinaryOperator(BinaryOperator<T> operator) {
@@ -1343,7 +1343,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code IntBinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalIntBinaryOperator fromIntBinaryOperator(IntBinaryOperator operator) {
@@ -1374,7 +1374,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code LongBinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalLongBinaryOperator fromLongBinaryOperator(LongBinaryOperator operator) {
@@ -1405,7 +1405,7 @@ public abstract class ExceptionHandler {
 	 * @param operator
 	 *            the {@code DoubleBinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalDoubleBinaryOperator fromDoubleBinaryOperator(DoubleBinaryOperator operator) {
@@ -1436,7 +1436,7 @@ public abstract class ExceptionHandler {
 	 * @param comparator
 	 *            the {@code Comparator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code comparator} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> OptionalComparator<T> comparator(Comparator<T> comparator) {
@@ -1466,7 +1466,7 @@ public abstract class ExceptionHandler {
 	 * 
 	 * @param runnable
 	 *            the {@code Runnable} to run, usually a lambda
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final void run(Runnable runnable) {
@@ -1490,7 +1490,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code Supplier} to run, usually a lambda
 	 * @return an {@code Optional} carrying {@code supplier} result or an empty {@code Optional} if exception was caught
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final <T> Optional<T> get(Supplier<T> supplier) {
@@ -1515,7 +1515,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code IntSupplier} to run, usually a lambda
 	 * @return an {@code OptionalInt} carrying {@code supplier} result or an empty {@code OptionalInt} if exception was caught
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalInt getAsInt(IntSupplier supplier) {
@@ -1540,7 +1540,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code LongSupplier} to run, usually a lambda
 	 * @return an {@code OptionalLong} carrying {@code supplier} result or an empty {@code OptionalLong} if exception was caught
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalLong getAsLong(LongSupplier supplier) {
@@ -1565,7 +1565,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code DoubleSupplier} to run, usually a lambda
 	 * @return an {@code OptionalDouble} carrying {@code supplier} result or an empty {@code OptionalDouble} if exception was caught
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalDouble getAsDouble(DoubleSupplier supplier) {
@@ -1590,7 +1590,7 @@ public abstract class ExceptionHandler {
 	 * @param supplier
 	 *            the {@code BooleanSupplier} to run, usually a lambda
 	 * @return an {@code OptionalBoolean} carrying {@code supplier} result or an empty {@code OptionalBoolean} if exception was caught
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final OptionalBoolean getAsBoolean(BooleanSupplier supplier) {

@@ -706,7 +706,7 @@ EOF
 	 * @param `short-name $1`
 	 *            the {@code $1} to wrap, usually a lambda
 	 * @return wrapper that runs {@code `short-name $1`} in a try-catch block
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final`space-left "$(type-signature $1)"` `catch-interface $1` `from-method $1`($1`type-signature $1` `short-name $1`) {
@@ -763,7 +763,7 @@ EOF
 EOF
 	fi
 	cat <<EOF
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final`space-left "$(type-signature $1)"` `optional-of $(return-type $1)` `as-method $1`($1`type-signature $1` `short-name $1`) {
@@ -820,7 +820,7 @@ import lombok.*;
  * Callers can use {@link Optional#orElse(Object)} and {@link Optional#orElseGet(Supplier)} and their
  * equivalents on {@code OptionalX} interfaces to provide fallback values.
  * 
- * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+ * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
  * @see #handle(Throwable)
  * @see Exceptions
  * @see OptionalSupplier
@@ -846,7 +846,7 @@ public abstract class ExceptionHandler {
 	 * @return {@code true} when exception is handled, {@code false} if the exception should be rethrown
 	 * @throws NullPointerException
 	 *             if {@code exception} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public abstract boolean handle(Throwable exception);
@@ -879,7 +879,7 @@ function checked-type {
 	 * @param `short-name $1`
 	 *            the {@code Throwing$1} to be converted, usually a lambda
 	 * @return converted {@code $1} free of checked exceptions
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final`space-left "$(type-signature $1)"` $1`type-signature $1` `from-method $1`(Throwing$1`type-signature $1` `short-name $1`) {
@@ -920,7 +920,7 @@ EOF
 	cat <<EOF
 	 * @throws NullPointerException
 	 *             if {@code `short-name $1`} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public final`space-left "$(type-signature $1)"` `return-type $1` `as-method $1`(Throwing$1`type-signature $1` `short-name $1`) {
@@ -973,7 +973,7 @@ import lombok.*;
  * and the various {@code getAsX} variants.
  * All methods take throwing versions of standard functional interfaces, for example {@link ThrowingRunnable} or {@link ThrowingSupplier}.
  * 
- * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+ * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
  * @see #handle(Exception)
  * @see Exceptions
  * @see ExceptionHandler
@@ -998,7 +998,7 @@ public abstract class CheckedExceptionHandler {
 	 * @return converted unchecked exception
 	 * @throws NullPointerException
 	 *             if {@code exception} is {@code null}
-	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
 	public abstract RuntimeException handle(Exception exception);
