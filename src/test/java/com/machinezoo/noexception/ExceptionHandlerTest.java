@@ -1145,6 +1145,32 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+	@Test public void comparator_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		@SuppressWarnings("unchecked") Comparator<String> lambda = mock(Comparator.class);
+		when(lambda.compare("input1", "input2")).thenReturn(2);
+		assertEquals(OptionalInt.of(2), collector.comparator(lambda).compare("input1", "input2"));
+		verify(lambda, only()).compare("input1", "input2");
+		assertTrue(collector.empty());
+	}
+	@Test public void comparator_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		assertEquals(OptionalInt.empty(), collector.comparator((l, r) -> {
+			throw new NumberFormatException();
+		}).compare("input1", "input2"));
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test public void comparator_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		try {
+			collector.comparator((l, r) -> {
+				throw new NumberFormatException();
+			}).compare("input1", "input2");
+			fail();
+		} catch (NumberFormatException e) {
+		}
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
 	@Test public void run_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		Runnable lambda = mock(Runnable.class);

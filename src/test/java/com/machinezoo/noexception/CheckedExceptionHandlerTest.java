@@ -837,6 +837,25 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test @SneakyThrows public void comparator_complete() {
+		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		@SuppressWarnings("unchecked") ThrowingComparator<String> lambda = mock(ThrowingComparator.class);
+		when(lambda.compare("input1", "input2")).thenReturn(2);
+		assertEquals(2, collector.comparator(lambda).compare("input1", "input2"));
+		verify(lambda, only()).compare("input1", "input2");
+		assertTrue(collector.empty());
+	}
+	@Test public void comparator_exception() {
+		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		try {
+			collector.comparator((l, r) -> {
+				throw new PrinterException();
+			}).compare("input1", "input2");
+			fail();
+		} catch (CollectedException e) {
+		}
+		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
 	@Test @SneakyThrows public void run_complete() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingRunnable lambda = mock(ThrowingRunnable.class);

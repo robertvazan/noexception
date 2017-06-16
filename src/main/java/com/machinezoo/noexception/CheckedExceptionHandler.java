@@ -1,6 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import java.util.*;
 import java.util.function.*;
 import com.machinezoo.noexception.throwing.*;
 import lombok.*;
@@ -1381,6 +1382,36 @@ public abstract class CheckedExceptionHandler {
 		@Override public double applyAsDouble(double left, double right) {
 			try {
 				return operator.applyAsDouble(left, right);
+			} catch (RuntimeException exception) {
+				throw exception;
+			} catch (Exception exception) {
+				throw handle(exception);
+			}
+		}
+	}
+	/**
+	 * Remove checked exceptions from method signature of {@code Comparator}.
+	 * <p>
+	 * If {@code comparator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code comparator} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code methodTakingComparator(Exceptions.sneak().comparator((l, r) -> my_throwing_lambda))}
+	 * 
+	 * @param comparator
+	 *            the {@code ThrowingComparator} to be converted, usually a lambda
+	 * @return converted {@code Comparator} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
+	public final <T> Comparator<T> comparator(ThrowingComparator<T> comparator) {
+		return new CheckedComparator<T>(comparator);
+	}
+	@RequiredArgsConstructor private final class CheckedComparator<T> implements Comparator<T> {
+		private final ThrowingComparator<T> comparator;
+		@Override public int compare(T left, T right) {
+			try {
+				return comparator.compare(left, right);
 			} catch (RuntimeException exception) {
 				throw exception;
 			} catch (Exception exception) {

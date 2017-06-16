@@ -17,7 +17,7 @@ function return-type {
 		echo void;;
 	Supplier | UnaryOperator | BinaryOperator)
 		echo T;;
-	IntSupplier | *ToInt* | Int*Operator)
+	IntSupplier | *ToInt* | Int*Operator | Comparator)
 		echo int;;
 	LongSupplier | *ToLong* | Long*Operator)
 		echo long;;
@@ -43,16 +43,19 @@ function method-verb {
 		echo apply;;
 	*Predicate)
 		echo test;;
+	Comparator)
+		echo compare;;
 	*)
 		exit 1;;
 	esac
 }
 function as-method {
 	verb=`method-verb $1`
-	if [ $verb == test ]; then
+	case $verb in
+	test | compare)
 		echo $verb
 		exit
-	fi
+	esac
 	case `return-type $1` in
 	int)
 		echo ${verb}AsInt;;
@@ -96,7 +99,7 @@ function declared-params {
 		echo long operand;;
 	DoubleUnaryOperator)
 		echo double operand;;
-	BinaryOperator)
+	BinaryOperator | Comparator)
 		echo "T left, T right";;
 	IntBinaryOperator)
 		echo "int left, int right";;
@@ -141,7 +144,7 @@ function type-signature {
 		echo "<T, U, R>";;
 	BiConsumer | BiPredicate | To*BiFunction)
 		echo "<T, U>";;
-	Consumer | Predicate | Supplier | To*Function | Obj*Consumer | UnaryOperator | BinaryOperator)
+	Consumer | Predicate | Supplier | To*Function | Obj*Consumer | UnaryOperator | BinaryOperator | Comparator)
 		echo "<T>";;
 	*To*Function)
 		;;
@@ -247,6 +250,8 @@ function short-name {
 		echo operator;;
 	Runnable)
 		echo runnable;;
+	Comparator)
+		echo comparator;;
 	*)
 		exit 1;;
 	esac
@@ -383,6 +388,7 @@ function functional-types {
 	for type in Int Long Double; do
 		echo ${type}BinaryOperator
 	done
+	echo Comparator
 }
 function parameterless-types {
 	for type in `functional-types`; do
@@ -410,7 +416,7 @@ function throwing {
 package com.machinezoo.noexception.throwing;
 
 EOF
-	if [ $1 != Runnable ]; then
+	if [ $1 != Runnable -a $1 != Comparator ]; then
 		echo "import java.util.function.*;"
 	fi
 	cat <<EOF
@@ -536,7 +542,13 @@ function optional-default {
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception.optional;
 
-import java.util.function.*;
+EOF
+	if [ $1 == Comparator ]; then
+		echo "import java.util.*;"
+	else
+		echo "import java.util.function.*;"
+	fi
+	cat <<EOF
 import lombok.*;
 
 @RequiredArgsConstructor final class Default$1`type-signature $1` implements $1`type-signature $1` {
@@ -553,6 +565,11 @@ function optional-fallback {
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception.optional;
 
+EOF
+	if [ $1 == Comparator ]; then
+		echo "import java.util.*;"
+	fi
+	cat <<EOF
 import java.util.function.*;
 import lombok.*;
 
@@ -922,6 +939,7 @@ function write-checked {
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import java.util.*;
 import java.util.function.*;
 import com.machinezoo.noexception.throwing.*;
 import lombok.*;
@@ -1012,9 +1030,14 @@ function throwing-test {
 package com.machinezoo.noexception.throwing;
 
 import java.io.*;
+EOF
+	if [ $1 == Comparator ]; then
+		echo "import java.util.*;"
+	fi
+	cat <<EOF
 import java.util.concurrent.*;
 EOF
-	if [ $1 != Runnable ]; then
+	if [ $1 != Runnable -a $1 != Comparator ]; then
 		echo "import java.util.function.*;"
 	fi
 	cat <<EOF

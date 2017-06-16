@@ -1424,6 +1424,37 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
+	 * Wraps {@code Comparator} in a try-catch block.
+	 * <p>
+	 * If {@code comparator} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
+	 * {@code NullPointerException} from null {@code comparator} is caught too.
+	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * <p>
+	 * Typical usage: {@code Exceptions.log().comparator((l, r) -> my_throwing_lambda).orElse(fallback)}
+	 * 
+	 * @param comparator
+	 *            the {@code Comparator} to wrap, usually a lambda
+	 * @return wrapper that runs {@code comparator} in a try-catch block
+	 * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
+	 * @see Exceptions
+	 */
+	public final <T> OptionalComparator<T> comparator(Comparator<T> comparator) {
+		return new CatchingComparator<T>(comparator);
+	}
+	@RequiredArgsConstructor private final class CatchingComparator<T> implements OptionalComparator<T> {
+		private final Comparator<T> comparator;
+		@Override public OptionalInt compare(T left, T right) {
+			try {
+				return OptionalInt.of(comparator.compare(left, right));
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+				return OptionalInt.empty();
+			}
+		}
+	}
+	/**
 	 * Runs {@code Runnable} in a try-catch block.
 	 * <p>
 	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)},
