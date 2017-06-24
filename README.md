@@ -7,5 +7,5 @@ System.out.println(Exceptions.log().get(() -> "test".substring(5)).orElse("fallb
 ```
 
 * [Homepage](https://noexception.machinezoo.com/) - Download, tutorial, API overview, alternatives, contact.
-* [Javadoc](https://noexception.machinezoo.com/javadoc)
-* [Sources](https://bitbucket.org/robertvazan/noexception/src)
+* [Javadoc](https://noexception.machinezoo.com/javadoc) - API reference.
+* [Sources](https://bitbucket.org/robertvazan/noexception/src) - Primary repository, preferred for pull requests.
