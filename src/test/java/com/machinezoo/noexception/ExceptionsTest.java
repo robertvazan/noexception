@@ -1,6 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -21,6 +22,7 @@ public class ExceptionsTest {
 			throw new IOError(new IOException());
 		});
 	}
+
 	@Test public void silence_runtime() {
 		Exceptions.silence().run(() -> {
 			throw new NumberFormatException();
@@ -31,6 +33,7 @@ public class ExceptionsTest {
 			throw new IOError(new IOException());
 		});
 	}
+
 	@Test(expected = NumberFormatException.class) public void sneak_runtime() {
 		Exceptions.sneak().run(() -> {
 			throw new NumberFormatException();
@@ -46,6 +49,7 @@ public class ExceptionsTest {
 			throw new IOException();
 		});
 	}
+
 	@Test(expected = NumberFormatException.class) public void wrap_runtime() {
 		Exceptions.wrap().run(() -> {
 			throw new NumberFormatException();
@@ -61,10 +65,23 @@ public class ExceptionsTest {
 			Exceptions.wrap().run(() -> {
 				throw new IOException();
 			});
+			fail();
 		} catch (WrappedException e) {
 			assertThat(e.getCause(), instanceOf(IOException.class));
 		}
 	}
+	@Test public void wrap_InterruptedException() {
+		try {
+			Exceptions.wrap().run(() -> {
+				throw new InterruptedException();
+			});
+			fail();
+		} catch (WrappedException e) {
+			assertThat(e.getCause(), instanceOf(InterruptedException.class));
+			checkAndClearInterruptStatus();
+		}
+	}
+
 	@Test(expected = NumberFormatException.class) public void wrapIn_runtime() {
 		Exceptions.wrap(CollectedException::new).run(() -> {
 			throw new NumberFormatException();
@@ -80,10 +97,28 @@ public class ExceptionsTest {
 			Exceptions.wrap(CollectedException::new).run(() -> {
 				throw new IOException();
 			});
+			fail();
 		} catch (CollectedException e) {
 			assertThat(e.getCause(), instanceOf(IOException.class));
 		}
 	}
+	@Test(expected = WrappedException.class) public void wrapIn_checked_not_mapped() {
+		Exceptions.wrap(e -> null).run(() -> {
+			throw new IOException();
+		});
+	}
+	@Test public void wrapIn_InterruptedException() {
+		try {
+			Exceptions.wrap(CollectedException::new).run(() -> {
+				throw new InterruptedException();
+			});
+			fail();
+		} catch (CollectedException e) {
+			assertThat(e.getCause(), instanceOf(InterruptedException.class));
+			checkAndClearInterruptStatus();
+		}
+	}
+
 	@Test public void log_runtime() {
 		Exceptions.log().run(() -> {
 			throw new NumberFormatException();
@@ -94,6 +129,7 @@ public class ExceptionsTest {
 			throw new IOError(new IOException());
 		});
 	}
+
 	@Test public void logTo() {
 		Logger logger = mock(Logger.class);
 		Exceptions.log(logger).run(() -> {
@@ -101,11 +137,19 @@ public class ExceptionsTest {
 		});
 		verify(logger, only()).error(eq("Caught exception"), any(NumberFormatException.class));
 	}
+
 	@Test public void logTWithMessage() {
 		Logger logger = mock(Logger.class);
 		Exceptions.log(logger, "Commented exception").run(() -> {
 			throw new NumberFormatException();
 		});
 		verify(logger, only()).error(eq("Commented exception"), any(NumberFormatException.class));
+	}
+
+	private static void checkAndClearInterruptStatus() {
+		assertThat(
+				"Interrupt status is not restored",
+				Thread.interrupted(), // We must clear interrupt status
+				is(true));
 	}
 }
