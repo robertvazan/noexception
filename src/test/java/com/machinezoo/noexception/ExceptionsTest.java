@@ -1,7 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
-import static org.hamcrest.core.Is.is;
+import static com.machinezoo.noexception.InterruptedAsserts.assertThatThreadInterruptedIsSet;
 import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -71,6 +71,7 @@ public class ExceptionsTest {
 		}
 	}
 	@Test public void wrap_InterruptedException() {
+		Thread.interrupted(); // Clear Thread.interrupted() flag
 		try {
 			Exceptions.wrap().run(() -> {
 				throw new InterruptedException();
@@ -78,7 +79,7 @@ public class ExceptionsTest {
 			fail();
 		} catch (WrappedException e) {
 			assertThat(e.getCause(), instanceOf(InterruptedException.class));
-			checkAndClearInterruptStatus();
+			assertThatThreadInterruptedIsSet();
 		}
 	}
 
@@ -108,6 +109,7 @@ public class ExceptionsTest {
 		});
 	}
 	@Test public void wrapIn_InterruptedException() {
+		Thread.interrupted(); // Clear Thread.interrupted() flag
 		try {
 			Exceptions.wrap(CollectedException::new).run(() -> {
 				throw new InterruptedException();
@@ -115,7 +117,7 @@ public class ExceptionsTest {
 			fail();
 		} catch (CollectedException e) {
 			assertThat(e.getCause(), instanceOf(InterruptedException.class));
-			checkAndClearInterruptStatus();
+			assertThatThreadInterruptedIsSet();
 		}
 	}
 
@@ -144,12 +146,5 @@ public class ExceptionsTest {
 			throw new NumberFormatException();
 		});
 		verify(logger, only()).error(eq("Commented exception"), any(NumberFormatException.class));
-	}
-
-	private static void checkAndClearInterruptStatus() {
-		assertThat(
-				"Interrupt status is not restored",
-				Thread.interrupted(), // We must clear interrupt status
-				is(true));
 	}
 }

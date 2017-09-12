@@ -63,6 +63,31 @@ public abstract class ExceptionHandler {
 	 * @see Exceptions
 	 */
 	public abstract boolean handle(Throwable exception);
+
+	/**
+	 * @return {@code true} when exception is handled, {@code false} if the exception should be rethrown
+	 */
+	boolean doHandle(Throwable exception) {
+		// Using of sneak() can hide an checked exception from the java-compiler and
+		// we may catch an checked exception here. So we must add special
+		// processing for InterruptedException
+		try {
+			boolean result = handle(exception);
+			if (result && exception instanceof InterruptedException)
+				Thread.currentThread().interrupt();
+			return result;
+		}
+		catch (Throwable e) {
+			// Using of sneak() can lead to InterruptedException here
+			if (exception instanceof InterruptedException
+					&& !(e instanceof InterruptedException)) {
+				Thread.currentThread().interrupt();
+			}
+			e.addSuppressed(exception);
+			throw e;
+		}
+	}
+
 	/**
 	 * Initialize new {@code ExceptionHandler}.
 	 */
@@ -93,7 +118,7 @@ public abstract class ExceptionHandler {
 			try {
 				runnable.run();
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -123,7 +148,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(supplier.get());
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -154,7 +179,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(supplier.getAsInt());
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -185,7 +210,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(supplier.getAsLong());
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalLong.empty();
 			}
@@ -216,7 +241,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(supplier.getAsDouble());
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalDouble.empty();
 			}
@@ -247,7 +272,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(supplier.getAsBoolean());
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalBoolean.empty();
 			}
@@ -278,7 +303,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(t);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -308,7 +333,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -338,7 +363,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -368,7 +393,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -398,7 +423,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(t, u);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -428,7 +453,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -458,7 +483,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -488,7 +513,7 @@ public abstract class ExceptionHandler {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 			}
 		}
@@ -518,7 +543,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(t));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalBoolean.empty();
 			}
@@ -549,7 +574,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalBoolean.empty();
 			}
@@ -580,7 +605,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalBoolean.empty();
 			}
@@ -611,7 +636,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalBoolean.empty();
 			}
@@ -642,7 +667,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalBoolean.of(predicate.test(t, u));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalBoolean.empty();
 			}
@@ -673,7 +698,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(t));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -704,7 +729,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -735,7 +760,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -766,7 +791,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalLong.empty();
 			}
@@ -797,7 +822,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalDouble.empty();
 			}
@@ -828,7 +853,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalLong.empty();
 			}
@@ -859,7 +884,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -890,7 +915,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -921,7 +946,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalDouble.empty();
 			}
@@ -952,7 +977,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalDouble.empty();
 			}
@@ -983,7 +1008,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -1014,7 +1039,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -1045,7 +1070,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalLong.empty();
 			}
@@ -1076,7 +1101,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(operator.apply(operand));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -1107,7 +1132,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(operator.applyAsInt(operand));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -1138,7 +1163,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(operator.applyAsLong(operand));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalLong.empty();
 			}
@@ -1169,7 +1194,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(operator.applyAsDouble(operand));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalDouble.empty();
 			}
@@ -1200,7 +1225,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(function.apply(t, u));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -1231,7 +1256,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(function.applyAsInt(t, u));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -1262,7 +1287,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(function.applyAsLong(t, u));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalLong.empty();
 			}
@@ -1293,7 +1318,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(t, u));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalDouble.empty();
 			}
@@ -1324,7 +1349,7 @@ public abstract class ExceptionHandler {
 			try {
 				return Optional.ofNullable(operator.apply(left, right));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return Optional.empty();
 			}
@@ -1355,7 +1380,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(operator.applyAsInt(left, right));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -1386,7 +1411,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalLong.of(operator.applyAsLong(left, right));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalLong.empty();
 			}
@@ -1417,7 +1442,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalDouble.of(operator.applyAsDouble(left, right));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalDouble.empty();
 			}
@@ -1448,7 +1473,7 @@ public abstract class ExceptionHandler {
 			try {
 				return OptionalInt.of(comparator.compare(left, right));
 			} catch (Throwable exception) {
-				if (!handle(exception))
+				if (!doHandle(exception))
 					throw exception;
 				return OptionalInt.empty();
 			}
@@ -1473,7 +1498,7 @@ public abstract class ExceptionHandler {
 		try {
 			runnable.run();
 		} catch (Throwable exception) {
-			if (!handle(exception))
+			if (!doHandle(exception))
 				throw exception;
 		}
 	}
@@ -1497,7 +1522,7 @@ public abstract class ExceptionHandler {
 		try {
 			return Optional.ofNullable(supplier.get());
 		} catch (Throwable exception) {
-			if (!handle(exception))
+			if (!doHandle(exception))
 				throw exception;
 			return Optional.empty();
 		}
@@ -1522,7 +1547,7 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalInt.of(supplier.getAsInt());
 		} catch (Throwable exception) {
-			if (!handle(exception))
+			if (!doHandle(exception))
 				throw exception;
 			return OptionalInt.empty();
 		}
@@ -1547,7 +1572,7 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalLong.of(supplier.getAsLong());
 		} catch (Throwable exception) {
-			if (!handle(exception))
+			if (!doHandle(exception))
 				throw exception;
 			return OptionalLong.empty();
 		}
@@ -1572,7 +1597,7 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalDouble.of(supplier.getAsDouble());
 		} catch (Throwable exception) {
-			if (!handle(exception))
+			if (!doHandle(exception))
 				throw exception;
 			return OptionalDouble.empty();
 		}
@@ -1597,7 +1622,7 @@ public abstract class ExceptionHandler {
 		try {
 			return OptionalBoolean.of(supplier.getAsBoolean());
 		} catch (Throwable exception) {
-			if (!handle(exception))
+			if (!doHandle(exception))
 				throw exception;
 			return OptionalBoolean.empty();
 		}
