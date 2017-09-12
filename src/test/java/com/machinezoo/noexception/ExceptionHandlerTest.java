@@ -18,11 +18,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void runnable_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.runnable(() -> {
 			throw new NumberFormatException();
 		}).run();
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void runnable_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -35,6 +36,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void supplier_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") Supplier<String> lambda = mock(Supplier.class);
@@ -44,11 +46,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void supplier_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.supplier(() -> {
 			throw new NumberFormatException();
 		}).get());
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void supplier_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -61,6 +64,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntSupplier_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntSupplier lambda = mock(IntSupplier.class);
@@ -70,11 +74,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntSupplier_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.fromIntSupplier(() -> {
 			throw new NumberFormatException();
 		}).get());
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntSupplier_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -87,6 +92,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongSupplier_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongSupplier lambda = mock(LongSupplier.class);
@@ -96,11 +102,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongSupplier_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.fromLongSupplier(() -> {
 			throw new NumberFormatException();
 		}).get());
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromLongSupplier_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -113,6 +120,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoubleSupplier_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoubleSupplier lambda = mock(DoubleSupplier.class);
@@ -122,11 +130,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleSupplier_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.fromDoubleSupplier(() -> {
 			throw new NumberFormatException();
 		}).get());
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoubleSupplier_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -139,6 +148,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromBooleanSupplier_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		BooleanSupplier lambda = mock(BooleanSupplier.class);
@@ -148,11 +158,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromBooleanSupplier_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalBoolean.empty(), collector.fromBooleanSupplier(() -> {
 			throw new NumberFormatException();
 		}).get());
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromBooleanSupplier_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -165,6 +176,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void consumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") Consumer<String> lambda = mock(Consumer.class);
@@ -173,11 +185,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void consumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.consumer(t -> {
 			throw new NumberFormatException();
 		}).accept("input");
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void consumer_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -190,6 +203,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntConsumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntConsumer lambda = mock(IntConsumer.class);
@@ -198,11 +212,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntConsumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.fromIntConsumer(v -> {
 			throw new NumberFormatException();
 		}).accept(1);
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntConsumer_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -215,6 +230,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongConsumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongConsumer lambda = mock(LongConsumer.class);
@@ -223,7 +239,7 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongConsumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.fromLongConsumer(v -> {
 			throw new NumberFormatException();
 		}).accept(1L);
@@ -240,6 +256,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoubleConsumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoubleConsumer lambda = mock(DoubleConsumer.class);
@@ -248,11 +265,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleConsumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.fromDoubleConsumer(v -> {
 			throw new NumberFormatException();
 		}).accept(1.0);
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoubleConsumer_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -265,6 +283,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromBiConsumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") BiConsumer<String, String> lambda = mock(BiConsumer.class);
@@ -273,11 +292,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromBiConsumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.fromBiConsumer((t, u) -> {
 			throw new NumberFormatException();
 		}).accept("input1", "input2");
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromBiConsumer_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -290,6 +310,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromObjIntConsumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ObjIntConsumer<String> lambda = mock(ObjIntConsumer.class);
@@ -298,11 +319,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromObjIntConsumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.fromObjIntConsumer((t, v) -> {
 			throw new NumberFormatException();
 		}).accept("input", 1);
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromObjIntConsumer_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -315,6 +337,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromObjLongConsumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ObjLongConsumer<String> lambda = mock(ObjLongConsumer.class);
@@ -323,11 +346,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromObjLongConsumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.fromObjLongConsumer((t, v) -> {
 			throw new NumberFormatException();
 		}).accept("input", 1L);
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromObjLongConsumer_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -340,6 +364,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromObjDoubleConsumer_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ObjDoubleConsumer<String> lambda = mock(ObjDoubleConsumer.class);
@@ -348,11 +373,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromObjDoubleConsumer_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.fromObjDoubleConsumer((t, v) -> {
 			throw new NumberFormatException();
 		}).accept("input", 1.0);
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromObjDoubleConsumer_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -365,6 +391,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void predicate_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") Predicate<String> lambda = mock(Predicate.class);
@@ -374,11 +401,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void predicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalBoolean.empty(), collector.predicate(t -> {
 			throw new NumberFormatException();
 		}).test("input"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void predicate_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -391,6 +419,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntPredicate_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntPredicate lambda = mock(IntPredicate.class);
@@ -400,11 +429,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntPredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalBoolean.empty(), collector.fromIntPredicate(v -> {
 			throw new NumberFormatException();
 		}).test(1));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntPredicate_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -417,6 +447,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongPredicate_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongPredicate lambda = mock(LongPredicate.class);
@@ -426,11 +457,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongPredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalBoolean.empty(), collector.fromLongPredicate(v -> {
 			throw new NumberFormatException();
 		}).test(1L));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromLongPredicate_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -443,6 +475,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoublePredicate_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoublePredicate lambda = mock(DoublePredicate.class);
@@ -452,11 +485,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoublePredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalBoolean.empty(), collector.fromDoublePredicate(v -> {
 			throw new NumberFormatException();
 		}).test(1.0));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoublePredicate_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -469,6 +503,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromBiPredicate_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") BiPredicate<String, String> lambda = mock(BiPredicate.class);
@@ -478,11 +513,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromBiPredicate_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalBoolean.empty(), collector.fromBiPredicate((t, u) -> {
 			throw new NumberFormatException();
 		}).test("input1", "input2"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromBiPredicate_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -495,6 +531,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void function_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") Function<String, String> lambda = mock(Function.class);
@@ -504,11 +541,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void function_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.function(t -> {
 			throw new NumberFormatException();
 		}).apply("input"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void function_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -521,6 +559,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromToIntFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ToIntFunction<String> lambda = mock(ToIntFunction.class);
@@ -530,11 +569,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromToIntFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.fromToIntFunction(v -> {
 			throw new NumberFormatException();
 		}).apply("input"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromToIntFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -547,6 +587,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") IntFunction<String> lambda = mock(IntFunction.class);
@@ -556,11 +597,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.fromIntFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -573,6 +615,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntToLongFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntToLongFunction lambda = mock(IntToLongFunction.class);
@@ -582,11 +625,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntToLongFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.fromIntToLongFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntToLongFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -599,6 +643,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntToDoubleFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntToDoubleFunction lambda = mock(IntToDoubleFunction.class);
@@ -608,11 +653,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntToDoubleFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.fromIntToDoubleFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntToDoubleFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -625,6 +671,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromToLongFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ToLongFunction<String> lambda = mock(ToLongFunction.class);
@@ -634,11 +681,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromToLongFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.fromToLongFunction(v -> {
 			throw new NumberFormatException();
 		}).apply("input"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromToLongFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -651,6 +699,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") LongFunction<String> lambda = mock(LongFunction.class);
@@ -660,11 +709,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.fromLongFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1L));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromLongFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -677,6 +727,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongToIntFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongToIntFunction lambda = mock(LongToIntFunction.class);
@@ -686,11 +737,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongToIntFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.fromLongToIntFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1L));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromLongToIntFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -703,6 +755,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongToDoubleFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongToDoubleFunction lambda = mock(LongToDoubleFunction.class);
@@ -712,11 +765,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongToDoubleFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.fromLongToDoubleFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1L));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromLongToDoubleFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -729,6 +783,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromToDoubleFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ToDoubleFunction<String> lambda = mock(ToDoubleFunction.class);
@@ -738,11 +793,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromToDoubleFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.fromToDoubleFunction(v -> {
 			throw new NumberFormatException();
 		}).apply("input"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromToDoubleFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -755,6 +811,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoubleFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") DoubleFunction<String> lambda = mock(DoubleFunction.class);
@@ -764,11 +821,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.fromDoubleFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1.0));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoubleFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -781,6 +839,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoubleToIntFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoubleToIntFunction lambda = mock(DoubleToIntFunction.class);
@@ -790,11 +849,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleToIntFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.fromDoubleToIntFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1.0));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoubleToIntFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -807,6 +867,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoubleToLongFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoubleToLongFunction lambda = mock(DoubleToLongFunction.class);
@@ -816,11 +877,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleToLongFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.fromDoubleToLongFunction(v -> {
 			throw new NumberFormatException();
 		}).apply(1.0));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoubleToLongFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -833,6 +895,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromUnaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") UnaryOperator<String> lambda = mock(UnaryOperator.class);
@@ -842,11 +905,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromUnaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.fromUnaryOperator(o -> {
 			throw new NumberFormatException();
 		}).apply("input"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromUnaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -859,6 +923,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntUnaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntUnaryOperator lambda = mock(IntUnaryOperator.class);
@@ -868,11 +933,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntUnaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.fromIntUnaryOperator(o -> {
 			throw new NumberFormatException();
 		}).apply(1));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntUnaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -885,6 +951,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongUnaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongUnaryOperator lambda = mock(LongUnaryOperator.class);
@@ -894,11 +961,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongUnaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.fromLongUnaryOperator(o -> {
 			throw new NumberFormatException();
 		}).apply(1L));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromLongUnaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -911,6 +979,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoubleUnaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoubleUnaryOperator lambda = mock(DoubleUnaryOperator.class);
@@ -920,11 +989,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleUnaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.fromDoubleUnaryOperator(o -> {
 			throw new NumberFormatException();
 		}).apply(1.0));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoubleUnaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -937,6 +1007,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromBiFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") BiFunction<String, String, String> lambda = mock(BiFunction.class);
@@ -946,11 +1017,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromBiFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.fromBiFunction((t, u) -> {
 			throw new NumberFormatException();
 		}).apply("input1", "input2"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromBiFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -963,6 +1035,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromToIntBiFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ToIntBiFunction<String, String> lambda = mock(ToIntBiFunction.class);
@@ -972,11 +1045,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromToIntBiFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.fromToIntBiFunction((t, u) -> {
 			throw new NumberFormatException();
 		}).apply("input1", "input2"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromToIntBiFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -989,6 +1063,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromToLongBiFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ToLongBiFunction<String, String> lambda = mock(ToLongBiFunction.class);
@@ -998,11 +1073,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromToLongBiFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.fromToLongBiFunction((t, u) -> {
 			throw new NumberFormatException();
 		}).apply("input1", "input2"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromToLongBiFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1015,6 +1091,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromToDoubleBiFunction_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") ToDoubleBiFunction<String, String> lambda = mock(ToDoubleBiFunction.class);
@@ -1024,11 +1101,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromToDoubleBiFunction_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.fromToDoubleBiFunction((t, u) -> {
 			throw new NumberFormatException();
 		}).apply("input1", "input2"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromToDoubleBiFunction_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1041,6 +1119,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromBinaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") BinaryOperator<String> lambda = mock(BinaryOperator.class);
@@ -1050,11 +1129,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromBinaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.fromBinaryOperator((l, r) -> {
 			throw new NumberFormatException();
 		}).apply("input1", "input2"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromBinaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1067,6 +1147,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromIntBinaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntBinaryOperator lambda = mock(IntBinaryOperator.class);
@@ -1076,11 +1157,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromIntBinaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.fromIntBinaryOperator((l, r) -> {
 			throw new NumberFormatException();
 		}).apply(11, 12));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromIntBinaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1093,6 +1175,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromLongBinaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongBinaryOperator lambda = mock(LongBinaryOperator.class);
@@ -1102,11 +1185,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromLongBinaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.fromLongBinaryOperator((l, r) -> {
 			throw new NumberFormatException();
 		}).apply(11L, 12L));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromLongBinaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1119,6 +1203,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void fromDoubleBinaryOperator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoubleBinaryOperator lambda = mock(DoubleBinaryOperator.class);
@@ -1128,11 +1213,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void fromDoubleBinaryOperator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.fromDoubleBinaryOperator((l, r) -> {
 			throw new NumberFormatException();
 		}).apply(1.1, 1.2));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void fromDoubleBinaryOperator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1145,6 +1231,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void comparator_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") Comparator<String> lambda = mock(Comparator.class);
@@ -1154,11 +1241,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void comparator_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.comparator((l, r) -> {
 			throw new NumberFormatException();
 		}).compare("input1", "input2"));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void comparator_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1171,6 +1259,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void run_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		Runnable lambda = mock(Runnable.class);
@@ -1179,11 +1268,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void run_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		collector.run(() -> {
 			throw new NumberFormatException();
 		});
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void run_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1196,6 +1286,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void get_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		@SuppressWarnings("unchecked") Supplier<String> lambda = mock(Supplier.class);
@@ -1205,11 +1296,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void get_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(Optional.empty(), collector.get(() -> {
 			throw new NumberFormatException();
 		}));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void get_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1222,6 +1314,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void getAsInt_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		IntSupplier lambda = mock(IntSupplier.class);
@@ -1231,11 +1324,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void getAsInt_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalInt.empty(), collector.getAsInt(() -> {
 			throw new NumberFormatException();
 		}));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void getAsInt_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1248,6 +1342,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void getAsLong_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		LongSupplier lambda = mock(LongSupplier.class);
@@ -1257,11 +1352,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void getAsLong_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalLong.empty(), collector.getAsLong(() -> {
 			throw new NumberFormatException();
 		}));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void getAsLong_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1274,6 +1370,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void getAsDouble_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		DoubleSupplier lambda = mock(DoubleSupplier.class);
@@ -1283,11 +1380,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void getAsDouble_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalDouble.empty(), collector.getAsDouble(() -> {
 			throw new NumberFormatException();
 		}));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void getAsDouble_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
@@ -1300,6 +1398,7 @@ public class ExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
+
 	@Test public void getAsBoolean_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		BooleanSupplier lambda = mock(BooleanSupplier.class);
@@ -1309,11 +1408,12 @@ public class ExceptionHandlerTest {
 		assertTrue(collector.empty());
 	}
 	@Test public void getAsBoolean_swallowException() {
-		ExceptionCollector collector = new ExceptionCollector(true);
+		ExceptionCollector collector = spy(new ExceptionCollector(true));
 		assertEquals(OptionalBoolean.empty(), collector.getAsBoolean(() -> {
 			throw new NumberFormatException();
 		}));
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+		verify(collector).doHandle(any());
 	}
 	@Test public void getAsBoolean_passException() {
 		ExceptionCollector collector = new ExceptionCollector(false);
