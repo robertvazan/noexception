@@ -31,6 +31,12 @@ public class ExceptionsTest {
 			throw new IOError(new IOException());
 		});
 	}
+	@Test public void silence_interrupt() {
+		Exceptions.silence().run(Exceptions.sneak().runnable(() -> {
+			throw new InterruptedException();
+		}));
+		assertTrue(Thread.interrupted());
+	}
 	@Test(expected = NumberFormatException.class) public void sneak_runtime() {
 		Exceptions.sneak().run(() -> {
 			throw new NumberFormatException();
@@ -61,9 +67,21 @@ public class ExceptionsTest {
 			Exceptions.wrap().run(() -> {
 				throw new IOException();
 			});
+			fail();
 		} catch (WrappedException e) {
 			assertThat(e.getCause(), instanceOf(IOException.class));
 		}
+	}
+	@Test public void wrap_interrupt() {
+		try {
+			Exceptions.wrap().run(() -> {
+				throw new InterruptedException();
+			});
+			fail();
+		} catch (WrappedException e) {
+			assertThat(e.getCause(), instanceOf(InterruptedException.class));
+		}
+		assertTrue(Thread.interrupted());
 	}
 	@Test(expected = NumberFormatException.class) public void wrapIn_runtime() {
 		Exceptions.wrap(CollectedException::new).run(() -> {
@@ -80,9 +98,21 @@ public class ExceptionsTest {
 			Exceptions.wrap(CollectedException::new).run(() -> {
 				throw new IOException();
 			});
+			fail();
 		} catch (CollectedException e) {
 			assertThat(e.getCause(), instanceOf(IOException.class));
 		}
+	}
+	@Test public void wrapIn_interrupt() {
+		try {
+			Exceptions.wrap(CollectedException::new).run(() -> {
+				throw new InterruptedException();
+			});
+			fail();
+		} catch (CollectedException e) {
+			assertThat(e.getCause(), instanceOf(InterruptedException.class));
+		}
+		assertTrue(Thread.interrupted());
 	}
 	@Test public void log_runtime() {
 		Exceptions.log().run(() -> {
@@ -94,6 +124,12 @@ public class ExceptionsTest {
 			throw new IOError(new IOException());
 		});
 	}
+	@Test public void log_interrupt() {
+		Exceptions.log().run(Exceptions.sneak().runnable(() -> {
+			throw new InterruptedException();
+		}));
+		assertTrue(Thread.interrupted());
+	}
 	@Test public void logTo() {
 		Logger logger = mock(Logger.class);
 		Exceptions.log(logger).run(() -> {
@@ -101,7 +137,7 @@ public class ExceptionsTest {
 		});
 		verify(logger, only()).error(eq("Caught exception"), any(NumberFormatException.class));
 	}
-	@Test public void logTWithMessage() {
+	@Test public void logToWithMessage() {
 		Logger logger = mock(Logger.class);
 		Exceptions.log(logger, "Commented exception").run(() -> {
 			throw new NumberFormatException();

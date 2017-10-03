@@ -8,6 +8,8 @@ import lombok.*;
 	@NonNull private final Logger logger;
 	@NonNull private final String message;
 	@Override public boolean handle(Throwable exception) {
+		if (exception instanceof InterruptedException)
+			Thread.currentThread().interrupt();
 		logger.error(message, exception);
 		return true;
 	}

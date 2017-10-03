@@ -35,13 +35,15 @@ public final class Exceptions {
 	}
 	/**
 	 * Get {@code ExceptionHandler} that writes all exceptions to common logger.
-	 * No exceptions are allowed through, not even {@code Error}s.
 	 * Logs are written to SLF4J logger named after this class.
-	 * This method is convenient and a suitable default choice.
-	 * But the single shared logger can make logs harder to filter.
+	 * This handler is convenient and a suitable default choice,
+	 * but the single shared logger can make logs harder to filter.
 	 * Use {@link #log(Logger)} to specify custom logger where filtering is important.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().run(() -> my_throwing_lambda)}
+	 * <p>
+	 * No exceptions are allowed through, not even {@code Error}s.
+	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
 	 * 
 	 * @return logging exception handler
 	 * @see #log(Logger)
@@ -51,11 +53,13 @@ public final class Exceptions {
 	}
 	/**
 	 * Create {@code ExceptionHandler} that writes all exceptions to the specified {@code logger}.
-	 * No exceptions are allowed through, not even {@code Error}s.
 	 * Most application code can use the more convenient {@link #log()} method.
 	 * Use {@link #log(Logger, String)} overload to specify unique message where necessary.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log(logger).run(() -> my_throwing_lambda)}
+	 * <p>
+	 * No exceptions are allowed through, not even {@code Error}s.
+	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
 	 * 
 	 * @param logger
 	 *            where all exceptions are logged
@@ -70,12 +74,14 @@ public final class Exceptions {
 	}
 	/**
 	 * Create {@code ExceptionHandler} that writes all exceptions to the specified {@code logger} with the specified {@code message}.
-	 * No exceptions are allowed through, not even {@code Error}s.
 	 * Most application code can use the more convenient {@link #log()} method.
 	 * This overload allows for differentiating or explanatory message.
 	 * If you just need to specify custom logger, use {@link #log(Logger)}.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log(logger, "Caught exception").run(() -> my_throwing_lambda)}
+	 * <p>
+	 * No exceptions are allowed through, not even {@code Error}s.
+	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
 	 * 
 	 * @param logger
 	 *            where all exceptions are logged
@@ -92,11 +98,13 @@ public final class Exceptions {
 	}
 	/**
 	 * Get {@code ExceptionHandler} that silently ignores all exceptions.
-	 * No exceptions are allowed through, not even {@code Error}s.
 	 * This handler is useful when some code is known to produce junk exceptions.
 	 * Most application code should use {@link #log()} instead.
 	 * <p>
 	 * Typical usage: {@code Exceptions.silence().run(() -> my_throwing_lambda)}
+	 * <p>
+	 * No exceptions are allowed through, not even {@code Error}s.
+	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
 	 * 
 	 * @return exception handler that ignores all exceptions
 	 * @see #log()
@@ -128,6 +136,8 @@ public final class Exceptions {
 	 * Use {@link #wrap(Function)} to specify a custom wrapper.
 	 * <p>
 	 * Typical usage: {@code Exceptions.wrap().run(() -> my_throwing_lambda)}
+	 * <p>
+	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
 	 * 
 	 * @return exception handler that wraps checked exceptions
 	 * @see #sneak()
@@ -143,6 +153,8 @@ public final class Exceptions {
 	 * Use {@link #sneak()} to avoid wrapping and {@link #wrap()} to use standard wrapper.
 	 * <p>
 	 * Typical usage: {@code Exceptions.wrap(MyWrapperException::new).run(() -> my_throwing_lambda)}
+	 * <p>
+	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called before invoking the {@code wrapper}.
 	 * 
 	 * @param wrapper
 	 *            method converting checked exception into an unchecked one, often just exception constructor reference

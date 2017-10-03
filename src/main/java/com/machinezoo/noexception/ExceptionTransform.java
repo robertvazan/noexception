@@ -7,6 +7,8 @@ import lombok.*;
 @RequiredArgsConstructor final class ExceptionTransform extends CheckedExceptionHandler {
 	@NonNull private final Function<Exception, RuntimeException> wrapper;
 	@Override public RuntimeException handle(@NonNull Exception exception) {
+		if (exception instanceof InterruptedException)
+			Thread.currentThread().interrupt();
 		return wrapper.apply(exception);
 	}
 }
