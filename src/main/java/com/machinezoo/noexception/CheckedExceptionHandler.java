@@ -4,7 +4,6 @@ package com.machinezoo.noexception;
 import java.util.*;
 import java.util.function.*;
 import com.machinezoo.noexception.throwing.*;
-import lombok.*;
 
 /**
  * Represents downgrading policy for checked exceptions.
@@ -87,8 +86,11 @@ public abstract class CheckedExceptionHandler {
 	public final Runnable runnable(ThrowingRunnable runnable) {
 		return new CheckedRunnable(runnable);
 	}
-	@RequiredArgsConstructor private final class CheckedRunnable implements Runnable {
+	private final class CheckedRunnable implements Runnable {
 		private final ThrowingRunnable runnable;
+		CheckedRunnable(ThrowingRunnable runnable) {
+			this.runnable = runnable;
+		}
 		@Override public void run() {
 			try {
 				runnable.run();
@@ -117,8 +119,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> Supplier<T> supplier(ThrowingSupplier<T> supplier) {
 		return new CheckedSupplier<T>(supplier);
 	}
-	@RequiredArgsConstructor private final class CheckedSupplier<T> implements Supplier<T> {
+	private final class CheckedSupplier<T> implements Supplier<T> {
 		private final ThrowingSupplier<T> supplier;
+		CheckedSupplier(ThrowingSupplier<T> supplier) {
+			this.supplier = supplier;
+		}
 		@Override public T get() {
 			try {
 				return supplier.get();
@@ -147,8 +152,11 @@ public abstract class CheckedExceptionHandler {
 	public final IntSupplier fromIntSupplier(ThrowingIntSupplier supplier) {
 		return new CheckedIntSupplier(supplier);
 	}
-	@RequiredArgsConstructor private final class CheckedIntSupplier implements IntSupplier {
+	private final class CheckedIntSupplier implements IntSupplier {
 		private final ThrowingIntSupplier supplier;
+		CheckedIntSupplier(ThrowingIntSupplier supplier) {
+			this.supplier = supplier;
+		}
 		@Override public int getAsInt() {
 			try {
 				return supplier.getAsInt();
@@ -177,8 +185,11 @@ public abstract class CheckedExceptionHandler {
 	public final LongSupplier fromLongSupplier(ThrowingLongSupplier supplier) {
 		return new CheckedLongSupplier(supplier);
 	}
-	@RequiredArgsConstructor private final class CheckedLongSupplier implements LongSupplier {
+	private final class CheckedLongSupplier implements LongSupplier {
 		private final ThrowingLongSupplier supplier;
+		CheckedLongSupplier(ThrowingLongSupplier supplier) {
+			this.supplier = supplier;
+		}
 		@Override public long getAsLong() {
 			try {
 				return supplier.getAsLong();
@@ -207,8 +218,11 @@ public abstract class CheckedExceptionHandler {
 	public final DoubleSupplier fromDoubleSupplier(ThrowingDoubleSupplier supplier) {
 		return new CheckedDoubleSupplier(supplier);
 	}
-	@RequiredArgsConstructor private final class CheckedDoubleSupplier implements DoubleSupplier {
+	private final class CheckedDoubleSupplier implements DoubleSupplier {
 		private final ThrowingDoubleSupplier supplier;
+		CheckedDoubleSupplier(ThrowingDoubleSupplier supplier) {
+			this.supplier = supplier;
+		}
 		@Override public double getAsDouble() {
 			try {
 				return supplier.getAsDouble();
@@ -237,8 +251,11 @@ public abstract class CheckedExceptionHandler {
 	public final BooleanSupplier fromBooleanSupplier(ThrowingBooleanSupplier supplier) {
 		return new CheckedBooleanSupplier(supplier);
 	}
-	@RequiredArgsConstructor private final class CheckedBooleanSupplier implements BooleanSupplier {
+	private final class CheckedBooleanSupplier implements BooleanSupplier {
 		private final ThrowingBooleanSupplier supplier;
+		CheckedBooleanSupplier(ThrowingBooleanSupplier supplier) {
+			this.supplier = supplier;
+		}
 		@Override public boolean getAsBoolean() {
 			try {
 				return supplier.getAsBoolean();
@@ -267,8 +284,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> Consumer<T> consumer(ThrowingConsumer<T> consumer) {
 		return new CheckedConsumer<T>(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedConsumer<T> implements Consumer<T> {
+	private final class CheckedConsumer<T> implements Consumer<T> {
 		private final ThrowingConsumer<T> consumer;
+		CheckedConsumer(ThrowingConsumer<T> consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(T t) {
 			try {
 				consumer.accept(t);
@@ -297,8 +317,11 @@ public abstract class CheckedExceptionHandler {
 	public final IntConsumer fromIntConsumer(ThrowingIntConsumer consumer) {
 		return new CheckedIntConsumer(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedIntConsumer implements IntConsumer {
+	private final class CheckedIntConsumer implements IntConsumer {
 		private final ThrowingIntConsumer consumer;
+		CheckedIntConsumer(ThrowingIntConsumer consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(int value) {
 			try {
 				consumer.accept(value);
@@ -327,8 +350,11 @@ public abstract class CheckedExceptionHandler {
 	public final LongConsumer fromLongConsumer(ThrowingLongConsumer consumer) {
 		return new CheckedLongConsumer(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedLongConsumer implements LongConsumer {
+	private final class CheckedLongConsumer implements LongConsumer {
 		private final ThrowingLongConsumer consumer;
+		CheckedLongConsumer(ThrowingLongConsumer consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(long value) {
 			try {
 				consumer.accept(value);
@@ -357,8 +383,11 @@ public abstract class CheckedExceptionHandler {
 	public final DoubleConsumer fromDoubleConsumer(ThrowingDoubleConsumer consumer) {
 		return new CheckedDoubleConsumer(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedDoubleConsumer implements DoubleConsumer {
+	private final class CheckedDoubleConsumer implements DoubleConsumer {
 		private final ThrowingDoubleConsumer consumer;
+		CheckedDoubleConsumer(ThrowingDoubleConsumer consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(double value) {
 			try {
 				consumer.accept(value);
@@ -387,8 +416,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T, U> BiConsumer<T, U> fromBiConsumer(ThrowingBiConsumer<T, U> consumer) {
 		return new CheckedBiConsumer<T, U>(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedBiConsumer<T, U> implements BiConsumer<T, U> {
+	private final class CheckedBiConsumer<T, U> implements BiConsumer<T, U> {
 		private final ThrowingBiConsumer<T, U> consumer;
+		CheckedBiConsumer(ThrowingBiConsumer<T, U> consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(T t, U u) {
 			try {
 				consumer.accept(t, u);
@@ -417,8 +449,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> ObjIntConsumer<T> fromObjIntConsumer(ThrowingObjIntConsumer<T> consumer) {
 		return new CheckedObjIntConsumer<T>(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedObjIntConsumer<T> implements ObjIntConsumer<T> {
+	private final class CheckedObjIntConsumer<T> implements ObjIntConsumer<T> {
 		private final ThrowingObjIntConsumer<T> consumer;
+		CheckedObjIntConsumer(ThrowingObjIntConsumer<T> consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(T t, int value) {
 			try {
 				consumer.accept(t, value);
@@ -447,8 +482,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> ObjLongConsumer<T> fromObjLongConsumer(ThrowingObjLongConsumer<T> consumer) {
 		return new CheckedObjLongConsumer<T>(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedObjLongConsumer<T> implements ObjLongConsumer<T> {
+	private final class CheckedObjLongConsumer<T> implements ObjLongConsumer<T> {
 		private final ThrowingObjLongConsumer<T> consumer;
+		CheckedObjLongConsumer(ThrowingObjLongConsumer<T> consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(T t, long value) {
 			try {
 				consumer.accept(t, value);
@@ -477,8 +515,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> ObjDoubleConsumer<T> fromObjDoubleConsumer(ThrowingObjDoubleConsumer<T> consumer) {
 		return new CheckedObjDoubleConsumer<T>(consumer);
 	}
-	@RequiredArgsConstructor private final class CheckedObjDoubleConsumer<T> implements ObjDoubleConsumer<T> {
+	private final class CheckedObjDoubleConsumer<T> implements ObjDoubleConsumer<T> {
 		private final ThrowingObjDoubleConsumer<T> consumer;
+		CheckedObjDoubleConsumer(ThrowingObjDoubleConsumer<T> consumer) {
+			this.consumer = consumer;
+		}
 		@Override public void accept(T t, double value) {
 			try {
 				consumer.accept(t, value);
@@ -507,8 +548,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> Predicate<T> predicate(ThrowingPredicate<T> predicate) {
 		return new CheckedPredicate<T>(predicate);
 	}
-	@RequiredArgsConstructor private final class CheckedPredicate<T> implements Predicate<T> {
+	private final class CheckedPredicate<T> implements Predicate<T> {
 		private final ThrowingPredicate<T> predicate;
+		CheckedPredicate(ThrowingPredicate<T> predicate) {
+			this.predicate = predicate;
+		}
 		@Override public boolean test(T t) {
 			try {
 				return predicate.test(t);
@@ -537,8 +581,11 @@ public abstract class CheckedExceptionHandler {
 	public final IntPredicate fromIntPredicate(ThrowingIntPredicate predicate) {
 		return new CheckedIntPredicate(predicate);
 	}
-	@RequiredArgsConstructor private final class CheckedIntPredicate implements IntPredicate {
+	private final class CheckedIntPredicate implements IntPredicate {
 		private final ThrowingIntPredicate predicate;
+		CheckedIntPredicate(ThrowingIntPredicate predicate) {
+			this.predicate = predicate;
+		}
 		@Override public boolean test(int value) {
 			try {
 				return predicate.test(value);
@@ -567,8 +614,11 @@ public abstract class CheckedExceptionHandler {
 	public final LongPredicate fromLongPredicate(ThrowingLongPredicate predicate) {
 		return new CheckedLongPredicate(predicate);
 	}
-	@RequiredArgsConstructor private final class CheckedLongPredicate implements LongPredicate {
+	private final class CheckedLongPredicate implements LongPredicate {
 		private final ThrowingLongPredicate predicate;
+		CheckedLongPredicate(ThrowingLongPredicate predicate) {
+			this.predicate = predicate;
+		}
 		@Override public boolean test(long value) {
 			try {
 				return predicate.test(value);
@@ -597,8 +647,11 @@ public abstract class CheckedExceptionHandler {
 	public final DoublePredicate fromDoublePredicate(ThrowingDoublePredicate predicate) {
 		return new CheckedDoublePredicate(predicate);
 	}
-	@RequiredArgsConstructor private final class CheckedDoublePredicate implements DoublePredicate {
+	private final class CheckedDoublePredicate implements DoublePredicate {
 		private final ThrowingDoublePredicate predicate;
+		CheckedDoublePredicate(ThrowingDoublePredicate predicate) {
+			this.predicate = predicate;
+		}
 		@Override public boolean test(double value) {
 			try {
 				return predicate.test(value);
@@ -627,8 +680,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T, U> BiPredicate<T, U> fromBiPredicate(ThrowingBiPredicate<T, U> predicate) {
 		return new CheckedBiPredicate<T, U>(predicate);
 	}
-	@RequiredArgsConstructor private final class CheckedBiPredicate<T, U> implements BiPredicate<T, U> {
+	private final class CheckedBiPredicate<T, U> implements BiPredicate<T, U> {
 		private final ThrowingBiPredicate<T, U> predicate;
+		CheckedBiPredicate(ThrowingBiPredicate<T, U> predicate) {
+			this.predicate = predicate;
+		}
 		@Override public boolean test(T t, U u) {
 			try {
 				return predicate.test(t, u);
@@ -657,8 +713,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T, R> Function<T, R> function(ThrowingFunction<T, R> function) {
 		return new CheckedFunction<T, R>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedFunction<T, R> implements Function<T, R> {
+	private final class CheckedFunction<T, R> implements Function<T, R> {
 		private final ThrowingFunction<T, R> function;
+		CheckedFunction(ThrowingFunction<T, R> function) {
+			this.function = function;
+		}
 		@Override public R apply(T t) {
 			try {
 				return function.apply(t);
@@ -687,8 +746,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> ToIntFunction<T> fromToIntFunction(ThrowingToIntFunction<T> function) {
 		return new CheckedToIntFunction<T>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedToIntFunction<T> implements ToIntFunction<T> {
+	private final class CheckedToIntFunction<T> implements ToIntFunction<T> {
 		private final ThrowingToIntFunction<T> function;
+		CheckedToIntFunction(ThrowingToIntFunction<T> function) {
+			this.function = function;
+		}
 		@Override public int applyAsInt(T value) {
 			try {
 				return function.applyAsInt(value);
@@ -717,8 +779,11 @@ public abstract class CheckedExceptionHandler {
 	public final <R> IntFunction<R> fromIntFunction(ThrowingIntFunction<R> function) {
 		return new CheckedIntFunction<R>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedIntFunction<R> implements IntFunction<R> {
+	private final class CheckedIntFunction<R> implements IntFunction<R> {
 		private final ThrowingIntFunction<R> function;
+		CheckedIntFunction(ThrowingIntFunction<R> function) {
+			this.function = function;
+		}
 		@Override public R apply(int value) {
 			try {
 				return function.apply(value);
@@ -747,8 +812,11 @@ public abstract class CheckedExceptionHandler {
 	public final IntToLongFunction fromIntToLongFunction(ThrowingIntToLongFunction function) {
 		return new CheckedIntToLongFunction(function);
 	}
-	@RequiredArgsConstructor private final class CheckedIntToLongFunction implements IntToLongFunction {
+	private final class CheckedIntToLongFunction implements IntToLongFunction {
 		private final ThrowingIntToLongFunction function;
+		CheckedIntToLongFunction(ThrowingIntToLongFunction function) {
+			this.function = function;
+		}
 		@Override public long applyAsLong(int value) {
 			try {
 				return function.applyAsLong(value);
@@ -777,8 +845,11 @@ public abstract class CheckedExceptionHandler {
 	public final IntToDoubleFunction fromIntToDoubleFunction(ThrowingIntToDoubleFunction function) {
 		return new CheckedIntToDoubleFunction(function);
 	}
-	@RequiredArgsConstructor private final class CheckedIntToDoubleFunction implements IntToDoubleFunction {
+	private final class CheckedIntToDoubleFunction implements IntToDoubleFunction {
 		private final ThrowingIntToDoubleFunction function;
+		CheckedIntToDoubleFunction(ThrowingIntToDoubleFunction function) {
+			this.function = function;
+		}
 		@Override public double applyAsDouble(int value) {
 			try {
 				return function.applyAsDouble(value);
@@ -807,8 +878,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> ToLongFunction<T> fromToLongFunction(ThrowingToLongFunction<T> function) {
 		return new CheckedToLongFunction<T>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedToLongFunction<T> implements ToLongFunction<T> {
+	private final class CheckedToLongFunction<T> implements ToLongFunction<T> {
 		private final ThrowingToLongFunction<T> function;
+		CheckedToLongFunction(ThrowingToLongFunction<T> function) {
+			this.function = function;
+		}
 		@Override public long applyAsLong(T value) {
 			try {
 				return function.applyAsLong(value);
@@ -837,8 +911,11 @@ public abstract class CheckedExceptionHandler {
 	public final <R> LongFunction<R> fromLongFunction(ThrowingLongFunction<R> function) {
 		return new CheckedLongFunction<R>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedLongFunction<R> implements LongFunction<R> {
+	private final class CheckedLongFunction<R> implements LongFunction<R> {
 		private final ThrowingLongFunction<R> function;
+		CheckedLongFunction(ThrowingLongFunction<R> function) {
+			this.function = function;
+		}
 		@Override public R apply(long value) {
 			try {
 				return function.apply(value);
@@ -867,8 +944,11 @@ public abstract class CheckedExceptionHandler {
 	public final LongToIntFunction fromLongToIntFunction(ThrowingLongToIntFunction function) {
 		return new CheckedLongToIntFunction(function);
 	}
-	@RequiredArgsConstructor private final class CheckedLongToIntFunction implements LongToIntFunction {
+	private final class CheckedLongToIntFunction implements LongToIntFunction {
 		private final ThrowingLongToIntFunction function;
+		CheckedLongToIntFunction(ThrowingLongToIntFunction function) {
+			this.function = function;
+		}
 		@Override public int applyAsInt(long value) {
 			try {
 				return function.applyAsInt(value);
@@ -897,8 +977,11 @@ public abstract class CheckedExceptionHandler {
 	public final LongToDoubleFunction fromLongToDoubleFunction(ThrowingLongToDoubleFunction function) {
 		return new CheckedLongToDoubleFunction(function);
 	}
-	@RequiredArgsConstructor private final class CheckedLongToDoubleFunction implements LongToDoubleFunction {
+	private final class CheckedLongToDoubleFunction implements LongToDoubleFunction {
 		private final ThrowingLongToDoubleFunction function;
+		CheckedLongToDoubleFunction(ThrowingLongToDoubleFunction function) {
+			this.function = function;
+		}
 		@Override public double applyAsDouble(long value) {
 			try {
 				return function.applyAsDouble(value);
@@ -927,8 +1010,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> ToDoubleFunction<T> fromToDoubleFunction(ThrowingToDoubleFunction<T> function) {
 		return new CheckedToDoubleFunction<T>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedToDoubleFunction<T> implements ToDoubleFunction<T> {
+	private final class CheckedToDoubleFunction<T> implements ToDoubleFunction<T> {
 		private final ThrowingToDoubleFunction<T> function;
+		CheckedToDoubleFunction(ThrowingToDoubleFunction<T> function) {
+			this.function = function;
+		}
 		@Override public double applyAsDouble(T value) {
 			try {
 				return function.applyAsDouble(value);
@@ -957,8 +1043,11 @@ public abstract class CheckedExceptionHandler {
 	public final <R> DoubleFunction<R> fromDoubleFunction(ThrowingDoubleFunction<R> function) {
 		return new CheckedDoubleFunction<R>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedDoubleFunction<R> implements DoubleFunction<R> {
+	private final class CheckedDoubleFunction<R> implements DoubleFunction<R> {
 		private final ThrowingDoubleFunction<R> function;
+		CheckedDoubleFunction(ThrowingDoubleFunction<R> function) {
+			this.function = function;
+		}
 		@Override public R apply(double value) {
 			try {
 				return function.apply(value);
@@ -987,8 +1076,11 @@ public abstract class CheckedExceptionHandler {
 	public final DoubleToIntFunction fromDoubleToIntFunction(ThrowingDoubleToIntFunction function) {
 		return new CheckedDoubleToIntFunction(function);
 	}
-	@RequiredArgsConstructor private final class CheckedDoubleToIntFunction implements DoubleToIntFunction {
+	private final class CheckedDoubleToIntFunction implements DoubleToIntFunction {
 		private final ThrowingDoubleToIntFunction function;
+		CheckedDoubleToIntFunction(ThrowingDoubleToIntFunction function) {
+			this.function = function;
+		}
 		@Override public int applyAsInt(double value) {
 			try {
 				return function.applyAsInt(value);
@@ -1017,8 +1109,11 @@ public abstract class CheckedExceptionHandler {
 	public final DoubleToLongFunction fromDoubleToLongFunction(ThrowingDoubleToLongFunction function) {
 		return new CheckedDoubleToLongFunction(function);
 	}
-	@RequiredArgsConstructor private final class CheckedDoubleToLongFunction implements DoubleToLongFunction {
+	private final class CheckedDoubleToLongFunction implements DoubleToLongFunction {
 		private final ThrowingDoubleToLongFunction function;
+		CheckedDoubleToLongFunction(ThrowingDoubleToLongFunction function) {
+			this.function = function;
+		}
 		@Override public long applyAsLong(double value) {
 			try {
 				return function.applyAsLong(value);
@@ -1047,8 +1142,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> UnaryOperator<T> fromUnaryOperator(ThrowingUnaryOperator<T> operator) {
 		return new CheckedUnaryOperator<T>(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedUnaryOperator<T> implements UnaryOperator<T> {
+	private final class CheckedUnaryOperator<T> implements UnaryOperator<T> {
 		private final ThrowingUnaryOperator<T> operator;
+		CheckedUnaryOperator(ThrowingUnaryOperator<T> operator) {
+			this.operator = operator;
+		}
 		@Override public T apply(T operand) {
 			try {
 				return operator.apply(operand);
@@ -1077,8 +1175,11 @@ public abstract class CheckedExceptionHandler {
 	public final IntUnaryOperator fromIntUnaryOperator(ThrowingIntUnaryOperator operator) {
 		return new CheckedIntUnaryOperator(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedIntUnaryOperator implements IntUnaryOperator {
+	private final class CheckedIntUnaryOperator implements IntUnaryOperator {
 		private final ThrowingIntUnaryOperator operator;
+		CheckedIntUnaryOperator(ThrowingIntUnaryOperator operator) {
+			this.operator = operator;
+		}
 		@Override public int applyAsInt(int operand) {
 			try {
 				return operator.applyAsInt(operand);
@@ -1107,8 +1208,11 @@ public abstract class CheckedExceptionHandler {
 	public final LongUnaryOperator fromLongUnaryOperator(ThrowingLongUnaryOperator operator) {
 		return new CheckedLongUnaryOperator(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedLongUnaryOperator implements LongUnaryOperator {
+	private final class CheckedLongUnaryOperator implements LongUnaryOperator {
 		private final ThrowingLongUnaryOperator operator;
+		CheckedLongUnaryOperator(ThrowingLongUnaryOperator operator) {
+			this.operator = operator;
+		}
 		@Override public long applyAsLong(long operand) {
 			try {
 				return operator.applyAsLong(operand);
@@ -1137,8 +1241,11 @@ public abstract class CheckedExceptionHandler {
 	public final DoubleUnaryOperator fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator operator) {
 		return new CheckedDoubleUnaryOperator(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedDoubleUnaryOperator implements DoubleUnaryOperator {
+	private final class CheckedDoubleUnaryOperator implements DoubleUnaryOperator {
 		private final ThrowingDoubleUnaryOperator operator;
+		CheckedDoubleUnaryOperator(ThrowingDoubleUnaryOperator operator) {
+			this.operator = operator;
+		}
 		@Override public double applyAsDouble(double operand) {
 			try {
 				return operator.applyAsDouble(operand);
@@ -1167,8 +1274,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T, U, R> BiFunction<T, U, R> fromBiFunction(ThrowingBiFunction<T, U, R> function) {
 		return new CheckedBiFunction<T, U, R>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedBiFunction<T, U, R> implements BiFunction<T, U, R> {
+	private final class CheckedBiFunction<T, U, R> implements BiFunction<T, U, R> {
 		private final ThrowingBiFunction<T, U, R> function;
+		CheckedBiFunction(ThrowingBiFunction<T, U, R> function) {
+			this.function = function;
+		}
 		@Override public R apply(T t, U u) {
 			try {
 				return function.apply(t, u);
@@ -1197,8 +1307,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T, U> ToIntBiFunction<T, U> fromToIntBiFunction(ThrowingToIntBiFunction<T, U> function) {
 		return new CheckedToIntBiFunction<T, U>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedToIntBiFunction<T, U> implements ToIntBiFunction<T, U> {
+	private final class CheckedToIntBiFunction<T, U> implements ToIntBiFunction<T, U> {
 		private final ThrowingToIntBiFunction<T, U> function;
+		CheckedToIntBiFunction(ThrowingToIntBiFunction<T, U> function) {
+			this.function = function;
+		}
 		@Override public int applyAsInt(T t, U u) {
 			try {
 				return function.applyAsInt(t, u);
@@ -1227,8 +1340,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T, U> ToLongBiFunction<T, U> fromToLongBiFunction(ThrowingToLongBiFunction<T, U> function) {
 		return new CheckedToLongBiFunction<T, U>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedToLongBiFunction<T, U> implements ToLongBiFunction<T, U> {
+	private final class CheckedToLongBiFunction<T, U> implements ToLongBiFunction<T, U> {
 		private final ThrowingToLongBiFunction<T, U> function;
+		CheckedToLongBiFunction(ThrowingToLongBiFunction<T, U> function) {
+			this.function = function;
+		}
 		@Override public long applyAsLong(T t, U u) {
 			try {
 				return function.applyAsLong(t, u);
@@ -1257,8 +1373,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T, U> ToDoubleBiFunction<T, U> fromToDoubleBiFunction(ThrowingToDoubleBiFunction<T, U> function) {
 		return new CheckedToDoubleBiFunction<T, U>(function);
 	}
-	@RequiredArgsConstructor private final class CheckedToDoubleBiFunction<T, U> implements ToDoubleBiFunction<T, U> {
+	private final class CheckedToDoubleBiFunction<T, U> implements ToDoubleBiFunction<T, U> {
 		private final ThrowingToDoubleBiFunction<T, U> function;
+		CheckedToDoubleBiFunction(ThrowingToDoubleBiFunction<T, U> function) {
+			this.function = function;
+		}
 		@Override public double applyAsDouble(T t, U u) {
 			try {
 				return function.applyAsDouble(t, u);
@@ -1287,8 +1406,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> BinaryOperator<T> fromBinaryOperator(ThrowingBinaryOperator<T> operator) {
 		return new CheckedBinaryOperator<T>(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedBinaryOperator<T> implements BinaryOperator<T> {
+	private final class CheckedBinaryOperator<T> implements BinaryOperator<T> {
 		private final ThrowingBinaryOperator<T> operator;
+		CheckedBinaryOperator(ThrowingBinaryOperator<T> operator) {
+			this.operator = operator;
+		}
 		@Override public T apply(T left, T right) {
 			try {
 				return operator.apply(left, right);
@@ -1317,8 +1439,11 @@ public abstract class CheckedExceptionHandler {
 	public final IntBinaryOperator fromIntBinaryOperator(ThrowingIntBinaryOperator operator) {
 		return new CheckedIntBinaryOperator(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedIntBinaryOperator implements IntBinaryOperator {
+	private final class CheckedIntBinaryOperator implements IntBinaryOperator {
 		private final ThrowingIntBinaryOperator operator;
+		CheckedIntBinaryOperator(ThrowingIntBinaryOperator operator) {
+			this.operator = operator;
+		}
 		@Override public int applyAsInt(int left, int right) {
 			try {
 				return operator.applyAsInt(left, right);
@@ -1347,8 +1472,11 @@ public abstract class CheckedExceptionHandler {
 	public final LongBinaryOperator fromLongBinaryOperator(ThrowingLongBinaryOperator operator) {
 		return new CheckedLongBinaryOperator(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedLongBinaryOperator implements LongBinaryOperator {
+	private final class CheckedLongBinaryOperator implements LongBinaryOperator {
 		private final ThrowingLongBinaryOperator operator;
+		CheckedLongBinaryOperator(ThrowingLongBinaryOperator operator) {
+			this.operator = operator;
+		}
 		@Override public long applyAsLong(long left, long right) {
 			try {
 				return operator.applyAsLong(left, right);
@@ -1377,8 +1505,11 @@ public abstract class CheckedExceptionHandler {
 	public final DoubleBinaryOperator fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator operator) {
 		return new CheckedDoubleBinaryOperator(operator);
 	}
-	@RequiredArgsConstructor private final class CheckedDoubleBinaryOperator implements DoubleBinaryOperator {
+	private final class CheckedDoubleBinaryOperator implements DoubleBinaryOperator {
 		private final ThrowingDoubleBinaryOperator operator;
+		CheckedDoubleBinaryOperator(ThrowingDoubleBinaryOperator operator) {
+			this.operator = operator;
+		}
 		@Override public double applyAsDouble(double left, double right) {
 			try {
 				return operator.applyAsDouble(left, right);
@@ -1407,8 +1538,11 @@ public abstract class CheckedExceptionHandler {
 	public final <T> Comparator<T> comparator(ThrowingComparator<T> comparator) {
 		return new CheckedComparator<T>(comparator);
 	}
-	@RequiredArgsConstructor private final class CheckedComparator<T> implements Comparator<T> {
+	private final class CheckedComparator<T> implements Comparator<T> {
 		private final ThrowingComparator<T> comparator;
+		CheckedComparator(ThrowingComparator<T> comparator) {
+			this.comparator = comparator;
+		}
 		@Override public int compare(T left, T right) {
 			try {
 				return comparator.compare(left, right);

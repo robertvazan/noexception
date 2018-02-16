@@ -2,11 +2,14 @@
 package com.machinezoo.noexception.optional;
 
 import java.util.function.*;
-import lombok.*;
 
-@RequiredArgsConstructor final class DefaultIntUnaryOperator implements IntUnaryOperator {
+final class DefaultIntUnaryOperator implements IntUnaryOperator {
 	private final OptionalIntUnaryOperator inner;
 	private final int result;
+	public DefaultIntUnaryOperator(OptionalIntUnaryOperator inner, int result) {
+		this.inner = inner;
+		this.result = result;
+	}
 	@Override public int applyAsInt(int operand) {
 		return inner.apply(operand).orElse(result);
 	}

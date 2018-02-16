@@ -7,10 +7,9 @@ import static org.mockito.Mockito.*;
 import java.awt.print.*;
 import org.junit.*;
 import com.machinezoo.noexception.throwing.*;
-import lombok.*;
 
 public class CheckedExceptionHandlerTest {
-	@Test @SneakyThrows public void runnable_complete() {
+	@Test public void runnable_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingRunnable lambda = mock(ThrowingRunnable.class);
 		collector.runnable(lambda).run();
@@ -28,7 +27,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void supplier_complete() {
+	@Test public void supplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingSupplier<String> lambda = mock(ThrowingSupplier.class);
 		when(lambda.get()).thenReturn("value");
@@ -47,7 +46,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntSupplier_complete() {
+	@Test public void fromIntSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntSupplier lambda = mock(ThrowingIntSupplier.class);
 		when(lambda.getAsInt()).thenReturn(2);
@@ -66,7 +65,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongSupplier_complete() {
+	@Test public void fromLongSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongSupplier lambda = mock(ThrowingLongSupplier.class);
 		when(lambda.getAsLong()).thenReturn(2L);
@@ -85,7 +84,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoubleSupplier_complete() {
+	@Test public void fromDoubleSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleSupplier lambda = mock(ThrowingDoubleSupplier.class);
 		when(lambda.getAsDouble()).thenReturn(2.0);
@@ -104,7 +103,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromBooleanSupplier_complete() {
+	@Test public void fromBooleanSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingBooleanSupplier lambda = mock(ThrowingBooleanSupplier.class);
 		when(lambda.getAsBoolean()).thenReturn(true);
@@ -123,7 +122,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void consumer_complete() {
+	@Test public void consumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingConsumer<String> lambda = mock(ThrowingConsumer.class);
 		collector.consumer(lambda).accept("input");
@@ -141,7 +140,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntConsumer_complete() {
+	@Test public void fromIntConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntConsumer lambda = mock(ThrowingIntConsumer.class);
 		collector.fromIntConsumer(lambda).accept(1);
@@ -159,7 +158,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongConsumer_complete() {
+	@Test public void fromLongConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongConsumer lambda = mock(ThrowingLongConsumer.class);
 		collector.fromLongConsumer(lambda).accept(1L);
@@ -177,7 +176,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoubleConsumer_complete() {
+	@Test public void fromDoubleConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleConsumer lambda = mock(ThrowingDoubleConsumer.class);
 		collector.fromDoubleConsumer(lambda).accept(1.0);
@@ -195,7 +194,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromBiConsumer_complete() {
+	@Test public void fromBiConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBiConsumer<String, String> lambda = mock(ThrowingBiConsumer.class);
 		collector.fromBiConsumer(lambda).accept("input1", "input2");
@@ -213,7 +212,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromObjIntConsumer_complete() {
+	@Test public void fromObjIntConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjIntConsumer<String> lambda = mock(ThrowingObjIntConsumer.class);
 		collector.fromObjIntConsumer(lambda).accept("input", 1);
@@ -231,7 +230,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromObjLongConsumer_complete() {
+	@Test public void fromObjLongConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjLongConsumer<String> lambda = mock(ThrowingObjLongConsumer.class);
 		collector.fromObjLongConsumer(lambda).accept("input", 1L);
@@ -249,7 +248,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromObjDoubleConsumer_complete() {
+	@Test public void fromObjDoubleConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjDoubleConsumer<String> lambda = mock(ThrowingObjDoubleConsumer.class);
 		collector.fromObjDoubleConsumer(lambda).accept("input", 1.0);
@@ -267,7 +266,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void predicate_complete() {
+	@Test public void predicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingPredicate<String> lambda = mock(ThrowingPredicate.class);
 		when(lambda.test("input")).thenReturn(true);
@@ -286,7 +285,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntPredicate_complete() {
+	@Test public void fromIntPredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntPredicate lambda = mock(ThrowingIntPredicate.class);
 		when(lambda.test(1)).thenReturn(true);
@@ -305,7 +304,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongPredicate_complete() {
+	@Test public void fromLongPredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongPredicate lambda = mock(ThrowingLongPredicate.class);
 		when(lambda.test(1L)).thenReturn(true);
@@ -324,7 +323,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoublePredicate_complete() {
+	@Test public void fromDoublePredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoublePredicate lambda = mock(ThrowingDoublePredicate.class);
 		when(lambda.test(1.0)).thenReturn(true);
@@ -343,7 +342,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromBiPredicate_complete() {
+	@Test public void fromBiPredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBiPredicate<String, String> lambda = mock(ThrowingBiPredicate.class);
 		when(lambda.test("input1", "input2")).thenReturn(true);
@@ -362,7 +361,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void function_complete() {
+	@Test public void function_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingFunction<String, String> lambda = mock(ThrowingFunction.class);
 		when(lambda.apply("input")).thenReturn("value");
@@ -381,7 +380,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromToIntFunction_complete() {
+	@Test public void fromToIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToIntFunction<String> lambda = mock(ThrowingToIntFunction.class);
 		when(lambda.applyAsInt("input")).thenReturn(2);
@@ -400,7 +399,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntFunction_complete() {
+	@Test public void fromIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingIntFunction<String> lambda = mock(ThrowingIntFunction.class);
 		when(lambda.apply(1)).thenReturn("value");
@@ -419,7 +418,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntToLongFunction_complete() {
+	@Test public void fromIntToLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntToLongFunction lambda = mock(ThrowingIntToLongFunction.class);
 		when(lambda.applyAsLong(1)).thenReturn(2L);
@@ -438,7 +437,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntToDoubleFunction_complete() {
+	@Test public void fromIntToDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntToDoubleFunction lambda = mock(ThrowingIntToDoubleFunction.class);
 		when(lambda.applyAsDouble(1)).thenReturn(2.0);
@@ -457,7 +456,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromToLongFunction_complete() {
+	@Test public void fromToLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToLongFunction<String> lambda = mock(ThrowingToLongFunction.class);
 		when(lambda.applyAsLong("input")).thenReturn(2L);
@@ -476,7 +475,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongFunction_complete() {
+	@Test public void fromLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingLongFunction<String> lambda = mock(ThrowingLongFunction.class);
 		when(lambda.apply(1L)).thenReturn("value");
@@ -495,7 +494,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongToIntFunction_complete() {
+	@Test public void fromLongToIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongToIntFunction lambda = mock(ThrowingLongToIntFunction.class);
 		when(lambda.applyAsInt(1L)).thenReturn(2);
@@ -514,7 +513,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongToDoubleFunction_complete() {
+	@Test public void fromLongToDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongToDoubleFunction lambda = mock(ThrowingLongToDoubleFunction.class);
 		when(lambda.applyAsDouble(1L)).thenReturn(2.0);
@@ -533,7 +532,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromToDoubleFunction_complete() {
+	@Test public void fromToDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToDoubleFunction<String> lambda = mock(ThrowingToDoubleFunction.class);
 		when(lambda.applyAsDouble("input")).thenReturn(2.0);
@@ -552,7 +551,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoubleFunction_complete() {
+	@Test public void fromDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingDoubleFunction<String> lambda = mock(ThrowingDoubleFunction.class);
 		when(lambda.apply(1.0)).thenReturn("value");
@@ -571,7 +570,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoubleToIntFunction_complete() {
+	@Test public void fromDoubleToIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleToIntFunction lambda = mock(ThrowingDoubleToIntFunction.class);
 		when(lambda.applyAsInt(1.0)).thenReturn(2);
@@ -590,7 +589,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoubleToLongFunction_complete() {
+	@Test public void fromDoubleToLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleToLongFunction lambda = mock(ThrowingDoubleToLongFunction.class);
 		when(lambda.applyAsLong(1.0)).thenReturn(2L);
@@ -609,7 +608,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromUnaryOperator_complete() {
+	@Test public void fromUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingUnaryOperator<String> lambda = mock(ThrowingUnaryOperator.class);
 		when(lambda.apply("input")).thenReturn("value");
@@ -628,7 +627,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntUnaryOperator_complete() {
+	@Test public void fromIntUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntUnaryOperator lambda = mock(ThrowingIntUnaryOperator.class);
 		when(lambda.applyAsInt(1)).thenReturn(2);
@@ -647,7 +646,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongUnaryOperator_complete() {
+	@Test public void fromLongUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongUnaryOperator lambda = mock(ThrowingLongUnaryOperator.class);
 		when(lambda.applyAsLong(1L)).thenReturn(2L);
@@ -666,7 +665,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoubleUnaryOperator_complete() {
+	@Test public void fromDoubleUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleUnaryOperator lambda = mock(ThrowingDoubleUnaryOperator.class);
 		when(lambda.applyAsDouble(1.0)).thenReturn(2.0);
@@ -685,7 +684,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromBiFunction_complete() {
+	@Test public void fromBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBiFunction<String, String, String> lambda = mock(ThrowingBiFunction.class);
 		when(lambda.apply("input1", "input2")).thenReturn("value");
@@ -704,7 +703,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromToIntBiFunction_complete() {
+	@Test public void fromToIntBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToIntBiFunction<String, String> lambda = mock(ThrowingToIntBiFunction.class);
 		when(lambda.applyAsInt("input1", "input2")).thenReturn(2);
@@ -723,7 +722,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromToLongBiFunction_complete() {
+	@Test public void fromToLongBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToLongBiFunction<String, String> lambda = mock(ThrowingToLongBiFunction.class);
 		when(lambda.applyAsLong("input1", "input2")).thenReturn(2L);
@@ -742,7 +741,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromToDoubleBiFunction_complete() {
+	@Test public void fromToDoubleBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToDoubleBiFunction<String, String> lambda = mock(ThrowingToDoubleBiFunction.class);
 		when(lambda.applyAsDouble("input1", "input2")).thenReturn(2.0);
@@ -761,7 +760,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromBinaryOperator_complete() {
+	@Test public void fromBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBinaryOperator<String> lambda = mock(ThrowingBinaryOperator.class);
 		when(lambda.apply("input1", "input2")).thenReturn("value");
@@ -780,7 +779,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromIntBinaryOperator_complete() {
+	@Test public void fromIntBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntBinaryOperator lambda = mock(ThrowingIntBinaryOperator.class);
 		when(lambda.applyAsInt(11, 12)).thenReturn(2);
@@ -799,7 +798,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromLongBinaryOperator_complete() {
+	@Test public void fromLongBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongBinaryOperator lambda = mock(ThrowingLongBinaryOperator.class);
 		when(lambda.applyAsLong(11L, 12L)).thenReturn(2L);
@@ -818,7 +817,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void fromDoubleBinaryOperator_complete() {
+	@Test public void fromDoubleBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleBinaryOperator lambda = mock(ThrowingDoubleBinaryOperator.class);
 		when(lambda.applyAsDouble(1.1, 1.2)).thenReturn(2.0);
@@ -837,7 +836,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void comparator_complete() {
+	@Test public void comparator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingComparator<String> lambda = mock(ThrowingComparator.class);
 		when(lambda.compare("input1", "input2")).thenReturn(2);
@@ -856,7 +855,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void run_complete() {
+	@Test public void run_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingRunnable lambda = mock(ThrowingRunnable.class);
 		collector.run(lambda);
@@ -874,7 +873,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void get_complete() {
+	@Test public void get_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingSupplier<String> lambda = mock(ThrowingSupplier.class);
 		when(lambda.get()).thenReturn("value");
@@ -893,7 +892,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void getAsInt_complete() {
+	@Test public void getAsInt_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntSupplier lambda = mock(ThrowingIntSupplier.class);
 		when(lambda.getAsInt()).thenReturn(2);
@@ -912,7 +911,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void getAsLong_complete() {
+	@Test public void getAsLong_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongSupplier lambda = mock(ThrowingLongSupplier.class);
 		when(lambda.getAsLong()).thenReturn(2L);
@@ -931,7 +930,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void getAsDouble_complete() {
+	@Test public void getAsDouble_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleSupplier lambda = mock(ThrowingDoubleSupplier.class);
 		when(lambda.getAsDouble()).thenReturn(2.0);
@@ -950,7 +949,7 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
-	@Test @SneakyThrows public void getAsBoolean_complete() {
+	@Test public void getAsBoolean_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingBooleanSupplier lambda = mock(ThrowingBooleanSupplier.class);
 		when(lambda.getAsBoolean()).thenReturn(true);

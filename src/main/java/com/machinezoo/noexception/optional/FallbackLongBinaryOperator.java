@@ -2,11 +2,14 @@
 package com.machinezoo.noexception.optional;
 
 import java.util.function.*;
-import lombok.*;
 
-@RequiredArgsConstructor final class FallbackLongBinaryOperator implements LongBinaryOperator {
+final class FallbackLongBinaryOperator implements LongBinaryOperator {
 	private final OptionalLongBinaryOperator inner;
 	private final LongSupplier source;
+	public FallbackLongBinaryOperator(OptionalLongBinaryOperator inner, LongSupplier source) {
+		this.inner = inner;
+		this.source = source;
+	}
 	@Override public long applyAsLong(long left, long right) {
 		return inner.apply(left, right).orElseGet(source);
 	}

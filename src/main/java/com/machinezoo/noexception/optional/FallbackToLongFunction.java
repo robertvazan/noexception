@@ -2,11 +2,14 @@
 package com.machinezoo.noexception.optional;
 
 import java.util.function.*;
-import lombok.*;
 
-@RequiredArgsConstructor final class FallbackToLongFunction<T> implements ToLongFunction<T> {
+final class FallbackToLongFunction<T> implements ToLongFunction<T> {
 	private final OptionalToLongFunction<T> inner;
 	private final LongSupplier source;
+	public FallbackToLongFunction(OptionalToLongFunction<T> inner, LongSupplier source) {
+		this.inner = inner;
+		this.source = source;
+	}
 	@Override public long applyAsLong(T value) {
 		return inner.apply(value).orElseGet(source);
 	}

@@ -549,11 +549,14 @@ EOF
 		echo "import java.util.function.*;"
 	fi
 	cat <<EOF
-import lombok.*;
 
-@RequiredArgsConstructor final class Default$1`type-signature $1` implements $1`type-signature $1` {
+final class Default$1`type-signature $1` implements $1`type-signature $1` {
 	private final Optional$1`type-signature $1` inner;
 	private final `return-type $1` result;
+	public Default$1(Optional$1`type-signature $1` inner, `return-type $1` result) {
+		this.inner = inner;
+		this.result = result;
+	}
 	@Override public `return-type $1` `as-method $1`(`declared-params $1`) {
 		return inner.`method-verb $1`(`passed-params $1`).orElse(result);
 	}
@@ -571,11 +574,14 @@ EOF
 	fi
 	cat <<EOF
 import java.util.function.*;
-import lombok.*;
 
-@RequiredArgsConstructor final class Fallback$1`type-signature $1` implements $1`type-signature $1` {
+final class Fallback$1`type-signature $1` implements $1`type-signature $1` {
 	private final Optional$1`type-signature $1` inner;
 	private final `supplier-of-return $1` source;
+	public Fallback$1(Optional$1`type-signature $1` inner, `supplier-of-return $1` source) {
+		this.inner = inner;
+		this.source = source;
+	}
 	@Override public `return-type $1` `as-method $1`(`declared-params $1`) {
 		return inner.`method-verb $1`(`passed-params $1`).orElseGet(source);
 	}
@@ -712,8 +718,11 @@ EOF
 	public final`space-left "$(type-signature $1)"` `catch-interface $1` `from-method $1`($1`type-signature $1` `short-name $1`) {
 		return new Catching$1`type-signature $1`(`short-name $1`);
 	}
-	@RequiredArgsConstructor private final class Catching$1`type-signature $1` implements `catch-interface $1` {
+	private final class Catching$1`type-signature $1` implements `catch-interface $1` {
 		private final $1`type-signature $1` `short-name $1`;
+		Catching$1($1`type-signature $1` `short-name $1`) {
+			this.`short-name $1` = `short-name $1`;
+		}
 		@Override public `optional-of $(return-type $1)` `method-verb $1`(`declared-params $1`) {
 			try {
 				`return-if-needed $1``make-optional-nullable $1 "$(short-name $1).$(as-method $1)($(passed-params $1))"`;
@@ -791,7 +800,6 @@ package com.machinezoo.noexception;
 import java.util.*;
 import java.util.function.*;
 import com.machinezoo.noexception.optional.*;
-import lombok.*;
 
 /**
  * Represents exception handling policy.
@@ -885,8 +893,11 @@ function checked-type {
 	public final`space-left "$(type-signature $1)"` $1`type-signature $1` `from-method $1`(Throwing$1`type-signature $1` `short-name $1`) {
 		return new Checked$1`type-signature $1`(`short-name $1`);
 	}
-	@RequiredArgsConstructor private final class Checked$1`type-signature $1` implements $1`type-signature $1` {
+	private final class Checked$1`type-signature $1` implements $1`type-signature $1` {
 		private final Throwing$1`type-signature $1` `short-name $1`;
+		Checked$1(Throwing$1`type-signature $1` `short-name $1`) {
+			this.`short-name $1` = `short-name $1`;
+		}
 		@Override public `return-type $1` `as-method $1`(`declared-params $1`) {
 			try {
 				`return-if-needed $1``short-name $1`.`as-method $1`(`passed-params $1`);
@@ -942,7 +953,6 @@ package com.machinezoo.noexception;
 import java.util.*;
 import java.util.function.*;
 import com.machinezoo.noexception.throwing.*;
-import lombok.*;
 
 /**
  * Represents downgrading policy for checked exceptions.
@@ -1294,7 +1304,7 @@ EOF
 exception-handler-test >$tdest/ExceptionHandlerTest.java
 function checked-type-test {
 	cat <<EOF
-	@Test @SneakyThrows public void `from-method $1`_complete() {
+	@Test public void `from-method $1`_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		`suppress-unchecked $1`Throwing$1`test-type-signature $1` lambda = mock(Throwing$1.class);
 EOF
@@ -1327,7 +1337,7 @@ EOF
 }
 function checked-method-test {
 	cat <<EOF
-	@Test @SneakyThrows public void `as-method $1`_complete() {
+	@Test public void `as-method $1`_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		`suppress-unchecked $1`Throwing$1`test-type-signature $1` lambda = mock(Throwing$1.class);
 EOF
@@ -1369,7 +1379,6 @@ import static org.mockito.Mockito.*;
 import java.awt.print.*;
 import org.junit.*;
 import com.machinezoo.noexception.throwing.*;
-import lombok.*;
 
 public class CheckedExceptionHandlerTest {
 EOF
