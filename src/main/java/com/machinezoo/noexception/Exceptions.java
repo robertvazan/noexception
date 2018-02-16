@@ -115,12 +115,15 @@ public final class Exceptions {
 	/**
 	 * Get {@code CheckedExceptionHandler} that lets through checked exceptions without declaring them.
 	 * All exceptions are allowed through unmodified, including checked ones, even though no checked exceptions are declared.
-	 * This exception handler works the same way as lombok's <a href="https://projectlombok.org/features/SneakyThrows.html">SneakyThrows</a>
-	 * and it is actually implemented using said lombok feature.
-	 * This is the recommended {@code CheckedExceptionHandler}, because it does not obfuscate the original exception in any way.
-	 * Use {@link #wrap()} if using this method is not possible.
 	 * <p>
 	 * Typical usage: {@code Exceptions.sneak().run(() -> my_throwing_lambda)}
+	 * <p>
+	 * This is the recommended {@code CheckedExceptionHandler}, because it does not obfuscate the original exception in any way.
+	 * Use {@link #wrap()} if using sneaky exceptions is not possible or not desirable.
+	 * <p>
+	 * Sneaky throw is implemented using a neat trick with type erasure
+	 * that persuades java compiler to tolerate throwing undeclared checked exception from specially crafted generic method.
+	 * The trick is safe. It is legal java code and JVMs do not mind it. It is just considered dirty by some developers.
 	 * 
 	 * @return exception handler that lets checked exceptions through
 	 * @see #wrap()
