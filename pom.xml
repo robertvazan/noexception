@@ -4,7 +4,7 @@
 
 	<groupId>com.machinezoo.noexception</groupId>
 	<artifactId>noexception</artifactId>
-	<version>1.3.0</version>
+	<version>1.3.1</version>
 	<packaging>jar</packaging>
 
 	<name>NoException</name>
