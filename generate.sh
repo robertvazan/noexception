@@ -413,6 +413,7 @@ function throwing-extends {
 function throwing {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.throwing;
 
 EOF
@@ -540,6 +541,7 @@ function optional-possibly-null {
 function optional-default {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.optional;
 
 EOF
@@ -566,6 +568,7 @@ EOF
 function optional-fallback {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.optional;
 
 EOF
@@ -591,6 +594,7 @@ EOF
 function optional {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.optional;
 
 EOF
@@ -795,6 +799,7 @@ EOF
 function write-handler {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception;
 
 import java.util.*;
@@ -948,6 +953,7 @@ EOF
 function write-checked {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception;
 
 import java.util.*;
@@ -1037,6 +1043,7 @@ function throwing-test-body {
 function throwing-test {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.throwing;
 
 import java.io.*;
@@ -1077,6 +1084,7 @@ done
 function optional-default-test {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.optional;
 
 import static org.junit.Assert.*;
@@ -1107,6 +1115,7 @@ EOF
 function optional-fallback-test {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.optional;
 
 import static org.junit.Assert.*;
@@ -1144,6 +1153,7 @@ EOF
 function optional-test {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.optional;
 
 import static org.junit.Assert.*;
@@ -1281,6 +1291,7 @@ EOF
 function exception-handler-test {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception;
 
 import static org.hamcrest.core.IsInstanceOf.*;
@@ -1371,6 +1382,7 @@ EOF
 function checked-exception-handler-test {
 	cat <<EOF
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception;
 
 import static org.hamcrest.core.IsInstanceOf.*;

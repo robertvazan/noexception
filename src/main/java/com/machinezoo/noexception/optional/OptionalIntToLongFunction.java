@@ -1,4 +1,5 @@
 // Part of NoException: https://noexception.machinezoo.com
+// Generated code. Edit generate.sh instead.
 package com.machinezoo.noexception.optional;
 
 import java.util.*;
