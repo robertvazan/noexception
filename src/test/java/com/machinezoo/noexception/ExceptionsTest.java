@@ -3,14 +3,17 @@ package com.machinezoo.noexception;
 
 import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 import java.io.*;
 import org.junit.*;
-import org.slf4j.*;
+import uk.org.lidalia.slf4jtest.*;
 
 public class ExceptionsTest {
+	TestLogger sharedLogger = TestLoggerFactory.getTestLogger(Exceptions.class);
+	TestLogger customLogger = TestLoggerFactory.getTestLogger(ExceptionsTest.class);
+	@Before public void initialize() {
+		sharedLogger.clear();
+		customLogger.clear();
+	}
 	@Test(expected = NumberFormatException.class) public void pass_runtime() {
 		Exceptions.pass().run(() -> {
 			throw new NumberFormatException();
@@ -118,30 +121,38 @@ public class ExceptionsTest {
 		Exceptions.log().run(() -> {
 			throw new NumberFormatException();
 		});
+		assertEquals(1, sharedLogger.getLoggingEvents().size());
+		LoggingEvent event = sharedLogger.getLoggingEvents().get(0);
+		assertThat(event.getThrowable().orNull(), instanceOf(NumberFormatException.class));
+		assertEquals("Caught exception", event.getMessage());
 	}
 	@Test public void log_error() {
 		Exceptions.log().run(() -> {
 			throw new IOError(new IOException());
 		});
+		assertEquals(1, sharedLogger.getLoggingEvents().size());
+		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orNull(), instanceOf(IOError.class));
 	}
 	@Test public void log_interrupt() {
 		Exceptions.log().run(Exceptions.sneak().runnable(() -> {
 			throw new InterruptedException();
 		}));
 		assertTrue(Thread.interrupted());
+		assertEquals(1, sharedLogger.getLoggingEvents().size());
+		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orNull(), instanceOf(InterruptedException.class));
 	}
 	@Test public void logTo() {
-		Logger logger = mock(Logger.class);
-		Exceptions.log(logger).run(() -> {
+		Exceptions.log(customLogger).run(() -> {
 			throw new NumberFormatException();
 		});
-		verify(logger, only()).error(eq("Caught exception"), any(NumberFormatException.class));
+		assertEquals(0, sharedLogger.getLoggingEvents().size());
+		assertEquals(1, customLogger.getLoggingEvents().size());
 	}
 	@Test public void logToWithMessage() {
-		Logger logger = mock(Logger.class);
-		Exceptions.log(logger, "Commented exception").run(() -> {
+		Exceptions.log(customLogger, "Commented exception").run(() -> {
 			throw new NumberFormatException();
 		});
-		verify(logger, only()).error(eq("Commented exception"), any(NumberFormatException.class));
+		assertEquals(1, customLogger.getLoggingEvents().size());
+		assertEquals("Commented exception", customLogger.getLoggingEvents().get(0).getMessage());
 	}
 }
