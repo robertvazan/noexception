@@ -1,5 +1,5 @@
 // Part of NoException: https://noexception.machinezoo.com
-// Generated code. Edit generate.sh instead.
+// Generated code. Edit generate.py instead.
 package com.machinezoo.noexception.throwing;
 
 import java.util.function.*;
