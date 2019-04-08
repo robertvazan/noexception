@@ -3,10 +3,9 @@ package com.machinezoo.noexception;
 
 final class ExceptionSmuggler extends CheckedExceptionHandler {
 	@Override public RuntimeException handle(Exception exception) {
-		ExceptionSmuggler.<RuntimeException>rethrow(exception);
-		return new IllegalStateException();
+		return sneak(exception);
 	}
-	@SuppressWarnings("unchecked") static <T extends Throwable> void rethrow(Throwable exception) throws T {
+	@SuppressWarnings("unchecked") static <T extends Throwable> RuntimeException sneak(Throwable exception) throws T {
 		throw (T)exception;
 	}
 }
