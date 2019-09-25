@@ -27,8 +27,8 @@
 	</developers>
 
 	<scm>
-		<connection>scm:hg:https://bitbucket.org/robertvazan/noexception</connection>
-		<developerConnection>scm:hg:https://bitbucket.org/robertvazan/noexception</developerConnection>
+		<connection>scm:git:https://bitbucket.org/robertvazan/noexception</connection>
+		<developerConnection>scm:git:https://bitbucket.org/robertvazan/noexception</developerConnection>
 		<url>https://bitbucket.org/robertvazan/noexception</url>
 	</scm>
 
