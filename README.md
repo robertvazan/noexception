@@ -6,8 +6,9 @@ NoException is a Java library for handling exceptions in concise, unified, and a
 System.out.println(Exceptions.log().get(() -> "test".substring(5)).orElse("fallback"));
 ```
 
-* [Homepage](https://noexception.machinezoo.com/) - Download, tutorial, API overview, alternatives, contact.
-* [Javadoc](https://noexception.machinezoo.com/javadoc) - API reference documentation.
-* [Sources](https://bitbucket.org/robertvazan/noexception/src) - Primary repository, preferred for pull requests.
-* [License](https://www.apache.org/licenses/LICENSE-2.0) - Distributed under Apache License 2.0.
+* Documentation: [Tutorial](https://noexception.machinezoo.com/), [Javadoc](https://noexception.machinezoo.com/javadoc/overview-summary.html)
+* Download: see [Tutorial](https://noexception.machinezoo.com/)
+* Sources: [GitHub](https://github.com/robertvazan/noexception), [Bitbucket](https://bitbucket.org/robertvazan/noexception)
+* Issues: [GitHub](https://github.com/robertvazan/noexception/issues), [Bitbucket](https://bitbucket.org/robertvazan/noexception/issues)
+* License: [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
