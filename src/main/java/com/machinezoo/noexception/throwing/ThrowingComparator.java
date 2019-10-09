@@ -2,6 +2,7 @@
 // Generated code. Edit generate.py instead.
 package com.machinezoo.noexception.throwing;
 
+import java.util.*;
 import com.machinezoo.noexception.*;
 
 /**

@@ -378,6 +378,8 @@ def redirect(path, generator):
 
 def throwing_source(fn):
     output(file_header('.throwing'))
+    if fn == 'Comparator':
+        output('import java.util.*;')
     if fn not in ['Runnable', 'Comparator']:
         output('import java.util.function.*;')
     from_method_ref = 'CheckedExceptionHandler#' + from_method(fn) + '(Throwing' + fn + ')'
