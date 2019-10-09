@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link DoubleToIntFunction#applyAsInt(double)}
 	 * @return see {@link DoubleToIntFunction#applyAsInt(double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleToIntFunction(ThrowingDoubleToIntFunction)
 	 * @see DoubleToIntFunction#applyAsInt(double)
 	 */
-	int applyAsInt(double value) throws Exception;
+	int applyAsInt(double value) throws Throwable;
 }

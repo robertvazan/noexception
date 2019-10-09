@@ -21,5 +21,12 @@ public class ThrowingDoubleSupplierTest {
 			else
 				return 2.0;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(() -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return 2.0;
+		});
 	}
 }

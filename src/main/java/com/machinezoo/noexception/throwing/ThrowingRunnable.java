@@ -17,10 +17,10 @@ import com.machinezoo.noexception.*;
 	/**
 	 * Variation of {@link Runnable#run()} that allows throwing checked exceptions.
 	 * 
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#runnable(ThrowingRunnable)
 	 * @see Runnable#run()
 	 */
-	void run() throws Exception;
+	void run() throws Throwable;
 }

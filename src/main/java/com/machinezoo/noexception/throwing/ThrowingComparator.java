@@ -24,10 +24,10 @@ import com.machinezoo.noexception.*;
 	 * @param right
 	 *            see {@link Comparator#compare(Object, Object)}
 	 * @return see {@link Comparator#compare(Object, Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#comparator(ThrowingComparator)
 	 * @see Comparator#compare(Object, Object)
 	 */
-	int compare(T left, T right) throws Exception;
+	int compare(T left, T right) throws Throwable;
 }

@@ -27,10 +27,10 @@ import com.machinezoo.noexception.*;
 	 * @param u
 	 *            see {@link BiPredicate#test(Object, Object)}
 	 * @return see {@link BiPredicate#test(Object, Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromBiPredicate(ThrowingBiPredicate)
 	 * @see BiPredicate#test(Object, Object)
 	 */
-	boolean test(T t, U u) throws Exception;
+	boolean test(T t, U u) throws Throwable;
 }

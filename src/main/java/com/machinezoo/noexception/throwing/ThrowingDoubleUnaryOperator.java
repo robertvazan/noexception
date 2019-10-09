@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param operand
 	 *            see {@link DoubleUnaryOperator#applyAsDouble(double)}
 	 * @return see {@link DoubleUnaryOperator#applyAsDouble(double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator)
 	 * @see DoubleUnaryOperator#applyAsDouble(double)
 	 */
-	double applyAsDouble(double operand) throws Exception;
+	double applyAsDouble(double operand) throws Throwable;
 }

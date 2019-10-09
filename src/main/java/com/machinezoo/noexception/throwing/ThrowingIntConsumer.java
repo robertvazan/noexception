@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * 
 	 * @param value
 	 *            see {@link IntConsumer#accept(int)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntConsumer(ThrowingIntConsumer)
 	 * @see IntConsumer#accept(int)
 	 */
-	void accept(int value) throws Exception;
+	void accept(int value) throws Throwable;
 }

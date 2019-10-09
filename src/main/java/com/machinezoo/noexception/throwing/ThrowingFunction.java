@@ -25,10 +25,10 @@ import com.machinezoo.noexception.*;
 	 * @param t
 	 *            see {@link Function#apply(Object)}
 	 * @return see {@link Function#apply(Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#function(ThrowingFunction)
 	 * @see Function#apply(Object)
 	 */
-	R apply(T t) throws Exception;
+	R apply(T t) throws Throwable;
 }

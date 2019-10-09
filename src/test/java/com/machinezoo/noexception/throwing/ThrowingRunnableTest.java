@@ -22,5 +22,12 @@ public class ThrowingRunnableTest {
 			else
 				return ;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(() -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return ;
+		});
 	}
 }

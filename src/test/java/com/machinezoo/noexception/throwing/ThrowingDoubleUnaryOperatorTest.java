@@ -21,5 +21,12 @@ public class ThrowingDoubleUnaryOperatorTest {
 			else
 				return 2.0;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(o -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return 2.0;
+		});
 	}
 }

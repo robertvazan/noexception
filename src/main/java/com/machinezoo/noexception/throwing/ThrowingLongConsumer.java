@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * 
 	 * @param value
 	 *            see {@link LongConsumer#accept(long)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongConsumer(ThrowingLongConsumer)
 	 * @see LongConsumer#accept(long)
 	 */
-	void accept(long value) throws Exception;
+	void accept(long value) throws Throwable;
 }

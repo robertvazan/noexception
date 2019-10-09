@@ -24,10 +24,10 @@ import com.machinezoo.noexception.*;
 	 *            see {@link ObjDoubleConsumer#accept(Object, double)}
 	 * @param value
 	 *            see {@link ObjDoubleConsumer#accept(Object, double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromObjDoubleConsumer(ThrowingObjDoubleConsumer)
 	 * @see ObjDoubleConsumer#accept(Object, double)
 	 */
-	void accept(T t, double value) throws Exception;
+	void accept(T t, double value) throws Throwable;
 }

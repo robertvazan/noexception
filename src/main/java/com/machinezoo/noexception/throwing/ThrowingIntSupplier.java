@@ -19,10 +19,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link IntSupplier#getAsInt()} that allows throwing checked exceptions.
 	 * 
 	 * @return see {@link IntSupplier#getAsInt()}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntSupplier(ThrowingIntSupplier)
 	 * @see IntSupplier#getAsInt()
 	 */
-	int getAsInt() throws Exception;
+	int getAsInt() throws Throwable;
 }

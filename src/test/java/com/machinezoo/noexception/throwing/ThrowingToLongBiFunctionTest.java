@@ -21,5 +21,12 @@ public class ThrowingToLongBiFunctionTest {
 			else
 				return 2L;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing((t, u) -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return 2L;
+		});
 	}
 }

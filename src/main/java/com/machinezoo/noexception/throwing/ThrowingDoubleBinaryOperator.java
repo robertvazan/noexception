@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param right
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
 	 * @return see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator)
 	 * @see DoubleBinaryOperator#applyAsDouble(double, double)
 	 */
-	double applyAsDouble(double left, double right) throws Exception;
+	double applyAsDouble(double left, double right) throws Throwable;
 }

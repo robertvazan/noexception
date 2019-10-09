@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param right
 	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @return see {@link LongBinaryOperator#applyAsLong(long, long)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongBinaryOperator(ThrowingLongBinaryOperator)
 	 * @see LongBinaryOperator#applyAsLong(long, long)
 	 */
-	long applyAsLong(long left, long right) throws Exception;
+	long applyAsLong(long left, long right) throws Throwable;
 }

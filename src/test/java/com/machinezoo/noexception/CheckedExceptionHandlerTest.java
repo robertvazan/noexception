@@ -28,6 +28,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void runnable_runtime() {
+		try {
+			new CheckedExceptionCollector().runnable(() -> {
+				throw new IllegalArgumentException();
+			}).run();
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void runnable_error() {
+		try {
+			new CheckedExceptionCollector().runnable(() -> {
+				throw new AssertionError();
+			}).run();
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void supplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingSupplier<String> lambda = mock(ThrowingSupplier.class);
@@ -46,6 +64,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void supplier_runtime() {
+		try {
+			new CheckedExceptionCollector().supplier(() -> {
+				throw new IllegalArgumentException();
+			}).get();
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void supplier_error() {
+		try {
+			new CheckedExceptionCollector().supplier(() -> {
+				throw new AssertionError();
+			}).get();
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromIntSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -66,6 +102,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromIntSupplier_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntSupplier(() -> {
+				throw new IllegalArgumentException();
+			}).getAsInt();
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntSupplier_error() {
+		try {
+			new CheckedExceptionCollector().fromIntSupplier(() -> {
+				throw new AssertionError();
+			}).getAsInt();
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromLongSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongSupplier lambda = mock(ThrowingLongSupplier.class);
@@ -84,6 +138,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromLongSupplier_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongSupplier(() -> {
+				throw new IllegalArgumentException();
+			}).getAsLong();
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongSupplier_error() {
+		try {
+			new CheckedExceptionCollector().fromLongSupplier(() -> {
+				throw new AssertionError();
+			}).getAsLong();
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromDoubleSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -104,6 +176,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromDoubleSupplier_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoubleSupplier(() -> {
+				throw new IllegalArgumentException();
+			}).getAsDouble();
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoubleSupplier_error() {
+		try {
+			new CheckedExceptionCollector().fromDoubleSupplier(() -> {
+				throw new AssertionError();
+			}).getAsDouble();
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromBooleanSupplier_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingBooleanSupplier lambda = mock(ThrowingBooleanSupplier.class);
@@ -123,6 +213,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromBooleanSupplier_runtime() {
+		try {
+			new CheckedExceptionCollector().fromBooleanSupplier(() -> {
+				throw new IllegalArgumentException();
+			}).getAsBoolean();
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromBooleanSupplier_error() {
+		try {
+			new CheckedExceptionCollector().fromBooleanSupplier(() -> {
+				throw new AssertionError();
+			}).getAsBoolean();
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void consumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingConsumer<String> lambda = mock(ThrowingConsumer.class);
@@ -140,6 +248,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void consumer_runtime() {
+		try {
+			new CheckedExceptionCollector().consumer(t -> {
+				throw new IllegalArgumentException();
+			}).accept("input");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void consumer_error() {
+		try {
+			new CheckedExceptionCollector().consumer(t -> {
+				throw new AssertionError();
+			}).accept("input");
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromIntConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -159,6 +285,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromIntConsumer_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntConsumer(v -> {
+				throw new IllegalArgumentException();
+			}).accept(1);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntConsumer_error() {
+		try {
+			new CheckedExceptionCollector().fromIntConsumer(v -> {
+				throw new AssertionError();
+			}).accept(1);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromLongConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongConsumer lambda = mock(ThrowingLongConsumer.class);
@@ -176,6 +320,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromLongConsumer_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongConsumer(v -> {
+				throw new IllegalArgumentException();
+			}).accept(1L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongConsumer_error() {
+		try {
+			new CheckedExceptionCollector().fromLongConsumer(v -> {
+				throw new AssertionError();
+			}).accept(1L);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromDoubleConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -195,6 +357,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromDoubleConsumer_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoubleConsumer(v -> {
+				throw new IllegalArgumentException();
+			}).accept(1.0);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoubleConsumer_error() {
+		try {
+			new CheckedExceptionCollector().fromDoubleConsumer(v -> {
+				throw new AssertionError();
+			}).accept(1.0);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromBiConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBiConsumer<String, String> lambda = mock(ThrowingBiConsumer.class);
@@ -212,6 +392,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromBiConsumer_runtime() {
+		try {
+			new CheckedExceptionCollector().fromBiConsumer((t, u) -> {
+				throw new IllegalArgumentException();
+			}).accept("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromBiConsumer_error() {
+		try {
+			new CheckedExceptionCollector().fromBiConsumer((t, u) -> {
+				throw new AssertionError();
+			}).accept("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromObjIntConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -231,6 +429,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromObjIntConsumer_runtime() {
+		try {
+			new CheckedExceptionCollector().fromObjIntConsumer((t, v) -> {
+				throw new IllegalArgumentException();
+			}).accept("input", 1);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromObjIntConsumer_error() {
+		try {
+			new CheckedExceptionCollector().fromObjIntConsumer((t, v) -> {
+				throw new AssertionError();
+			}).accept("input", 1);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromObjLongConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjLongConsumer<String> lambda = mock(ThrowingObjLongConsumer.class);
@@ -249,6 +465,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromObjLongConsumer_runtime() {
+		try {
+			new CheckedExceptionCollector().fromObjLongConsumer((t, v) -> {
+				throw new IllegalArgumentException();
+			}).accept("input", 1L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromObjLongConsumer_error() {
+		try {
+			new CheckedExceptionCollector().fromObjLongConsumer((t, v) -> {
+				throw new AssertionError();
+			}).accept("input", 1L);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromObjDoubleConsumer_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjDoubleConsumer<String> lambda = mock(ThrowingObjDoubleConsumer.class);
@@ -266,6 +500,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromObjDoubleConsumer_runtime() {
+		try {
+			new CheckedExceptionCollector().fromObjDoubleConsumer((t, v) -> {
+				throw new IllegalArgumentException();
+			}).accept("input", 1.0);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromObjDoubleConsumer_error() {
+		try {
+			new CheckedExceptionCollector().fromObjDoubleConsumer((t, v) -> {
+				throw new AssertionError();
+			}).accept("input", 1.0);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void predicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -286,6 +538,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void predicate_runtime() {
+		try {
+			new CheckedExceptionCollector().predicate(t -> {
+				throw new IllegalArgumentException();
+			}).test("input");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void predicate_error() {
+		try {
+			new CheckedExceptionCollector().predicate(t -> {
+				throw new AssertionError();
+			}).test("input");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromIntPredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntPredicate lambda = mock(ThrowingIntPredicate.class);
@@ -304,6 +574,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromIntPredicate_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntPredicate(v -> {
+				throw new IllegalArgumentException();
+			}).test(1);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntPredicate_error() {
+		try {
+			new CheckedExceptionCollector().fromIntPredicate(v -> {
+				throw new AssertionError();
+			}).test(1);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromLongPredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -324,6 +612,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromLongPredicate_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongPredicate(v -> {
+				throw new IllegalArgumentException();
+			}).test(1L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongPredicate_error() {
+		try {
+			new CheckedExceptionCollector().fromLongPredicate(v -> {
+				throw new AssertionError();
+			}).test(1L);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromDoublePredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoublePredicate lambda = mock(ThrowingDoublePredicate.class);
@@ -342,6 +648,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromDoublePredicate_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoublePredicate(v -> {
+				throw new IllegalArgumentException();
+			}).test(1.0);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoublePredicate_error() {
+		try {
+			new CheckedExceptionCollector().fromDoublePredicate(v -> {
+				throw new AssertionError();
+			}).test(1.0);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromBiPredicate_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -362,6 +686,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromBiPredicate_runtime() {
+		try {
+			new CheckedExceptionCollector().fromBiPredicate((t, u) -> {
+				throw new IllegalArgumentException();
+			}).test("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromBiPredicate_error() {
+		try {
+			new CheckedExceptionCollector().fromBiPredicate((t, u) -> {
+				throw new AssertionError();
+			}).test("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void function_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingFunction<String, String> lambda = mock(ThrowingFunction.class);
@@ -380,6 +722,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void function_runtime() {
+		try {
+			new CheckedExceptionCollector().function(t -> {
+				throw new IllegalArgumentException();
+			}).apply("input");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void function_error() {
+		try {
+			new CheckedExceptionCollector().function(t -> {
+				throw new AssertionError();
+			}).apply("input");
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromToIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -400,6 +760,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromToIntFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromToIntFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsInt("input");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromToIntFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromToIntFunction(v -> {
+				throw new AssertionError();
+			}).applyAsInt("input");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingIntFunction<String> lambda = mock(ThrowingIntFunction.class);
@@ -418,6 +796,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromIntFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntFunction(v -> {
+				throw new IllegalArgumentException();
+			}).apply(1);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromIntFunction(v -> {
+				throw new AssertionError();
+			}).apply(1);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromIntToLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -438,6 +834,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromIntToLongFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntToLongFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsLong(1);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntToLongFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromIntToLongFunction(v -> {
+				throw new AssertionError();
+			}).applyAsLong(1);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromIntToDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntToDoubleFunction lambda = mock(ThrowingIntToDoubleFunction.class);
@@ -456,6 +870,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromIntToDoubleFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntToDoubleFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsDouble(1);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntToDoubleFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromIntToDoubleFunction(v -> {
+				throw new AssertionError();
+			}).applyAsDouble(1);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromToLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -476,6 +908,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromToLongFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromToLongFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsLong("input");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromToLongFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromToLongFunction(v -> {
+				throw new AssertionError();
+			}).applyAsLong("input");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingLongFunction<String> lambda = mock(ThrowingLongFunction.class);
@@ -494,6 +944,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromLongFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongFunction(v -> {
+				throw new IllegalArgumentException();
+			}).apply(1L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromLongFunction(v -> {
+				throw new AssertionError();
+			}).apply(1L);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromLongToIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -514,6 +982,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromLongToIntFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongToIntFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsInt(1L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongToIntFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromLongToIntFunction(v -> {
+				throw new AssertionError();
+			}).applyAsInt(1L);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromLongToDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongToDoubleFunction lambda = mock(ThrowingLongToDoubleFunction.class);
@@ -532,6 +1018,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromLongToDoubleFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongToDoubleFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsDouble(1L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongToDoubleFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromLongToDoubleFunction(v -> {
+				throw new AssertionError();
+			}).applyAsDouble(1L);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromToDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -552,6 +1056,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromToDoubleFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromToDoubleFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsDouble("input");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromToDoubleFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromToDoubleFunction(v -> {
+				throw new AssertionError();
+			}).applyAsDouble("input");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromDoubleFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingDoubleFunction<String> lambda = mock(ThrowingDoubleFunction.class);
@@ -570,6 +1092,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromDoubleFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoubleFunction(v -> {
+				throw new IllegalArgumentException();
+			}).apply(1.0);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoubleFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromDoubleFunction(v -> {
+				throw new AssertionError();
+			}).apply(1.0);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromDoubleToIntFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -590,6 +1130,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromDoubleToIntFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoubleToIntFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsInt(1.0);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoubleToIntFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromDoubleToIntFunction(v -> {
+				throw new AssertionError();
+			}).applyAsInt(1.0);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromDoubleToLongFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleToLongFunction lambda = mock(ThrowingDoubleToLongFunction.class);
@@ -608,6 +1166,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromDoubleToLongFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoubleToLongFunction(v -> {
+				throw new IllegalArgumentException();
+			}).applyAsLong(1.0);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoubleToLongFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromDoubleToLongFunction(v -> {
+				throw new AssertionError();
+			}).applyAsLong(1.0);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -628,6 +1204,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromUnaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromUnaryOperator(o -> {
+				throw new IllegalArgumentException();
+			}).apply("input");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromUnaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromUnaryOperator(o -> {
+				throw new AssertionError();
+			}).apply("input");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromIntUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntUnaryOperator lambda = mock(ThrowingIntUnaryOperator.class);
@@ -646,6 +1240,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromIntUnaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntUnaryOperator(o -> {
+				throw new IllegalArgumentException();
+			}).applyAsInt(1);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntUnaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromIntUnaryOperator(o -> {
+				throw new AssertionError();
+			}).applyAsInt(1);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromLongUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -666,6 +1278,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromLongUnaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongUnaryOperator(o -> {
+				throw new IllegalArgumentException();
+			}).applyAsLong(1L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongUnaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromLongUnaryOperator(o -> {
+				throw new AssertionError();
+			}).applyAsLong(1L);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromDoubleUnaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleUnaryOperator lambda = mock(ThrowingDoubleUnaryOperator.class);
@@ -684,6 +1314,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromDoubleUnaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoubleUnaryOperator(o -> {
+				throw new IllegalArgumentException();
+			}).applyAsDouble(1.0);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoubleUnaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromDoubleUnaryOperator(o -> {
+				throw new AssertionError();
+			}).applyAsDouble(1.0);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -704,6 +1352,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromBiFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromBiFunction((t, u) -> {
+				throw new IllegalArgumentException();
+			}).apply("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromBiFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromBiFunction((t, u) -> {
+				throw new AssertionError();
+			}).apply("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromToIntBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToIntBiFunction<String, String> lambda = mock(ThrowingToIntBiFunction.class);
@@ -722,6 +1388,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromToIntBiFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromToIntBiFunction((t, u) -> {
+				throw new IllegalArgumentException();
+			}).applyAsInt("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromToIntBiFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromToIntBiFunction((t, u) -> {
+				throw new AssertionError();
+			}).applyAsInt("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromToLongBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -742,6 +1426,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromToLongBiFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromToLongBiFunction((t, u) -> {
+				throw new IllegalArgumentException();
+			}).applyAsLong("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromToLongBiFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromToLongBiFunction((t, u) -> {
+				throw new AssertionError();
+			}).applyAsLong("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromToDoubleBiFunction_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToDoubleBiFunction<String, String> lambda = mock(ThrowingToDoubleBiFunction.class);
@@ -760,6 +1462,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromToDoubleBiFunction_runtime() {
+		try {
+			new CheckedExceptionCollector().fromToDoubleBiFunction((t, u) -> {
+				throw new IllegalArgumentException();
+			}).applyAsDouble("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromToDoubleBiFunction_error() {
+		try {
+			new CheckedExceptionCollector().fromToDoubleBiFunction((t, u) -> {
+				throw new AssertionError();
+			}).applyAsDouble("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -780,6 +1500,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromBinaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromBinaryOperator((l, r) -> {
+				throw new IllegalArgumentException();
+			}).apply("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromBinaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromBinaryOperator((l, r) -> {
+				throw new AssertionError();
+			}).apply("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromIntBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingIntBinaryOperator lambda = mock(ThrowingIntBinaryOperator.class);
@@ -798,6 +1536,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void fromIntBinaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromIntBinaryOperator((l, r) -> {
+				throw new IllegalArgumentException();
+			}).applyAsInt(11, 12);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromIntBinaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromIntBinaryOperator((l, r) -> {
+				throw new AssertionError();
+			}).applyAsInt(11, 12);
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void fromLongBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -818,6 +1574,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromLongBinaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromLongBinaryOperator((l, r) -> {
+				throw new IllegalArgumentException();
+			}).applyAsLong(11L, 12L);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromLongBinaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromLongBinaryOperator((l, r) -> {
+				throw new AssertionError();
+			}).applyAsLong(11L, 12L);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void fromDoubleBinaryOperator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingDoubleBinaryOperator lambda = mock(ThrowingDoubleBinaryOperator.class);
@@ -837,6 +1611,24 @@ public class CheckedExceptionHandlerTest {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void fromDoubleBinaryOperator_runtime() {
+		try {
+			new CheckedExceptionCollector().fromDoubleBinaryOperator((l, r) -> {
+				throw new IllegalArgumentException();
+			}).applyAsDouble(1.1, 1.2);
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void fromDoubleBinaryOperator_error() {
+		try {
+			new CheckedExceptionCollector().fromDoubleBinaryOperator((l, r) -> {
+				throw new AssertionError();
+			}).applyAsDouble(1.1, 1.2);
+			fail();
+		} catch (AssertionError e) {
+		}
+	}
 	@Test public void comparator_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingComparator<String> lambda = mock(ThrowingComparator.class);
@@ -855,6 +1647,24 @@ public class CheckedExceptionHandlerTest {
 		} catch (CollectedException e) {
 		}
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void comparator_runtime() {
+		try {
+			new CheckedExceptionCollector().comparator((l, r) -> {
+				throw new IllegalArgumentException();
+			}).compare("input1", "input2");
+			fail();
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	@Test public void comparator_error() {
+		try {
+			new CheckedExceptionCollector().comparator((l, r) -> {
+				throw new AssertionError();
+			}).compare("input1", "input2");
+			fail();
+		} catch (AssertionError e) {
+		}
 	}
 	@Test public void run_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();

@@ -23,5 +23,12 @@ public class ThrowingIntConsumerTest {
 			else
 				return ;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(v -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return ;
+		});
 	}
 }

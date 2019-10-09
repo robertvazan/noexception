@@ -27,10 +27,10 @@ import com.machinezoo.noexception.*;
 	 * @param u
 	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @return see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToDoubleBiFunction(ThrowingToDoubleBiFunction)
 	 * @see ToDoubleBiFunction#applyAsDouble(Object, Object)
 	 */
-	double applyAsDouble(T t, U u) throws Exception;
+	double applyAsDouble(T t, U u) throws Throwable;
 }

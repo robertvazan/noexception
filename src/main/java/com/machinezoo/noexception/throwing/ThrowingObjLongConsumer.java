@@ -24,10 +24,10 @@ import com.machinezoo.noexception.*;
 	 *            see {@link ObjLongConsumer#accept(Object, long)}
 	 * @param value
 	 *            see {@link ObjLongConsumer#accept(Object, long)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromObjLongConsumer(ThrowingObjLongConsumer)
 	 * @see ObjLongConsumer#accept(Object, long)
 	 */
-	void accept(T t, long value) throws Exception;
+	void accept(T t, long value) throws Throwable;
 }

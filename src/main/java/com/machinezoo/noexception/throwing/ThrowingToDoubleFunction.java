@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link ToDoubleFunction#applyAsDouble(Object)}
 	 * @return see {@link ToDoubleFunction#applyAsDouble(Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToDoubleFunction(ThrowingToDoubleFunction)
 	 * @see ToDoubleFunction#applyAsDouble(Object)
 	 */
-	double applyAsDouble(T value) throws Exception;
+	double applyAsDouble(T value) throws Throwable;
 }

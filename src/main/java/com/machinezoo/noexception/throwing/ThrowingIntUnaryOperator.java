@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param operand
 	 *            see {@link IntUnaryOperator#applyAsInt(int)}
 	 * @return see {@link IntUnaryOperator#applyAsInt(int)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntUnaryOperator(ThrowingIntUnaryOperator)
 	 * @see IntUnaryOperator#applyAsInt(int)
 	 */
-	int applyAsInt(int operand) throws Exception;
+	int applyAsInt(int operand) throws Throwable;
 }

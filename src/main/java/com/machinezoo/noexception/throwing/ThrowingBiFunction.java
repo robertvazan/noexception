@@ -29,10 +29,10 @@ import com.machinezoo.noexception.*;
 	 * @param u
 	 *            see {@link BiFunction#apply(Object, Object)}
 	 * @return see {@link BiFunction#apply(Object, Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromBiFunction(ThrowingBiFunction)
 	 * @see BiFunction#apply(Object, Object)
 	 */
-	R apply(T t, U u) throws Exception;
+	R apply(T t, U u) throws Throwable;
 }

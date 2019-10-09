@@ -27,10 +27,10 @@ import com.machinezoo.noexception.*;
 	 * @param u
 	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @return see {@link ToIntBiFunction#applyAsInt(Object, Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToIntBiFunction(ThrowingToIntBiFunction)
 	 * @see ToIntBiFunction#applyAsInt(Object, Object)
 	 */
-	int applyAsInt(T t, U u) throws Exception;
+	int applyAsInt(T t, U u) throws Throwable;
 }

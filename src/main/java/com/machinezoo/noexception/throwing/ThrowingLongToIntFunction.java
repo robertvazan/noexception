@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link LongToIntFunction#applyAsInt(long)}
 	 * @return see {@link LongToIntFunction#applyAsInt(long)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongToIntFunction(ThrowingLongToIntFunction)
 	 * @see LongToIntFunction#applyAsInt(long)
 	 */
-	int applyAsInt(long value) throws Exception;
+	int applyAsInt(long value) throws Throwable;
 }

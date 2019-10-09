@@ -26,10 +26,10 @@ import com.machinezoo.noexception.*;
 	 *            see {@link BiConsumer#accept(Object, Object)}
 	 * @param u
 	 *            see {@link BiConsumer#accept(Object, Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromBiConsumer(ThrowingBiConsumer)
 	 * @see BiConsumer#accept(Object, Object)
 	 */
-	void accept(T t, U u) throws Exception;
+	void accept(T t, U u) throws Throwable;
 }

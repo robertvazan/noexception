@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param operand
 	 *            see {@link LongUnaryOperator#applyAsLong(long)}
 	 * @return see {@link LongUnaryOperator#applyAsLong(long)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongUnaryOperator(ThrowingLongUnaryOperator)
 	 * @see LongUnaryOperator#applyAsLong(long)
 	 */
-	long applyAsLong(long operand) throws Exception;
+	long applyAsLong(long operand) throws Throwable;
 }

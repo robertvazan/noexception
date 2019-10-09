@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link DoubleToLongFunction#applyAsLong(double)}
 	 * @return see {@link DoubleToLongFunction#applyAsLong(double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleToLongFunction(ThrowingDoubleToLongFunction)
 	 * @see DoubleToLongFunction#applyAsLong(double)
 	 */
-	long applyAsLong(double value) throws Exception;
+	long applyAsLong(double value) throws Throwable;
 }

@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param right
 	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @return see {@link IntBinaryOperator#applyAsInt(int, int)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntBinaryOperator(ThrowingIntBinaryOperator)
 	 * @see IntBinaryOperator#applyAsInt(int, int)
 	 */
-	int applyAsInt(int left, int right) throws Exception;
+	int applyAsInt(int left, int right) throws Throwable;
 }

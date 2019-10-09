@@ -21,5 +21,12 @@ public class ThrowingLongUnaryOperatorTest {
 			else
 				return 2L;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(o -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return 2L;
+		});
 	}
 }

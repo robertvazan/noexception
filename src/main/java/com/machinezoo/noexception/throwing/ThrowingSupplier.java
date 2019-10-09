@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * Variation of {@link Supplier#get()} that allows throwing checked exceptions.
 	 * 
 	 * @return see {@link Supplier#get()}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#supplier(ThrowingSupplier)
 	 * @see Supplier#get()
 	 */
-	T get() throws Exception;
+	T get() throws Throwable;
 }

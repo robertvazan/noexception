@@ -21,5 +21,12 @@ public class ThrowingToDoubleBiFunctionTest {
 			else
 				return 2.0;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing((t, u) -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return 2.0;
+		});
 	}
 }

@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link IntFunction#apply(int)}
 	 * @return see {@link IntFunction#apply(int)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntFunction(ThrowingIntFunction)
 	 * @see IntFunction#apply(int)
 	 */
-	R apply(int value) throws Exception;
+	R apply(int value) throws Throwable;
 }

@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link DoubleFunction#apply(double)}
 	 * @return see {@link DoubleFunction#apply(double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleFunction(ThrowingDoubleFunction)
 	 * @see DoubleFunction#apply(double)
 	 */
-	R apply(double value) throws Exception;
+	R apply(double value) throws Throwable;
 }

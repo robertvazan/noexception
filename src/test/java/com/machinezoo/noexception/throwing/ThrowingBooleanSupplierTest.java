@@ -21,5 +21,12 @@ public class ThrowingBooleanSupplierTest {
 			else
 				return true;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(() -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return true;
+		});
 	}
 }

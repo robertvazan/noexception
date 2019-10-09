@@ -21,5 +21,12 @@ public class ThrowingDoublePredicateTest {
 			else
 				return true;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(v -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return true;
+		});
 	}
 }

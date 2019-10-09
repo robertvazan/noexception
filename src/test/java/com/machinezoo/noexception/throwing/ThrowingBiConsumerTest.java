@@ -23,5 +23,12 @@ public class ThrowingBiConsumerTest {
 			else
 				return ;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing((t, u) -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return ;
+		});
 	}
 }

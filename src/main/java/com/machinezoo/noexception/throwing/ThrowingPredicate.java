@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param t
 	 *            see {@link Predicate#test(Object)}
 	 * @return see {@link Predicate#test(Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#predicate(ThrowingPredicate)
 	 * @see Predicate#test(Object)
 	 */
-	boolean test(T t) throws Exception;
+	boolean test(T t) throws Throwable;
 }

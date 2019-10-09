@@ -5,7 +5,6 @@ import textwrap
 import os
 import contextlib
 from textwrap import indent
-from unittest.test.testmock.testpatch import function
 
 # Attempting to use relative paths would mess up the file tree depending on where the script runs.
 # We will instead locate java sources relative to the running script.
@@ -420,12 +419,12 @@ def throwing_source(fn):
         if not void_functional(fn):
             output(' * @return see {@link ' + original_method_ref + '}', indent=1)
         output('''\
-             * @throws Exception
+             * @throws Throwable
              *             if unable to complete
              * @see ''' + from_method_ref + '''
              * @see ''' + original_method_ref  + '''
              */
-            ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') throws Exception;
+            ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') throws Throwable;
         ''', indent=1)
     output('}')
 
@@ -815,6 +814,9 @@ def checked_source():
                         throw exception;
                     } catch (Exception exception) {
                         throw handle(exception);
+                    } catch (Throwable exception) {
+                        ExceptionSmuggler.sneak(exception);
+                        throw new IllegalStateException();
                     }
                 }
             }
@@ -848,6 +850,9 @@ def checked_source():
                     throw exception;
                 } catch (Exception exception) {
                     throw handle(exception);
+                } catch (Throwable exception) {
+                    ExceptionSmuggler.sneak(exception);
+                    throw new IllegalStateException();
                 }
             }
         ''', indent=1)
@@ -876,6 +881,13 @@ def throwing_test(fn):
                 takeThrowing(''' + lambda_params(fn) + ''' -> {
                     if (ThreadLocalRandom.current().nextBoolean())
                         throw new IOException();
+                    else
+                        return ''' + test_output(fn) + ''';
+                });
+                Throwable throwable = new IOException();
+                takeThrowing(''' + lambda_params(fn) + ''' -> {
+                    if (ThreadLocalRandom.current().nextBoolean())
+                        throw throwable;
                     else
                         return ''' + test_output(fn) + ''';
                 });
@@ -1126,6 +1138,24 @@ def checked_test():
                 } catch (CollectedException e) {
                 }
                 assertThat(collector.single(), instanceOf(PrinterException.class));
+            }
+            @Test public void ''' + from_method(fn) + '''_runtime() {
+                try {
+                    new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                        throw new IllegalArgumentException();
+                    }).''' + as_method(fn) + '(' + test_input(fn) + ''');
+                    fail();
+                } catch (IllegalArgumentException e) {
+                }
+            }
+            @Test public void ''' + from_method(fn) + '''_error() {
+                try {
+                    new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                        throw new AssertionError();
+                    }).''' + as_method(fn) + '(' + test_input(fn) + ''');
+                    fail();
+                } catch (AssertionError e) {
+                }
             }
         ''', indent=1)
     for fn in parameterless_functional_types():

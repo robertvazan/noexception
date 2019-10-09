@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link ToLongFunction#applyAsLong(Object)}
 	 * @return see {@link ToLongFunction#applyAsLong(Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToLongFunction(ThrowingToLongFunction)
 	 * @see ToLongFunction#applyAsLong(Object)
 	 */
-	long applyAsLong(T value) throws Exception;
+	long applyAsLong(T value) throws Throwable;
 }

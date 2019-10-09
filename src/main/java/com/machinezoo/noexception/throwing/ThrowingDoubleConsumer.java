@@ -20,10 +20,10 @@ import com.machinezoo.noexception.*;
 	 * 
 	 * @param value
 	 *            see {@link DoubleConsumer#accept(double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoubleConsumer(ThrowingDoubleConsumer)
 	 * @see DoubleConsumer#accept(double)
 	 */
-	void accept(double value) throws Exception;
+	void accept(double value) throws Throwable;
 }

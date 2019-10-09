@@ -27,10 +27,10 @@ import com.machinezoo.noexception.*;
 	 * @param u
 	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @return see {@link ToLongBiFunction#applyAsLong(Object, Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToLongBiFunction(ThrowingToLongBiFunction)
 	 * @see ToLongBiFunction#applyAsLong(Object, Object)
 	 */
-	long applyAsLong(T t, U u) throws Exception;
+	long applyAsLong(T t, U u) throws Throwable;
 }

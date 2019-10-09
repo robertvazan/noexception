@@ -21,5 +21,12 @@ public class ThrowingBiPredicateTest {
 			else
 				return true;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing((t, u) -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return true;
+		});
 	}
 }

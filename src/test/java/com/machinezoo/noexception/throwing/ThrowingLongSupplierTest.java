@@ -21,5 +21,12 @@ public class ThrowingLongSupplierTest {
 			else
 				return 2L;
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(() -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return 2L;
+		});
 	}
 }

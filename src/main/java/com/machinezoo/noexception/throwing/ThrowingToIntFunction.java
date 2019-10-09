@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link ToIntFunction#applyAsInt(Object)}
 	 * @return see {@link ToIntFunction#applyAsInt(Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromToIntFunction(ThrowingToIntFunction)
 	 * @see ToIntFunction#applyAsInt(Object)
 	 */
-	int applyAsInt(T value) throws Exception;
+	int applyAsInt(T value) throws Throwable;
 }

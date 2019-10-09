@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link DoublePredicate#test(double)}
 	 * @return see {@link DoublePredicate#test(double)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromDoublePredicate(ThrowingDoublePredicate)
 	 * @see DoublePredicate#test(double)
 	 */
-	boolean test(double value) throws Exception;
+	boolean test(double value) throws Throwable;
 }

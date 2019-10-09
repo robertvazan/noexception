@@ -22,10 +22,10 @@ import com.machinezoo.noexception.*;
 	 * 
 	 * @param t
 	 *            see {@link Consumer#accept(Object)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#consumer(ThrowingConsumer)
 	 * @see Consumer#accept(Object)
 	 */
-	void accept(T t) throws Exception;
+	void accept(T t) throws Throwable;
 }

@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link LongPredicate#test(long)}
 	 * @return see {@link LongPredicate#test(long)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongPredicate(ThrowingLongPredicate)
 	 * @see LongPredicate#test(long)
 	 */
-	boolean test(long value) throws Exception;
+	boolean test(long value) throws Throwable;
 }

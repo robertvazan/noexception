@@ -21,10 +21,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link IntPredicate#test(int)}
 	 * @return see {@link IntPredicate#test(int)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromIntPredicate(ThrowingIntPredicate)
 	 * @see IntPredicate#test(int)
 	 */
-	boolean test(int value) throws Exception;
+	boolean test(int value) throws Throwable;
 }

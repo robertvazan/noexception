@@ -23,10 +23,10 @@ import com.machinezoo.noexception.*;
 	 * @param value
 	 *            see {@link LongFunction#apply(long)}
 	 * @return see {@link LongFunction#apply(long)}
-	 * @throws Exception
+	 * @throws Throwable
 	 *             if unable to complete
 	 * @see CheckedExceptionHandler#fromLongFunction(ThrowingLongFunction)
 	 * @see LongFunction#apply(long)
 	 */
-	R apply(long value) throws Exception;
+	R apply(long value) throws Throwable;
 }

@@ -21,5 +21,12 @@ public class ThrowingIntFunctionTest {
 			else
 				return "value";
 		});
+		Throwable throwable = new IOException();
+		takeThrowing(v -> {
+			if (ThreadLocalRandom.current().nextBoolean())
+				throw throwable;
+			else
+				return "value";
+		});
 	}
 }
