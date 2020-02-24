@@ -27,12 +27,10 @@ public class OptionalBooleanTest {
 		assertTrue(OptionalBoolean.of(false).isPresent());
 		assertTrue(OptionalBoolean.of(true).isPresent());
 	}
-	@Test(expected = NoSuchElementException.class) public void getAsBoolean_empty() {
-		OptionalBoolean.empty().getAsBoolean();
-	}
-	@Test public void getAsBoolean_of() {
+	@Test public void getAsBoolean() {
 		assertFalse(OptionalBoolean.of(false).getAsBoolean());
 		assertTrue(OptionalBoolean.of(true).getAsBoolean());
+		assertThrows(NoSuchElementException.class, () -> OptionalBoolean.empty().getAsBoolean());
 	}
 	@Test public void orElse() {
 		assertFalse(OptionalBoolean.empty().orElse(false));
@@ -55,12 +53,10 @@ public class OptionalBooleanTest {
 	public static class SampleException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 	}
-	@Test(expected = SampleException.class) public void orElseThrow_empty() {
-		assertFalse(OptionalBoolean.empty().orElseThrow(SampleException::new));
-	}
 	@Test public void orElseThrow_of() {
 		assertFalse(OptionalBoolean.of(false).orElseThrow(SampleException::new));
 		assertTrue(OptionalBoolean.of(true).orElseThrow(SampleException::new));
+		assertThrows(SampleException.class, () -> OptionalBoolean.empty().orElseThrow(SampleException::new));
 	}
 	@Test public void ifPresent() {
 		OptionalBoolean.empty().ifPresent(n -> fail());

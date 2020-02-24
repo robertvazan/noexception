@@ -1,9 +1,11 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.Assert.*;
 import java.io.*;
+import org.hamcrest.*;
 import org.junit.*;
 import uk.org.lidalia.slf4jtest.*;
 
@@ -72,7 +74,7 @@ public class ExceptionsTest {
 			});
 			fail();
 		} catch (WrappedException e) {
-			assertThat(e.getCause(), instanceOf(IOException.class));
+			MatcherAssert.assertThat(e.getCause(), instanceOf(IOException.class));
 		}
 	}
 	@Test public void wrap_interrupt() {

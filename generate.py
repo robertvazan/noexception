@@ -993,6 +993,7 @@ def optional_test(fn):
 def handler_test():
     output(file_header())
     output('''\
+        import static org.hamcrest.MatcherAssert.assertThat;
         import static org.hamcrest.core.IsInstanceOf.*;
         import static org.junit.Assert.*;
         import static org.mockito.Mockito.*;
@@ -1103,6 +1104,7 @@ def handler_test():
 def checked_test():
     output(file_header())
     output('''\
+        import static org.hamcrest.MatcherAssert.assertThat;
         import static org.hamcrest.core.IsInstanceOf.*;
         import static org.junit.Assert.*;
         import static org.mockito.Mockito.*;
