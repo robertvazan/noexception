@@ -4,7 +4,7 @@ package com.machinezoo.noexception.throwing;
 
 import java.io.*;
 import java.util.concurrent.*;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 public class ThrowingRunnableTest {
 	void takeThrowing(ThrowingRunnable functional) {

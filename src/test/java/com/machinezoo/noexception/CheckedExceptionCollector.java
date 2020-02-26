@@ -1,7 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
 class CheckedExceptionCollector extends CheckedExceptionHandler {

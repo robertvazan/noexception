@@ -5,7 +5,7 @@ package com.machinezoo.noexception.throwing;
 import java.io.*;
 import java.util.concurrent.*;
 import java.util.function.*;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 public class ThrowingBiFunctionTest {
 	void takeThrowing(ThrowingBiFunction<String, String, String> functional) {

@@ -2,8 +2,8 @@
 // Generated code. Edit generate.py instead.
 package com.machinezoo.noexception.optional;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 public class OptionalDoublePredicateTest {
 	@Test public void conversions() {

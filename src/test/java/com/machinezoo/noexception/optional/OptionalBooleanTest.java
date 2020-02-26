@@ -2,12 +2,12 @@
 package com.machinezoo.noexception.optional;
 
 import static java.util.stream.Collectors.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 public class OptionalBooleanTest {
 	@Test public void empty() {

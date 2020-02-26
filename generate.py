@@ -870,7 +870,7 @@ def throwing_test(fn):
         output('import java.util.function.*;')
     body = '{\n        \t\t}' if void_functional(fn) else test_output(fn)
     output('''\
-        import org.junit.*;
+        import org.junit.jupiter.api.*;
 
         public class Throwing''' + fn + '''Test {
             void takeThrowing(Throwing''' + test_parameterized_type(fn) + ''' functional) {
@@ -929,13 +929,13 @@ def defaults_test(fn, full, lazy):
 def default_test(fn):
     output(file_header('.optional'))
     output('''\
-        import static org.junit.Assert.*;
+        import static org.junit.jupiter.api.Assertions.*;
         import static org.mockito.Mockito.*;
     ''')
     if 'boolean' != return_type(fn):
         output('import java.util.*;')
     output('''\
-        import org.junit.*;
+        import org.junit.jupiter.api.*;
         
         public class Default''' + fn + '''Test {
     ''')
@@ -946,14 +946,14 @@ def default_test(fn):
 def fallback_test(fn):
     output(file_header('.optional'))
     output('''\
-        import static org.junit.Assert.*;
+        import static org.junit.jupiter.api.Assertions.*;
         import static org.mockito.Mockito.*;
     ''')
     if 'boolean' != return_type(fn):
         output('import java.util.*;')
     output('''\
         import java.util.function.*;
-        import org.junit.*;
+        import org.junit.jupiter.api.*;
         
         public class Fallback''' + fn + '''Test {
     ''')
@@ -963,11 +963,11 @@ def fallback_test(fn):
 
 def optional_test(fn):
     output(file_header('.optional'))
-    output('import static org.junit.Assert.*;')
+    output('import static org.junit.jupiter.api.Assertions.*;')
     if 'boolean' != return_type(fn):
         output('import java.util.*;')
     output('''\
-        import org.junit.*;
+        import org.junit.jupiter.api.*;
         
         public class Optional''' + fn + '''Test {
             @Test public void conversions() {
@@ -995,11 +995,11 @@ def handler_test():
     output('''\
         import static org.hamcrest.MatcherAssert.assertThat;
         import static org.hamcrest.core.IsInstanceOf.*;
-        import static org.junit.Assert.*;
+        import static org.junit.jupiter.api.Assertions.*;
         import static org.mockito.Mockito.*;
         import java.util.*;
         import java.util.function.*;
-        import org.junit.*;
+        import org.junit.jupiter.api.*;
         import com.machinezoo.noexception.optional.*;
         
         public class ExceptionHandlerTest {
@@ -1106,10 +1106,10 @@ def checked_test():
     output('''\
         import static org.hamcrest.MatcherAssert.assertThat;
         import static org.hamcrest.core.IsInstanceOf.*;
-        import static org.junit.Assert.*;
+        import static org.junit.jupiter.api.Assertions.*;
         import static org.mockito.Mockito.*;
         import java.awt.print.*;
-        import org.junit.*;
+        import org.junit.jupiter.api.*;
         import com.machinezoo.noexception.throwing.*;
         
         public class CheckedExceptionHandlerTest {

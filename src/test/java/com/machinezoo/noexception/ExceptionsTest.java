@@ -1,29 +1,32 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.core.IsInstanceOf.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.io.*;
-import org.hamcrest.*;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import uk.org.lidalia.slf4jtest.*;
 
 public class ExceptionsTest {
 	TestLogger sharedLogger = TestLoggerFactory.getTestLogger(Exceptions.class);
 	TestLogger customLogger = TestLoggerFactory.getTestLogger(ExceptionsTest.class);
-	@Before public void initialize() {
+	@BeforeEach public void initialize() {
 		sharedLogger.clear();
 		customLogger.clear();
 	}
-	@Test(expected = NumberFormatException.class) public void pass_runtime() {
-		Exceptions.pass().run(() -> {
-			throw new NumberFormatException();
+	@Test public void pass_runtime() {
+		assertThrows(NumberFormatException.class, () -> {
+			Exceptions.pass().run(() -> {
+				throw new NumberFormatException();
+			});
 		});
 	}
-	@Test(expected = IOError.class) public void pass_error() {
-		Exceptions.pass().run(() -> {
-			throw new IOError(new IOException());
+	@Test public void pass_error() {
+		assertThrows(IOError.class, () -> {
+			Exceptions.pass().run(() -> {
+				throw new IOError(new IOException());
+			});
 		});
 	}
 	@Test public void silence_runtime() {
@@ -42,81 +45,87 @@ public class ExceptionsTest {
 		}));
 		assertTrue(Thread.interrupted());
 	}
-	@Test(expected = NumberFormatException.class) public void sneak_runtime() {
-		Exceptions.sneak().run(() -> {
-			throw new NumberFormatException();
+	@Test public void sneak_runtime() {
+		assertThrows(NumberFormatException.class, () -> {
+			Exceptions.sneak().run(() -> {
+				throw new NumberFormatException();
+			});
 		});
 	}
-	@Test(expected = IOError.class) public void sneak_error() {
-		Exceptions.sneak().run(() -> {
-			throw new IOError(new IOException());
+	@Test public void sneak_error() {
+		assertThrows(IOError.class, () -> {
+			Exceptions.sneak().run(() -> {
+				throw new IOError(new IOException());
+			});
 		});
 	}
-	@Test(expected = IOException.class) public void sneak_checked() {
-		Exceptions.sneak().run(() -> {
-			throw new IOException();
+	@Test public void sneak_checked() {
+		assertThrows(IOException.class, () -> {
+			Exceptions.sneak().run(() -> {
+				throw new IOException();
+			});
 		});
 	}
-	@Test(expected = NumberFormatException.class) public void wrap_runtime() {
-		Exceptions.wrap().run(() -> {
-			throw new NumberFormatException();
+	@Test public void wrap_runtime() {
+		assertThrows(NumberFormatException.class, () -> {
+			Exceptions.wrap().run(() -> {
+				throw new NumberFormatException();
+			});
 		});
 	}
-	@Test(expected = IOError.class) public void wrap_error() {
-		Exceptions.wrap().run(() -> {
-			throw new IOError(new IOException());
+	@Test public void wrap_error() {
+		assertThrows(IOError.class, () -> {
+			Exceptions.wrap().run(() -> {
+				throw new IOError(new IOException());
+			});
 		});
 	}
 	@Test public void wrap_checked() {
-		try {
+		WrappedException ex = assertThrows(WrappedException.class, () -> {
 			Exceptions.wrap().run(() -> {
 				throw new IOException();
 			});
-			fail();
-		} catch (WrappedException e) {
-			MatcherAssert.assertThat(e.getCause(), instanceOf(IOException.class));
-		}
+		});
+		assertThat(ex.getCause(), instanceOf(IOException.class));
 	}
 	@Test public void wrap_interrupt() {
-		try {
+		WrappedException ex = assertThrows(WrappedException.class, () -> {
 			Exceptions.wrap().run(() -> {
 				throw new InterruptedException();
 			});
-			fail();
-		} catch (WrappedException e) {
-			assertThat(e.getCause(), instanceOf(InterruptedException.class));
-		}
+		});
+		assertThat(ex.getCause(), instanceOf(InterruptedException.class));
 		assertTrue(Thread.interrupted());
 	}
-	@Test(expected = NumberFormatException.class) public void wrapIn_runtime() {
-		Exceptions.wrap(CollectedException::new).run(() -> {
-			throw new NumberFormatException();
+	@Test public void wrapIn_runtime() {
+		assertThrows(NumberFormatException.class, () -> {
+			Exceptions.wrap(CollectedException::new).run(() -> {
+				throw new NumberFormatException();
+			});
 		});
 	}
-	@Test(expected = IOError.class) public void wrapIn_error() {
-		Exceptions.wrap(CollectedException::new).run(() -> {
-			throw new IOError(new IOException());
+	@Test public void wrapIn_error() {
+		assertThrows(IOError.class, () -> {
+			Exceptions.wrap(CollectedException::new).run(() -> {
+				throw new IOError(new IOException());
+			});
 		});
 	}
 	@Test public void wrapIn_checked() {
-		try {
+		CollectedException ex = assertThrows(CollectedException.class, () -> {
 			Exceptions.wrap(CollectedException::new).run(() -> {
 				throw new IOException();
 			});
-			fail();
-		} catch (CollectedException e) {
-			assertThat(e.getCause(), instanceOf(IOException.class));
-		}
+		});
+		assertThat(ex.getCause(), instanceOf(IOException.class));
 	}
 	@Test public void wrapIn_interrupt() {
-		try {
+		CollectedException ex = assertThrows(CollectedException.class, () -> {
 			Exceptions.wrap(CollectedException::new).run(() -> {
 				throw new InterruptedException();
 			});
-			fail();
-		} catch (CollectedException e) {
-			assertThat(e.getCause(), instanceOf(InterruptedException.class));
-		}
+		});
+		assertThat(ex.getCause(), instanceOf(InterruptedException.class));
 		assertTrue(Thread.interrupted());
 	}
 	@Test public void log_runtime() {

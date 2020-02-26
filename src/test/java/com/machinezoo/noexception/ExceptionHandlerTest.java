@@ -4,11 +4,11 @@ package com.machinezoo.noexception;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import java.util.*;
 import java.util.function.*;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import com.machinezoo.noexception.optional.*;
 
 public class ExceptionHandlerTest {

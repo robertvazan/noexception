@@ -2,11 +2,11 @@
 // Generated code. Edit generate.py instead.
 package com.machinezoo.noexception.optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import java.util.*;
 import java.util.function.*;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 public class FallbackToDoubleBiFunctionTest {
 	@Test public void full() {
