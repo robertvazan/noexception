@@ -70,7 +70,7 @@ public final class Exceptions {
 	 * @see #log(Logger, String)
 	 */
 	public static ExceptionHandler log(Logger logger) {
-		return new ExceptionLogger(logger, "Caught exception");
+		return new ExceptionLogger(logger, "Caught exception.");
 	}
 	/**
 	 * Create {@code ExceptionHandler} that writes all exceptions to the specified {@code logger} with the specified {@code message}.
