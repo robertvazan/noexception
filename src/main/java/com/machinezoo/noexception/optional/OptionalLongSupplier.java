@@ -29,7 +29,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalLong get();
 	/**
-	 * Convert this {@code OptionalLongSupplier} to plain {@code LongSupplier} using default value.
+	 * Converts this {@code OptionalLongSupplier} to plain {@code LongSupplier} using default value.
 	 * The returned {@code LongSupplier} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
@@ -43,7 +43,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultLongSupplier(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalLongSupplier} to plain {@code LongSupplier} using fallback {@code LongSupplier}.
+	 * Converts this {@code OptionalLongSupplier} to plain {@code LongSupplier} using fallback {@code LongSupplier}.
 	 * The returned {@code LongSupplier} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 

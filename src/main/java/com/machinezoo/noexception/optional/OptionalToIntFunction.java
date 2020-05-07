@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalInt apply(T value);
 	/**
-	 * Convert this {@code OptionalToIntFunction} to plain {@code ToIntFunction} using default value.
+	 * Converts this {@code OptionalToIntFunction} to plain {@code ToIntFunction} using default value.
 	 * The returned {@code ToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultToIntFunction<T>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalToIntFunction} to plain {@code ToIntFunction} using fallback {@code IntSupplier}.
+	 * Converts this {@code OptionalToIntFunction} to plain {@code ToIntFunction} using fallback {@code IntSupplier}.
 	 * The returned {@code ToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 

@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override Optional<R> apply(long value);
 	/**
-	 * Convert this {@code OptionalLongFunction} to plain {@code LongFunction} using default value.
+	 * Converts this {@code OptionalLongFunction} to plain {@code LongFunction} using default value.
 	 * The returned {@code LongFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or return {@code result} if the {@code Optional} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultLongFunction<R>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalLongFunction} to plain {@code LongFunction} using fallback {@code Supplier}.
+	 * Converts this {@code OptionalLongFunction} to plain {@code LongFunction} using fallback {@code Supplier}.
 	 * The returned {@code LongFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or fall back to calling {@code source} if the {@code Optional} is empty.
 	 * 

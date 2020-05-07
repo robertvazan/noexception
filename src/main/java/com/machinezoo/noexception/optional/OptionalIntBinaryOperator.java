@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalInt apply(int left, int right);
 	/**
-	 * Convert this {@code OptionalIntBinaryOperator} to plain {@code IntBinaryOperator} using default value.
+	 * Converts this {@code OptionalIntBinaryOperator} to plain {@code IntBinaryOperator} using default value.
 	 * The returned {@code IntBinaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultIntBinaryOperator(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalIntBinaryOperator} to plain {@code IntBinaryOperator} using fallback {@code IntSupplier}.
+	 * Converts this {@code OptionalIntBinaryOperator} to plain {@code IntBinaryOperator} using fallback {@code IntSupplier}.
 	 * The returned {@code IntBinaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 

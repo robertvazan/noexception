@@ -29,7 +29,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalDouble get();
 	/**
-	 * Convert this {@code OptionalDoubleSupplier} to plain {@code DoubleSupplier} using default value.
+	 * Converts this {@code OptionalDoubleSupplier} to plain {@code DoubleSupplier} using default value.
 	 * The returned {@code DoubleSupplier} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
@@ -43,7 +43,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultDoubleSupplier(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalDoubleSupplier} to plain {@code DoubleSupplier} using fallback {@code DoubleSupplier}.
+	 * Converts this {@code OptionalDoubleSupplier} to plain {@code DoubleSupplier} using fallback {@code DoubleSupplier}.
 	 * The returned {@code DoubleSupplier} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 

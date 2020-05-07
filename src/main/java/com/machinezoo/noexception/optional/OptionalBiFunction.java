@@ -39,7 +39,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override Optional<R> apply(T t, U u);
 	/**
-	 * Convert this {@code OptionalBiFunction} to plain {@code BiFunction} using default value.
+	 * Converts this {@code OptionalBiFunction} to plain {@code BiFunction} using default value.
 	 * The returned {@code BiFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or return {@code result} if the {@code Optional} is empty.
 	 * 
@@ -53,7 +53,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultBiFunction<T, U, R>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalBiFunction} to plain {@code BiFunction} using fallback {@code Supplier}.
+	 * Converts this {@code OptionalBiFunction} to plain {@code BiFunction} using fallback {@code Supplier}.
 	 * The returned {@code BiFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or fall back to calling {@code source} if the {@code Optional} is empty.
 	 * 

@@ -31,7 +31,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalDouble apply(double operand);
 	/**
-	 * Convert this {@code OptionalDoubleUnaryOperator} to plain {@code DoubleUnaryOperator} using default value.
+	 * Converts this {@code OptionalDoubleUnaryOperator} to plain {@code DoubleUnaryOperator} using default value.
 	 * The returned {@code DoubleUnaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
@@ -45,7 +45,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultDoubleUnaryOperator(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalDoubleUnaryOperator} to plain {@code DoubleUnaryOperator} using fallback {@code DoubleSupplier}.
+	 * Converts this {@code OptionalDoubleUnaryOperator} to plain {@code DoubleUnaryOperator} using fallback {@code DoubleSupplier}.
 	 * The returned {@code DoubleUnaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 

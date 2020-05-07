@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override Optional<R> apply(int value);
 	/**
-	 * Convert this {@code OptionalIntFunction} to plain {@code IntFunction} using default value.
+	 * Converts this {@code OptionalIntFunction} to plain {@code IntFunction} using default value.
 	 * The returned {@code IntFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or return {@code result} if the {@code Optional} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultIntFunction<R>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalIntFunction} to plain {@code IntFunction} using fallback {@code Supplier}.
+	 * Converts this {@code OptionalIntFunction} to plain {@code IntFunction} using fallback {@code Supplier}.
 	 * The returned {@code IntFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or fall back to calling {@code source} if the {@code Optional} is empty.
 	 * 

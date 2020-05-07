@@ -24,7 +24,7 @@ public final class Exceptions {
 	private Exceptions() {
 	}
 	/**
-	 * Get {@code ExceptionHandler} that lets all exceptions through.
+	 * Returns {@code ExceptionHandler} that lets all exceptions through.
 	 * This exception handler is equivalent to having no exception handler at all.
 	 * It is useful when switching among several exception handlers at runtime.
 	 * 
@@ -34,7 +34,7 @@ public final class Exceptions {
 		return pass;
 	}
 	/**
-	 * Get {@code ExceptionHandler} that writes all exceptions to common logger.
+	 * Returns {@code ExceptionHandler} that writes all exceptions to common logger.
 	 * Logs are written to SLF4J logger named after this class.
 	 * This handler is convenient and a suitable default choice,
 	 * but the single shared logger can make logs harder to filter.
@@ -52,7 +52,7 @@ public final class Exceptions {
 		return log;
 	}
 	/**
-	 * Create {@code ExceptionHandler} that writes all exceptions to the specified {@code logger}.
+	 * Creates {@code ExceptionHandler} that writes all exceptions to the specified {@code logger}.
 	 * Most application code can use the more convenient {@link #log()} method.
 	 * Use {@link #log(Logger, String)} overload to specify unique message where necessary.
 	 * <p>
@@ -73,7 +73,7 @@ public final class Exceptions {
 		return new ExceptionLogger(logger, "Caught exception.");
 	}
 	/**
-	 * Create {@code ExceptionHandler} that writes all exceptions to the specified {@code logger} with the specified {@code message}.
+	 * Creates {@code ExceptionHandler} that writes all exceptions to the specified {@code logger} with the specified {@code message}.
 	 * Most application code can use the more convenient {@link #log()} method.
 	 * This overload allows for differentiating or explanatory message.
 	 * If you just need to specify custom logger, use {@link #log(Logger)}.
@@ -97,7 +97,7 @@ public final class Exceptions {
 		return new ExceptionLogger(logger, message);
 	}
 	/**
-	 * Get {@code ExceptionHandler} that silently ignores all exceptions.
+	 * Returns {@code ExceptionHandler} that silently ignores all exceptions.
 	 * This handler is useful when some code is known to produce junk exceptions.
 	 * Most application code should use {@link #log()} instead.
 	 * <p>
@@ -113,7 +113,7 @@ public final class Exceptions {
 		return silence;
 	}
 	/**
-	 * Get {@code CheckedExceptionHandler} that lets through checked exceptions without declaring them.
+	 * Returns {@code CheckedExceptionHandler} that lets through checked exceptions without declaring them.
 	 * All exceptions are allowed through unmodified, including checked ones, even though no checked exceptions are declared.
 	 * <p>
 	 * Typical usage: {@code Exceptions.sneak().run(() -> my_throwing_lambda)}
@@ -132,7 +132,7 @@ public final class Exceptions {
 		return sneak;
 	}
 	/**
-	 * Get {@code CheckedExceptionHandler} that wraps all checked exceptions.
+	 * Returns {@code CheckedExceptionHandler} that wraps all checked exceptions.
 	 * Unchecked exceptions are passed through unmodified.
 	 * Checked exceptions are wrapped in {@link WrappedException}.
 	 * Use {@link #sneak()} to avoid wrapping.
@@ -150,7 +150,7 @@ public final class Exceptions {
 		return wrap;
 	}
 	/**
-	 * Create {@code CheckedExceptionHandler} that applies custom wrapper to checked exceptions.
+	 * Creates {@code CheckedExceptionHandler} that applies custom wrapper to checked exceptions.
 	 * Unchecked exceptions are passed through unmodified.
 	 * Checked exceptions are passed to {@code wrapper} and the resulting unchecked exception is thrown.
 	 * Use {@link #sneak()} to avoid wrapping and {@link #wrap()} to use standard wrapper.

@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalLong apply(long left, long right);
 	/**
-	 * Convert this {@code OptionalLongBinaryOperator} to plain {@code LongBinaryOperator} using default value.
+	 * Converts this {@code OptionalLongBinaryOperator} to plain {@code LongBinaryOperator} using default value.
 	 * The returned {@code LongBinaryOperator} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultLongBinaryOperator(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalLongBinaryOperator} to plain {@code LongBinaryOperator} using fallback {@code LongSupplier}.
+	 * Converts this {@code OptionalLongBinaryOperator} to plain {@code LongBinaryOperator} using fallback {@code LongSupplier}.
 	 * The returned {@code LongBinaryOperator} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 

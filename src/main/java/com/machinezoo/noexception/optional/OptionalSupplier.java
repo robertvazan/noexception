@@ -31,7 +31,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override Optional<T> get();
 	/**
-	 * Convert this {@code OptionalSupplier} to plain {@code Supplier} using default value.
+	 * Converts this {@code OptionalSupplier} to plain {@code Supplier} using default value.
 	 * The returned {@code Supplier} will unwrap present value from the {@code Optional} if possible,
 	 * or return {@code result} if the {@code Optional} is empty.
 	 * 
@@ -45,7 +45,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultSupplier<T>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalSupplier} to plain {@code Supplier} using fallback {@code Supplier}.
+	 * Converts this {@code OptionalSupplier} to plain {@code Supplier} using fallback {@code Supplier}.
 	 * The returned {@code Supplier} will unwrap present value from the {@code Optional} if possible,
 	 * or fall back to calling {@code source} if the {@code Optional} is empty.
 	 * 

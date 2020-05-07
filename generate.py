@@ -520,7 +520,7 @@ def optional_source(fn):
              */
             ''' + ('@Override ' if optional_base(fn) else '') + optional_type(return_type(fn)) + ' ' + method_verb(fn) + '(' + declared_params(fn) + ''');
             /**
-             * Convert this {@code Optional''' + fn + '} to plain {@code ' + fn + '''} using default value.
+             * Converts this {@code Optional''' + fn + '} to plain {@code ' + fn + '''} using default value.
              * The returned {@code ''' + fn + '} will unwrap present value from the {@code ' + raw_optional_return(fn) + '''} if possible,
              * or return {@code result} if the {@code ''' + raw_optional_return(fn) + '''} is empty.
              * 
@@ -534,7 +534,7 @@ def optional_source(fn):
                 return new Default''' + parameterized_type(fn) + '''(this, result);
             }
             /**
-             * Convert this {@code Optional''' + fn + '} to plain {@code ' + fn + '} using fallback {@code ' + raw_supplier + '''}.
+             * Converts this {@code Optional''' + fn + '} to plain {@code ' + fn + '} using fallback {@code ' + raw_supplier + '''}.
              * The returned {@code ''' + fn + '} will unwrap present value from the {@code ' + raw_optional_return(fn) + '''} if possible,
              * or fall back to calling {@code source} if the {@code ''' + raw_optional_return(fn) + '''} is empty.
              * 
@@ -593,7 +593,7 @@ def handler_source():
          */
         public abstract class ExceptionHandler {
             /**
-             * Handle exception in a generic way. This method must be defined in a derived class.
+             * Handles exception in a generic way. This method must be defined in a derived class.
              * Several implementations are provided by methods on {@link Exceptions} class.
              * All other methods of the {@code ExceptionHandler} call this method, but it can be also called directly.
              * <p>
@@ -755,7 +755,7 @@ def checked_source():
          */
         public abstract class CheckedExceptionHandler {
             /**
-             * Convert checked exception into an unchecked one. This method must be defined in a derived class.
+             * Converts checked exception into an unchecked one. This method must be defined in a derived class.
              * Several implementations are provided by methods on {@link Exceptions} class.
              * All other methods of the {@code CheckedExceptionHandler} call this method, but it can be also called directly.
              * <p>
@@ -778,7 +778,7 @@ def checked_source():
              */
             public abstract RuntimeException handle(Exception exception);
             /**
-             * Initialize new {@code CheckedExceptionHandler}.
+             * Initializes new {@code CheckedExceptionHandler}.
              */
             protected CheckedExceptionHandler() {
             }
@@ -786,7 +786,7 @@ def checked_source():
     for fn in functional_types():
         output('''\
             /**
-             * Remove checked exceptions from method signature of {@code ''' + fn + '''}.
+             * Removes checked exceptions from method signature of {@code ''' + fn + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
              * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -826,7 +826,7 @@ def checked_source():
     for fn in parameterless_functional_types():
         output('''\
             /**
-             * Filter out checked exceptions while running {@code ''' + fn + '''}.
+             * Filters out checked exceptions while running {@code ''' + fn + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
              * which usually converts it to an unchecked exception, which is then thrown by this method.

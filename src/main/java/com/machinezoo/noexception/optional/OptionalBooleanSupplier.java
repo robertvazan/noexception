@@ -28,7 +28,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalBoolean get();
 	/**
-	 * Convert this {@code OptionalBooleanSupplier} to plain {@code BooleanSupplier} using default value.
+	 * Converts this {@code OptionalBooleanSupplier} to plain {@code BooleanSupplier} using default value.
 	 * The returned {@code BooleanSupplier} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
@@ -42,7 +42,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultBooleanSupplier(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalBooleanSupplier} to plain {@code BooleanSupplier} using fallback {@code BooleanSupplier}.
+	 * Converts this {@code OptionalBooleanSupplier} to plain {@code BooleanSupplier} using fallback {@code BooleanSupplier}.
 	 * The returned {@code BooleanSupplier} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 

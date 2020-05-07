@@ -35,7 +35,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalInt compare(T left, T right);
 	/**
-	 * Convert this {@code OptionalComparator} to plain {@code Comparator} using default value.
+	 * Converts this {@code OptionalComparator} to plain {@code Comparator} using default value.
 	 * The returned {@code Comparator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
@@ -49,7 +49,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultComparator<T>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalComparator} to plain {@code Comparator} using fallback {@code IntSupplier}.
+	 * Converts this {@code OptionalComparator} to plain {@code Comparator} using fallback {@code IntSupplier}.
 	 * The returned {@code Comparator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 

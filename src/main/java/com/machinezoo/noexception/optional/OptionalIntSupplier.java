@@ -29,7 +29,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalInt get();
 	/**
-	 * Convert this {@code OptionalIntSupplier} to plain {@code IntSupplier} using default value.
+	 * Converts this {@code OptionalIntSupplier} to plain {@code IntSupplier} using default value.
 	 * The returned {@code IntSupplier} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
@@ -43,7 +43,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultIntSupplier(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalIntSupplier} to plain {@code IntSupplier} using fallback {@code IntSupplier}.
+	 * Converts this {@code OptionalIntSupplier} to plain {@code IntSupplier} using fallback {@code IntSupplier}.
 	 * The returned {@code IntSupplier} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 

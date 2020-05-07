@@ -30,7 +30,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalBoolean test(int value);
 	/**
-	 * Convert this {@code OptionalIntPredicate} to plain {@code IntPredicate} using default value.
+	 * Converts this {@code OptionalIntPredicate} to plain {@code IntPredicate} using default value.
 	 * The returned {@code IntPredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
@@ -44,7 +44,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultIntPredicate(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalIntPredicate} to plain {@code IntPredicate} using fallback {@code BooleanSupplier}.
+	 * Converts this {@code OptionalIntPredicate} to plain {@code IntPredicate} using fallback {@code BooleanSupplier}.
 	 * The returned {@code IntPredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 

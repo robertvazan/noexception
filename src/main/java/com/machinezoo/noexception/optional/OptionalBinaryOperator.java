@@ -35,7 +35,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override Optional<T> apply(T left, T right);
 	/**
-	 * Convert this {@code OptionalBinaryOperator} to plain {@code BinaryOperator} using default value.
+	 * Converts this {@code OptionalBinaryOperator} to plain {@code BinaryOperator} using default value.
 	 * The returned {@code BinaryOperator} will unwrap present value from the {@code Optional} if possible,
 	 * or return {@code result} if the {@code Optional} is empty.
 	 * 
@@ -49,7 +49,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultBinaryOperator<T>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalBinaryOperator} to plain {@code BinaryOperator} using fallback {@code Supplier}.
+	 * Converts this {@code OptionalBinaryOperator} to plain {@code BinaryOperator} using fallback {@code Supplier}.
 	 * The returned {@code BinaryOperator} will unwrap present value from the {@code Optional} if possible,
 	 * or fall back to calling {@code source} if the {@code Optional} is empty.
 	 * 

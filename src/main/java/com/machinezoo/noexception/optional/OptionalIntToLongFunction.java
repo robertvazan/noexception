@@ -31,7 +31,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalLong apply(int value);
 	/**
-	 * Convert this {@code OptionalIntToLongFunction} to plain {@code IntToLongFunction} using default value.
+	 * Converts this {@code OptionalIntToLongFunction} to plain {@code IntToLongFunction} using default value.
 	 * The returned {@code IntToLongFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
@@ -45,7 +45,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultIntToLongFunction(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalIntToLongFunction} to plain {@code IntToLongFunction} using fallback {@code LongSupplier}.
+	 * Converts this {@code OptionalIntToLongFunction} to plain {@code IntToLongFunction} using fallback {@code LongSupplier}.
 	 * The returned {@code IntToLongFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 

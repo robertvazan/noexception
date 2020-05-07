@@ -32,7 +32,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalBoolean test(T t);
 	/**
-	 * Convert this {@code OptionalPredicate} to plain {@code Predicate} using default value.
+	 * Converts this {@code OptionalPredicate} to plain {@code Predicate} using default value.
 	 * The returned {@code Predicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
@@ -46,7 +46,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultPredicate<T>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalPredicate} to plain {@code Predicate} using fallback {@code BooleanSupplier}.
+	 * Converts this {@code OptionalPredicate} to plain {@code Predicate} using fallback {@code BooleanSupplier}.
 	 * The returned {@code Predicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 

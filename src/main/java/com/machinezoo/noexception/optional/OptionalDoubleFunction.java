@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override Optional<R> apply(double value);
 	/**
-	 * Convert this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using default value.
+	 * Converts this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using default value.
 	 * The returned {@code DoubleFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or return {@code result} if the {@code Optional} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultDoubleFunction<R>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using fallback {@code Supplier}.
+	 * Converts this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using fallback {@code Supplier}.
 	 * The returned {@code DoubleFunction} will unwrap present value from the {@code Optional} if possible,
 	 * or fall back to calling {@code source} if the {@code Optional} is empty.
 	 * 

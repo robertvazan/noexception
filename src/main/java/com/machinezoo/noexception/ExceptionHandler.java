@@ -42,7 +42,7 @@ import com.machinezoo.noexception.optional.*;
  */
 public abstract class ExceptionHandler {
 	/**
-	 * Handle exception in a generic way. This method must be defined in a derived class.
+	 * Handles exception in a generic way. This method must be defined in a derived class.
 	 * Several implementations are provided by methods on {@link Exceptions} class.
 	 * All other methods of the {@code ExceptionHandler} call this method, but it can be also called directly.
 	 * <p>

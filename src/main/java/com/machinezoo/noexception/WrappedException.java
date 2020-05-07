@@ -12,7 +12,7 @@ package com.machinezoo.noexception;
 public class WrappedException extends RuntimeException {
 	private static final long serialVersionUID = -1535521026317618861L;
 	/**
-	 * Wrap checked exception.
+	 * Wraps checked exception.
 	 * Wrapped checked exception can be later retrieved using {@link #getCause()} method.
 	 * 
 	 * @param cause

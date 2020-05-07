@@ -30,7 +30,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalBoolean test(double value);
 	/**
-	 * Convert this {@code OptionalDoublePredicate} to plain {@code DoublePredicate} using default value.
+	 * Converts this {@code OptionalDoublePredicate} to plain {@code DoublePredicate} using default value.
 	 * The returned {@code DoublePredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
@@ -44,7 +44,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultDoublePredicate(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalDoublePredicate} to plain {@code DoublePredicate} using fallback {@code BooleanSupplier}.
+	 * Converts this {@code OptionalDoublePredicate} to plain {@code DoublePredicate} using fallback {@code BooleanSupplier}.
 	 * The returned {@code DoublePredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 

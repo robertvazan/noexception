@@ -31,7 +31,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalInt apply(int operand);
 	/**
-	 * Convert this {@code OptionalIntUnaryOperator} to plain {@code IntUnaryOperator} using default value.
+	 * Converts this {@code OptionalIntUnaryOperator} to plain {@code IntUnaryOperator} using default value.
 	 * The returned {@code IntUnaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
@@ -45,7 +45,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultIntUnaryOperator(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalIntUnaryOperator} to plain {@code IntUnaryOperator} using fallback {@code IntSupplier}.
+	 * Converts this {@code OptionalIntUnaryOperator} to plain {@code IntUnaryOperator} using fallback {@code IntSupplier}.
 	 * The returned {@code IntUnaryOperator} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 

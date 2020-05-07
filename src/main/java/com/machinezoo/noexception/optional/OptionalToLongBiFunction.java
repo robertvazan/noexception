@@ -37,7 +37,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalLong apply(T t, U u);
 	/**
-	 * Convert this {@code OptionalToLongBiFunction} to plain {@code ToLongBiFunction} using default value.
+	 * Converts this {@code OptionalToLongBiFunction} to plain {@code ToLongBiFunction} using default value.
 	 * The returned {@code ToLongBiFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or return {@code result} if the {@code OptionalLong} is empty.
 	 * 
@@ -51,7 +51,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultToLongBiFunction<T, U>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalToLongBiFunction} to plain {@code ToLongBiFunction} using fallback {@code LongSupplier}.
+	 * Converts this {@code OptionalToLongBiFunction} to plain {@code ToLongBiFunction} using fallback {@code LongSupplier}.
 	 * The returned {@code ToLongBiFunction} will unwrap present value from the {@code OptionalLong} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalLong} is empty.
 	 * 

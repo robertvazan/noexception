@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalDouble apply(T value);
 	/**
-	 * Convert this {@code OptionalToDoubleFunction} to plain {@code ToDoubleFunction} using default value.
+	 * Converts this {@code OptionalToDoubleFunction} to plain {@code ToDoubleFunction} using default value.
 	 * The returned {@code ToDoubleFunction} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultToDoubleFunction<T>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalToDoubleFunction} to plain {@code ToDoubleFunction} using fallback {@code DoubleSupplier}.
+	 * Converts this {@code OptionalToDoubleFunction} to plain {@code ToDoubleFunction} using fallback {@code DoubleSupplier}.
 	 * The returned {@code ToDoubleFunction} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 

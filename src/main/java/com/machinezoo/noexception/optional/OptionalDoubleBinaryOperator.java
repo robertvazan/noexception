@@ -33,7 +33,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalDouble apply(double left, double right);
 	/**
-	 * Convert this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using default value.
+	 * Converts this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using default value.
 	 * The returned {@code DoubleBinaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or return {@code result} if the {@code OptionalDouble} is empty.
 	 * 
@@ -47,7 +47,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultDoubleBinaryOperator(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using fallback {@code DoubleSupplier}.
+	 * Converts this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using fallback {@code DoubleSupplier}.
 	 * The returned {@code DoubleBinaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
 	 * 

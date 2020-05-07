@@ -67,7 +67,7 @@ public final class OptionalBoolean {
 		return value;
 	}
 	/**
-	 * Return the value if present, otherwise return {@code other}.
+	 * Returns the value if present, otherwise returns {@code other}.
 	 * 
 	 * @param other
 	 *            the value to be returned if there is no value present
@@ -77,7 +77,7 @@ public final class OptionalBoolean {
 		return present ? value : other;
 	}
 	/**
-	 * Return the value if present, otherwise invoke {@code other} and return the result of that invocation.
+	 * Returns the value if present, otherwise invokes {@code other} and returns the result of that invocation.
 	 * 
 	 * @param other
 	 *            a {@code BooleanSupplier} whose result is returned if no value is present
@@ -89,7 +89,7 @@ public final class OptionalBoolean {
 		return present ? value : other.getAsBoolean();
 	}
 	/**
-	 * Return the contained value, if present, otherwise throw an exception to be created by the provided supplier.
+	 * Returns the contained value, if present, otherwise throws an exception created by the provided supplier.
 	 * A method reference to the exception constructor with an empty argument list can be used as the supplier.
 	 * For example, {@code IllegalStateException::new}.
 	 * 

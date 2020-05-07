@@ -31,7 +31,7 @@ import com.machinezoo.noexception.*;
 	 */
 	@Override OptionalInt apply(double value);
 	/**
-	 * Convert this {@code OptionalDoubleToIntFunction} to plain {@code DoubleToIntFunction} using default value.
+	 * Converts this {@code OptionalDoubleToIntFunction} to plain {@code DoubleToIntFunction} using default value.
 	 * The returned {@code DoubleToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or return {@code result} if the {@code OptionalInt} is empty.
 	 * 
@@ -45,7 +45,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultDoubleToIntFunction(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalDoubleToIntFunction} to plain {@code DoubleToIntFunction} using fallback {@code IntSupplier}.
+	 * Converts this {@code OptionalDoubleToIntFunction} to plain {@code DoubleToIntFunction} using fallback {@code IntSupplier}.
 	 * The returned {@code DoubleToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalInt} is empty.
 	 * 

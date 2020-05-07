@@ -36,7 +36,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalBoolean test(T t, U u);
 	/**
-	 * Convert this {@code OptionalBiPredicate} to plain {@code BiPredicate} using default value.
+	 * Converts this {@code OptionalBiPredicate} to plain {@code BiPredicate} using default value.
 	 * The returned {@code BiPredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
@@ -50,7 +50,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultBiPredicate<T, U>(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalBiPredicate} to plain {@code BiPredicate} using fallback {@code BooleanSupplier}.
+	 * Converts this {@code OptionalBiPredicate} to plain {@code BiPredicate} using fallback {@code BooleanSupplier}.
 	 * The returned {@code BiPredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 

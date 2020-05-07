@@ -30,7 +30,7 @@ import com.machinezoo.noexception.*;
 	 */
 	OptionalBoolean test(long value);
 	/**
-	 * Convert this {@code OptionalLongPredicate} to plain {@code LongPredicate} using default value.
+	 * Converts this {@code OptionalLongPredicate} to plain {@code LongPredicate} using default value.
 	 * The returned {@code LongPredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or return {@code result} if the {@code OptionalBoolean} is empty.
 	 * 
@@ -44,7 +44,7 @@ import com.machinezoo.noexception.*;
 		return new DefaultLongPredicate(this, result);
 	}
 	/**
-	 * Convert this {@code OptionalLongPredicate} to plain {@code LongPredicate} using fallback {@code BooleanSupplier}.
+	 * Converts this {@code OptionalLongPredicate} to plain {@code LongPredicate} using fallback {@code BooleanSupplier}.
 	 * The returned {@code LongPredicate} will unwrap present value from the {@code OptionalBoolean} if possible,
 	 * or fall back to calling {@code source} if the {@code OptionalBoolean} is empty.
 	 * 
