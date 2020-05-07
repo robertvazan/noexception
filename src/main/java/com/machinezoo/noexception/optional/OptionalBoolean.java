@@ -166,6 +166,21 @@ public final class OptionalBoolean {
 			emptyAction.run();
 	}
 	/**
+	 * Widens the optional boolean value to {@link OptionalInt}.
+	 * JDK consistently uses {@link OptionalInt} where {@code OptionalBoolean} would be semantically correct.
+	 * This class can consequently cause compatibility problems with other code that expects {@link OptionalInt}.
+	 * This method widens the boolean value to {@code int} as wrapped in {@link OptionalInt} to improve compatibility.
+	 * Value of {@code true} is widened to {@code 1}, {@code false} to {@code 0}.
+	 * 
+	 * @return the optional value converted to {@link OptionalInt}
+	 */
+	public OptionalInt toInt() {
+		if (present)
+			return OptionalInt.of(value ? 1 : 0);
+		else
+			return OptionalInt.empty();
+	}
+	/**
 	 * Indicates whether some other object is "equal to" this {@code OptionalBoolean}.
 	 * The other object is considered equal if it is also an {@code OptionalBoolean}
 	 * and both instances have no value present or the present values are the same.
