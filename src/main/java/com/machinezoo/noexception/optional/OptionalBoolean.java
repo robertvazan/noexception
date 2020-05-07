@@ -3,6 +3,7 @@ package com.machinezoo.noexception.optional;
 
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.*;
 
 /**
  * A container object which may or may not contain a {@code boolean} value.
@@ -108,19 +109,61 @@ public final class OptionalBoolean {
 		return value;
 	}
 	/**
-	 * Have the specified consumer accept the value if a value is present, otherwise do nothing.
-	 * There is no {@code BooleanConsumer} in JDK.
-	 * Value of this {@code OptionalBoolean} is therefore widened to int and passed to {@code IntConsumer}.
+	 * Returns the contained value if present, otherwise throws {@link NoSuchElementException}.
+	 * 
+	 * @return the present value
+	 * @throws NoSuchElementException
+	 *             if there is no value present
+	 */
+	public boolean orElseThrow() {
+		if (!present)
+			throw new NoSuchElementException();
+		return value;
+	}
+	/**
+	 * If a value is present, returns the value in a stream, otherwise returns an empty stream.
+	 * There is no {@code BooleanStream} in JDK.
+	 * The boolean value is therefore widened to {@code int} and returned in an {@link IntStream}.
 	 * Value of {@code true} is widened to {@code 1}, {@code false} to {@code 0}.
 	 * 
-	 * @param consumer
-	 *            block to be executed if a value is present
-	 * @throws NullPointerException
-	 *             if value is present and {@code consumer} is null
+	 * @return the optional value as an {@link IntStream}
 	 */
-	public void ifPresent(IntConsumer consumer) {
+	public IntStream stream() {
+		return present ? IntStream.of(value ? 1 : 0) : IntStream.empty();
+	}
+	/**
+	 * If a value is present, passes the value to the provided consumer, otherwise does nothing.
+	 * There is no {@code BooleanConsumer} in JDK.
+	 * The boolean value is therefore widened to {@code int} and passed to {@link IntConsumer}.
+	 * Value of {@code true} is widened to {@code 1}, {@code false} to {@code 0}.
+	 * 
+	 * @param action
+	 *            code to be executed if a value is present
+	 * @throws NullPointerException
+	 *             if value is present and {@code action} is null
+	 */
+	public void ifPresent(IntConsumer action) {
 		if (present)
-			consumer.accept(value ? 1 : 0);
+			action.accept(value ? 1 : 0);
+	}
+	/**
+	 * If a value is present, passes the value to the provided consumer, otherwise executes the provided action.
+	 * There is no {@code BooleanConsumer} in JDK.
+	 * The boolean value is therefore widened to {@code int} and passed to {@link IntConsumer}.
+	 * Value of {@code true} is widened to {@code 1}, {@code false} to {@code 0}.
+	 * 
+	 * @param action
+	 *            code to be executed if a value is present
+	 * @param emptyAction
+	 *            code to be executed if no value is present
+	 * @throws NullPointerException
+	 *             if value is present and {@code action} is null
+	 */
+	public void ifPresentOrElse(IntConsumer action, Runnable emptyAction) {
+		if (present)
+			action.accept(value ? 1 : 0);
+		else
+			emptyAction.run();
 	}
 	/**
 	 * Indicates whether some other object is "equal to" this {@code OptionalBoolean}.

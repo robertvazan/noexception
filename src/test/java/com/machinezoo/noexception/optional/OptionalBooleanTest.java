@@ -53,10 +53,20 @@ public class OptionalBooleanTest {
 	public static class SampleException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 	}
-	@Test public void orElseThrow_of() {
+	@Test public void orElseThrowException() {
 		assertFalse(OptionalBoolean.of(false).orElseThrow(SampleException::new));
 		assertTrue(OptionalBoolean.of(true).orElseThrow(SampleException::new));
 		assertThrows(SampleException.class, () -> OptionalBoolean.empty().orElseThrow(SampleException::new));
+	}
+	@Test public void orElseThrow() {
+		assertFalse(OptionalBoolean.of(false).orElseThrow());
+		assertTrue(OptionalBoolean.of(true).orElseThrow());
+		assertThrows(NoSuchElementException.class, () -> OptionalBoolean.empty().orElseThrow());
+	}
+	@Test public void stream() {
+		assertArrayEquals(new int[] { 0 }, OptionalBoolean.of(false).stream().toArray());
+		assertArrayEquals(new int[] { 1 }, OptionalBoolean.of(true).stream().toArray());
+		assertArrayEquals(new int[0], OptionalBoolean.empty().stream().toArray());
 	}
 	@Test public void ifPresent() {
 		OptionalBoolean.empty().ifPresent(n -> fail());
@@ -65,6 +75,17 @@ public class OptionalBooleanTest {
 		verify(consumeFalse, only()).accept(0);
 		IntConsumer consumeTrue = mock(IntConsumer.class);
 		OptionalBoolean.of(true).ifPresent(consumeTrue);
+		verify(consumeTrue, only()).accept(1);
+	}
+	@Test public void ifPresentOrElse() {
+		Runnable runEmpty = mock(Runnable.class);
+		OptionalBoolean.empty().ifPresentOrElse(n -> fail(), runEmpty);
+		verify(runEmpty, only()).run();
+		IntConsumer consumeFalse = mock(IntConsumer.class);
+		OptionalBoolean.of(false).ifPresentOrElse(consumeFalse, () -> fail());
+		verify(consumeFalse, only()).accept(0);
+		IntConsumer consumeTrue = mock(IntConsumer.class);
+		OptionalBoolean.of(true).ifPresentOrElse(consumeTrue, () -> fail());
 		verify(consumeTrue, only()).accept(1);
 	}
 	@Test public void equals() {
