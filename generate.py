@@ -567,7 +567,7 @@ def handler_source():
          * <p>
          * All wrapping methods surround the functional interface with a try-catch block.
          * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
-         * which applies exception handling policy (log, ignore, pass, custom).
+         * which applies exception handling policy (log, silence, ignore, custom).
          * {@code NullPointerException} from null functional interface is caught too.
          * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
          * while non-void functional interfaces return empty {@link Optional}.
@@ -589,6 +589,7 @@ def handler_source():
          * @see Exceptions
          * @see OptionalSupplier
          * @see Optional
+         * @see ExceptionFilter
          * @see CheckedExceptionHandler
          */
         public abstract class ExceptionHandler {
@@ -618,6 +619,24 @@ def handler_source():
              * Initialize new {@code ExceptionHandler}.
              */
             protected ExceptionHandler() {
+            }
+            /**
+             * Adds a pass-through modifier to this exception handler.
+             * If this exception handler performs an action (like logging) and then stops exception propagation,
+             * this method will return {@link ExceptionFilter} that performs the same action but additionally rethrows the exception.
+             * <p>
+             * Reusable exception handlers can be defined once as {@code ExceptionHandler} instances
+             * and then transformed into {@link ExceptionFilter} by this method when needed.
+             * <p>
+             * If method {@link #handle(Throwable)} throws, the returned {@link ExceptionFilter} will pass through that exception.
+             * It only rethrows the original exception if {@link #handle(Throwable)} returns normally (regardless of return value).
+             * <p>
+             * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda)}
+             *
+             * @return pass-through modification of this exception handler
+             */
+            public ExceptionFilter passing() {
+                return new PassingFilter(this);
             }
     ''')
     for fn in functional_types():
@@ -712,6 +731,135 @@ def handler_source():
         ''', indent=1)
     output('}')
 
+def filter_source():
+    output(file_header())
+    output('''\
+        import java.util.*;
+        import java.util.function.*;
+        
+        /**
+         * Represents exception handling policy that always ends with throwing another exception.
+         * Methods of this class apply the exception policy to functional interfaces (usually lambdas) by wrapping them in a try-catch block.
+         * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
+         * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
+         * <p>
+         * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda)}
+         * <p>
+         * All wrapping methods surround the functional interface with a try-catch block.
+         * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
+         * {@code NullPointerException} from null functional interface is caught too.
+         * Method {@link #handle(Throwable)} applies exception handling policy (log, count, ignore, etc.) and
+         * throws a replacement or wrapping exception.
+         * If it returns without throwing any exception, the original exception is rethrown.
+         * <p>
+         * Wrapping methods for all standard functional interfaces are provided.
+         * Simple interfaces have short method names like {@link #runnable(Runnable)} or {@link #supplier(Supplier)}.
+         * Interfaces with longer names have methods that follow {@code fromX} naming pattern, for example {@link #fromUnaryOperator(UnaryOperator)}.
+         * Parameterless functional interfaces can be called directly by methods {@link #run(Runnable)}, {@link #get(Supplier)},
+         * and the various {@code getAsX} variants.
+         * 
+         * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
+         * @see #handle(Throwable)
+         * @see ExceptionHandler#passing()
+         * @see ExceptionHandler
+         * @see CheckedExceptionHandler
+         */
+        public abstract class ExceptionFilter {
+            /**
+             * Handles exception in a generic way. This method must be defined in a derived class.
+             * One built-in implementation is provided by {@link ExceptionHandler#passing()}.
+             * All other methods of the {@code ExceptionFilter} call this method, but it can be also called directly.
+             * <p>
+             * This method represents reusable catch block that handles all exceptions in the same way.
+             * When invoked, it must somehow handle the provided exception, for example by logging it.
+             * It can also replace or wrap the exception by throwing a new exception.
+             * If this method returns without throwing, it is a signal that the original exception should be rethrown.
+             * All other methods of this class will rethrow in that case.
+             * 
+             * @param exception
+             *            the exception to handle
+             * @throws NullPointerException
+             *             if {@code exception} is {@code null}
+             * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
+             * @see Exceptions
+             */
+            public abstract void handle(Throwable exception);
+            /**
+             * Initializes new {@code ExceptionFilter}.
+             */
+            protected ExceptionFilter() {
+            }
+    ''')
+    for fn in functional_types():
+        output('''\
+            /**
+             * Applies exception filter to {@code ''' + fn + '''}.
+             * <p>
+             * If {@code ''' + short_name(fn) + '''} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
+             * {@code NullPointerException} from null {@code ''' + short_name(fn) + '''} is caught too.
+             * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
+             * <p>
+             * Typical usage: {@code methodTaking''' + fn + '(Exceptions.log().passing().' + from_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda))}
+             * 
+             * @param ''' + short_name(fn) + '''
+             *            the {@code ''' + fn + '''} to wrap, usually a lambda
+             * @return wrapper that runs {@code ''' + fn + '''} in a try-catch block
+             * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
+             * @see Exceptions
+             */
+            public final''' + space_left(type_parameter_section(fn)) + ' ' + parameterized_type(fn) + ' '
+                + from_method(fn) + '(' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
+                return new Filtered''' + parameterized_type(fn) + '(' + short_name(fn) + ''');
+            }
+            private final class Filtered''' + parameterized_type(fn) + ' implements ' + parameterized_type(fn) + ''' {
+                private final ''' + parameterized_type(fn) + ' ' + short_name(fn) + ''';
+                Filtered''' + fn + '(' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
+                    this.''' + short_name(fn) + ' = ' + short_name(fn) + ''';
+                }
+                @Override public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
+                    try {
+                        ''' + return_if_needed(return_type(fn)) + short_name(fn) + '.' + as_method(fn) + '(' + passed_params(fn) + ''');
+                    } catch (Throwable exception) {
+                        handle(exception);
+                        throw exception;
+                    }
+                }
+            }
+        ''', indent=1)
+    for fn in parameterless_functional_types():
+        output('''\
+            /**
+             * Filters exceptions while running {@code ''' + fn + '''}.
+             * <p>
+             * If {@code ''' + short_name(fn) + '''} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
+             * {@code NullPointerException} from null {@code ''' + short_name(fn) + '''} is caught too.
+             * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
+             * <p>
+             * Typical usage: {@code Exceptions.log().passing().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
+             * 
+             * @param ''' + short_name(fn) + '''
+             *            the {@code ''' + fn + '''} to run, usually a lambda
+        ''', indent=1)
+        if not void_functional(fn):
+            output(' * @return value returned from {@code ' + short_name(fn) + '}', indent=1)
+        output('''\
+             * @throws NullPointerException
+             *             if {@code ''' + short_name(fn) + '''} is {@code null}
+             * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
+             * @see Exceptions
+             */
+            public final''' + space_left(type_parameter_section(fn)) + ' ' + return_type(fn) + ' '
+                + as_method(fn) + '(' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
+                try {
+                    ''' + return_if_needed(return_type(fn)) + short_name(fn) + '.' + as_method(fn) + '''();
+                } catch (Throwable exception) {
+                    handle(exception);
+                    throw exception;
+                }
+            }
+        ''', indent=1)
+    output('}')
+
 def checked_source():
     output(file_header())
     output('''\
@@ -752,6 +900,7 @@ def checked_source():
          * @see #handle(Exception)
          * @see Exceptions
          * @see ExceptionHandler
+         * @see ExceptionFilter
          */
         public abstract class CheckedExceptionHandler {
             /**
@@ -817,7 +966,7 @@ def checked_source():
                     } catch (Exception exception) {
                         throw handle(exception);
                     } catch (Throwable exception) {
-                        ExceptionSmuggler.sneak(exception);
+                        SneakingHandler.sneak(exception);
                         throw new IllegalStateException();
                     }
                 }
@@ -834,7 +983,7 @@ def checked_source():
              * Typical usage: {@code Exceptions.sneak().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code Throwing''' + fn + '''} to be converted, usually a lambda
+             *            the {@code Throwing''' + fn + '''} to run, usually a lambda
         ''', indent=1)
         if not void_functional(fn):
             output(' * @return value returned from {@code ' + short_name(fn) + '}', indent=1)
@@ -853,7 +1002,7 @@ def checked_source():
                 } catch (Exception exception) {
                     throw handle(exception);
                 } catch (Throwable exception) {
-                    ExceptionSmuggler.sneak(exception);
+                    SneakingHandler.sneak(exception);
                     throw new IllegalStateException();
                 }
             }
@@ -1042,13 +1191,9 @@ def handler_test():
             }
             @Test public void ''' + from_method(fn) + '''_passException() {
                 ExceptionCollector collector = new ExceptionCollector(false);
-                try {
-                    collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                        throw new NumberFormatException();
-                    }).''' + method_verb(fn) + '(' + test_input(fn) + ''');
-                    fail();
-                } catch (NumberFormatException e) {
-                }
+                assertThrows(NumberFormatException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
+                }).''' + method_verb(fn) + '(' + test_input(fn) + '''));
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
         ''', indent=1)
@@ -1089,13 +1234,88 @@ def handler_test():
             }
             @Test public void ''' + as_method(fn) + '''_passException() {
                 ExceptionCollector collector = new ExceptionCollector(false);
-                try {
-                    collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                        throw new NumberFormatException();
-                    });
-                    fail();
-                } catch (NumberFormatException e) {
-                }
+                assertThrows(NumberFormatException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
+                }));
+                assertThat(collector.single(), instanceOf(NumberFormatException.class));
+            }
+        ''', indent=1)
+    output('}')
+
+def filter_test():
+    output(file_header())
+    output('''\
+        import static org.hamcrest.MatcherAssert.assertThat;
+        import static org.hamcrest.core.IsInstanceOf.*;
+        import static org.junit.jupiter.api.Assertions.*;
+        import static org.mockito.Mockito.*;
+        import java.util.*;
+        import java.util.function.*;
+        import org.junit.jupiter.api.*;
+        
+        public class ExceptionFilterTest {
+    ''')
+    for fn in functional_types():
+        output('''\
+            @Test public void ''' + from_method(fn) + '''_complete() {
+                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
+        ''', indent=1)
+        if void_functional(fn):
+            output('collector.' + from_method(fn) + '(lambda).' + method_verb(fn) + '(' + test_input(fn) + ');', indent=2)
+        else:
+            output('''\
+                when(lambda.''' + as_method(fn) + '(' + test_input(fn) + ')).thenReturn(' + test_output(fn) + ''');
+                assertEquals(''' + test_output(fn) + ', collector.' + from_method(fn) + '(lambda).' + as_method(fn) + '(' + test_input(fn) + '''));
+            ''', indent=2)
+        output('''\
+                verify(lambda, only()).''' + as_method(fn) + '(' + test_input(fn) + ''');
+                assertTrue(collector.empty());
+            }
+            @Test public void ''' + from_method(fn) + '''_rethrow() {
+                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                assertThrows(NumberFormatException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
+                }).''' + as_method(fn) + '(' + test_input(fn) + '''));
+                assertThat(collector.single(), instanceOf(NumberFormatException.class));
+            }
+            @Test public void ''' + from_method(fn) + '''_replace() {
+                FilteredExceptionCollector collector = new FilteredExceptionCollector(true);
+                assertThrows(CollectedException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
+                }).''' + as_method(fn) + '(' + test_input(fn) + '''));
+                assertThat(collector.single(), instanceOf(NumberFormatException.class));
+            }
+        ''', indent=1)
+    for fn in parameterless_functional_types():
+        output('''\
+            @Test public void ''' + as_method(fn) + '''_complete() {
+                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
+        ''', indent=1)
+        if void_functional(fn):
+            output('collector.' + as_method(fn) + '(lambda);', indent=2)
+        else:
+            output('''\
+                when(lambda.''' + as_method(fn) + '()).thenReturn(' + test_output(fn) + ''');
+                assertEquals(''' + test_output(fn) + ', collector.' + as_method(fn) + '''(lambda));
+            ''', indent=2)
+        output('''\
+                verify(lambda, only()).''' + as_method(fn) + '(' + test_input(fn) + ''');
+                assertTrue(collector.empty());
+            }
+            @Test public void ''' + as_method(fn) + '''_pass() {
+                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                assertThrows(NumberFormatException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
+                }));
+                assertThat(collector.single(), instanceOf(NumberFormatException.class));
+            }
+            @Test public void ''' + as_method(fn) + '''_replace() {
+                FilteredExceptionCollector collector = new FilteredExceptionCollector(true);
+                assertThrows(CollectedException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
+                }));
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
         ''', indent=1)
@@ -1134,32 +1354,20 @@ def checked_test():
             }
             @Test public void ''' + from_method(fn) + '''_exception() {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
-                try {
-                    collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                        throw new PrinterException();
-                    }).''' + as_method(fn) + '(' + test_input(fn) + ''');
-                    fail();
-                } catch (CollectedException e) {
-                }
+                assertThrows(CollectedException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new PrinterException();
+                }).''' + as_method(fn) + '(' + test_input(fn) + '''));
                 assertThat(collector.single(), instanceOf(PrinterException.class));
             }
             @Test public void ''' + from_method(fn) + '''_runtime() {
-                try {
-                    new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                        throw new IllegalArgumentException();
-                    }).''' + as_method(fn) + '(' + test_input(fn) + ''');
-                    fail();
-                } catch (IllegalArgumentException e) {
-                }
+                assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new IllegalArgumentException();
+                }).''' + as_method(fn) + '(' + test_input(fn) + '''));
             }
             @Test public void ''' + from_method(fn) + '''_error() {
-                try {
-                    new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                        throw new AssertionError();
-                    }).''' + as_method(fn) + '(' + test_input(fn) + ''');
-                    fail();
-                } catch (AssertionError e) {
-                }
+                assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new AssertionError();
+                }).''' + as_method(fn) + '(' + test_input(fn) + '''));
             }
         ''', indent=1)
     for fn in parameterless_functional_types():
@@ -1181,13 +1389,9 @@ def checked_test():
             }
             @Test public void ''' + as_method(fn) + '''_exception() {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
-                try {
-                    collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                        throw new PrinterException();
-                    });
-                    fail();
-                } catch (CollectedException e) {
-                }
+                assertThrows(CollectedException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new PrinterException();
+                }));
                 assertThat(collector.single(), instanceOf(PrinterException.class));
             }
         ''', indent=1)
@@ -1206,6 +1410,8 @@ for functional in nonvoid_functional_types():
     redirect(tests + '/optional/Fallback' + functional + 'Test.java', lambda: fallback_test(functional))
     redirect(tests + '/optional/Optional' + functional + 'Test.java', lambda: optional_test(functional))
 redirect(sources + '/ExceptionHandler.java', handler_source)
+redirect(sources + '/ExceptionFilter.java', filter_source)
 redirect(sources + '/CheckedExceptionHandler.java', checked_source)
 redirect(tests + '/ExceptionHandlerTest.java', handler_test)
+redirect(tests + '/ExceptionFilterTest.java', filter_test)
 redirect(tests + '/CheckedExceptionHandlerTest.java', checked_test)

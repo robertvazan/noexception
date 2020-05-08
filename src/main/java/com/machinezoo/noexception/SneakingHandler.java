@@ -1,7 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
-final class ExceptionSmuggler extends CheckedExceptionHandler {
+final class SneakingHandler extends CheckedExceptionHandler {
 	@Override public RuntimeException handle(Exception exception) {
 		return sneak(exception);
 	}

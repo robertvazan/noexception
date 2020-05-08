@@ -16,11 +16,11 @@ import org.slf4j.*;
  */
 public final class Exceptions {
 	private static final Logger logger = LoggerFactory.getLogger(Exceptions.class);
-	private static final ExceptionPassThrough pass = new ExceptionPassThrough();
-	private static final ExceptionLogger log = new ExceptionLogger(logger, "Caught exception");
-	private static final ExceptionSilencer silence = new ExceptionSilencer();
-	private static final ExceptionSmuggler sneak = new ExceptionSmuggler();
-	private static final ExceptionWrapper wrap = new ExceptionWrapper();
+	private static final IgnoringHandler ignore = new IgnoringHandler();
+	private static final LoggingHandler log = new LoggingHandler(logger, "Caught exception");
+	private static final SilencingHandler silence = new SilencingHandler();
+	private static final SneakingHandler sneak = new SneakingHandler();
+	private static final WrappingHandler wrap = new WrappingHandler();
 	private Exceptions() {
 	}
 	/**
@@ -31,7 +31,7 @@ public final class Exceptions {
 	 * @return pass-through exception handler
 	 */
 	public static ExceptionHandler pass() {
-		return pass;
+		return ignore;
 	}
 	/**
 	 * Returns {@code ExceptionHandler} that writes all exceptions to common logger.
@@ -70,7 +70,7 @@ public final class Exceptions {
 	 * @see #log(Logger, String)
 	 */
 	public static ExceptionHandler log(Logger logger) {
-		return new ExceptionLogger(logger, "Caught exception.");
+		return new LoggingHandler(logger, "Caught exception.");
 	}
 	/**
 	 * Creates {@code ExceptionHandler} that writes all exceptions to the specified {@code logger} with the specified {@code message}.
@@ -94,7 +94,7 @@ public final class Exceptions {
 	 * @see #log(Logger)
 	 */
 	public static ExceptionHandler log(Logger logger, String message) {
-		return new ExceptionLogger(logger, message);
+		return new LoggingHandler(logger, message);
 	}
 	/**
 	 * Returns {@code ExceptionHandler} that silently ignores all exceptions.
@@ -168,6 +168,6 @@ public final class Exceptions {
 	 * @see #wrap()
 	 */
 	public static CheckedExceptionHandler wrap(Function<Exception, RuntimeException> wrapper) {
-		return new ExceptionTransform(wrapper);
+		return new MappingHandler(wrapper);
 	}
 }

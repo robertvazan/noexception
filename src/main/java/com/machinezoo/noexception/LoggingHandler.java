@@ -4,10 +4,10 @@ package com.machinezoo.noexception;
 import java.util.*;
 import org.slf4j.*;
 
-final class ExceptionLogger extends ExceptionHandler {
+final class LoggingHandler extends ExceptionHandler {
 	private final Logger logger;
 	private final String message;
-	ExceptionLogger(Logger logger, String message) {
+	LoggingHandler(Logger logger, String message) {
 		Objects.requireNonNull(logger);
 		Objects.requireNonNull(message);
 		this.logger = logger;

@@ -39,6 +39,7 @@ import com.machinezoo.noexception.throwing.*;
  * @see #handle(Exception)
  * @see Exceptions
  * @see ExceptionHandler
+ * @see ExceptionFilter
  */
 public abstract class CheckedExceptionHandler {
 	/**
@@ -100,7 +101,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -136,7 +137,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -172,7 +173,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -208,7 +209,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -244,7 +245,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -280,7 +281,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -316,7 +317,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -352,7 +353,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -388,7 +389,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -424,7 +425,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -460,7 +461,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -496,7 +497,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -532,7 +533,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -568,7 +569,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -604,7 +605,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -640,7 +641,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -676,7 +677,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -712,7 +713,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -748,7 +749,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -784,7 +785,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -820,7 +821,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -856,7 +857,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -892,7 +893,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -928,7 +929,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -964,7 +965,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1000,7 +1001,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1036,7 +1037,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1072,7 +1073,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1108,7 +1109,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1144,7 +1145,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1180,7 +1181,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1216,7 +1217,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1252,7 +1253,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1288,7 +1289,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1324,7 +1325,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1360,7 +1361,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1396,7 +1397,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1432,7 +1433,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1468,7 +1469,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1504,7 +1505,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1540,7 +1541,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1576,7 +1577,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1612,7 +1613,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1648,7 +1649,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1684,7 +1685,7 @@ public abstract class CheckedExceptionHandler {
 			} catch (Exception exception) {
 				throw handle(exception);
 			} catch (Throwable exception) {
-				ExceptionSmuggler.sneak(exception);
+				SneakingHandler.sneak(exception);
 				throw new IllegalStateException();
 			}
 		}
@@ -1698,7 +1699,7 @@ public abstract class CheckedExceptionHandler {
 	 * Typical usage: {@code Exceptions.sneak().run(() -> my_throwing_lambda))}
 	 * 
 	 * @param runnable
-	 *            the {@code ThrowingRunnable} to be converted, usually a lambda
+	 *            the {@code ThrowingRunnable} to run, usually a lambda
 	 * @throws NullPointerException
 	 *             if {@code runnable} is {@code null}
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
@@ -1712,7 +1713,7 @@ public abstract class CheckedExceptionHandler {
 		} catch (Exception exception) {
 			throw handle(exception);
 		} catch (Throwable exception) {
-			ExceptionSmuggler.sneak(exception);
+			SneakingHandler.sneak(exception);
 			throw new IllegalStateException();
 		}
 	}
@@ -1725,7 +1726,7 @@ public abstract class CheckedExceptionHandler {
 	 * Typical usage: {@code Exceptions.sneak().get(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code ThrowingSupplier} to be converted, usually a lambda
+	 *            the {@code ThrowingSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1740,7 +1741,7 @@ public abstract class CheckedExceptionHandler {
 		} catch (Exception exception) {
 			throw handle(exception);
 		} catch (Throwable exception) {
-			ExceptionSmuggler.sneak(exception);
+			SneakingHandler.sneak(exception);
 			throw new IllegalStateException();
 		}
 	}
@@ -1753,7 +1754,7 @@ public abstract class CheckedExceptionHandler {
 	 * Typical usage: {@code Exceptions.sneak().getAsInt(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code ThrowingIntSupplier} to be converted, usually a lambda
+	 *            the {@code ThrowingIntSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1768,7 +1769,7 @@ public abstract class CheckedExceptionHandler {
 		} catch (Exception exception) {
 			throw handle(exception);
 		} catch (Throwable exception) {
-			ExceptionSmuggler.sneak(exception);
+			SneakingHandler.sneak(exception);
 			throw new IllegalStateException();
 		}
 	}
@@ -1781,7 +1782,7 @@ public abstract class CheckedExceptionHandler {
 	 * Typical usage: {@code Exceptions.sneak().getAsLong(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code ThrowingLongSupplier} to be converted, usually a lambda
+	 *            the {@code ThrowingLongSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1796,7 +1797,7 @@ public abstract class CheckedExceptionHandler {
 		} catch (Exception exception) {
 			throw handle(exception);
 		} catch (Throwable exception) {
-			ExceptionSmuggler.sneak(exception);
+			SneakingHandler.sneak(exception);
 			throw new IllegalStateException();
 		}
 	}
@@ -1809,7 +1810,7 @@ public abstract class CheckedExceptionHandler {
 	 * Typical usage: {@code Exceptions.sneak().getAsDouble(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code ThrowingDoubleSupplier} to be converted, usually a lambda
+	 *            the {@code ThrowingDoubleSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1824,7 +1825,7 @@ public abstract class CheckedExceptionHandler {
 		} catch (Exception exception) {
 			throw handle(exception);
 		} catch (Throwable exception) {
-			ExceptionSmuggler.sneak(exception);
+			SneakingHandler.sneak(exception);
 			throw new IllegalStateException();
 		}
 	}
@@ -1837,7 +1838,7 @@ public abstract class CheckedExceptionHandler {
 	 * Typical usage: {@code Exceptions.sneak().getAsBoolean(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code ThrowingBooleanSupplier} to be converted, usually a lambda
+	 *            the {@code ThrowingBooleanSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1852,7 +1853,7 @@ public abstract class CheckedExceptionHandler {
 		} catch (Exception exception) {
 			throw handle(exception);
 		} catch (Throwable exception) {
-			ExceptionSmuggler.sneak(exception);
+			SneakingHandler.sneak(exception);
 			throw new IllegalStateException();
 		}
 	}

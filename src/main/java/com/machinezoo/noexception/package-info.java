@@ -12,9 +12,10 @@
  */
 /**
  * Classes implementing all NoException features.
- * Class {@link com.machinezoo.noexception.Exceptions} is the entry point to NoException functionality.
- * After picking one of its predefined exception handlers, you pass your code as a lambda to
- * the appropriate method of {@link com.machinezoo.noexception.ExceptionHandler} or {@link com.machinezoo.noexception.CheckedExceptionHandler}.
+ * Class {@link Exceptions} is the entry point to NoException functionality.
+ * After picking one of its predefined exception handlers and possibly calling {@link ExceptionHandler#passing()},
+ * you pass your code as a lambda to the appropriate method of {@link ExceptionHandler}, {@link ExceptionFilter},
+ * or {@link CheckedExceptionHandler}.
  * <p>
  * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda).orElse(fallback)}
  *

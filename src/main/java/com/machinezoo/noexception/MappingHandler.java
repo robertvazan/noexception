@@ -4,9 +4,9 @@ package com.machinezoo.noexception;
 import java.util.*;
 import java.util.function.*;
 
-final class ExceptionTransform extends CheckedExceptionHandler {
+final class MappingHandler extends CheckedExceptionHandler {
 	private final Function<Exception, RuntimeException> wrapper;
-	ExceptionTransform(Function<Exception, RuntimeException> wrapper) {
+	MappingHandler(Function<Exception, RuntimeException> wrapper) {
 		Objects.requireNonNull(wrapper);
 		this.wrapper = wrapper;
 	}

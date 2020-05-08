@@ -16,7 +16,7 @@ import com.machinezoo.noexception.optional.*;
  * <p>
  * All wrapping methods surround the functional interface with a try-catch block.
  * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
- * which applies exception handling policy (log, ignore, pass, custom).
+ * which applies exception handling policy (log, silence, ignore, custom).
  * {@code NullPointerException} from null functional interface is caught too.
  * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
  * while non-void functional interfaces return empty {@link Optional}.
@@ -38,6 +38,7 @@ import com.machinezoo.noexception.optional.*;
  * @see Exceptions
  * @see OptionalSupplier
  * @see Optional
+ * @see ExceptionFilter
  * @see CheckedExceptionHandler
  */
 public abstract class ExceptionHandler {
@@ -67,6 +68,24 @@ public abstract class ExceptionHandler {
 	 * Initialize new {@code ExceptionHandler}.
 	 */
 	protected ExceptionHandler() {
+	}
+	/**
+	 * Adds a pass-through modifier to this exception handler.
+	 * If this exception handler performs an action (like logging) and then stops exception propagation,
+	 * this method will return {@link ExceptionFilter} that performs the same action but additionally rethrows the exception.
+	 * <p>
+	 * Reusable exception handlers can be defined once as {@code ExceptionHandler} instances
+	 * and then transformed into {@link ExceptionFilter} by this method when needed.
+	 * <p>
+	 * If method {@link #handle(Throwable)} throws, the returned {@link ExceptionFilter} will pass through that exception.
+	 * It only rethrows the original exception if {@link #handle(Throwable)} returns normally (regardless of return value).
+	 * <p>
+	 * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda)}
+	 *
+	 * @return pass-through modification of this exception handler
+	 */
+	public ExceptionFilter passing() {
+		return new PassingFilter(this);
 	}
 	/**
 	 * Wraps {@code Runnable} in a try-catch block.
