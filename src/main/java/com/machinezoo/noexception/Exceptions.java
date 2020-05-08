@@ -30,8 +30,17 @@ public final class Exceptions {
 	 * 
 	 * @return pass-through exception handler
 	 */
-	public static ExceptionHandler pass() {
+	public static ExceptionHandler ignore() {
 		return ignore;
+	}
+	/**
+	 * Returns {@code ExceptionHandler} that lets all exceptions through.
+	 * This is an old deprecated alias for {@link #ignore()}.
+	 * 
+	 * @return pass-through exception handler
+	 */
+	@Deprecated public static ExceptionHandler pass() {
+		return ignore();
 	}
 	/**
 	 * Returns {@code ExceptionHandler} that writes all exceptions to common logger.

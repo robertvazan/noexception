@@ -15,16 +15,16 @@ public class ExceptionsTest {
 		sharedLogger.clear();
 		customLogger.clear();
 	}
-	@Test public void pass_runtime() {
+	@Test public void ignore_runtime() {
 		assertThrows(NumberFormatException.class, () -> {
-			Exceptions.pass().run(() -> {
+			Exceptions.ignore().run(() -> {
 				throw new NumberFormatException();
 			});
 		});
 	}
-	@Test public void pass_error() {
+	@Test public void ignore_error() {
 		assertThrows(IOError.class, () -> {
-			Exceptions.pass().run(() -> {
+			Exceptions.ignore().run(() -> {
 				throw new IOError(new IOException());
 			});
 		});
