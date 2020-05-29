@@ -13,23 +13,23 @@
 
 	<licenses>
 		<license>
-			<name>The Apache License, Version 2.0</name>
-			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>Apache License 2.0</name>
+			<url>https://github.com/robertvazan/noexception/blob/master/LICENSE</url>
 		</license>
 	</licenses>
 
 	<developers>
 		<developer>
 			<name>Robert Važan</name>
-			<email>robvcode@gmail.com</email>
+			<email>robert.vazan@protonmail.com</email>
 			<url>https://robert.machinezoo.com/</url>
 		</developer>
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://bitbucket.org/robertvazan/noexception</connection>
-		<developerConnection>scm:git:https://bitbucket.org/robertvazan/noexception</developerConnection>
-		<url>https://bitbucket.org/robertvazan/noexception</url>
+		<connection>scm:git:https://github.com/robertvazan/noexception.git</connection>
+		<developerConnection>scm:git:https://github.com/robertvazan/noexception.git</developerConnection>
+		<url>https://github.com/robertvazan/noexception</url>
 	</scm>
 
 	<properties>
@@ -71,6 +71,14 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
