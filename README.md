@@ -1,5 +1,7 @@
 # NoException #
 
+![Maven Central](https://img.shields.io/maven-central/v/com.machinezoo.noexception/noexception)
+
 NoException is a Java library for handling exceptions in concise, unified, and architecturally clean way.
 
 ```java
