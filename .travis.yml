@@ -3,6 +3,7 @@ jdk:
   - openjdk8
   - openjdk11
 install: mvn install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip -B -V
+script: mvn cobertura:cobertura -B
 cache:
   directories:
   - $HOME/.m2
