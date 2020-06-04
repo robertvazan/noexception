@@ -2,6 +2,7 @@ language: java
 jdk:
   - openjdk8
   - openjdk11
+install: mvn install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip -B -V
 cache:
   directories:
   - $HOME/.m2
