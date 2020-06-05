@@ -88,6 +88,11 @@ public class OptionalBooleanTest {
 		OptionalBoolean.of(true).ifPresentOrElse(consumeTrue, () -> fail());
 		verify(consumeTrue, only()).accept(1);
 	}
+	@Test public void toInt() {
+		assertEquals(OptionalInt.of(1), OptionalBoolean.of(true).toInt());
+		assertEquals(OptionalInt.of(0), OptionalBoolean.of(false).toInt());
+		assertEquals(OptionalInt.empty(), OptionalBoolean.empty().toInt());
+	}
 	@Test public void equals() {
 		assertEquals(OptionalBoolean.empty(), OptionalBoolean.empty());
 		assertEquals(OptionalBoolean.of(false), OptionalBoolean.of(false));
