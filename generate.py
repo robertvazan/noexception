@@ -1327,6 +1327,7 @@ def checked_test():
         import static org.junit.jupiter.api.Assertions.*;
         import static org.mockito.Mockito.*;
         import java.awt.print.*;
+        import java.util.*;
         import org.junit.jupiter.api.*;
         import com.machinezoo.noexception.throwing.*;
         
@@ -1358,13 +1359,13 @@ def checked_test():
                 assertThat(collector.single(), instanceOf(PrinterException.class));
             }
             @Test public void ''' + from_method(fn) + '''_runtime() {
-                assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                    throw new IllegalArgumentException();
+                assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
             }
             @Test public void ''' + from_method(fn) + '''_error() {
-                assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                    throw new AssertionError();
+                assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new ServiceConfigurationError("");
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
             }
         ''', indent=1)
@@ -1393,13 +1394,13 @@ def checked_test():
                 assertThat(collector.single(), instanceOf(PrinterException.class));
             }
             @Test public void ''' + as_method(fn) + '''_runtime() {
-                assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                    throw new IllegalArgumentException();
+                assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new NumberFormatException();
                 }));
             }
             @Test public void ''' + as_method(fn) + '''_error() {
-                assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                    throw new AssertionError();
+                assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new ServiceConfigurationError("");
                 }));
             }
         ''', indent=1)

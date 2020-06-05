@@ -7,6 +7,7 @@ import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import java.awt.print.*;
+import java.util.*;
 import org.junit.jupiter.api.*;
 import com.machinezoo.noexception.throwing.*;
 
@@ -26,13 +27,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void runnable_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().runnable(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().runnable(() -> {
+			throw new NumberFormatException();
 		}).run());
 	}
 	@Test public void runnable_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().runnable(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().runnable(() -> {
+			throw new ServiceConfigurationError("");
 		}).run());
 	}
 	@Test public void supplier_complete() throws Throwable {
@@ -51,13 +52,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void supplier_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().supplier(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().supplier(() -> {
+			throw new NumberFormatException();
 		}).get());
 	}
 	@Test public void supplier_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().supplier(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().supplier(() -> {
+			throw new ServiceConfigurationError("");
 		}).get());
 	}
 	@Test public void fromIntSupplier_complete() throws Throwable {
@@ -76,13 +77,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntSupplier_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntSupplier(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntSupplier(() -> {
+			throw new NumberFormatException();
 		}).getAsInt());
 	}
 	@Test public void fromIntSupplier_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntSupplier(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntSupplier(() -> {
+			throw new ServiceConfigurationError("");
 		}).getAsInt());
 	}
 	@Test public void fromLongSupplier_complete() throws Throwable {
@@ -101,13 +102,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongSupplier_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongSupplier(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongSupplier(() -> {
+			throw new NumberFormatException();
 		}).getAsLong());
 	}
 	@Test public void fromLongSupplier_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongSupplier(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongSupplier(() -> {
+			throw new ServiceConfigurationError("");
 		}).getAsLong());
 	}
 	@Test public void fromDoubleSupplier_complete() throws Throwable {
@@ -126,13 +127,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoubleSupplier_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoubleSupplier(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoubleSupplier(() -> {
+			throw new NumberFormatException();
 		}).getAsDouble());
 	}
 	@Test public void fromDoubleSupplier_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoubleSupplier(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoubleSupplier(() -> {
+			throw new ServiceConfigurationError("");
 		}).getAsDouble());
 	}
 	@Test public void fromBooleanSupplier_complete() throws Throwable {
@@ -151,13 +152,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromBooleanSupplier_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromBooleanSupplier(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromBooleanSupplier(() -> {
+			throw new NumberFormatException();
 		}).getAsBoolean());
 	}
 	@Test public void fromBooleanSupplier_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromBooleanSupplier(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromBooleanSupplier(() -> {
+			throw new ServiceConfigurationError("");
 		}).getAsBoolean());
 	}
 	@Test public void consumer_complete() throws Throwable {
@@ -175,13 +176,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void consumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().consumer(t -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().consumer(t -> {
+			throw new NumberFormatException();
 		}).accept("input"));
 	}
 	@Test public void consumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().consumer(t -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().consumer(t -> {
+			throw new ServiceConfigurationError("");
 		}).accept("input"));
 	}
 	@Test public void fromIntConsumer_complete() throws Throwable {
@@ -199,13 +200,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntConsumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntConsumer(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntConsumer(v -> {
+			throw new NumberFormatException();
 		}).accept(1));
 	}
 	@Test public void fromIntConsumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntConsumer(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntConsumer(v -> {
+			throw new ServiceConfigurationError("");
 		}).accept(1));
 	}
 	@Test public void fromLongConsumer_complete() throws Throwable {
@@ -223,13 +224,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongConsumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongConsumer(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongConsumer(v -> {
+			throw new NumberFormatException();
 		}).accept(1L));
 	}
 	@Test public void fromLongConsumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongConsumer(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongConsumer(v -> {
+			throw new ServiceConfigurationError("");
 		}).accept(1L));
 	}
 	@Test public void fromDoubleConsumer_complete() throws Throwable {
@@ -247,13 +248,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoubleConsumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoubleConsumer(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoubleConsumer(v -> {
+			throw new NumberFormatException();
 		}).accept(1.0));
 	}
 	@Test public void fromDoubleConsumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoubleConsumer(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoubleConsumer(v -> {
+			throw new ServiceConfigurationError("");
 		}).accept(1.0));
 	}
 	@Test public void fromBiConsumer_complete() throws Throwable {
@@ -271,13 +272,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromBiConsumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromBiConsumer((t, u) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromBiConsumer((t, u) -> {
+			throw new NumberFormatException();
 		}).accept("input1", "input2"));
 	}
 	@Test public void fromBiConsumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromBiConsumer((t, u) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromBiConsumer((t, u) -> {
+			throw new ServiceConfigurationError("");
 		}).accept("input1", "input2"));
 	}
 	@Test public void fromObjIntConsumer_complete() throws Throwable {
@@ -295,13 +296,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromObjIntConsumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromObjIntConsumer((t, v) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromObjIntConsumer((t, v) -> {
+			throw new NumberFormatException();
 		}).accept("input", 1));
 	}
 	@Test public void fromObjIntConsumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromObjIntConsumer((t, v) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromObjIntConsumer((t, v) -> {
+			throw new ServiceConfigurationError("");
 		}).accept("input", 1));
 	}
 	@Test public void fromObjLongConsumer_complete() throws Throwable {
@@ -319,13 +320,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromObjLongConsumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromObjLongConsumer((t, v) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromObjLongConsumer((t, v) -> {
+			throw new NumberFormatException();
 		}).accept("input", 1L));
 	}
 	@Test public void fromObjLongConsumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromObjLongConsumer((t, v) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromObjLongConsumer((t, v) -> {
+			throw new ServiceConfigurationError("");
 		}).accept("input", 1L));
 	}
 	@Test public void fromObjDoubleConsumer_complete() throws Throwable {
@@ -343,13 +344,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromObjDoubleConsumer_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromObjDoubleConsumer((t, v) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromObjDoubleConsumer((t, v) -> {
+			throw new NumberFormatException();
 		}).accept("input", 1.0));
 	}
 	@Test public void fromObjDoubleConsumer_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromObjDoubleConsumer((t, v) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromObjDoubleConsumer((t, v) -> {
+			throw new ServiceConfigurationError("");
 		}).accept("input", 1.0));
 	}
 	@Test public void predicate_complete() throws Throwable {
@@ -368,13 +369,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void predicate_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().predicate(t -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().predicate(t -> {
+			throw new NumberFormatException();
 		}).test("input"));
 	}
 	@Test public void predicate_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().predicate(t -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().predicate(t -> {
+			throw new ServiceConfigurationError("");
 		}).test("input"));
 	}
 	@Test public void fromIntPredicate_complete() throws Throwable {
@@ -393,13 +394,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntPredicate_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntPredicate(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntPredicate(v -> {
+			throw new NumberFormatException();
 		}).test(1));
 	}
 	@Test public void fromIntPredicate_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntPredicate(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntPredicate(v -> {
+			throw new ServiceConfigurationError("");
 		}).test(1));
 	}
 	@Test public void fromLongPredicate_complete() throws Throwable {
@@ -418,13 +419,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongPredicate_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongPredicate(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongPredicate(v -> {
+			throw new NumberFormatException();
 		}).test(1L));
 	}
 	@Test public void fromLongPredicate_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongPredicate(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongPredicate(v -> {
+			throw new ServiceConfigurationError("");
 		}).test(1L));
 	}
 	@Test public void fromDoublePredicate_complete() throws Throwable {
@@ -443,13 +444,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoublePredicate_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoublePredicate(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoublePredicate(v -> {
+			throw new NumberFormatException();
 		}).test(1.0));
 	}
 	@Test public void fromDoublePredicate_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoublePredicate(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoublePredicate(v -> {
+			throw new ServiceConfigurationError("");
 		}).test(1.0));
 	}
 	@Test public void fromBiPredicate_complete() throws Throwable {
@@ -468,13 +469,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromBiPredicate_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromBiPredicate((t, u) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromBiPredicate((t, u) -> {
+			throw new NumberFormatException();
 		}).test("input1", "input2"));
 	}
 	@Test public void fromBiPredicate_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromBiPredicate((t, u) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromBiPredicate((t, u) -> {
+			throw new ServiceConfigurationError("");
 		}).test("input1", "input2"));
 	}
 	@Test public void function_complete() throws Throwable {
@@ -493,13 +494,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void function_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().function(t -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().function(t -> {
+			throw new NumberFormatException();
 		}).apply("input"));
 	}
 	@Test public void function_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().function(t -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().function(t -> {
+			throw new ServiceConfigurationError("");
 		}).apply("input"));
 	}
 	@Test public void fromToIntFunction_complete() throws Throwable {
@@ -518,13 +519,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromToIntFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromToIntFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromToIntFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsInt("input"));
 	}
 	@Test public void fromToIntFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromToIntFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromToIntFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsInt("input"));
 	}
 	@Test public void fromIntFunction_complete() throws Throwable {
@@ -543,13 +544,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntFunction(v -> {
+			throw new NumberFormatException();
 		}).apply(1));
 	}
 	@Test public void fromIntFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).apply(1));
 	}
 	@Test public void fromIntToLongFunction_complete() throws Throwable {
@@ -568,13 +569,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntToLongFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntToLongFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntToLongFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsLong(1));
 	}
 	@Test public void fromIntToLongFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntToLongFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntToLongFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsLong(1));
 	}
 	@Test public void fromIntToDoubleFunction_complete() throws Throwable {
@@ -593,13 +594,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntToDoubleFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntToDoubleFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntToDoubleFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsDouble(1));
 	}
 	@Test public void fromIntToDoubleFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntToDoubleFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntToDoubleFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsDouble(1));
 	}
 	@Test public void fromToLongFunction_complete() throws Throwable {
@@ -618,13 +619,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromToLongFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromToLongFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromToLongFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsLong("input"));
 	}
 	@Test public void fromToLongFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromToLongFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromToLongFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsLong("input"));
 	}
 	@Test public void fromLongFunction_complete() throws Throwable {
@@ -643,13 +644,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongFunction(v -> {
+			throw new NumberFormatException();
 		}).apply(1L));
 	}
 	@Test public void fromLongFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).apply(1L));
 	}
 	@Test public void fromLongToIntFunction_complete() throws Throwable {
@@ -668,13 +669,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongToIntFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongToIntFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongToIntFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsInt(1L));
 	}
 	@Test public void fromLongToIntFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongToIntFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongToIntFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsInt(1L));
 	}
 	@Test public void fromLongToDoubleFunction_complete() throws Throwable {
@@ -693,13 +694,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongToDoubleFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongToDoubleFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongToDoubleFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsDouble(1L));
 	}
 	@Test public void fromLongToDoubleFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongToDoubleFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongToDoubleFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsDouble(1L));
 	}
 	@Test public void fromToDoubleFunction_complete() throws Throwable {
@@ -718,13 +719,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromToDoubleFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromToDoubleFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromToDoubleFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsDouble("input"));
 	}
 	@Test public void fromToDoubleFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromToDoubleFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromToDoubleFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsDouble("input"));
 	}
 	@Test public void fromDoubleFunction_complete() throws Throwable {
@@ -743,13 +744,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoubleFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoubleFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoubleFunction(v -> {
+			throw new NumberFormatException();
 		}).apply(1.0));
 	}
 	@Test public void fromDoubleFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoubleFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoubleFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).apply(1.0));
 	}
 	@Test public void fromDoubleToIntFunction_complete() throws Throwable {
@@ -768,13 +769,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoubleToIntFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoubleToIntFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoubleToIntFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsInt(1.0));
 	}
 	@Test public void fromDoubleToIntFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoubleToIntFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoubleToIntFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsInt(1.0));
 	}
 	@Test public void fromDoubleToLongFunction_complete() throws Throwable {
@@ -793,13 +794,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoubleToLongFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoubleToLongFunction(v -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoubleToLongFunction(v -> {
+			throw new NumberFormatException();
 		}).applyAsLong(1.0));
 	}
 	@Test public void fromDoubleToLongFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoubleToLongFunction(v -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoubleToLongFunction(v -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsLong(1.0));
 	}
 	@Test public void fromUnaryOperator_complete() throws Throwable {
@@ -818,13 +819,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromUnaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromUnaryOperator(o -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromUnaryOperator(o -> {
+			throw new NumberFormatException();
 		}).apply("input"));
 	}
 	@Test public void fromUnaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromUnaryOperator(o -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromUnaryOperator(o -> {
+			throw new ServiceConfigurationError("");
 		}).apply("input"));
 	}
 	@Test public void fromIntUnaryOperator_complete() throws Throwable {
@@ -843,13 +844,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntUnaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntUnaryOperator(o -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntUnaryOperator(o -> {
+			throw new NumberFormatException();
 		}).applyAsInt(1));
 	}
 	@Test public void fromIntUnaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntUnaryOperator(o -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntUnaryOperator(o -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsInt(1));
 	}
 	@Test public void fromLongUnaryOperator_complete() throws Throwable {
@@ -868,13 +869,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongUnaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongUnaryOperator(o -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongUnaryOperator(o -> {
+			throw new NumberFormatException();
 		}).applyAsLong(1L));
 	}
 	@Test public void fromLongUnaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongUnaryOperator(o -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongUnaryOperator(o -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsLong(1L));
 	}
 	@Test public void fromDoubleUnaryOperator_complete() throws Throwable {
@@ -893,13 +894,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoubleUnaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoubleUnaryOperator(o -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoubleUnaryOperator(o -> {
+			throw new NumberFormatException();
 		}).applyAsDouble(1.0));
 	}
 	@Test public void fromDoubleUnaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoubleUnaryOperator(o -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoubleUnaryOperator(o -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsDouble(1.0));
 	}
 	@Test public void fromBiFunction_complete() throws Throwable {
@@ -918,13 +919,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromBiFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromBiFunction((t, u) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromBiFunction((t, u) -> {
+			throw new NumberFormatException();
 		}).apply("input1", "input2"));
 	}
 	@Test public void fromBiFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromBiFunction((t, u) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromBiFunction((t, u) -> {
+			throw new ServiceConfigurationError("");
 		}).apply("input1", "input2"));
 	}
 	@Test public void fromToIntBiFunction_complete() throws Throwable {
@@ -943,13 +944,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromToIntBiFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromToIntBiFunction((t, u) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromToIntBiFunction((t, u) -> {
+			throw new NumberFormatException();
 		}).applyAsInt("input1", "input2"));
 	}
 	@Test public void fromToIntBiFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromToIntBiFunction((t, u) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromToIntBiFunction((t, u) -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsInt("input1", "input2"));
 	}
 	@Test public void fromToLongBiFunction_complete() throws Throwable {
@@ -968,13 +969,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromToLongBiFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromToLongBiFunction((t, u) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromToLongBiFunction((t, u) -> {
+			throw new NumberFormatException();
 		}).applyAsLong("input1", "input2"));
 	}
 	@Test public void fromToLongBiFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromToLongBiFunction((t, u) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromToLongBiFunction((t, u) -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsLong("input1", "input2"));
 	}
 	@Test public void fromToDoubleBiFunction_complete() throws Throwable {
@@ -993,13 +994,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromToDoubleBiFunction_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromToDoubleBiFunction((t, u) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromToDoubleBiFunction((t, u) -> {
+			throw new NumberFormatException();
 		}).applyAsDouble("input1", "input2"));
 	}
 	@Test public void fromToDoubleBiFunction_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromToDoubleBiFunction((t, u) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromToDoubleBiFunction((t, u) -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsDouble("input1", "input2"));
 	}
 	@Test public void fromBinaryOperator_complete() throws Throwable {
@@ -1018,13 +1019,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromBinaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromBinaryOperator((l, r) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromBinaryOperator((l, r) -> {
+			throw new NumberFormatException();
 		}).apply("input1", "input2"));
 	}
 	@Test public void fromBinaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromBinaryOperator((l, r) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromBinaryOperator((l, r) -> {
+			throw new ServiceConfigurationError("");
 		}).apply("input1", "input2"));
 	}
 	@Test public void fromIntBinaryOperator_complete() throws Throwable {
@@ -1043,13 +1044,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromIntBinaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromIntBinaryOperator((l, r) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromIntBinaryOperator((l, r) -> {
+			throw new NumberFormatException();
 		}).applyAsInt(11, 12));
 	}
 	@Test public void fromIntBinaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromIntBinaryOperator((l, r) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromIntBinaryOperator((l, r) -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsInt(11, 12));
 	}
 	@Test public void fromLongBinaryOperator_complete() throws Throwable {
@@ -1068,13 +1069,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromLongBinaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromLongBinaryOperator((l, r) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromLongBinaryOperator((l, r) -> {
+			throw new NumberFormatException();
 		}).applyAsLong(11L, 12L));
 	}
 	@Test public void fromLongBinaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromLongBinaryOperator((l, r) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromLongBinaryOperator((l, r) -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsLong(11L, 12L));
 	}
 	@Test public void fromDoubleBinaryOperator_complete() throws Throwable {
@@ -1093,13 +1094,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void fromDoubleBinaryOperator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().fromDoubleBinaryOperator((l, r) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().fromDoubleBinaryOperator((l, r) -> {
+			throw new NumberFormatException();
 		}).applyAsDouble(1.1, 1.2));
 	}
 	@Test public void fromDoubleBinaryOperator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().fromDoubleBinaryOperator((l, r) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().fromDoubleBinaryOperator((l, r) -> {
+			throw new ServiceConfigurationError("");
 		}).applyAsDouble(1.1, 1.2));
 	}
 	@Test public void comparator_complete() throws Throwable {
@@ -1118,13 +1119,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void comparator_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().comparator((l, r) -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().comparator((l, r) -> {
+			throw new NumberFormatException();
 		}).compare("input1", "input2"));
 	}
 	@Test public void comparator_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().comparator((l, r) -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().comparator((l, r) -> {
+			throw new ServiceConfigurationError("");
 		}).compare("input1", "input2"));
 	}
 	@Test public void run_complete() throws Throwable {
@@ -1142,13 +1143,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void run_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().run(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().run(() -> {
+			throw new NumberFormatException();
 		}));
 	}
 	@Test public void run_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().run(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().run(() -> {
+			throw new ServiceConfigurationError("");
 		}));
 	}
 	@Test public void get_complete() throws Throwable {
@@ -1167,13 +1168,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void get_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().get(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().get(() -> {
+			throw new NumberFormatException();
 		}));
 	}
 	@Test public void get_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().get(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().get(() -> {
+			throw new ServiceConfigurationError("");
 		}));
 	}
 	@Test public void getAsInt_complete() throws Throwable {
@@ -1192,13 +1193,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void getAsInt_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsInt(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().getAsInt(() -> {
+			throw new NumberFormatException();
 		}));
 	}
 	@Test public void getAsInt_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsInt(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().getAsInt(() -> {
+			throw new ServiceConfigurationError("");
 		}));
 	}
 	@Test public void getAsLong_complete() throws Throwable {
@@ -1217,13 +1218,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void getAsLong_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsLong(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().getAsLong(() -> {
+			throw new NumberFormatException();
 		}));
 	}
 	@Test public void getAsLong_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsLong(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().getAsLong(() -> {
+			throw new ServiceConfigurationError("");
 		}));
 	}
 	@Test public void getAsDouble_complete() throws Throwable {
@@ -1242,13 +1243,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void getAsDouble_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsDouble(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().getAsDouble(() -> {
+			throw new NumberFormatException();
 		}));
 	}
 	@Test public void getAsDouble_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsDouble(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().getAsDouble(() -> {
+			throw new ServiceConfigurationError("");
 		}));
 	}
 	@Test public void getAsBoolean_complete() throws Throwable {
@@ -1267,13 +1268,13 @@ public class CheckedExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
 	@Test public void getAsBoolean_runtime() {
-		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsBoolean(() -> {
-			throw new IllegalArgumentException();
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().getAsBoolean(() -> {
+			throw new NumberFormatException();
 		}));
 	}
 	@Test public void getAsBoolean_error() {
-		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsBoolean(() -> {
-			throw new AssertionError();
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().getAsBoolean(() -> {
+			throw new ServiceConfigurationError("");
 		}));
 	}
 }
