@@ -966,8 +966,7 @@ def checked_source():
                     } catch (Exception exception) {
                         throw handle(exception);
                     } catch (Throwable exception) {
-                        SneakingHandler.sneak(exception);
-                        throw new IllegalStateException();
+                        throw SneakingHandler.sneak(exception);
                     }
                 }
             }
@@ -1002,8 +1001,7 @@ def checked_source():
                 } catch (Exception exception) {
                     throw handle(exception);
                 } catch (Throwable exception) {
-                    SneakingHandler.sneak(exception);
-                    throw new IllegalStateException();
+                    throw SneakingHandler.sneak(exception);
                 }
             }
         ''', indent=1)
