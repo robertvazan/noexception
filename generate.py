@@ -1392,6 +1392,16 @@ def checked_test():
                 }));
                 assertThat(collector.single(), instanceOf(PrinterException.class));
             }
+            @Test public void ''' + as_method(fn) + '''_runtime() {
+                assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new IllegalArgumentException();
+                }));
+            }
+            @Test public void ''' + as_method(fn) + '''_error() {
+                assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
+                    throw new AssertionError();
+                }));
+            }
         ''', indent=1)
     output('}')
 

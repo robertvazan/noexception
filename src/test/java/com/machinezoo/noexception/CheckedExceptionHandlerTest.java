@@ -1141,6 +1141,16 @@ public class CheckedExceptionHandlerTest {
 		}));
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void run_runtime() {
+		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().run(() -> {
+			throw new IllegalArgumentException();
+		}));
+	}
+	@Test public void run_error() {
+		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().run(() -> {
+			throw new AssertionError();
+		}));
+	}
 	@Test public void get_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingSupplier<String> lambda = mock(ThrowingSupplier.class);
@@ -1155,6 +1165,16 @@ public class CheckedExceptionHandlerTest {
 			throw new PrinterException();
 		}));
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void get_runtime() {
+		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().get(() -> {
+			throw new IllegalArgumentException();
+		}));
+	}
+	@Test public void get_error() {
+		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().get(() -> {
+			throw new AssertionError();
+		}));
 	}
 	@Test public void getAsInt_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -1171,6 +1191,16 @@ public class CheckedExceptionHandlerTest {
 		}));
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void getAsInt_runtime() {
+		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsInt(() -> {
+			throw new IllegalArgumentException();
+		}));
+	}
+	@Test public void getAsInt_error() {
+		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsInt(() -> {
+			throw new AssertionError();
+		}));
+	}
 	@Test public void getAsLong_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingLongSupplier lambda = mock(ThrowingLongSupplier.class);
@@ -1185,6 +1215,16 @@ public class CheckedExceptionHandlerTest {
 			throw new PrinterException();
 		}));
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void getAsLong_runtime() {
+		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsLong(() -> {
+			throw new IllegalArgumentException();
+		}));
+	}
+	@Test public void getAsLong_error() {
+		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsLong(() -> {
+			throw new AssertionError();
+		}));
 	}
 	@Test public void getAsDouble_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
@@ -1201,6 +1241,16 @@ public class CheckedExceptionHandlerTest {
 		}));
 		assertThat(collector.single(), instanceOf(PrinterException.class));
 	}
+	@Test public void getAsDouble_runtime() {
+		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsDouble(() -> {
+			throw new IllegalArgumentException();
+		}));
+	}
+	@Test public void getAsDouble_error() {
+		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsDouble(() -> {
+			throw new AssertionError();
+		}));
+	}
 	@Test public void getAsBoolean_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingBooleanSupplier lambda = mock(ThrowingBooleanSupplier.class);
@@ -1215,5 +1265,15 @@ public class CheckedExceptionHandlerTest {
 			throw new PrinterException();
 		}));
 		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test public void getAsBoolean_runtime() {
+		assertThrows(IllegalArgumentException.class, () -> new CheckedExceptionCollector().getAsBoolean(() -> {
+			throw new IllegalArgumentException();
+		}));
+	}
+	@Test public void getAsBoolean_error() {
+		assertThrows(AssertionError.class, () -> new CheckedExceptionCollector().getAsBoolean(() -> {
+			throw new AssertionError();
+		}));
 	}
 }
