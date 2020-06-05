@@ -29,6 +29,20 @@ public class ExceptionsTest {
 			});
 		});
 	}
+	@SuppressWarnings("deprecation") @Test public void pass_runtime() {
+		assertThrows(NumberFormatException.class, () -> {
+			Exceptions.pass().run(() -> {
+				throw new NumberFormatException();
+			});
+		});
+	}
+	@SuppressWarnings("deprecation") @Test public void pass_error() {
+		assertThrows(IOError.class, () -> {
+			Exceptions.pass().run(() -> {
+				throw new IOError(new IOException());
+			});
+		});
+	}
 	@Test public void silence_runtime() {
 		Exceptions.silence().run(() -> {
 			throw new NumberFormatException();
