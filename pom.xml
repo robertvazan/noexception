@@ -122,7 +122,6 @@
 					<!-- Make the CI server email us when we break javadoc. -->
 					<failOnWarnings>true</failOnWarnings>
 					<notimestamp>true</notimestamp>
-					<doctitle>${project.name} API Reference</doctitle>
 					<links>
 						<link>https://www.slf4j.org/apidocs</link>
 					</links>
