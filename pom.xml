@@ -10,6 +10,7 @@
 	<name>NoException</name>
 	<url>https://noexception.machinezoo.com/</url>
 	<description>Makes exception handling concise and beautiful, yet architecturally clean and flexible.</description>
+	<inceptionYear>2017</inceptionYear>
 
 	<licenses>
 		<license>
@@ -18,6 +19,10 @@
 		</license>
 	</licenses>
 
+	<organization>
+		<name>Robert Važan</name>
+		<url>https://robert.machinezoo.com/</url>
+	</organization>
 	<developers>
 		<developer>
 			<name>Robert Važan</name>
