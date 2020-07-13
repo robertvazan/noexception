@@ -27,11 +27,11 @@ public interface OptionalIntFunction<R> extends IntFunction<Optional<R>> {
 	 * 
 	 * @param value
 	 *            see {@link IntFunction#apply(int)}
-	 * @return {@code Optional} typically wrapping return value of {@link IntFunction#apply(int)},
-	 *         or an empty {@code Optional} (typically signifying an exception)
-	 * @see ExceptionHandler#fromIntFunction(IntFunction)
-	 * @see IntFunction#apply(int)
-	 */
+ * @return {@code Optional} typically wrapping return value of {@link IntFunction#apply(int)},
+ *         or an empty {@code Optional} (typically signifying an exception)
+ * @see ExceptionHandler#fromIntFunction(IntFunction)
+ * @see IntFunction#apply(int)
+ */
 	@Override
 	Optional<R> apply(int value);
 	/**

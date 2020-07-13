@@ -27,11 +27,11 @@ public interface OptionalDoubleFunction<R> extends DoubleFunction<Optional<R>> {
 	 * 
 	 * @param value
 	 *            see {@link DoubleFunction#apply(double)}
-	 * @return {@code Optional} typically wrapping return value of {@link DoubleFunction#apply(double)},
-	 *         or an empty {@code Optional} (typically signifying an exception)
-	 * @see ExceptionHandler#fromDoubleFunction(DoubleFunction)
-	 * @see DoubleFunction#apply(double)
-	 */
+ * @return {@code Optional} typically wrapping return value of {@link DoubleFunction#apply(double)},
+ *         or an empty {@code Optional} (typically signifying an exception)
+ * @see ExceptionHandler#fromDoubleFunction(DoubleFunction)
+ * @see DoubleFunction#apply(double)
+ */
 	@Override
 	Optional<R> apply(double value);
 	/**

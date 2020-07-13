@@ -24,11 +24,11 @@ public interface OptionalIntPredicate {
 	 * 
 	 * @param value
 	 *            see {@link IntPredicate#test(int)}
-	 * @return {@code OptionalBoolean} typically wrapping return value of {@link IntPredicate#test(int)},
-	 *         or an empty {@code OptionalBoolean} (typically signifying an exception)
-	 * @see ExceptionHandler#fromIntPredicate(IntPredicate)
-	 * @see IntPredicate#test(int)
-	 */
+ * @return {@code OptionalBoolean} typically wrapping return value of {@link IntPredicate#test(int)},
+ *         or an empty {@code OptionalBoolean} (typically signifying an exception)
+ * @see ExceptionHandler#fromIntPredicate(IntPredicate)
+ * @see IntPredicate#test(int)
+ */
 	OptionalBoolean test(int value);
 	/**
 	 * Converts this {@code OptionalIntPredicate} to plain {@code IntPredicate} using default value.

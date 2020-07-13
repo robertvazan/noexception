@@ -24,11 +24,11 @@ public interface OptionalDoublePredicate {
 	 * 
 	 * @param value
 	 *            see {@link DoublePredicate#test(double)}
-	 * @return {@code OptionalBoolean} typically wrapping return value of {@link DoublePredicate#test(double)},
-	 *         or an empty {@code OptionalBoolean} (typically signifying an exception)
-	 * @see ExceptionHandler#fromDoublePredicate(DoublePredicate)
-	 * @see DoublePredicate#test(double)
-	 */
+ * @return {@code OptionalBoolean} typically wrapping return value of {@link DoublePredicate#test(double)},
+ *         or an empty {@code OptionalBoolean} (typically signifying an exception)
+ * @see ExceptionHandler#fromDoublePredicate(DoublePredicate)
+ * @see DoublePredicate#test(double)
+ */
 	OptionalBoolean test(double value);
 	/**
 	 * Converts this {@code OptionalDoublePredicate} to plain {@code DoublePredicate} using default value.

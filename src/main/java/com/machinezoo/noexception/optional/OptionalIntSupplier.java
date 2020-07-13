@@ -23,11 +23,11 @@ public interface OptionalIntSupplier extends Supplier<OptionalInt> {
 	 * the {@code OptionalInt} will be empty only if the underlying {@code IntSupplier} throws.
 	 * Otherwise the returned {@code OptionalInt} just wraps the return value of underlying {@code IntSupplier}.
 	 * 
-	 * @return {@code OptionalInt} typically wrapping return value of {@link IntSupplier#getAsInt()},
-	 *         or an empty {@code OptionalInt} (typically signifying an exception)
-	 * @see ExceptionHandler#fromIntSupplier(IntSupplier)
-	 * @see IntSupplier#getAsInt()
-	 */
+ * @return {@code OptionalInt} typically wrapping return value of {@link IntSupplier#getAsInt()},
+ *         or an empty {@code OptionalInt} (typically signifying an exception)
+ * @see ExceptionHandler#fromIntSupplier(IntSupplier)
+ * @see IntSupplier#getAsInt()
+ */
 	@Override
 	OptionalInt get();
 	/**

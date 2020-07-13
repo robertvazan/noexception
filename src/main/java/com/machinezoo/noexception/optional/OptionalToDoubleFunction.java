@@ -27,11 +27,11 @@ public interface OptionalToDoubleFunction<T> extends Function<T, OptionalDouble>
 	 * 
 	 * @param value
 	 *            see {@link ToDoubleFunction#applyAsDouble(Object)}
-	 * @return {@code OptionalDouble} typically wrapping return value of {@link ToDoubleFunction#applyAsDouble(Object)},
-	 *         or an empty {@code OptionalDouble} (typically signifying an exception)
-	 * @see ExceptionHandler#fromToDoubleFunction(ToDoubleFunction)
-	 * @see ToDoubleFunction#applyAsDouble(Object)
-	 */
+ * @return {@code OptionalDouble} typically wrapping return value of {@link ToDoubleFunction#applyAsDouble(Object)},
+ *         or an empty {@code OptionalDouble} (typically signifying an exception)
+ * @see ExceptionHandler#fromToDoubleFunction(ToDoubleFunction)
+ * @see ToDoubleFunction#applyAsDouble(Object)
+ */
 	@Override
 	OptionalDouble apply(T value);
 	/**

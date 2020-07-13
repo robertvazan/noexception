@@ -29,11 +29,11 @@ public interface OptionalBinaryOperator<T> extends BiFunction<T, T, Optional<T>>
 	 *            see {@link BinaryOperator#apply(Object, Object)}
 	 * @param right
 	 *            see {@link BinaryOperator#apply(Object, Object)}
-	 * @return {@code Optional} typically wrapping return value of {@link BinaryOperator#apply(Object, Object)},
-	 *         or an empty {@code Optional} (typically signifying an exception)
-	 * @see ExceptionHandler#fromBinaryOperator(BinaryOperator)
-	 * @see BinaryOperator#apply(Object, Object)
-	 */
+ * @return {@code Optional} typically wrapping return value of {@link BinaryOperator#apply(Object, Object)},
+ *         or an empty {@code Optional} (typically signifying an exception)
+ * @see ExceptionHandler#fromBinaryOperator(BinaryOperator)
+ * @see BinaryOperator#apply(Object, Object)
+ */
 	@Override
 	Optional<T> apply(T left, T right);
 	/**

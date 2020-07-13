@@ -27,11 +27,11 @@ public interface OptionalIntBinaryOperator {
 	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
 	 * @param right
 	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
-	 * @return {@code OptionalInt} typically wrapping return value of {@link IntBinaryOperator#applyAsInt(int, int)},
-	 *         or an empty {@code OptionalInt} (typically signifying an exception)
-	 * @see ExceptionHandler#fromIntBinaryOperator(IntBinaryOperator)
-	 * @see IntBinaryOperator#applyAsInt(int, int)
-	 */
+ * @return {@code OptionalInt} typically wrapping return value of {@link IntBinaryOperator#applyAsInt(int, int)},
+ *         or an empty {@code OptionalInt} (typically signifying an exception)
+ * @see ExceptionHandler#fromIntBinaryOperator(IntBinaryOperator)
+ * @see IntBinaryOperator#applyAsInt(int, int)
+ */
 	OptionalInt apply(int left, int right);
 	/**
 	 * Converts this {@code OptionalIntBinaryOperator} to plain {@code IntBinaryOperator} using default value.

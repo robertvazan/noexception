@@ -25,11 +25,11 @@ public interface OptionalLongToDoubleFunction extends LongFunction<OptionalDoubl
 	 * 
 	 * @param value
 	 *            see {@link LongToDoubleFunction#applyAsDouble(long)}
-	 * @return {@code OptionalDouble} typically wrapping return value of {@link LongToDoubleFunction#applyAsDouble(long)},
-	 *         or an empty {@code OptionalDouble} (typically signifying an exception)
-	 * @see ExceptionHandler#fromLongToDoubleFunction(LongToDoubleFunction)
-	 * @see LongToDoubleFunction#applyAsDouble(long)
-	 */
+ * @return {@code OptionalDouble} typically wrapping return value of {@link LongToDoubleFunction#applyAsDouble(long)},
+ *         or an empty {@code OptionalDouble} (typically signifying an exception)
+ * @see ExceptionHandler#fromLongToDoubleFunction(LongToDoubleFunction)
+ * @see LongToDoubleFunction#applyAsDouble(long)
+ */
 	@Override
 	OptionalDouble apply(long value);
 	/**

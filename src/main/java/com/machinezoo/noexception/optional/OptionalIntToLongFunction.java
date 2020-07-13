@@ -25,11 +25,11 @@ public interface OptionalIntToLongFunction extends IntFunction<OptionalLong> {
 	 * 
 	 * @param value
 	 *            see {@link IntToLongFunction#applyAsLong(int)}
-	 * @return {@code OptionalLong} typically wrapping return value of {@link IntToLongFunction#applyAsLong(int)},
-	 *         or an empty {@code OptionalLong} (typically signifying an exception)
-	 * @see ExceptionHandler#fromIntToLongFunction(IntToLongFunction)
-	 * @see IntToLongFunction#applyAsLong(int)
-	 */
+ * @return {@code OptionalLong} typically wrapping return value of {@link IntToLongFunction#applyAsLong(int)},
+ *         or an empty {@code OptionalLong} (typically signifying an exception)
+ * @see ExceptionHandler#fromIntToLongFunction(IntToLongFunction)
+ * @see IntToLongFunction#applyAsLong(int)
+ */
 	@Override
 	OptionalLong apply(int value);
 	/**

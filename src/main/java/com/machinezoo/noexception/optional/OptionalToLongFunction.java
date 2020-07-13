@@ -27,11 +27,11 @@ public interface OptionalToLongFunction<T> extends Function<T, OptionalLong> {
 	 * 
 	 * @param value
 	 *            see {@link ToLongFunction#applyAsLong(Object)}
-	 * @return {@code OptionalLong} typically wrapping return value of {@link ToLongFunction#applyAsLong(Object)},
-	 *         or an empty {@code OptionalLong} (typically signifying an exception)
-	 * @see ExceptionHandler#fromToLongFunction(ToLongFunction)
-	 * @see ToLongFunction#applyAsLong(Object)
-	 */
+ * @return {@code OptionalLong} typically wrapping return value of {@link ToLongFunction#applyAsLong(Object)},
+ *         or an empty {@code OptionalLong} (typically signifying an exception)
+ * @see ExceptionHandler#fromToLongFunction(ToLongFunction)
+ * @see ToLongFunction#applyAsLong(Object)
+ */
 	@Override
 	OptionalLong apply(T value);
 	/**

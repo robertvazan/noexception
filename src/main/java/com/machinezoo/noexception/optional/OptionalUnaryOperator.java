@@ -27,11 +27,11 @@ public interface OptionalUnaryOperator<T> extends Function<T, Optional<T>> {
 	 * 
 	 * @param operand
 	 *            see {@link UnaryOperator#apply(Object)}
-	 * @return {@code Optional} typically wrapping return value of {@link UnaryOperator#apply(Object)},
-	 *         or an empty {@code Optional} (typically signifying an exception)
-	 * @see ExceptionHandler#fromUnaryOperator(UnaryOperator)
-	 * @see UnaryOperator#apply(Object)
-	 */
+ * @return {@code Optional} typically wrapping return value of {@link UnaryOperator#apply(Object)},
+ *         or an empty {@code Optional} (typically signifying an exception)
+ * @see ExceptionHandler#fromUnaryOperator(UnaryOperator)
+ * @see UnaryOperator#apply(Object)
+ */
 	@Override
 	Optional<T> apply(T operand);
 	/**

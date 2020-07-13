@@ -26,11 +26,11 @@ public interface OptionalPredicate<T> {
 	 * 
 	 * @param t
 	 *            see {@link Predicate#test(Object)}
-	 * @return {@code OptionalBoolean} typically wrapping return value of {@link Predicate#test(Object)},
-	 *         or an empty {@code OptionalBoolean} (typically signifying an exception)
-	 * @see ExceptionHandler#predicate(Predicate)
-	 * @see Predicate#test(Object)
-	 */
+ * @return {@code OptionalBoolean} typically wrapping return value of {@link Predicate#test(Object)},
+ *         or an empty {@code OptionalBoolean} (typically signifying an exception)
+ * @see ExceptionHandler#predicate(Predicate)
+ * @see Predicate#test(Object)
+ */
 	OptionalBoolean test(T t);
 	/**
 	 * Converts this {@code OptionalPredicate} to plain {@code Predicate} using default value.

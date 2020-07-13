@@ -29,11 +29,11 @@ public interface OptionalFunction<T, R> extends Function<T, Optional<R>> {
 	 * 
 	 * @param t
 	 *            see {@link Function#apply(Object)}
-	 * @return {@code Optional} typically wrapping return value of {@link Function#apply(Object)},
-	 *         or an empty {@code Optional} (typically signifying an exception)
-	 * @see ExceptionHandler#function(Function)
-	 * @see Function#apply(Object)
-	 */
+ * @return {@code Optional} typically wrapping return value of {@link Function#apply(Object)},
+ *         or an empty {@code Optional} (typically signifying an exception)
+ * @see ExceptionHandler#function(Function)
+ * @see Function#apply(Object)
+ */
 	@Override
 	Optional<R> apply(T t);
 	/**

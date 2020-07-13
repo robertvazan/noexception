@@ -27,11 +27,11 @@ public interface OptionalToIntFunction<T> extends Function<T, OptionalInt> {
 	 * 
 	 * @param value
 	 *            see {@link ToIntFunction#applyAsInt(Object)}
-	 * @return {@code OptionalInt} typically wrapping return value of {@link ToIntFunction#applyAsInt(Object)},
-	 *         or an empty {@code OptionalInt} (typically signifying an exception)
-	 * @see ExceptionHandler#fromToIntFunction(ToIntFunction)
-	 * @see ToIntFunction#applyAsInt(Object)
-	 */
+ * @return {@code OptionalInt} typically wrapping return value of {@link ToIntFunction#applyAsInt(Object)},
+ *         or an empty {@code OptionalInt} (typically signifying an exception)
+ * @see ExceptionHandler#fromToIntFunction(ToIntFunction)
+ * @see ToIntFunction#applyAsInt(Object)
+ */
 	@Override
 	OptionalInt apply(T value);
 	/**

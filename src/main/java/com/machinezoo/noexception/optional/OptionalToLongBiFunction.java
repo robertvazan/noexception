@@ -31,11 +31,11 @@ public interface OptionalToLongBiFunction<T, U> extends BiFunction<T, U, Optiona
 	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
 	 * @param u
 	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
-	 * @return {@code OptionalLong} typically wrapping return value of {@link ToLongBiFunction#applyAsLong(Object, Object)},
-	 *         or an empty {@code OptionalLong} (typically signifying an exception)
-	 * @see ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)
-	 * @see ToLongBiFunction#applyAsLong(Object, Object)
-	 */
+ * @return {@code OptionalLong} typically wrapping return value of {@link ToLongBiFunction#applyAsLong(Object, Object)},
+ *         or an empty {@code OptionalLong} (typically signifying an exception)
+ * @see ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)
+ * @see ToLongBiFunction#applyAsLong(Object, Object)
+ */
 	@Override
 	OptionalLong apply(T t, U u);
 	/**

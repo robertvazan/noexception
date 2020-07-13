@@ -23,11 +23,11 @@ public interface OptionalLongSupplier extends Supplier<OptionalLong> {
 	 * the {@code OptionalLong} will be empty only if the underlying {@code LongSupplier} throws.
 	 * Otherwise the returned {@code OptionalLong} just wraps the return value of underlying {@code LongSupplier}.
 	 * 
-	 * @return {@code OptionalLong} typically wrapping return value of {@link LongSupplier#getAsLong()},
-	 *         or an empty {@code OptionalLong} (typically signifying an exception)
-	 * @see ExceptionHandler#fromLongSupplier(LongSupplier)
-	 * @see LongSupplier#getAsLong()
-	 */
+ * @return {@code OptionalLong} typically wrapping return value of {@link LongSupplier#getAsLong()},
+ *         or an empty {@code OptionalLong} (typically signifying an exception)
+ * @see ExceptionHandler#fromLongSupplier(LongSupplier)
+ * @see LongSupplier#getAsLong()
+ */
 	@Override
 	OptionalLong get();
 	/**

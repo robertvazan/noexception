@@ -25,11 +25,11 @@ public interface OptionalIntUnaryOperator extends IntFunction<OptionalInt> {
 	 * 
 	 * @param operand
 	 *            see {@link IntUnaryOperator#applyAsInt(int)}
-	 * @return {@code OptionalInt} typically wrapping return value of {@link IntUnaryOperator#applyAsInt(int)},
-	 *         or an empty {@code OptionalInt} (typically signifying an exception)
-	 * @see ExceptionHandler#fromIntUnaryOperator(IntUnaryOperator)
-	 * @see IntUnaryOperator#applyAsInt(int)
-	 */
+ * @return {@code OptionalInt} typically wrapping return value of {@link IntUnaryOperator#applyAsInt(int)},
+ *         or an empty {@code OptionalInt} (typically signifying an exception)
+ * @see ExceptionHandler#fromIntUnaryOperator(IntUnaryOperator)
+ * @see IntUnaryOperator#applyAsInt(int)
+ */
 	@Override
 	OptionalInt apply(int operand);
 	/**

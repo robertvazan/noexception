@@ -27,11 +27,11 @@ public interface OptionalLongFunction<R> extends LongFunction<Optional<R>> {
 	 * 
 	 * @param value
 	 *            see {@link LongFunction#apply(long)}
-	 * @return {@code Optional} typically wrapping return value of {@link LongFunction#apply(long)},
-	 *         or an empty {@code Optional} (typically signifying an exception)
-	 * @see ExceptionHandler#fromLongFunction(LongFunction)
-	 * @see LongFunction#apply(long)
-	 */
+ * @return {@code Optional} typically wrapping return value of {@link LongFunction#apply(long)},
+ *         or an empty {@code Optional} (typically signifying an exception)
+ * @see ExceptionHandler#fromLongFunction(LongFunction)
+ * @see LongFunction#apply(long)
+ */
 	@Override
 	Optional<R> apply(long value);
 	/**

@@ -25,11 +25,11 @@ public interface OptionalLongUnaryOperator extends LongFunction<OptionalLong> {
 	 * 
 	 * @param operand
 	 *            see {@link LongUnaryOperator#applyAsLong(long)}
-	 * @return {@code OptionalLong} typically wrapping return value of {@link LongUnaryOperator#applyAsLong(long)},
-	 *         or an empty {@code OptionalLong} (typically signifying an exception)
-	 * @see ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)
-	 * @see LongUnaryOperator#applyAsLong(long)
-	 */
+ * @return {@code OptionalLong} typically wrapping return value of {@link LongUnaryOperator#applyAsLong(long)},
+ *         or an empty {@code OptionalLong} (typically signifying an exception)
+ * @see ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)
+ * @see LongUnaryOperator#applyAsLong(long)
+ */
 	@Override
 	OptionalLong apply(long operand);
 	/**

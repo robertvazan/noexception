@@ -25,11 +25,11 @@ public interface OptionalDoubleToIntFunction extends DoubleFunction<OptionalInt>
 	 * 
 	 * @param value
 	 *            see {@link DoubleToIntFunction#applyAsInt(double)}
-	 * @return {@code OptionalInt} typically wrapping return value of {@link DoubleToIntFunction#applyAsInt(double)},
-	 *         or an empty {@code OptionalInt} (typically signifying an exception)
-	 * @see ExceptionHandler#fromDoubleToIntFunction(DoubleToIntFunction)
-	 * @see DoubleToIntFunction#applyAsInt(double)
-	 */
+ * @return {@code OptionalInt} typically wrapping return value of {@link DoubleToIntFunction#applyAsInt(double)},
+ *         or an empty {@code OptionalInt} (typically signifying an exception)
+ * @see ExceptionHandler#fromDoubleToIntFunction(DoubleToIntFunction)
+ * @see DoubleToIntFunction#applyAsInt(double)
+ */
 	@Override
 	OptionalInt apply(double value);
 	/**

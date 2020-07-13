@@ -33,11 +33,11 @@ public interface OptionalBiFunction<T, U, R> extends BiFunction<T, U, Optional<R
 	 *            see {@link BiFunction#apply(Object, Object)}
 	 * @param u
 	 *            see {@link BiFunction#apply(Object, Object)}
-	 * @return {@code Optional} typically wrapping return value of {@link BiFunction#apply(Object, Object)},
-	 *         or an empty {@code Optional} (typically signifying an exception)
-	 * @see ExceptionHandler#fromBiFunction(BiFunction)
-	 * @see BiFunction#apply(Object, Object)
-	 */
+ * @return {@code Optional} typically wrapping return value of {@link BiFunction#apply(Object, Object)},
+ *         or an empty {@code Optional} (typically signifying an exception)
+ * @see ExceptionHandler#fromBiFunction(BiFunction)
+ * @see BiFunction#apply(Object, Object)
+ */
 	@Override
 	Optional<R> apply(T t, U u);
 	/**

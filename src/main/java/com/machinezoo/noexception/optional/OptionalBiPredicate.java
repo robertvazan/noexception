@@ -30,11 +30,11 @@ public interface OptionalBiPredicate<T, U> {
 	 *            see {@link BiPredicate#test(Object, Object)}
 	 * @param u
 	 *            see {@link BiPredicate#test(Object, Object)}
-	 * @return {@code OptionalBoolean} typically wrapping return value of {@link BiPredicate#test(Object, Object)},
-	 *         or an empty {@code OptionalBoolean} (typically signifying an exception)
-	 * @see ExceptionHandler#fromBiPredicate(BiPredicate)
-	 * @see BiPredicate#test(Object, Object)
-	 */
+ * @return {@code OptionalBoolean} typically wrapping return value of {@link BiPredicate#test(Object, Object)},
+ *         or an empty {@code OptionalBoolean} (typically signifying an exception)
+ * @see ExceptionHandler#fromBiPredicate(BiPredicate)
+ * @see BiPredicate#test(Object, Object)
+ */
 	OptionalBoolean test(T t, U u);
 	/**
 	 * Converts this {@code OptionalBiPredicate} to plain {@code BiPredicate} using default value.

@@ -404,7 +404,8 @@ def throwing_source(fn):
          * @see CheckedExceptionHandler#''' + from_method(fn) + '(Throwing' + fn + ''')
          * @see ''' + fn + '''
          */
-        @FunctionalInterface public interface Throwing''' + parameterized_type(fn) + throwing_extends + ''' {
+        @FunctionalInterface
+        public interface Throwing''' + parameterized_type(fn) + throwing_extends + ''' {
     ''')
     if not extends:
         original_method_ref = fn + '#' + as_method(fn) + '(' + erased_params(fn) + ')'
@@ -445,7 +446,8 @@ def default_source(fn):
                 this.inner = inner;
                 this.result = result;
             }
-            @Override public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
+            @Override
+            public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
                 return inner.''' + method_verb(fn) + '(' + passed_params(fn) + ''').orElse(result);
             }
         }
@@ -465,7 +467,8 @@ def fallback_source(fn):
                 this.inner = inner;
                 this.source = source;
             }
-            @Override public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
+            @Override
+            public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
                 return inner.''' + method_verb(fn) + '(' + passed_params(fn) + ''').orElseGet(source);
             }
         }
@@ -497,7 +500,8 @@ def optional_source(fn):
          * @see ''' + handler_method_ref + '''
          * @see ''' + fn + '''
          */
-        @FunctionalInterface public interface Optional''' + parameterized_type(fn) + (' extends ' + optional_base(fn) if optional_base(fn) else '') + ''' {
+        @FunctionalInterface
+        public interface Optional''' + parameterized_type(fn) + (' extends ' + optional_base(fn) if optional_base(fn) else '') + ''' {
             /**
              * Variation of {@link ''' + original_method_ref + '} that returns {@link ' + raw_optional_return(fn) + '''}.
              * If this {@code Optional''' + fn + '} is obtained from {@link ' + handler_method_ref + '''},
@@ -518,7 +522,11 @@ def optional_source(fn):
              * @see ''' + handler_method_ref + '''
              * @see ''' + original_method_ref + '''
              */
-            ''' + ('@Override ' if optional_base(fn) else '') + optional_type(return_type(fn)) + ' ' + method_verb(fn) + '(' + declared_params(fn) + ''');
+            ''')
+    if optional_base(fn):
+        output('@Override', indent=1)
+    output('''\
+            ''' + optional_type(return_type(fn)) + ' ' + method_verb(fn) + '(' + declared_params(fn) + ''');
             /**
              * Converts this {@code Optional''' + fn + '} to plain {@code ' + fn + '''} using default value.
              * The returned {@code ''' + fn + '} will unwrap present value from the {@code ' + raw_optional_return(fn) + '''} if possible,
@@ -673,7 +681,8 @@ def handler_source():
                 Catching''' + fn + '(' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
                     this.''' + short_name(fn) + ' = ' + short_name(fn) + ''';
                 }
-                @Override public ''' + optional_type(return_type(fn)) + ' ' + method_verb(fn) + '(' + declared_params(fn) + ''') {
+                @Override
+                public ''' + optional_type(return_type(fn)) + ' ' + method_verb(fn) + '(' + declared_params(fn) + ''') {
                     try {
                         ''' + return_if_needed(return_type(fn))
                             + optional_of_nullable(return_type(fn), short_name(fn) + '.' + as_method(fn) + '(' + passed_params(fn) + ')') + ''';
@@ -816,7 +825,8 @@ def filter_source():
                 Filtered''' + fn + '(' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
                     this.''' + short_name(fn) + ' = ' + short_name(fn) + ''';
                 }
-                @Override public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
+                @Override
+                public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
                     try {
                         ''' + return_if_needed(return_type(fn)) + short_name(fn) + '.' + as_method(fn) + '(' + passed_params(fn) + ''');
                     } catch (Throwable exception) {
@@ -958,7 +968,8 @@ def checked_source():
                 Checked''' + fn + '(Throwing' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
                     this.''' + short_name(fn) + ' = ' + short_name(fn) + ''';
                 }
-                @Override public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
+                @Override
+                public ''' + return_type(fn) + ' ' + as_method(fn) + '(' + declared_params(fn) + ''') {
                     try {
                         ''' + return_if_needed(return_type(fn)) + short_name(fn) + '.' + as_method(fn) + '(' + passed_params(fn) + ''');
                     } catch (RuntimeException exception) {
@@ -1024,21 +1035,22 @@ def throwing_test(fn):
             }
             void takeNonThrowing(''' + test_parameterized_type(fn) + ''' functional) {
             }
-            @Test public void lambdas() {
+            @Test
+            public void lambdas() {
                 takeNonThrowing(''' + lambda_params(fn) + ' -> ' + body + ''');
                 takeThrowing(''' + lambda_params(fn) + ' -> ' + body + ''');
                 takeThrowing(''' + lambda_params(fn) + ''' -> {
                     if (ThreadLocalRandom.current().nextBoolean())
                         throw new IOException();
                     else
-                        return ''' + test_output(fn) + ''';
+                        return''' + ('' if void_functional(fn) else ' ' + test_output(fn)) + ''';
                 });
                 Throwable throwable = new IOException();
                 takeThrowing(''' + lambda_params(fn) + ''' -> {
                     if (ThreadLocalRandom.current().nextBoolean())
                         throw throwable;
                     else
-                        return ''' + test_output(fn) + ''';
+                        return''' + ('' if void_functional(fn) else ' ' + test_output(fn)) + ''';
                 });
             }
         }
@@ -1050,7 +1062,8 @@ def defaults_test(fn, full, lazy):
     expected = test_output(fn) if full else test_fallback(fn)
     type = 'Fallback' if lazy else 'Default'
     output('''\
-        @Test public void ''' + name + '''() {
+        @Test
+        public void ''' + name + '''() {
             ''' + test_unchecked(fn) + 'Optional' + test_parameterized_type(fn) + ' ' + name + ' = mock(Optional' + fn + '''.class);
             when(''' + name + '.' + method_verb(fn) + '(' + test_input(fn) + ')).thenReturn(' + value + ''');
     ''', indent=1)
@@ -1117,7 +1130,8 @@ def optional_test(fn):
         import org.junit.jupiter.api.*;
         
         public class Optional''' + fn + '''Test {
-            @Test public void conversions() {
+            @Test
+            public void conversions() {
                 assertEquals(''' + optional_test_output(fn) + ', create(' + lambda_params(fn) + ' -> ' + optional_test_output(fn)
                     + ').' + method_verb(fn) + '(' + test_input(fn) + '''));
                 assertEquals(''' + test_output(fn) + ', create(' + lambda_params(fn) + ' -> ' + optional_test_output(fn)
@@ -1153,7 +1167,8 @@ def handler_test():
     ''')
     for fn in functional_types():
         output('''\
-            @Test public void ''' + from_method(fn) + '''_complete() {
+            @Test
+            public void ''' + from_method(fn) + '''_complete() {
                 ExceptionCollector collector = new ExceptionCollector(true);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
@@ -1169,7 +1184,8 @@ def handler_test():
                 verify(lambda, only()).''' + as_method(fn) + '(' + test_input(fn) + ''');
                 assertTrue(collector.empty());
             }
-            @Test public void ''' + from_method(fn) + '''_swallowException() {
+            @Test
+            public void ''' + from_method(fn) + '''_swallowException() {
                 ExceptionCollector collector = new ExceptionCollector(true);
         ''', indent=1)
         if void_functional(fn):
@@ -1187,7 +1203,8 @@ def handler_test():
         output('''\
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
-            @Test public void ''' + from_method(fn) + '''_passException() {
+            @Test
+            public void ''' + from_method(fn) + '''_passException() {
                 ExceptionCollector collector = new ExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
@@ -1197,7 +1214,8 @@ def handler_test():
         ''', indent=1)
     for fn in parameterless_functional_types():
         output('''\
-            @Test public void ''' + as_method(fn) + '''_complete() {
+            @Test
+            public void ''' + as_method(fn) + '''_complete() {
                 ExceptionCollector collector = new ExceptionCollector(true);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
@@ -1212,7 +1230,8 @@ def handler_test():
                 verify(lambda, only()).''' + as_method(fn) + '(' + test_input(fn) + ''');
                 assertTrue(collector.empty());
             }
-            @Test public void ''' + as_method(fn) + '''_swallowException() {
+            @Test
+            public void ''' + as_method(fn) + '''_swallowException() {
                 ExceptionCollector collector = new ExceptionCollector(true);
         ''', indent=1)
         if void_functional(fn):
@@ -1230,7 +1249,8 @@ def handler_test():
         output('''\
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
-            @Test public void ''' + as_method(fn) + '''_passException() {
+            @Test
+            public void ''' + as_method(fn) + '''_passException() {
                 ExceptionCollector collector = new ExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
@@ -1255,7 +1275,8 @@ def filter_test():
     ''')
     for fn in functional_types():
         output('''\
-            @Test public void ''' + from_method(fn) + '''_complete() {
+            @Test
+            public void ''' + from_method(fn) + '''_complete() {
                 FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
@@ -1270,14 +1291,16 @@ def filter_test():
                 verify(lambda, only()).''' + as_method(fn) + '(' + test_input(fn) + ''');
                 assertTrue(collector.empty());
             }
-            @Test public void ''' + from_method(fn) + '''_rethrow() {
+            @Test
+            public void ''' + from_method(fn) + '''_rethrow() {
                 FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
-            @Test public void ''' + from_method(fn) + '''_replace() {
+            @Test
+            public void ''' + from_method(fn) + '''_replace() {
                 FilteredExceptionCollector collector = new FilteredExceptionCollector(true);
                 assertThrows(CollectedException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
@@ -1287,7 +1310,8 @@ def filter_test():
         ''', indent=1)
     for fn in parameterless_functional_types():
         output('''\
-            @Test public void ''' + as_method(fn) + '''_complete() {
+            @Test
+            public void ''' + as_method(fn) + '''_complete() {
                 FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
@@ -1302,14 +1326,16 @@ def filter_test():
                 verify(lambda, only()).''' + as_method(fn) + '(' + test_input(fn) + ''');
                 assertTrue(collector.empty());
             }
-            @Test public void ''' + as_method(fn) + '''_pass() {
+            @Test
+            public void ''' + as_method(fn) + '''_pass() {
                 FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }));
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
-            @Test public void ''' + as_method(fn) + '''_replace() {
+            @Test
+            public void ''' + as_method(fn) + '''_replace() {
                 FilteredExceptionCollector collector = new FilteredExceptionCollector(true);
                 assertThrows(CollectedException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
@@ -1335,7 +1361,8 @@ def checked_test():
     ''')
     for fn in functional_types():
         output('''\
-            @Test public void ''' + from_method(fn) + '''_complete() throws Throwable {
+            @Test
+            public void ''' + from_method(fn) + '''_complete() throws Throwable {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
                 ''' + test_unchecked(fn) + 'Throwing' + test_parameterized_type(fn) + ' lambda = mock(Throwing' + fn + '''.class);
         ''', indent=1)
@@ -1351,19 +1378,22 @@ def checked_test():
                 verify(lambda, only()).''' + as_method(fn) + '(' + test_input(fn) + ''');
                 assertTrue(collector.empty());
             }
-            @Test public void ''' + from_method(fn) + '''_exception() {
+            @Test
+            public void ''' + from_method(fn) + '''_exception() {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
                 assertThrows(CollectedException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new PrinterException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
                 assertThat(collector.single(), instanceOf(PrinterException.class));
             }
-            @Test public void ''' + from_method(fn) + '''_runtime() {
+            @Test
+            public void ''' + from_method(fn) + '''_runtime() {
                 assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
             }
-            @Test public void ''' + from_method(fn) + '''_error() {
+            @Test
+            public void ''' + from_method(fn) + '''_error() {
                 assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new ServiceConfigurationError("");
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
@@ -1371,7 +1401,8 @@ def checked_test():
         ''', indent=1)
     for fn in parameterless_functional_types():
         output('''\
-            @Test public void ''' + as_method(fn) + '''_complete() throws Throwable {
+            @Test
+            public void ''' + as_method(fn) + '''_complete() throws Throwable {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
                 ''' + test_unchecked(fn) + 'Throwing' + test_parameterized_type(fn) + ' lambda = mock(Throwing' + fn + '''.class);
         ''', indent=1)
@@ -1386,19 +1417,22 @@ def checked_test():
                 verify(lambda, only()).''' + as_method(fn) + '''();
                 assertTrue(collector.empty());
             }
-            @Test public void ''' + as_method(fn) + '''_exception() {
+            @Test
+            public void ''' + as_method(fn) + '''_exception() {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
                 assertThrows(CollectedException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new PrinterException();
                 }));
                 assertThat(collector.single(), instanceOf(PrinterException.class));
             }
-            @Test public void ''' + as_method(fn) + '''_runtime() {
+            @Test
+            public void ''' + as_method(fn) + '''_runtime() {
                 assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }));
             }
-            @Test public void ''' + as_method(fn) + '''_error() {
+            @Test
+            public void ''' + as_method(fn) + '''_error() {
                 assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new ServiceConfigurationError("");
                 }));
