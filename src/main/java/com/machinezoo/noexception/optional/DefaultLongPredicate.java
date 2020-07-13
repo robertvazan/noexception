@@ -11,7 +11,8 @@ final class DefaultLongPredicate implements LongPredicate {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public boolean test(long value) {
+	@Override
+	public boolean test(long value) {
 		return inner.test(value).orElse(result);
 	}
 }

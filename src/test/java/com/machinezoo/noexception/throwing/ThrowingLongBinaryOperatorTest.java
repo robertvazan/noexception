@@ -12,7 +12,8 @@ public class ThrowingLongBinaryOperatorTest {
 	}
 	void takeNonThrowing(LongBinaryOperator functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((l, r) -> 2L);
 		takeThrowing((l, r) -> 2L);
 		takeThrowing((l, r) -> {

@@ -11,7 +11,8 @@ final class DefaultBiFunction<T, U, R> implements BiFunction<T, U, R> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public R apply(T t, U u) {
+	@Override
+	public R apply(T t, U u) {
 		return inner.apply(t, u).orElse(result);
 	}
 }

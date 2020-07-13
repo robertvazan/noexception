@@ -12,7 +12,8 @@ public class ThrowingBiPredicateTest {
 	}
 	void takeNonThrowing(BiPredicate<String, String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((t, u) -> true);
 		takeThrowing((t, u) -> true);
 		takeThrowing((t, u) -> {

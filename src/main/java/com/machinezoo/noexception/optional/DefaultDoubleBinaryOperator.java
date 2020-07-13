@@ -11,7 +11,8 @@ final class DefaultDoubleBinaryOperator implements DoubleBinaryOperator {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public double applyAsDouble(double left, double right) {
+	@Override
+	public double applyAsDouble(double left, double right) {
 		return inner.apply(left, right).orElse(result);
 	}
 }

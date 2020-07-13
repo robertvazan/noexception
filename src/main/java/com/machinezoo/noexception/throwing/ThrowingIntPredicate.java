@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromIntPredicate(ThrowingIntPredicate)
  * @see IntPredicate
  */
-@FunctionalInterface public interface ThrowingIntPredicate {
+@FunctionalInterface
+public interface ThrowingIntPredicate {
 	/**
 	 * Variation of {@link IntPredicate#test(int)} that allows throwing checked exceptions.
 	 * 

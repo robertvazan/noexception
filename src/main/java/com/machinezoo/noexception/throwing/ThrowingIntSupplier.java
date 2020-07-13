@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromIntSupplier(ThrowingIntSupplier)
  * @see IntSupplier
  */
-@FunctionalInterface public interface ThrowingIntSupplier {
+@FunctionalInterface
+public interface ThrowingIntSupplier {
 	/**
 	 * Variation of {@link IntSupplier#getAsInt()} that allows throwing checked exceptions.
 	 * 

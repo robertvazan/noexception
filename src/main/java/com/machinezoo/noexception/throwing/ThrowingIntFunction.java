@@ -16,7 +16,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromIntFunction(ThrowingIntFunction)
  * @see IntFunction
  */
-@FunctionalInterface public interface ThrowingIntFunction<R> {
+@FunctionalInterface
+public interface ThrowingIntFunction<R> {
 	/**
 	 * Variation of {@link IntFunction#apply(int)} that allows throwing checked exceptions.
 	 * 

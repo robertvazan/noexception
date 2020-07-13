@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackDoubleToIntFunctionTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalDoubleToIntFunction full = mock(OptionalDoubleToIntFunction.class);
 		when(full.apply(1.0)).thenReturn(OptionalInt.of(2));
 		IntSupplier fallback = mock(IntSupplier.class);
@@ -18,7 +19,8 @@ public class FallbackDoubleToIntFunctionTest {
 		verify(full, only()).apply(1.0);
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalDoubleToIntFunction empty = mock(OptionalDoubleToIntFunction.class);
 		when(empty.apply(1.0)).thenReturn(OptionalInt.empty());
 		IntSupplier fallback = mock(IntSupplier.class);

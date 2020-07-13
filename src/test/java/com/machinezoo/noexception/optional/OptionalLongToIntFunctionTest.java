@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalLongToIntFunctionTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalInt.of(2), create(v -> OptionalInt.of(2)).apply(1L));
 		assertEquals(2, create(v -> OptionalInt.of(2)).orElse(3).applyAsInt(1L));
 		assertEquals(2, create(v -> OptionalInt.of(2)).orElseGet(() -> 2).applyAsInt(1L));

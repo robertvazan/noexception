@@ -11,7 +11,8 @@ final class DefaultFunction<T, R> implements Function<T, R> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public R apply(T t) {
+	@Override
+	public R apply(T t) {
 		return inner.apply(t).orElse(result);
 	}
 }

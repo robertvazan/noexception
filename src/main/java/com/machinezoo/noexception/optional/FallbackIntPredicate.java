@@ -11,7 +11,8 @@ final class FallbackIntPredicate implements IntPredicate {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public boolean test(int value) {
+	@Override
+	public boolean test(int value) {
 		return inner.test(value).orElseGet(source);
 	}
 }

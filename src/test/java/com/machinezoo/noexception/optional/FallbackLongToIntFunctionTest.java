@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackLongToIntFunctionTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalLongToIntFunction full = mock(OptionalLongToIntFunction.class);
 		when(full.apply(1L)).thenReturn(OptionalInt.of(2));
 		IntSupplier fallback = mock(IntSupplier.class);
@@ -18,7 +19,8 @@ public class FallbackLongToIntFunctionTest {
 		verify(full, only()).apply(1L);
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalLongToIntFunction empty = mock(OptionalLongToIntFunction.class);
 		when(empty.apply(1L)).thenReturn(OptionalInt.empty());
 		IntSupplier fallback = mock(IntSupplier.class);

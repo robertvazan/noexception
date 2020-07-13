@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)
  * @see LongBinaryOperator
  */
-@FunctionalInterface public interface OptionalLongBinaryOperator {
+@FunctionalInterface
+public interface OptionalLongBinaryOperator {
 	/**
 	 * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that returns {@link OptionalLong}.
 	 * If this {@code OptionalLongBinaryOperator} is obtained from {@link ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)},

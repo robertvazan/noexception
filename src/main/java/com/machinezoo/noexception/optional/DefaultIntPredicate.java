@@ -11,7 +11,8 @@ final class DefaultIntPredicate implements IntPredicate {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public boolean test(int value) {
+	@Override
+	public boolean test(int value) {
 		return inner.test(value).orElse(result);
 	}
 }

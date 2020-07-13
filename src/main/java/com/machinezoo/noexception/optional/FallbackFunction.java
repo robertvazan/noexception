@@ -11,7 +11,8 @@ final class FallbackFunction<T, R> implements Function<T, R> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public R apply(T t) {
+	@Override
+	public R apply(T t) {
 		return inner.apply(t).orElseGet(source);
 	}
 }

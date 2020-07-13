@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromLongSupplier(LongSupplier)
  * @see LongSupplier
  */
-@FunctionalInterface public interface OptionalLongSupplier extends Supplier<OptionalLong> {
+@FunctionalInterface
+public interface OptionalLongSupplier extends Supplier<OptionalLong> {
 	/**
 	 * Variation of {@link LongSupplier#getAsLong()} that returns {@link OptionalLong}.
 	 * If this {@code OptionalLongSupplier} is obtained from {@link ExceptionHandler#fromLongSupplier(LongSupplier)},
@@ -27,7 +28,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromLongSupplier(LongSupplier)
 	 * @see LongSupplier#getAsLong()
 	 */
-	@Override OptionalLong get();
+	@Override
+	OptionalLong get();
 	/**
 	 * Converts this {@code OptionalLongSupplier} to plain {@code LongSupplier} using default value.
 	 * The returned {@code LongSupplier} will unwrap present value from the {@code OptionalLong} if possible,

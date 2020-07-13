@@ -11,7 +11,8 @@ final class DefaultComparator<T> implements Comparator<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int compare(T left, T right) {
+	@Override
+	public int compare(T left, T right) {
 		return inner.compare(left, right).orElse(result);
 	}
 }

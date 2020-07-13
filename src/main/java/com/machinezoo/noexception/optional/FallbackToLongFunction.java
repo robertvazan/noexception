@@ -11,7 +11,8 @@ final class FallbackToLongFunction<T> implements ToLongFunction<T> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public long applyAsLong(T value) {
+	@Override
+	public long applyAsLong(T value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

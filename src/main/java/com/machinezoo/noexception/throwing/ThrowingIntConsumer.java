@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromIntConsumer(ThrowingIntConsumer)
  * @see IntConsumer
  */
-@FunctionalInterface public interface ThrowingIntConsumer {
+@FunctionalInterface
+public interface ThrowingIntConsumer {
 	/**
 	 * Variation of {@link IntConsumer#accept(int)} that allows throwing checked exceptions.
 	 * 

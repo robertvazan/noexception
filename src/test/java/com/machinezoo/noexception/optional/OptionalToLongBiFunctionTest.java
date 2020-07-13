@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalToLongBiFunctionTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalLong.of(2L), create((t, u) -> OptionalLong.of(2L)).apply("input1", "input2"));
 		assertEquals(2L, create((t, u) -> OptionalLong.of(2L)).orElse(3L).applyAsLong("input1", "input2"));
 		assertEquals(2L, create((t, u) -> OptionalLong.of(2L)).orElseGet(() -> 2L).applyAsLong("input1", "input2"));

@@ -11,7 +11,8 @@ final class FallbackDoubleBinaryOperator implements DoubleBinaryOperator {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public double applyAsDouble(double left, double right) {
+	@Override
+	public double applyAsDouble(double left, double right) {
 		return inner.apply(left, right).orElseGet(source);
 	}
 }

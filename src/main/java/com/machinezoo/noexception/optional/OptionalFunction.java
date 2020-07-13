@@ -19,7 +19,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#function(Function)
  * @see Function
  */
-@FunctionalInterface public interface OptionalFunction<T, R> extends Function<T, Optional<R>> {
+@FunctionalInterface
+public interface OptionalFunction<T, R> extends Function<T, Optional<R>> {
 	/**
 	 * Variation of {@link Function#apply(Object)} that returns {@link Optional}.
 	 * If this {@code OptionalFunction} is obtained from {@link ExceptionHandler#function(Function)},
@@ -33,7 +34,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#function(Function)
 	 * @see Function#apply(Object)
 	 */
-	@Override Optional<R> apply(T t);
+	@Override
+	Optional<R> apply(T t);
 	/**
 	 * Converts this {@code OptionalFunction} to plain {@code Function} using default value.
 	 * The returned {@code Function} will unwrap present value from the {@code Optional} if possible,

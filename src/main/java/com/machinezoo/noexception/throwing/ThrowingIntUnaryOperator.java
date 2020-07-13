@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromIntUnaryOperator(ThrowingIntUnaryOperator)
  * @see IntUnaryOperator
  */
-@FunctionalInterface public interface ThrowingIntUnaryOperator {
+@FunctionalInterface
+public interface ThrowingIntUnaryOperator {
 	/**
 	 * Variation of {@link IntUnaryOperator#applyAsInt(int)} that allows throwing checked exceptions.
 	 * 

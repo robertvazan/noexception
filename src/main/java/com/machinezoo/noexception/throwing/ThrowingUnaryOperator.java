@@ -16,5 +16,6 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromUnaryOperator(ThrowingUnaryOperator)
  * @see UnaryOperator
  */
-@FunctionalInterface public interface ThrowingUnaryOperator<T> extends ThrowingFunction<T, T> {
+@FunctionalInterface
+public interface ThrowingUnaryOperator<T> extends ThrowingFunction<T, T> {
 }

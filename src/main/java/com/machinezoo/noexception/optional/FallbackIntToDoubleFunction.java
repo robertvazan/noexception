@@ -11,7 +11,8 @@ final class FallbackIntToDoubleFunction implements IntToDoubleFunction {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public double applyAsDouble(int value) {
+	@Override
+	public double applyAsDouble(int value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

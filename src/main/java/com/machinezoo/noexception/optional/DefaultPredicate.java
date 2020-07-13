@@ -11,7 +11,8 @@ final class DefaultPredicate<T> implements Predicate<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public boolean test(T t) {
+	@Override
+	public boolean test(T t) {
 		return inner.test(t).orElse(result);
 	}
 }

@@ -11,7 +11,8 @@ final class FallbackPredicate<T> implements Predicate<T> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public boolean test(T t) {
+	@Override
+	public boolean test(T t) {
 		return inner.test(t).orElseGet(source);
 	}
 }

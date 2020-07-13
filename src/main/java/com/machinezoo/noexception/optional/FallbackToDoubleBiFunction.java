@@ -11,7 +11,8 @@ final class FallbackToDoubleBiFunction<T, U> implements ToDoubleBiFunction<T, U>
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public double applyAsDouble(T t, U u) {
+	@Override
+	public double applyAsDouble(T t, U u) {
 		return inner.apply(t, u).orElseGet(source);
 	}
 }

@@ -21,7 +21,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromBiFunction(BiFunction)
  * @see BiFunction
  */
-@FunctionalInterface public interface OptionalBiFunction<T, U, R> extends BiFunction<T, U, Optional<R>> {
+@FunctionalInterface
+public interface OptionalBiFunction<T, U, R> extends BiFunction<T, U, Optional<R>> {
 	/**
 	 * Variation of {@link BiFunction#apply(Object, Object)} that returns {@link Optional}.
 	 * If this {@code OptionalBiFunction} is obtained from {@link ExceptionHandler#fromBiFunction(BiFunction)},
@@ -37,7 +38,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromBiFunction(BiFunction)
 	 * @see BiFunction#apply(Object, Object)
 	 */
-	@Override Optional<R> apply(T t, U u);
+	@Override
+	Optional<R> apply(T t, U u);
 	/**
 	 * Converts this {@code OptionalBiFunction} to plain {@code BiFunction} using default value.
 	 * The returned {@code BiFunction} will unwrap present value from the {@code Optional} if possible,

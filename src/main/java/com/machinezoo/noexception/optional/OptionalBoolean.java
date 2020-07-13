@@ -190,7 +190,8 @@ public final class OptionalBoolean {
 	 * @return {@code true} if the other object is "equal to" this object, otherwise {@code false}
 	 * @see #hashCode()
 	 */
-	@Override public boolean equals(Object obj) {
+	@Override
+	public boolean equals(Object obj) {
 		return obj == this;
 	}
 	/**
@@ -200,7 +201,8 @@ public final class OptionalBoolean {
 	 * @see #equals(Object)
 	 * @see Boolean#hashCode()
 	 */
-	@Override public int hashCode() {
+	@Override
+	public int hashCode() {
 		return !present ? 0 : Boolean.hashCode(value);
 	}
 	/**
@@ -209,7 +211,8 @@ public final class OptionalBoolean {
 	 * 
 	 * @return the string representation of this instance
 	 */
-	@Override public String toString() {
+	@Override
+	public String toString() {
 		return !present ? "empty" : value ? "true" : "false";
 	}
 }

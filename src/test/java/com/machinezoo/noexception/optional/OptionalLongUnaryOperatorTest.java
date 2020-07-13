@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalLongUnaryOperatorTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalLong.of(2L), create(o -> OptionalLong.of(2L)).apply(1L));
 		assertEquals(2L, create(o -> OptionalLong.of(2L)).orElse(3L).applyAsLong(1L));
 		assertEquals(2L, create(o -> OptionalLong.of(2L)).orElseGet(() -> 2L).applyAsLong(1L));

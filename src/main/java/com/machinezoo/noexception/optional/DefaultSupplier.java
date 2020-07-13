@@ -11,7 +11,8 @@ final class DefaultSupplier<T> implements Supplier<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public T get() {
+	@Override
+	public T get() {
 		return inner.get().orElse(result);
 	}
 }

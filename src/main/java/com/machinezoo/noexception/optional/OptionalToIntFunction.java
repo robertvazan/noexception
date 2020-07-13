@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromToIntFunction(ToIntFunction)
  * @see ToIntFunction
  */
-@FunctionalInterface public interface OptionalToIntFunction<T> extends Function<T, OptionalInt> {
+@FunctionalInterface
+public interface OptionalToIntFunction<T> extends Function<T, OptionalInt> {
 	/**
 	 * Variation of {@link ToIntFunction#applyAsInt(Object)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalToIntFunction} is obtained from {@link ExceptionHandler#fromToIntFunction(ToIntFunction)},
@@ -31,7 +32,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromToIntFunction(ToIntFunction)
 	 * @see ToIntFunction#applyAsInt(Object)
 	 */
-	@Override OptionalInt apply(T value);
+	@Override
+	OptionalInt apply(T value);
 	/**
 	 * Converts this {@code OptionalToIntFunction} to plain {@code ToIntFunction} using default value.
 	 * The returned {@code ToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,

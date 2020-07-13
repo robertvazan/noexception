@@ -12,7 +12,8 @@ public class ThrowingToDoubleBiFunctionTest {
 	}
 	void takeNonThrowing(ToDoubleBiFunction<String, String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((t, u) -> 2.0);
 		takeThrowing((t, u) -> 2.0);
 		takeThrowing((t, u) -> {

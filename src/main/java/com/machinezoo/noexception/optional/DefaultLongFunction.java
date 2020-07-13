@@ -11,7 +11,8 @@ final class DefaultLongFunction<R> implements LongFunction<R> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public R apply(long value) {
+	@Override
+	public R apply(long value) {
 		return inner.apply(value).orElse(result);
 	}
 }

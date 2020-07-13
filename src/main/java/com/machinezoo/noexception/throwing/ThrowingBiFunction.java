@@ -20,7 +20,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromBiFunction(ThrowingBiFunction)
  * @see BiFunction
  */
-@FunctionalInterface public interface ThrowingBiFunction<T, U, R> {
+@FunctionalInterface
+public interface ThrowingBiFunction<T, U, R> {
 	/**
 	 * Variation of {@link BiFunction#apply(Object, Object)} that allows throwing checked exceptions.
 	 * 

@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromIntBinaryOperator(IntBinaryOperator)
  * @see IntBinaryOperator
  */
-@FunctionalInterface public interface OptionalIntBinaryOperator {
+@FunctionalInterface
+public interface OptionalIntBinaryOperator {
 	/**
 	 * Variation of {@link IntBinaryOperator#applyAsInt(int, int)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalIntBinaryOperator} is obtained from {@link ExceptionHandler#fromIntBinaryOperator(IntBinaryOperator)},

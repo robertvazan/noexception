@@ -16,7 +16,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromObjLongConsumer(ThrowingObjLongConsumer)
  * @see ObjLongConsumer
  */
-@FunctionalInterface public interface ThrowingObjLongConsumer<T> {
+@FunctionalInterface
+public interface ThrowingObjLongConsumer<T> {
 	/**
 	 * Variation of {@link ObjLongConsumer#accept(Object, long)} that allows throwing checked exceptions.
 	 * 

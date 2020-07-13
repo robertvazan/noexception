@@ -16,7 +16,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromToDoubleFunction(ThrowingToDoubleFunction)
  * @see ToDoubleFunction
  */
-@FunctionalInterface public interface ThrowingToDoubleFunction<T> {
+@FunctionalInterface
+public interface ThrowingToDoubleFunction<T> {
 	/**
 	 * Variation of {@link ToDoubleFunction#applyAsDouble(Object)} that allows throwing checked exceptions.
 	 * 

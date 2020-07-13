@@ -11,7 +11,8 @@ final class DefaultIntFunction<R> implements IntFunction<R> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public R apply(int value) {
+	@Override
+	public R apply(int value) {
 		return inner.apply(value).orElse(result);
 	}
 }

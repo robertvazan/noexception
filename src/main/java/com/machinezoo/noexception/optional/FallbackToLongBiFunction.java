@@ -11,7 +11,8 @@ final class FallbackToLongBiFunction<T, U> implements ToLongBiFunction<T, U> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public long applyAsLong(T t, U u) {
+	@Override
+	public long applyAsLong(T t, U u) {
 		return inner.apply(t, u).orElseGet(source);
 	}
 }

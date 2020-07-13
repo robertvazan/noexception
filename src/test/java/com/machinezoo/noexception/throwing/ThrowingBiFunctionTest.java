@@ -12,7 +12,8 @@ public class ThrowingBiFunctionTest {
 	}
 	void takeNonThrowing(BiFunction<String, String, String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((t, u) -> "value");
 		takeThrowing((t, u) -> "value");
 		takeThrowing((t, u) -> {

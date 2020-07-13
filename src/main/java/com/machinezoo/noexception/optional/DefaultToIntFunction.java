@@ -11,7 +11,8 @@ final class DefaultToIntFunction<T> implements ToIntFunction<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int applyAsInt(T value) {
+	@Override
+	public int applyAsInt(T value) {
 		return inner.apply(value).orElse(result);
 	}
 }

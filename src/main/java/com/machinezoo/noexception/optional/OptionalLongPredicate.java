@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromLongPredicate(LongPredicate)
  * @see LongPredicate
  */
-@FunctionalInterface public interface OptionalLongPredicate {
+@FunctionalInterface
+public interface OptionalLongPredicate {
 	/**
 	 * Variation of {@link LongPredicate#test(long)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalLongPredicate} is obtained from {@link ExceptionHandler#fromLongPredicate(LongPredicate)},

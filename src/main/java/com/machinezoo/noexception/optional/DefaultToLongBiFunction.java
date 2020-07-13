@@ -11,7 +11,8 @@ final class DefaultToLongBiFunction<T, U> implements ToLongBiFunction<T, U> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public long applyAsLong(T t, U u) {
+	@Override
+	public long applyAsLong(T t, U u) {
 		return inner.apply(t, u).orElse(result);
 	}
 }

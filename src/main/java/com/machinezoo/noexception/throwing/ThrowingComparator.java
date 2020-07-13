@@ -16,7 +16,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#comparator(ThrowingComparator)
  * @see Comparator
  */
-@FunctionalInterface public interface ThrowingComparator<T> {
+@FunctionalInterface
+public interface ThrowingComparator<T> {
 	/**
 	 * Variation of {@link Comparator#compare(Object, Object)} that allows throwing checked exceptions.
 	 * 

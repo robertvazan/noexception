@@ -11,7 +11,8 @@ final class DefaultDoubleToIntFunction implements DoubleToIntFunction {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int applyAsInt(double value) {
+	@Override
+	public int applyAsInt(double value) {
 		return inner.apply(value).orElse(result);
 	}
 }

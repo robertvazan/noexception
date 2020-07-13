@@ -11,7 +11,8 @@ final class FallbackIntFunction<R> implements IntFunction<R> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public R apply(int value) {
+	@Override
+	public R apply(int value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

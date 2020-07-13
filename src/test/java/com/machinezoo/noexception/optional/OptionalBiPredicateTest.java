@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalBiPredicateTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalBoolean.of(true), create((t, u) -> OptionalBoolean.of(true)).test("input1", "input2"));
 		assertEquals(true, create((t, u) -> OptionalBoolean.of(true)).orElse(false).test("input1", "input2"));
 		assertEquals(true, create((t, u) -> OptionalBoolean.of(true)).orElseGet(() -> true).test("input1", "input2"));

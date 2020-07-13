@@ -11,7 +11,8 @@ final class DefaultLongToDoubleFunction implements LongToDoubleFunction {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public double applyAsDouble(long value) {
+	@Override
+	public double applyAsDouble(long value) {
 		return inner.apply(value).orElse(result);
 	}
 }

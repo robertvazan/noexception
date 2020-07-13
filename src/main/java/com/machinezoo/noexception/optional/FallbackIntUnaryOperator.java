@@ -11,7 +11,8 @@ final class FallbackIntUnaryOperator implements IntUnaryOperator {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public int applyAsInt(int operand) {
+	@Override
+	public int applyAsInt(int operand) {
 		return inner.apply(operand).orElseGet(source);
 	}
 }

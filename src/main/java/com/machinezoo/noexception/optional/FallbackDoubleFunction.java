@@ -11,7 +11,8 @@ final class FallbackDoubleFunction<R> implements DoubleFunction<R> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public R apply(double value) {
+	@Override
+	public R apply(double value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

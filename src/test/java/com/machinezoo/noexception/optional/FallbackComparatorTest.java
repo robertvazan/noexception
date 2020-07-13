@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackComparatorTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		@SuppressWarnings("unchecked") OptionalComparator<String> full = mock(OptionalComparator.class);
 		when(full.compare("input1", "input2")).thenReturn(OptionalInt.of(2));
 		IntSupplier fallback = mock(IntSupplier.class);
@@ -18,7 +19,8 @@ public class FallbackComparatorTest {
 		verify(full, only()).compare("input1", "input2");
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		@SuppressWarnings("unchecked") OptionalComparator<String> empty = mock(OptionalComparator.class);
 		when(empty.compare("input1", "input2")).thenReturn(OptionalInt.empty());
 		IntSupplier fallback = mock(IntSupplier.class);

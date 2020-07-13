@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalSupplierTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(Optional.of("value"), create(() -> Optional.of("value")).get());
 		assertEquals("value", create(() -> Optional.of("value")).orElse("default").get());
 		assertEquals("value", create(() -> Optional.of("value")).orElseGet(() -> "value").get());

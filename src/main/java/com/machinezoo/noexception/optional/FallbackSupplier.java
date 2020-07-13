@@ -11,7 +11,8 @@ final class FallbackSupplier<T> implements Supplier<T> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public T get() {
+	@Override
+	public T get() {
 		return inner.get().orElseGet(source);
 	}
 }

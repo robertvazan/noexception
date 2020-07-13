@@ -11,7 +11,8 @@ final class DefaultToDoubleBiFunction<T, U> implements ToDoubleBiFunction<T, U> 
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public double applyAsDouble(T t, U u) {
+	@Override
+	public double applyAsDouble(T t, U u) {
 		return inner.apply(t, u).orElse(result);
 	}
 }

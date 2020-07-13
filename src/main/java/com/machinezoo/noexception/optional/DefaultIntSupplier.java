@@ -11,7 +11,8 @@ final class DefaultIntSupplier implements IntSupplier {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int getAsInt() {
+	@Override
+	public int getAsInt() {
 		return inner.get().orElse(result);
 	}
 }

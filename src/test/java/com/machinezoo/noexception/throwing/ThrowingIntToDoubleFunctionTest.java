@@ -12,7 +12,8 @@ public class ThrowingIntToDoubleFunctionTest {
 	}
 	void takeNonThrowing(IntToDoubleFunction functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(v -> 2.0);
 		takeThrowing(v -> 2.0);
 		takeThrowing(v -> {

@@ -11,7 +11,8 @@ final class DefaultToDoubleFunction<T> implements ToDoubleFunction<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public double applyAsDouble(T value) {
+	@Override
+	public double applyAsDouble(T value) {
 		return inner.apply(value).orElse(result);
 	}
 }

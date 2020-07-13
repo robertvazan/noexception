@@ -20,7 +20,8 @@ class ExceptionCollector extends ExceptionHandler {
 		assertEquals(1, size());
 		return collected.get(0);
 	}
-	@Override public boolean handle(Throwable exception) {
+	@Override
+	public boolean handle(Throwable exception) {
 		collected.add(exception);
 		return swallow;
 	}

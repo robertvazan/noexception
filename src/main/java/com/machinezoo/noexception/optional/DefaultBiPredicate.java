@@ -11,7 +11,8 @@ final class DefaultBiPredicate<T, U> implements BiPredicate<T, U> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public boolean test(T t, U u) {
+	@Override
+	public boolean test(T t, U u) {
 		return inner.test(t, u).orElse(result);
 	}
 }

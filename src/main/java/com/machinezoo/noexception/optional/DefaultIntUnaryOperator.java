@@ -11,7 +11,8 @@ final class DefaultIntUnaryOperator implements IntUnaryOperator {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int applyAsInt(int operand) {
+	@Override
+	public int applyAsInt(int operand) {
 		return inner.apply(operand).orElse(result);
 	}
 }

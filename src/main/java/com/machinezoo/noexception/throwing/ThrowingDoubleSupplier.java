@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromDoubleSupplier(ThrowingDoubleSupplier)
  * @see DoubleSupplier
  */
-@FunctionalInterface public interface ThrowingDoubleSupplier {
+@FunctionalInterface
+public interface ThrowingDoubleSupplier {
 	/**
 	 * Variation of {@link DoubleSupplier#getAsDouble()} that allows throwing checked exceptions.
 	 * 

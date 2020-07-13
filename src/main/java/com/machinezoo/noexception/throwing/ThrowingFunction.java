@@ -18,7 +18,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#function(ThrowingFunction)
  * @see Function
  */
-@FunctionalInterface public interface ThrowingFunction<T, R> {
+@FunctionalInterface
+public interface ThrowingFunction<T, R> {
 	/**
 	 * Variation of {@link Function#apply(Object)} that allows throwing checked exceptions.
 	 * 

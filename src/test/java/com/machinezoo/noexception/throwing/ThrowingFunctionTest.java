@@ -12,7 +12,8 @@ public class ThrowingFunctionTest {
 	}
 	void takeNonThrowing(Function<String, String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(t -> "value");
 		takeThrowing(t -> "value");
 		takeThrowing(t -> {

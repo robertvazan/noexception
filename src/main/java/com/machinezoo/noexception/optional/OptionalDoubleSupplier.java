@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromDoubleSupplier(DoubleSupplier)
  * @see DoubleSupplier
  */
-@FunctionalInterface public interface OptionalDoubleSupplier extends Supplier<OptionalDouble> {
+@FunctionalInterface
+public interface OptionalDoubleSupplier extends Supplier<OptionalDouble> {
 	/**
 	 * Variation of {@link DoubleSupplier#getAsDouble()} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalDoubleSupplier} is obtained from {@link ExceptionHandler#fromDoubleSupplier(DoubleSupplier)},
@@ -27,7 +28,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromDoubleSupplier(DoubleSupplier)
 	 * @see DoubleSupplier#getAsDouble()
 	 */
-	@Override OptionalDouble get();
+	@Override
+	OptionalDouble get();
 	/**
 	 * Converts this {@code OptionalDoubleSupplier} to plain {@code DoubleSupplier} using default value.
 	 * The returned {@code DoubleSupplier} will unwrap present value from the {@code OptionalDouble} if possible,

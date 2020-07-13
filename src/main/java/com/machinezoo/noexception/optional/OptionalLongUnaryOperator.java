@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)
  * @see LongUnaryOperator
  */
-@FunctionalInterface public interface OptionalLongUnaryOperator extends LongFunction<OptionalLong> {
+@FunctionalInterface
+public interface OptionalLongUnaryOperator extends LongFunction<OptionalLong> {
 	/**
 	 * Variation of {@link LongUnaryOperator#applyAsLong(long)} that returns {@link OptionalLong}.
 	 * If this {@code OptionalLongUnaryOperator} is obtained from {@link ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)},
@@ -29,7 +30,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromLongUnaryOperator(LongUnaryOperator)
 	 * @see LongUnaryOperator#applyAsLong(long)
 	 */
-	@Override OptionalLong apply(long operand);
+	@Override
+	OptionalLong apply(long operand);
 	/**
 	 * Converts this {@code OptionalLongUnaryOperator} to plain {@code LongUnaryOperator} using default value.
 	 * The returned {@code LongUnaryOperator} will unwrap present value from the {@code OptionalLong} if possible,

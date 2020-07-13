@@ -11,7 +11,8 @@ final class FallbackIntSupplier implements IntSupplier {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public int getAsInt() {
+	@Override
+	public int getAsInt() {
 		return inner.get().orElseGet(source);
 	}
 }

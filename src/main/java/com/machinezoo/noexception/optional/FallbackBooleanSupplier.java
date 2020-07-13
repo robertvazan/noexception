@@ -11,7 +11,8 @@ final class FallbackBooleanSupplier implements BooleanSupplier {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public boolean getAsBoolean() {
+	@Override
+	public boolean getAsBoolean() {
 		return inner.get().orElseGet(source);
 	}
 }

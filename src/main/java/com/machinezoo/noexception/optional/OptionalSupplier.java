@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#supplier(Supplier)
  * @see Supplier
  */
-@FunctionalInterface public interface OptionalSupplier<T> extends Supplier<Optional<T>> {
+@FunctionalInterface
+public interface OptionalSupplier<T> extends Supplier<Optional<T>> {
 	/**
 	 * Variation of {@link Supplier#get()} that returns {@link Optional}.
 	 * If this {@code OptionalSupplier} is obtained from {@link ExceptionHandler#supplier(Supplier)},
@@ -29,7 +30,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#supplier(Supplier)
 	 * @see Supplier#get()
 	 */
-	@Override Optional<T> get();
+	@Override
+	Optional<T> get();
 	/**
 	 * Converts this {@code OptionalSupplier} to plain {@code Supplier} using default value.
 	 * The returned {@code Supplier} will unwrap present value from the {@code Optional} if possible,

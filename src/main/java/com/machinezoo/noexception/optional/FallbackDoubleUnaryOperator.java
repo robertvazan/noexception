@@ -11,7 +11,8 @@ final class FallbackDoubleUnaryOperator implements DoubleUnaryOperator {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public double applyAsDouble(double operand) {
+	@Override
+	public double applyAsDouble(double operand) {
 		return inner.apply(operand).orElseGet(source);
 	}
 }

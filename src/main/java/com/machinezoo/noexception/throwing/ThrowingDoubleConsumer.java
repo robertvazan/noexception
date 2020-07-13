@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromDoubleConsumer(ThrowingDoubleConsumer)
  * @see DoubleConsumer
  */
-@FunctionalInterface public interface ThrowingDoubleConsumer {
+@FunctionalInterface
+public interface ThrowingDoubleConsumer {
 	/**
 	 * Variation of {@link DoubleConsumer#accept(double)} that allows throwing checked exceptions.
 	 * 

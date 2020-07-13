@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackIntFunctionTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		@SuppressWarnings("unchecked") OptionalIntFunction<String> full = mock(OptionalIntFunction.class);
 		when(full.apply(1)).thenReturn(Optional.of("value"));
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);
@@ -18,7 +19,8 @@ public class FallbackIntFunctionTest {
 		verify(full, only()).apply(1);
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		@SuppressWarnings("unchecked") OptionalIntFunction<String> empty = mock(OptionalIntFunction.class);
 		when(empty.apply(1)).thenReturn(Optional.empty());
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);

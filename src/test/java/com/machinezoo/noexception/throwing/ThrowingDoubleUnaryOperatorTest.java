@@ -12,7 +12,8 @@ public class ThrowingDoubleUnaryOperatorTest {
 	}
 	void takeNonThrowing(DoubleUnaryOperator functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(o -> 2.0);
 		takeThrowing(o -> 2.0);
 		takeThrowing(o -> {

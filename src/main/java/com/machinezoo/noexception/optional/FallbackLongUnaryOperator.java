@@ -11,7 +11,8 @@ final class FallbackLongUnaryOperator implements LongUnaryOperator {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public long applyAsLong(long operand) {
+	@Override
+	public long applyAsLong(long operand) {
 		return inner.apply(operand).orElseGet(source);
 	}
 }

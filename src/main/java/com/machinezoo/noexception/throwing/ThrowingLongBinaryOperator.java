@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromLongBinaryOperator(ThrowingLongBinaryOperator)
  * @see LongBinaryOperator
  */
-@FunctionalInterface public interface ThrowingLongBinaryOperator {
+@FunctionalInterface
+public interface ThrowingLongBinaryOperator {
 	/**
 	 * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that allows throwing checked exceptions.
 	 * 

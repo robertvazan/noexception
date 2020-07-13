@@ -18,7 +18,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromBiConsumer(ThrowingBiConsumer)
  * @see BiConsumer
  */
-@FunctionalInterface public interface ThrowingBiConsumer<T, U> {
+@FunctionalInterface
+public interface ThrowingBiConsumer<T, U> {
 	/**
 	 * Variation of {@link BiConsumer#accept(Object, Object)} that allows throwing checked exceptions.
 	 * 

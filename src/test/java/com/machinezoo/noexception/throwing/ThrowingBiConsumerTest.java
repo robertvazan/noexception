@@ -12,7 +12,8 @@ public class ThrowingBiConsumerTest {
 	}
 	void takeNonThrowing(BiConsumer<String, String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((t, u) -> {
 		});
 		takeThrowing((t, u) -> {
@@ -21,14 +22,14 @@ public class ThrowingBiConsumerTest {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return ;
+				return;
 		});
 		Throwable throwable = new IOException();
 		takeThrowing((t, u) -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw throwable;
 			else
-				return ;
+				return;
 		});
 	}
 }

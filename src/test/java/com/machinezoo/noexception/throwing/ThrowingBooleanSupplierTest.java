@@ -12,7 +12,8 @@ public class ThrowingBooleanSupplierTest {
 	}
 	void takeNonThrowing(BooleanSupplier functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(() -> true);
 		takeThrowing(() -> true);
 		takeThrowing(() -> {

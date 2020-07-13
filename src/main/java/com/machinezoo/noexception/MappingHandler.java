@@ -10,7 +10,8 @@ final class MappingHandler extends CheckedExceptionHandler {
 		Objects.requireNonNull(wrapper);
 		this.wrapper = wrapper;
 	}
-	@Override public RuntimeException handle(Exception exception) {
+	@Override
+	public RuntimeException handle(Exception exception) {
 		Objects.requireNonNull(exception);
 		if (exception instanceof InterruptedException)
 			Thread.currentThread().interrupt();

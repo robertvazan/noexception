@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromUnaryOperator(UnaryOperator)
  * @see UnaryOperator
  */
-@FunctionalInterface public interface OptionalUnaryOperator<T> extends Function<T, Optional<T>> {
+@FunctionalInterface
+public interface OptionalUnaryOperator<T> extends Function<T, Optional<T>> {
 	/**
 	 * Variation of {@link UnaryOperator#apply(Object)} that returns {@link Optional}.
 	 * If this {@code OptionalUnaryOperator} is obtained from {@link ExceptionHandler#fromUnaryOperator(UnaryOperator)},
@@ -31,7 +32,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromUnaryOperator(UnaryOperator)
 	 * @see UnaryOperator#apply(Object)
 	 */
-	@Override Optional<T> apply(T operand);
+	@Override
+	Optional<T> apply(T operand);
 	/**
 	 * Converts this {@code OptionalUnaryOperator} to plain {@code UnaryOperator} using default value.
 	 * The returned {@code UnaryOperator} will unwrap present value from the {@code Optional} if possible,

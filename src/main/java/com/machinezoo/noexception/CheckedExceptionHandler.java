@@ -93,7 +93,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedRunnable(ThrowingRunnable runnable) {
 			this.runnable = runnable;
 		}
-		@Override public void run() {
+		@Override
+		public void run() {
 			try {
 				runnable.run();
 			} catch (RuntimeException exception) {
@@ -128,7 +129,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedSupplier(ThrowingSupplier<T> supplier) {
 			this.supplier = supplier;
 		}
-		@Override public T get() {
+		@Override
+		public T get() {
 			try {
 				return supplier.get();
 			} catch (RuntimeException exception) {
@@ -163,7 +165,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntSupplier(ThrowingIntSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public int getAsInt() {
+		@Override
+		public int getAsInt() {
 			try {
 				return supplier.getAsInt();
 			} catch (RuntimeException exception) {
@@ -198,7 +201,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongSupplier(ThrowingLongSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public long getAsLong() {
+		@Override
+		public long getAsLong() {
 			try {
 				return supplier.getAsLong();
 			} catch (RuntimeException exception) {
@@ -233,7 +237,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoubleSupplier(ThrowingDoubleSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public double getAsDouble() {
+		@Override
+		public double getAsDouble() {
 			try {
 				return supplier.getAsDouble();
 			} catch (RuntimeException exception) {
@@ -268,7 +273,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedBooleanSupplier(ThrowingBooleanSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public boolean getAsBoolean() {
+		@Override
+		public boolean getAsBoolean() {
 			try {
 				return supplier.getAsBoolean();
 			} catch (RuntimeException exception) {
@@ -303,7 +309,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedConsumer(ThrowingConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t) {
+		@Override
+		public void accept(T t) {
 			try {
 				consumer.accept(t);
 			} catch (RuntimeException exception) {
@@ -338,7 +345,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntConsumer(ThrowingIntConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(int value) {
+		@Override
+		public void accept(int value) {
 			try {
 				consumer.accept(value);
 			} catch (RuntimeException exception) {
@@ -373,7 +381,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongConsumer(ThrowingLongConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(long value) {
+		@Override
+		public void accept(long value) {
 			try {
 				consumer.accept(value);
 			} catch (RuntimeException exception) {
@@ -408,7 +417,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoubleConsumer(ThrowingDoubleConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(double value) {
+		@Override
+		public void accept(double value) {
 			try {
 				consumer.accept(value);
 			} catch (RuntimeException exception) {
@@ -443,7 +453,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedBiConsumer(ThrowingBiConsumer<T, U> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, U u) {
+		@Override
+		public void accept(T t, U u) {
 			try {
 				consumer.accept(t, u);
 			} catch (RuntimeException exception) {
@@ -478,7 +489,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedObjIntConsumer(ThrowingObjIntConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, int value) {
+		@Override
+		public void accept(T t, int value) {
 			try {
 				consumer.accept(t, value);
 			} catch (RuntimeException exception) {
@@ -513,7 +525,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedObjLongConsumer(ThrowingObjLongConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, long value) {
+		@Override
+		public void accept(T t, long value) {
 			try {
 				consumer.accept(t, value);
 			} catch (RuntimeException exception) {
@@ -548,7 +561,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedObjDoubleConsumer(ThrowingObjDoubleConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, double value) {
+		@Override
+		public void accept(T t, double value) {
 			try {
 				consumer.accept(t, value);
 			} catch (RuntimeException exception) {
@@ -583,7 +597,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedPredicate(ThrowingPredicate<T> predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(T t) {
+		@Override
+		public boolean test(T t) {
 			try {
 				return predicate.test(t);
 			} catch (RuntimeException exception) {
@@ -618,7 +633,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntPredicate(ThrowingIntPredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(int value) {
+		@Override
+		public boolean test(int value) {
 			try {
 				return predicate.test(value);
 			} catch (RuntimeException exception) {
@@ -653,7 +669,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongPredicate(ThrowingLongPredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(long value) {
+		@Override
+		public boolean test(long value) {
 			try {
 				return predicate.test(value);
 			} catch (RuntimeException exception) {
@@ -688,7 +705,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoublePredicate(ThrowingDoublePredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(double value) {
+		@Override
+		public boolean test(double value) {
 			try {
 				return predicate.test(value);
 			} catch (RuntimeException exception) {
@@ -723,7 +741,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedBiPredicate(ThrowingBiPredicate<T, U> predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(T t, U u) {
+		@Override
+		public boolean test(T t, U u) {
 			try {
 				return predicate.test(t, u);
 			} catch (RuntimeException exception) {
@@ -758,7 +777,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedFunction(ThrowingFunction<T, R> function) {
 			this.function = function;
 		}
-		@Override public R apply(T t) {
+		@Override
+		public R apply(T t) {
 			try {
 				return function.apply(t);
 			} catch (RuntimeException exception) {
@@ -793,7 +813,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedToIntFunction(ThrowingToIntFunction<T> function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(T value) {
+		@Override
+		public int applyAsInt(T value) {
 			try {
 				return function.applyAsInt(value);
 			} catch (RuntimeException exception) {
@@ -828,7 +849,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntFunction(ThrowingIntFunction<R> function) {
 			this.function = function;
 		}
-		@Override public R apply(int value) {
+		@Override
+		public R apply(int value) {
 			try {
 				return function.apply(value);
 			} catch (RuntimeException exception) {
@@ -863,7 +885,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntToLongFunction(ThrowingIntToLongFunction function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(int value) {
+		@Override
+		public long applyAsLong(int value) {
 			try {
 				return function.applyAsLong(value);
 			} catch (RuntimeException exception) {
@@ -898,7 +921,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntToDoubleFunction(ThrowingIntToDoubleFunction function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(int value) {
+		@Override
+		public double applyAsDouble(int value) {
 			try {
 				return function.applyAsDouble(value);
 			} catch (RuntimeException exception) {
@@ -933,7 +957,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedToLongFunction(ThrowingToLongFunction<T> function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(T value) {
+		@Override
+		public long applyAsLong(T value) {
 			try {
 				return function.applyAsLong(value);
 			} catch (RuntimeException exception) {
@@ -968,7 +993,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongFunction(ThrowingLongFunction<R> function) {
 			this.function = function;
 		}
-		@Override public R apply(long value) {
+		@Override
+		public R apply(long value) {
 			try {
 				return function.apply(value);
 			} catch (RuntimeException exception) {
@@ -1003,7 +1029,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongToIntFunction(ThrowingLongToIntFunction function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(long value) {
+		@Override
+		public int applyAsInt(long value) {
 			try {
 				return function.applyAsInt(value);
 			} catch (RuntimeException exception) {
@@ -1038,7 +1065,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongToDoubleFunction(ThrowingLongToDoubleFunction function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(long value) {
+		@Override
+		public double applyAsDouble(long value) {
 			try {
 				return function.applyAsDouble(value);
 			} catch (RuntimeException exception) {
@@ -1073,7 +1101,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedToDoubleFunction(ThrowingToDoubleFunction<T> function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(T value) {
+		@Override
+		public double applyAsDouble(T value) {
 			try {
 				return function.applyAsDouble(value);
 			} catch (RuntimeException exception) {
@@ -1108,7 +1137,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoubleFunction(ThrowingDoubleFunction<R> function) {
 			this.function = function;
 		}
-		@Override public R apply(double value) {
+		@Override
+		public R apply(double value) {
 			try {
 				return function.apply(value);
 			} catch (RuntimeException exception) {
@@ -1143,7 +1173,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoubleToIntFunction(ThrowingDoubleToIntFunction function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(double value) {
+		@Override
+		public int applyAsInt(double value) {
 			try {
 				return function.applyAsInt(value);
 			} catch (RuntimeException exception) {
@@ -1178,7 +1209,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoubleToLongFunction(ThrowingDoubleToLongFunction function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(double value) {
+		@Override
+		public long applyAsLong(double value) {
 			try {
 				return function.applyAsLong(value);
 			} catch (RuntimeException exception) {
@@ -1213,7 +1245,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedUnaryOperator(ThrowingUnaryOperator<T> operator) {
 			this.operator = operator;
 		}
-		@Override public T apply(T operand) {
+		@Override
+		public T apply(T operand) {
 			try {
 				return operator.apply(operand);
 			} catch (RuntimeException exception) {
@@ -1248,7 +1281,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntUnaryOperator(ThrowingIntUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public int applyAsInt(int operand) {
+		@Override
+		public int applyAsInt(int operand) {
 			try {
 				return operator.applyAsInt(operand);
 			} catch (RuntimeException exception) {
@@ -1283,7 +1317,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongUnaryOperator(ThrowingLongUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public long applyAsLong(long operand) {
+		@Override
+		public long applyAsLong(long operand) {
 			try {
 				return operator.applyAsLong(operand);
 			} catch (RuntimeException exception) {
@@ -1318,7 +1353,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoubleUnaryOperator(ThrowingDoubleUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public double applyAsDouble(double operand) {
+		@Override
+		public double applyAsDouble(double operand) {
 			try {
 				return operator.applyAsDouble(operand);
 			} catch (RuntimeException exception) {
@@ -1353,7 +1389,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedBiFunction(ThrowingBiFunction<T, U, R> function) {
 			this.function = function;
 		}
-		@Override public R apply(T t, U u) {
+		@Override
+		public R apply(T t, U u) {
 			try {
 				return function.apply(t, u);
 			} catch (RuntimeException exception) {
@@ -1388,7 +1425,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedToIntBiFunction(ThrowingToIntBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(T t, U u) {
+		@Override
+		public int applyAsInt(T t, U u) {
 			try {
 				return function.applyAsInt(t, u);
 			} catch (RuntimeException exception) {
@@ -1423,7 +1461,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedToLongBiFunction(ThrowingToLongBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(T t, U u) {
+		@Override
+		public long applyAsLong(T t, U u) {
 			try {
 				return function.applyAsLong(t, u);
 			} catch (RuntimeException exception) {
@@ -1458,7 +1497,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedToDoubleBiFunction(ThrowingToDoubleBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(T t, U u) {
+		@Override
+		public double applyAsDouble(T t, U u) {
 			try {
 				return function.applyAsDouble(t, u);
 			} catch (RuntimeException exception) {
@@ -1493,7 +1533,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedBinaryOperator(ThrowingBinaryOperator<T> operator) {
 			this.operator = operator;
 		}
-		@Override public T apply(T left, T right) {
+		@Override
+		public T apply(T left, T right) {
 			try {
 				return operator.apply(left, right);
 			} catch (RuntimeException exception) {
@@ -1528,7 +1569,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedIntBinaryOperator(ThrowingIntBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public int applyAsInt(int left, int right) {
+		@Override
+		public int applyAsInt(int left, int right) {
 			try {
 				return operator.applyAsInt(left, right);
 			} catch (RuntimeException exception) {
@@ -1563,7 +1605,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedLongBinaryOperator(ThrowingLongBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public long applyAsLong(long left, long right) {
+		@Override
+		public long applyAsLong(long left, long right) {
 			try {
 				return operator.applyAsLong(left, right);
 			} catch (RuntimeException exception) {
@@ -1598,7 +1641,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedDoubleBinaryOperator(ThrowingDoubleBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public double applyAsDouble(double left, double right) {
+		@Override
+		public double applyAsDouble(double left, double right) {
 			try {
 				return operator.applyAsDouble(left, right);
 			} catch (RuntimeException exception) {
@@ -1633,7 +1677,8 @@ public abstract class CheckedExceptionHandler {
 		CheckedComparator(ThrowingComparator<T> comparator) {
 			this.comparator = comparator;
 		}
-		@Override public int compare(T left, T right) {
+		@Override
+		public int compare(T left, T right) {
 			try {
 				return comparator.compare(left, right);
 			} catch (RuntimeException exception) {

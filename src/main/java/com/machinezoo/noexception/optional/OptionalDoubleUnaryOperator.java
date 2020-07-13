@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromDoubleUnaryOperator(DoubleUnaryOperator)
  * @see DoubleUnaryOperator
  */
-@FunctionalInterface public interface OptionalDoubleUnaryOperator extends DoubleFunction<OptionalDouble> {
+@FunctionalInterface
+public interface OptionalDoubleUnaryOperator extends DoubleFunction<OptionalDouble> {
 	/**
 	 * Variation of {@link DoubleUnaryOperator#applyAsDouble(double)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalDoubleUnaryOperator} is obtained from {@link ExceptionHandler#fromDoubleUnaryOperator(DoubleUnaryOperator)},
@@ -29,7 +30,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromDoubleUnaryOperator(DoubleUnaryOperator)
 	 * @see DoubleUnaryOperator#applyAsDouble(double)
 	 */
-	@Override OptionalDouble apply(double operand);
+	@Override
+	OptionalDouble apply(double operand);
 	/**
 	 * Converts this {@code OptionalDoubleUnaryOperator} to plain {@code DoubleUnaryOperator} using default value.
 	 * The returned {@code DoubleUnaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,

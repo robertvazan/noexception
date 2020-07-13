@@ -11,7 +11,8 @@ final class DefaultDoublePredicate implements DoublePredicate {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public boolean test(double value) {
+	@Override
+	public boolean test(double value) {
 		return inner.test(value).orElse(result);
 	}
 }

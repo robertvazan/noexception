@@ -12,7 +12,8 @@ public class ThrowingDoublePredicateTest {
 	}
 	void takeNonThrowing(DoublePredicate functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(v -> true);
 		takeThrowing(v -> true);
 		takeThrowing(v -> {

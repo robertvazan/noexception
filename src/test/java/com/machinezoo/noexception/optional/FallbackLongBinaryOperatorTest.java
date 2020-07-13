@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackLongBinaryOperatorTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalLongBinaryOperator full = mock(OptionalLongBinaryOperator.class);
 		when(full.apply(11L, 12L)).thenReturn(OptionalLong.of(2L));
 		LongSupplier fallback = mock(LongSupplier.class);
@@ -18,7 +19,8 @@ public class FallbackLongBinaryOperatorTest {
 		verify(full, only()).apply(11L, 12L);
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalLongBinaryOperator empty = mock(OptionalLongBinaryOperator.class);
 		when(empty.apply(11L, 12L)).thenReturn(OptionalLong.empty());
 		LongSupplier fallback = mock(LongSupplier.class);

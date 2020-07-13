@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)
  * @see DoubleBinaryOperator
  */
-@FunctionalInterface public interface OptionalDoubleBinaryOperator {
+@FunctionalInterface
+public interface OptionalDoubleBinaryOperator {
 	/**
 	 * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalDoubleBinaryOperator} is obtained from {@link ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)},

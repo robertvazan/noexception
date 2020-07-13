@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromLongToDoubleFunction(LongToDoubleFunction)
  * @see LongToDoubleFunction
  */
-@FunctionalInterface public interface OptionalLongToDoubleFunction extends LongFunction<OptionalDouble> {
+@FunctionalInterface
+public interface OptionalLongToDoubleFunction extends LongFunction<OptionalDouble> {
 	/**
 	 * Variation of {@link LongToDoubleFunction#applyAsDouble(long)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalLongToDoubleFunction} is obtained from {@link ExceptionHandler#fromLongToDoubleFunction(LongToDoubleFunction)},
@@ -29,7 +30,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromLongToDoubleFunction(LongToDoubleFunction)
 	 * @see LongToDoubleFunction#applyAsDouble(long)
 	 */
-	@Override OptionalDouble apply(long value);
+	@Override
+	OptionalDouble apply(long value);
 	/**
 	 * Converts this {@code OptionalLongToDoubleFunction} to plain {@code LongToDoubleFunction} using default value.
 	 * The returned {@code LongToDoubleFunction} will unwrap present value from the {@code OptionalDouble} if possible,

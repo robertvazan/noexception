@@ -20,7 +20,8 @@ class FilteredExceptionCollector extends ExceptionFilter {
 		assertEquals(1, size());
 		return collected.get(0);
 	}
-	@Override public void handle(Throwable exception) {
+	@Override
+	public void handle(Throwable exception) {
 		collected.add(exception);
 		if (replace)
 			throw new CollectedException(exception);

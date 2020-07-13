@@ -11,7 +11,8 @@ final class DefaultDoubleFunction<R> implements DoubleFunction<R> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public R apply(double value) {
+	@Override
+	public R apply(double value) {
 		return inner.apply(value).orElse(result);
 	}
 }

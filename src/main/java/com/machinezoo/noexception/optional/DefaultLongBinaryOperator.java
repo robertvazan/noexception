@@ -11,7 +11,8 @@ final class DefaultLongBinaryOperator implements LongBinaryOperator {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public long applyAsLong(long left, long right) {
+	@Override
+	public long applyAsLong(long left, long right) {
 		return inner.apply(left, right).orElse(result);
 	}
 }

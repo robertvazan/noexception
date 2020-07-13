@@ -11,7 +11,8 @@ final class FallbackUnaryOperator<T> implements UnaryOperator<T> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public T apply(T operand) {
+	@Override
+	public T apply(T operand) {
 		return inner.apply(operand).orElseGet(source);
 	}
 }

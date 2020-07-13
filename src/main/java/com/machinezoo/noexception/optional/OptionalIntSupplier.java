@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromIntSupplier(IntSupplier)
  * @see IntSupplier
  */
-@FunctionalInterface public interface OptionalIntSupplier extends Supplier<OptionalInt> {
+@FunctionalInterface
+public interface OptionalIntSupplier extends Supplier<OptionalInt> {
 	/**
 	 * Variation of {@link IntSupplier#getAsInt()} that returns {@link OptionalInt}.
 	 * If this {@code OptionalIntSupplier} is obtained from {@link ExceptionHandler#fromIntSupplier(IntSupplier)},
@@ -27,7 +28,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromIntSupplier(IntSupplier)
 	 * @see IntSupplier#getAsInt()
 	 */
-	@Override OptionalInt get();
+	@Override
+	OptionalInt get();
 	/**
 	 * Converts this {@code OptionalIntSupplier} to plain {@code IntSupplier} using default value.
 	 * The returned {@code IntSupplier} will unwrap present value from the {@code OptionalInt} if possible,

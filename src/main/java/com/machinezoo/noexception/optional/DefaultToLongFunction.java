@@ -11,7 +11,8 @@ final class DefaultToLongFunction<T> implements ToLongFunction<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public long applyAsLong(T value) {
+	@Override
+	public long applyAsLong(T value) {
 		return inner.apply(value).orElse(result);
 	}
 }

@@ -11,7 +11,8 @@ final class FallbackToIntFunction<T> implements ToIntFunction<T> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public int applyAsInt(T value) {
+	@Override
+	public int applyAsInt(T value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

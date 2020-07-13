@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalUnaryOperatorTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(Optional.of("value"), create(o -> Optional.of("value")).apply("input"));
 		assertEquals("value", create(o -> Optional.of("value")).orElse("default").apply("input"));
 		assertEquals("value", create(o -> Optional.of("value")).orElseGet(() -> "value").apply("input"));

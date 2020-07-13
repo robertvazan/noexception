@@ -11,7 +11,8 @@ final class DefaultLongToIntFunction implements LongToIntFunction {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int applyAsInt(long value) {
+	@Override
+	public int applyAsInt(long value) {
 		return inner.apply(value).orElse(result);
 	}
 }

@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromIntPredicate(IntPredicate)
  * @see IntPredicate
  */
-@FunctionalInterface public interface OptionalIntPredicate {
+@FunctionalInterface
+public interface OptionalIntPredicate {
 	/**
 	 * Variation of {@link IntPredicate#test(int)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalIntPredicate} is obtained from {@link ExceptionHandler#fromIntPredicate(IntPredicate)},

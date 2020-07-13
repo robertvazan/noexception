@@ -12,7 +12,8 @@ public class ThrowingToLongBiFunctionTest {
 	}
 	void takeNonThrowing(ToLongBiFunction<String, String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((t, u) -> 2L);
 		takeThrowing((t, u) -> 2L);
 		takeThrowing((t, u) -> {

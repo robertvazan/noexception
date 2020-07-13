@@ -11,7 +11,8 @@ final class DefaultBooleanSupplier implements BooleanSupplier {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public boolean getAsBoolean() {
+	@Override
+	public boolean getAsBoolean() {
 		return inner.get().orElse(result);
 	}
 }

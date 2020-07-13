@@ -18,7 +18,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromBiPredicate(BiPredicate)
  * @see BiPredicate
  */
-@FunctionalInterface public interface OptionalBiPredicate<T, U> {
+@FunctionalInterface
+public interface OptionalBiPredicate<T, U> {
 	/**
 	 * Variation of {@link BiPredicate#test(Object, Object)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalBiPredicate} is obtained from {@link ExceptionHandler#fromBiPredicate(BiPredicate)},

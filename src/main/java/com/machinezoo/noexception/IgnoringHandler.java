@@ -2,7 +2,8 @@
 package com.machinezoo.noexception;
 
 final class IgnoringHandler extends ExceptionHandler {
-	@Override public boolean handle(Throwable exception) {
+	@Override
+	public boolean handle(Throwable exception) {
 		return false;
 	}
 }

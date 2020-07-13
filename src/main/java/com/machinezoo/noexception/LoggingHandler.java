@@ -13,7 +13,8 @@ final class LoggingHandler extends ExceptionHandler {
 		this.logger = logger;
 		this.message = message;
 	}
-	@Override public boolean handle(Throwable exception) {
+	@Override
+	public boolean handle(Throwable exception) {
 		if (exception instanceof InterruptedException)
 			Thread.currentThread().interrupt();
 		logger.error(message, exception);

@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalBooleanSupplierTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalBoolean.of(true), create(() -> OptionalBoolean.of(true)).get());
 		assertEquals(true, create(() -> OptionalBoolean.of(true)).orElse(false).getAsBoolean());
 		assertEquals(true, create(() -> OptionalBoolean.of(true)).orElseGet(() -> true).getAsBoolean());

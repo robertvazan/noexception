@@ -11,7 +11,8 @@ final class DefaultUnaryOperator<T> implements UnaryOperator<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public T apply(T operand) {
+	@Override
+	public T apply(T operand) {
 		return inner.apply(operand).orElse(result);
 	}
 }

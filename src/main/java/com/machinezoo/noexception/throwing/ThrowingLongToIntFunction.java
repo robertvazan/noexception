@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromLongToIntFunction(ThrowingLongToIntFunction)
  * @see LongToIntFunction
  */
-@FunctionalInterface public interface ThrowingLongToIntFunction {
+@FunctionalInterface
+public interface ThrowingLongToIntFunction {
 	/**
 	 * Variation of {@link LongToIntFunction#applyAsInt(long)} that allows throwing checked exceptions.
 	 * 

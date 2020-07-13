@@ -19,7 +19,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)
  * @see ToDoubleBiFunction
  */
-@FunctionalInterface public interface OptionalToDoubleBiFunction<T, U> extends BiFunction<T, U, OptionalDouble> {
+@FunctionalInterface
+public interface OptionalToDoubleBiFunction<T, U> extends BiFunction<T, U, OptionalDouble> {
 	/**
 	 * Variation of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalToDoubleBiFunction} is obtained from {@link ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)},
@@ -35,7 +36,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)
 	 * @see ToDoubleBiFunction#applyAsDouble(Object, Object)
 	 */
-	@Override OptionalDouble apply(T t, U u);
+	@Override
+	OptionalDouble apply(T t, U u);
 	/**
 	 * Converts this {@code OptionalToDoubleBiFunction} to plain {@code ToDoubleBiFunction} using default value.
 	 * The returned {@code ToDoubleBiFunction} will unwrap present value from the {@code OptionalDouble} if possible,

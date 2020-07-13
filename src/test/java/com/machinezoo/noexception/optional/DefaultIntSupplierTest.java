@@ -8,13 +8,15 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class DefaultIntSupplierTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalIntSupplier full = mock(OptionalIntSupplier.class);
 		when(full.get()).thenReturn(OptionalInt.of(2));
 		assertEquals(2, new DefaultIntSupplier(full, 3).getAsInt());
 		verify(full, only()).get();
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalIntSupplier empty = mock(OptionalIntSupplier.class);
 		when(empty.get()).thenReturn(OptionalInt.empty());
 		assertEquals(3, new DefaultIntSupplier(empty, 3).getAsInt());

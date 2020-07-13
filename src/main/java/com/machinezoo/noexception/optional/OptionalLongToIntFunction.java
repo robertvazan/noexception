@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromLongToIntFunction(LongToIntFunction)
  * @see LongToIntFunction
  */
-@FunctionalInterface public interface OptionalLongToIntFunction extends LongFunction<OptionalInt> {
+@FunctionalInterface
+public interface OptionalLongToIntFunction extends LongFunction<OptionalInt> {
 	/**
 	 * Variation of {@link LongToIntFunction#applyAsInt(long)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalLongToIntFunction} is obtained from {@link ExceptionHandler#fromLongToIntFunction(LongToIntFunction)},
@@ -29,7 +30,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromLongToIntFunction(LongToIntFunction)
 	 * @see LongToIntFunction#applyAsInt(long)
 	 */
-	@Override OptionalInt apply(long value);
+	@Override
+	OptionalInt apply(long value);
 	/**
 	 * Converts this {@code OptionalLongToIntFunction} to plain {@code LongToIntFunction} using default value.
 	 * The returned {@code LongToIntFunction} will unwrap present value from the {@code OptionalInt} if possible,

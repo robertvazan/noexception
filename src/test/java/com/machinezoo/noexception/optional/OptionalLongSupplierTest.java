@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalLongSupplierTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalLong.of(2L), create(() -> OptionalLong.of(2L)).get());
 		assertEquals(2L, create(() -> OptionalLong.of(2L)).orElse(3L).getAsLong());
 		assertEquals(2L, create(() -> OptionalLong.of(2L)).orElseGet(() -> 2L).getAsLong());

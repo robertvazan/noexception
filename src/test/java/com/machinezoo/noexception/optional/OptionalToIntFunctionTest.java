@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalToIntFunctionTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalInt.of(2), create(v -> OptionalInt.of(2)).apply("input"));
 		assertEquals(2, create(v -> OptionalInt.of(2)).orElse(3).applyAsInt("input"));
 		assertEquals(2, create(v -> OptionalInt.of(2)).orElseGet(() -> 2).applyAsInt("input"));

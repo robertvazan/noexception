@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromLongFunction(LongFunction)
  * @see LongFunction
  */
-@FunctionalInterface public interface OptionalLongFunction<R> extends LongFunction<Optional<R>> {
+@FunctionalInterface
+public interface OptionalLongFunction<R> extends LongFunction<Optional<R>> {
 	/**
 	 * Variation of {@link LongFunction#apply(long)} that returns {@link Optional}.
 	 * If this {@code OptionalLongFunction} is obtained from {@link ExceptionHandler#fromLongFunction(LongFunction)},
@@ -31,7 +32,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromLongFunction(LongFunction)
 	 * @see LongFunction#apply(long)
 	 */
-	@Override Optional<R> apply(long value);
+	@Override
+	Optional<R> apply(long value);
 	/**
 	 * Converts this {@code OptionalLongFunction} to plain {@code LongFunction} using default value.
 	 * The returned {@code LongFunction} will unwrap present value from the {@code Optional} if possible,

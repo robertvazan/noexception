@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackIntUnaryOperatorTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalIntUnaryOperator full = mock(OptionalIntUnaryOperator.class);
 		when(full.apply(1)).thenReturn(OptionalInt.of(2));
 		IntSupplier fallback = mock(IntSupplier.class);
@@ -18,7 +19,8 @@ public class FallbackIntUnaryOperatorTest {
 		verify(full, only()).apply(1);
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalIntUnaryOperator empty = mock(OptionalIntUnaryOperator.class);
 		when(empty.apply(1)).thenReturn(OptionalInt.empty());
 		IntSupplier fallback = mock(IntSupplier.class);

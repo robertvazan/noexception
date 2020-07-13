@@ -11,7 +11,8 @@ final class DefaultDoubleUnaryOperator implements DoubleUnaryOperator {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public double applyAsDouble(double operand) {
+	@Override
+	public double applyAsDouble(double operand) {
 		return inner.apply(operand).orElse(result);
 	}
 }

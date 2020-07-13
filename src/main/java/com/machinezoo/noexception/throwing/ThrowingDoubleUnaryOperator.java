@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator)
  * @see DoubleUnaryOperator
  */
-@FunctionalInterface public interface ThrowingDoubleUnaryOperator {
+@FunctionalInterface
+public interface ThrowingDoubleUnaryOperator {
 	/**
 	 * Variation of {@link DoubleUnaryOperator#applyAsDouble(double)} that allows throwing checked exceptions.
 	 * 

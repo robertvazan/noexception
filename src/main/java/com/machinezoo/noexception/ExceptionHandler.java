@@ -111,7 +111,8 @@ public abstract class ExceptionHandler {
 		CatchingRunnable(Runnable runnable) {
 			this.runnable = runnable;
 		}
-		@Override public void run() {
+		@Override
+		public void run() {
 			try {
 				runnable.run();
 			} catch (Throwable exception) {
@@ -144,7 +145,8 @@ public abstract class ExceptionHandler {
 		CatchingSupplier(Supplier<T> supplier) {
 			this.supplier = supplier;
 		}
-		@Override public Optional<T> get() {
+		@Override
+		public Optional<T> get() {
 			try {
 				return Optional.ofNullable(supplier.get());
 			} catch (Throwable exception) {
@@ -178,7 +180,8 @@ public abstract class ExceptionHandler {
 		CatchingIntSupplier(IntSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public OptionalInt get() {
+		@Override
+		public OptionalInt get() {
 			try {
 				return OptionalInt.of(supplier.getAsInt());
 			} catch (Throwable exception) {
@@ -212,7 +215,8 @@ public abstract class ExceptionHandler {
 		CatchingLongSupplier(LongSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public OptionalLong get() {
+		@Override
+		public OptionalLong get() {
 			try {
 				return OptionalLong.of(supplier.getAsLong());
 			} catch (Throwable exception) {
@@ -246,7 +250,8 @@ public abstract class ExceptionHandler {
 		CatchingDoubleSupplier(DoubleSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public OptionalDouble get() {
+		@Override
+		public OptionalDouble get() {
 			try {
 				return OptionalDouble.of(supplier.getAsDouble());
 			} catch (Throwable exception) {
@@ -280,7 +285,8 @@ public abstract class ExceptionHandler {
 		CatchingBooleanSupplier(BooleanSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public OptionalBoolean get() {
+		@Override
+		public OptionalBoolean get() {
 			try {
 				return OptionalBoolean.of(supplier.getAsBoolean());
 			} catch (Throwable exception) {
@@ -314,7 +320,8 @@ public abstract class ExceptionHandler {
 		CatchingConsumer(Consumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t) {
+		@Override
+		public void accept(T t) {
 			try {
 				consumer.accept(t);
 			} catch (Throwable exception) {
@@ -347,7 +354,8 @@ public abstract class ExceptionHandler {
 		CatchingIntConsumer(IntConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(int value) {
+		@Override
+		public void accept(int value) {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
@@ -380,7 +388,8 @@ public abstract class ExceptionHandler {
 		CatchingLongConsumer(LongConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(long value) {
+		@Override
+		public void accept(long value) {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
@@ -413,7 +422,8 @@ public abstract class ExceptionHandler {
 		CatchingDoubleConsumer(DoubleConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(double value) {
+		@Override
+		public void accept(double value) {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
@@ -446,7 +456,8 @@ public abstract class ExceptionHandler {
 		CatchingBiConsumer(BiConsumer<T, U> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, U u) {
+		@Override
+		public void accept(T t, U u) {
 			try {
 				consumer.accept(t, u);
 			} catch (Throwable exception) {
@@ -479,7 +490,8 @@ public abstract class ExceptionHandler {
 		CatchingObjIntConsumer(ObjIntConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, int value) {
+		@Override
+		public void accept(T t, int value) {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
@@ -512,7 +524,8 @@ public abstract class ExceptionHandler {
 		CatchingObjLongConsumer(ObjLongConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, long value) {
+		@Override
+		public void accept(T t, long value) {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
@@ -545,7 +558,8 @@ public abstract class ExceptionHandler {
 		CatchingObjDoubleConsumer(ObjDoubleConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, double value) {
+		@Override
+		public void accept(T t, double value) {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
@@ -578,7 +592,8 @@ public abstract class ExceptionHandler {
 		CatchingPredicate(Predicate<T> predicate) {
 			this.predicate = predicate;
 		}
-		@Override public OptionalBoolean test(T t) {
+		@Override
+		public OptionalBoolean test(T t) {
 			try {
 				return OptionalBoolean.of(predicate.test(t));
 			} catch (Throwable exception) {
@@ -612,7 +627,8 @@ public abstract class ExceptionHandler {
 		CatchingIntPredicate(IntPredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public OptionalBoolean test(int value) {
+		@Override
+		public OptionalBoolean test(int value) {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
@@ -646,7 +662,8 @@ public abstract class ExceptionHandler {
 		CatchingLongPredicate(LongPredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public OptionalBoolean test(long value) {
+		@Override
+		public OptionalBoolean test(long value) {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
@@ -680,7 +697,8 @@ public abstract class ExceptionHandler {
 		CatchingDoublePredicate(DoublePredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public OptionalBoolean test(double value) {
+		@Override
+		public OptionalBoolean test(double value) {
 			try {
 				return OptionalBoolean.of(predicate.test(value));
 			} catch (Throwable exception) {
@@ -714,7 +732,8 @@ public abstract class ExceptionHandler {
 		CatchingBiPredicate(BiPredicate<T, U> predicate) {
 			this.predicate = predicate;
 		}
-		@Override public OptionalBoolean test(T t, U u) {
+		@Override
+		public OptionalBoolean test(T t, U u) {
 			try {
 				return OptionalBoolean.of(predicate.test(t, u));
 			} catch (Throwable exception) {
@@ -748,7 +767,8 @@ public abstract class ExceptionHandler {
 		CatchingFunction(Function<T, R> function) {
 			this.function = function;
 		}
-		@Override public Optional<R> apply(T t) {
+		@Override
+		public Optional<R> apply(T t) {
 			try {
 				return Optional.ofNullable(function.apply(t));
 			} catch (Throwable exception) {
@@ -782,7 +802,8 @@ public abstract class ExceptionHandler {
 		CatchingToIntFunction(ToIntFunction<T> function) {
 			this.function = function;
 		}
-		@Override public OptionalInt apply(T value) {
+		@Override
+		public OptionalInt apply(T value) {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
@@ -816,7 +837,8 @@ public abstract class ExceptionHandler {
 		CatchingIntFunction(IntFunction<R> function) {
 			this.function = function;
 		}
-		@Override public Optional<R> apply(int value) {
+		@Override
+		public Optional<R> apply(int value) {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
@@ -850,7 +872,8 @@ public abstract class ExceptionHandler {
 		CatchingIntToLongFunction(IntToLongFunction function) {
 			this.function = function;
 		}
-		@Override public OptionalLong apply(int value) {
+		@Override
+		public OptionalLong apply(int value) {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
@@ -884,7 +907,8 @@ public abstract class ExceptionHandler {
 		CatchingIntToDoubleFunction(IntToDoubleFunction function) {
 			this.function = function;
 		}
-		@Override public OptionalDouble apply(int value) {
+		@Override
+		public OptionalDouble apply(int value) {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
@@ -918,7 +942,8 @@ public abstract class ExceptionHandler {
 		CatchingToLongFunction(ToLongFunction<T> function) {
 			this.function = function;
 		}
-		@Override public OptionalLong apply(T value) {
+		@Override
+		public OptionalLong apply(T value) {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
@@ -952,7 +977,8 @@ public abstract class ExceptionHandler {
 		CatchingLongFunction(LongFunction<R> function) {
 			this.function = function;
 		}
-		@Override public Optional<R> apply(long value) {
+		@Override
+		public Optional<R> apply(long value) {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
@@ -986,7 +1012,8 @@ public abstract class ExceptionHandler {
 		CatchingLongToIntFunction(LongToIntFunction function) {
 			this.function = function;
 		}
-		@Override public OptionalInt apply(long value) {
+		@Override
+		public OptionalInt apply(long value) {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
@@ -1020,7 +1047,8 @@ public abstract class ExceptionHandler {
 		CatchingLongToDoubleFunction(LongToDoubleFunction function) {
 			this.function = function;
 		}
-		@Override public OptionalDouble apply(long value) {
+		@Override
+		public OptionalDouble apply(long value) {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
@@ -1054,7 +1082,8 @@ public abstract class ExceptionHandler {
 		CatchingToDoubleFunction(ToDoubleFunction<T> function) {
 			this.function = function;
 		}
-		@Override public OptionalDouble apply(T value) {
+		@Override
+		public OptionalDouble apply(T value) {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(value));
 			} catch (Throwable exception) {
@@ -1088,7 +1117,8 @@ public abstract class ExceptionHandler {
 		CatchingDoubleFunction(DoubleFunction<R> function) {
 			this.function = function;
 		}
-		@Override public Optional<R> apply(double value) {
+		@Override
+		public Optional<R> apply(double value) {
 			try {
 				return Optional.ofNullable(function.apply(value));
 			} catch (Throwable exception) {
@@ -1122,7 +1152,8 @@ public abstract class ExceptionHandler {
 		CatchingDoubleToIntFunction(DoubleToIntFunction function) {
 			this.function = function;
 		}
-		@Override public OptionalInt apply(double value) {
+		@Override
+		public OptionalInt apply(double value) {
 			try {
 				return OptionalInt.of(function.applyAsInt(value));
 			} catch (Throwable exception) {
@@ -1156,7 +1187,8 @@ public abstract class ExceptionHandler {
 		CatchingDoubleToLongFunction(DoubleToLongFunction function) {
 			this.function = function;
 		}
-		@Override public OptionalLong apply(double value) {
+		@Override
+		public OptionalLong apply(double value) {
 			try {
 				return OptionalLong.of(function.applyAsLong(value));
 			} catch (Throwable exception) {
@@ -1190,7 +1222,8 @@ public abstract class ExceptionHandler {
 		CatchingUnaryOperator(UnaryOperator<T> operator) {
 			this.operator = operator;
 		}
-		@Override public Optional<T> apply(T operand) {
+		@Override
+		public Optional<T> apply(T operand) {
 			try {
 				return Optional.ofNullable(operator.apply(operand));
 			} catch (Throwable exception) {
@@ -1224,7 +1257,8 @@ public abstract class ExceptionHandler {
 		CatchingIntUnaryOperator(IntUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public OptionalInt apply(int operand) {
+		@Override
+		public OptionalInt apply(int operand) {
 			try {
 				return OptionalInt.of(operator.applyAsInt(operand));
 			} catch (Throwable exception) {
@@ -1258,7 +1292,8 @@ public abstract class ExceptionHandler {
 		CatchingLongUnaryOperator(LongUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public OptionalLong apply(long operand) {
+		@Override
+		public OptionalLong apply(long operand) {
 			try {
 				return OptionalLong.of(operator.applyAsLong(operand));
 			} catch (Throwable exception) {
@@ -1292,7 +1327,8 @@ public abstract class ExceptionHandler {
 		CatchingDoubleUnaryOperator(DoubleUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public OptionalDouble apply(double operand) {
+		@Override
+		public OptionalDouble apply(double operand) {
 			try {
 				return OptionalDouble.of(operator.applyAsDouble(operand));
 			} catch (Throwable exception) {
@@ -1326,7 +1362,8 @@ public abstract class ExceptionHandler {
 		CatchingBiFunction(BiFunction<T, U, R> function) {
 			this.function = function;
 		}
-		@Override public Optional<R> apply(T t, U u) {
+		@Override
+		public Optional<R> apply(T t, U u) {
 			try {
 				return Optional.ofNullable(function.apply(t, u));
 			} catch (Throwable exception) {
@@ -1360,7 +1397,8 @@ public abstract class ExceptionHandler {
 		CatchingToIntBiFunction(ToIntBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public OptionalInt apply(T t, U u) {
+		@Override
+		public OptionalInt apply(T t, U u) {
 			try {
 				return OptionalInt.of(function.applyAsInt(t, u));
 			} catch (Throwable exception) {
@@ -1394,7 +1432,8 @@ public abstract class ExceptionHandler {
 		CatchingToLongBiFunction(ToLongBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public OptionalLong apply(T t, U u) {
+		@Override
+		public OptionalLong apply(T t, U u) {
 			try {
 				return OptionalLong.of(function.applyAsLong(t, u));
 			} catch (Throwable exception) {
@@ -1428,7 +1467,8 @@ public abstract class ExceptionHandler {
 		CatchingToDoubleBiFunction(ToDoubleBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public OptionalDouble apply(T t, U u) {
+		@Override
+		public OptionalDouble apply(T t, U u) {
 			try {
 				return OptionalDouble.of(function.applyAsDouble(t, u));
 			} catch (Throwable exception) {
@@ -1462,7 +1502,8 @@ public abstract class ExceptionHandler {
 		CatchingBinaryOperator(BinaryOperator<T> operator) {
 			this.operator = operator;
 		}
-		@Override public Optional<T> apply(T left, T right) {
+		@Override
+		public Optional<T> apply(T left, T right) {
 			try {
 				return Optional.ofNullable(operator.apply(left, right));
 			} catch (Throwable exception) {
@@ -1496,7 +1537,8 @@ public abstract class ExceptionHandler {
 		CatchingIntBinaryOperator(IntBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public OptionalInt apply(int left, int right) {
+		@Override
+		public OptionalInt apply(int left, int right) {
 			try {
 				return OptionalInt.of(operator.applyAsInt(left, right));
 			} catch (Throwable exception) {
@@ -1530,7 +1572,8 @@ public abstract class ExceptionHandler {
 		CatchingLongBinaryOperator(LongBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public OptionalLong apply(long left, long right) {
+		@Override
+		public OptionalLong apply(long left, long right) {
 			try {
 				return OptionalLong.of(operator.applyAsLong(left, right));
 			} catch (Throwable exception) {
@@ -1564,7 +1607,8 @@ public abstract class ExceptionHandler {
 		CatchingDoubleBinaryOperator(DoubleBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public OptionalDouble apply(double left, double right) {
+		@Override
+		public OptionalDouble apply(double left, double right) {
 			try {
 				return OptionalDouble.of(operator.applyAsDouble(left, right));
 			} catch (Throwable exception) {
@@ -1598,7 +1642,8 @@ public abstract class ExceptionHandler {
 		CatchingComparator(Comparator<T> comparator) {
 			this.comparator = comparator;
 		}
-		@Override public OptionalInt compare(T left, T right) {
+		@Override
+		public OptionalInt compare(T left, T right) {
 			try {
 				return OptionalInt.of(comparator.compare(left, right));
 			} catch (Throwable exception) {

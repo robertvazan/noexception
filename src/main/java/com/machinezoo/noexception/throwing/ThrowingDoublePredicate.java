@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromDoublePredicate(ThrowingDoublePredicate)
  * @see DoublePredicate
  */
-@FunctionalInterface public interface ThrowingDoublePredicate {
+@FunctionalInterface
+public interface ThrowingDoublePredicate {
 	/**
 	 * Variation of {@link DoublePredicate#test(double)} that allows throwing checked exceptions.
 	 * 

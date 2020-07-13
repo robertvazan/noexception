@@ -13,7 +13,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#runnable(ThrowingRunnable)
  * @see Runnable
  */
-@FunctionalInterface public interface ThrowingRunnable {
+@FunctionalInterface
+public interface ThrowingRunnable {
 	/**
 	 * Variation of {@link Runnable#run()} that allows throwing checked exceptions.
 	 * 

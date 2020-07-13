@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromBooleanSupplier(BooleanSupplier)
  * @see BooleanSupplier
  */
-@FunctionalInterface public interface OptionalBooleanSupplier extends Supplier<OptionalBoolean> {
+@FunctionalInterface
+public interface OptionalBooleanSupplier extends Supplier<OptionalBoolean> {
 	/**
 	 * Variation of {@link BooleanSupplier#getAsBoolean()} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalBooleanSupplier} is obtained from {@link ExceptionHandler#fromBooleanSupplier(BooleanSupplier)},
@@ -26,7 +27,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromBooleanSupplier(BooleanSupplier)
 	 * @see BooleanSupplier#getAsBoolean()
 	 */
-	@Override OptionalBoolean get();
+	@Override
+	OptionalBoolean get();
 	/**
 	 * Converts this {@code OptionalBooleanSupplier} to plain {@code BooleanSupplier} using default value.
 	 * The returned {@code BooleanSupplier} will unwrap present value from the {@code OptionalBoolean} if possible,

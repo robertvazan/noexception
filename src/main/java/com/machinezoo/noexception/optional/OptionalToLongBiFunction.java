@@ -19,7 +19,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)
  * @see ToLongBiFunction
  */
-@FunctionalInterface public interface OptionalToLongBiFunction<T, U> extends BiFunction<T, U, OptionalLong> {
+@FunctionalInterface
+public interface OptionalToLongBiFunction<T, U> extends BiFunction<T, U, OptionalLong> {
 	/**
 	 * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that returns {@link OptionalLong}.
 	 * If this {@code OptionalToLongBiFunction} is obtained from {@link ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)},
@@ -35,7 +36,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromToLongBiFunction(ToLongBiFunction)
 	 * @see ToLongBiFunction#applyAsLong(Object, Object)
 	 */
-	@Override OptionalLong apply(T t, U u);
+	@Override
+	OptionalLong apply(T t, U u);
 	/**
 	 * Converts this {@code OptionalToLongBiFunction} to plain {@code ToLongBiFunction} using default value.
 	 * The returned {@code ToLongBiFunction} will unwrap present value from the {@code OptionalLong} if possible,

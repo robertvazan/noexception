@@ -12,7 +12,8 @@ public class ThrowingBinaryOperatorTest {
 	}
 	void takeNonThrowing(BinaryOperator<String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((l, r) -> "value");
 		takeThrowing((l, r) -> "value");
 		takeThrowing((l, r) -> {

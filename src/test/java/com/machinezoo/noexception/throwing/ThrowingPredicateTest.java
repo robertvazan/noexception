@@ -12,7 +12,8 @@ public class ThrowingPredicateTest {
 	}
 	void takeNonThrowing(Predicate<String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(t -> true);
 		takeThrowing(t -> true);
 		takeThrowing(t -> {

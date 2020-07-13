@@ -11,7 +11,8 @@ final class FallbackLongSupplier implements LongSupplier {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public long getAsLong() {
+	@Override
+	public long getAsLong() {
 		return inner.get().orElseGet(source);
 	}
 }

@@ -11,7 +11,8 @@ final class FallbackBiFunction<T, U, R> implements BiFunction<T, U, R> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public R apply(T t, U u) {
+	@Override
+	public R apply(T t, U u) {
 		return inner.apply(t, u).orElseGet(source);
 	}
 }

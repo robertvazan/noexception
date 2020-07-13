@@ -11,7 +11,8 @@ final class DefaultToIntBiFunction<T, U> implements ToIntBiFunction<T, U> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int applyAsInt(T t, U u) {
+	@Override
+	public int applyAsInt(T t, U u) {
 		return inner.apply(t, u).orElse(result);
 	}
 }

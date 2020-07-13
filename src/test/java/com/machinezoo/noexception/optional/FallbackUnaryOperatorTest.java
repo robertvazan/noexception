@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackUnaryOperatorTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		@SuppressWarnings("unchecked") OptionalUnaryOperator<String> full = mock(OptionalUnaryOperator.class);
 		when(full.apply("input")).thenReturn(Optional.of("value"));
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);
@@ -18,7 +19,8 @@ public class FallbackUnaryOperatorTest {
 		verify(full, only()).apply("input");
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		@SuppressWarnings("unchecked") OptionalUnaryOperator<String> empty = mock(OptionalUnaryOperator.class);
 		when(empty.apply("input")).thenReturn(Optional.empty());
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);

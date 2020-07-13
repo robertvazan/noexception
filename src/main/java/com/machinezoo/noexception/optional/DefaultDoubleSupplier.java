@@ -11,7 +11,8 @@ final class DefaultDoubleSupplier implements DoubleSupplier {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public double getAsDouble() {
+	@Override
+	public double getAsDouble() {
 		return inner.get().orElse(result);
 	}
 }

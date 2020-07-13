@@ -12,7 +12,8 @@ public class ThrowingSupplierTest {
 	}
 	void takeNonThrowing(Supplier<String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(() -> "value");
 		takeThrowing(() -> "value");
 		takeThrowing(() -> {

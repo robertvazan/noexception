@@ -15,7 +15,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromIntUnaryOperator(IntUnaryOperator)
  * @see IntUnaryOperator
  */
-@FunctionalInterface public interface OptionalIntUnaryOperator extends IntFunction<OptionalInt> {
+@FunctionalInterface
+public interface OptionalIntUnaryOperator extends IntFunction<OptionalInt> {
 	/**
 	 * Variation of {@link IntUnaryOperator#applyAsInt(int)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalIntUnaryOperator} is obtained from {@link ExceptionHandler#fromIntUnaryOperator(IntUnaryOperator)},
@@ -29,7 +30,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromIntUnaryOperator(IntUnaryOperator)
 	 * @see IntUnaryOperator#applyAsInt(int)
 	 */
-	@Override OptionalInt apply(int operand);
+	@Override
+	OptionalInt apply(int operand);
 	/**
 	 * Converts this {@code OptionalIntUnaryOperator} to plain {@code IntUnaryOperator} using default value.
 	 * The returned {@code IntUnaryOperator} will unwrap present value from the {@code OptionalInt} if possible,

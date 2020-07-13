@@ -11,7 +11,8 @@ final class FallbackDoublePredicate implements DoublePredicate {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public boolean test(double value) {
+	@Override
+	public boolean test(double value) {
 		return inner.test(value).orElseGet(source);
 	}
 }

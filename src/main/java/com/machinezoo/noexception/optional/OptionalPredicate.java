@@ -16,7 +16,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#predicate(Predicate)
  * @see Predicate
  */
-@FunctionalInterface public interface OptionalPredicate<T> {
+@FunctionalInterface
+public interface OptionalPredicate<T> {
 	/**
 	 * Variation of {@link Predicate#test(Object)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalPredicate} is obtained from {@link ExceptionHandler#predicate(Predicate)},

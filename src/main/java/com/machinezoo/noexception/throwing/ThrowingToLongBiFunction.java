@@ -18,7 +18,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromToLongBiFunction(ThrowingToLongBiFunction)
  * @see ToLongBiFunction
  */
-@FunctionalInterface public interface ThrowingToLongBiFunction<T, U> {
+@FunctionalInterface
+public interface ThrowingToLongBiFunction<T, U> {
 	/**
 	 * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that allows throwing checked exceptions.
 	 * 

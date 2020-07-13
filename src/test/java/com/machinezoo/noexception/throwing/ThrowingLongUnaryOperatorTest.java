@@ -12,7 +12,8 @@ public class ThrowingLongUnaryOperatorTest {
 	}
 	void takeNonThrowing(LongUnaryOperator functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(o -> 2L);
 		takeThrowing(o -> 2L);
 		takeThrowing(o -> {

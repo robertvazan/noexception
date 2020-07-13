@@ -12,7 +12,8 @@ public class ThrowingDoubleSupplierTest {
 	}
 	void takeNonThrowing(DoubleSupplier functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(() -> 2.0);
 		takeThrowing(() -> 2.0);
 		takeThrowing(() -> {

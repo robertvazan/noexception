@@ -12,7 +12,8 @@ public class ThrowingConsumerTest {
 	}
 	void takeNonThrowing(Consumer<String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(t -> {
 		});
 		takeThrowing(t -> {
@@ -21,14 +22,14 @@ public class ThrowingConsumerTest {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw new IOException();
 			else
-				return ;
+				return;
 		});
 		Throwable throwable = new IOException();
 		takeThrowing(t -> {
 			if (ThreadLocalRandom.current().nextBoolean())
 				throw throwable;
 			else
-				return ;
+				return;
 		});
 	}
 }

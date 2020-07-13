@@ -8,7 +8,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackPredicateTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		@SuppressWarnings("unchecked") OptionalPredicate<String> full = mock(OptionalPredicate.class);
 		when(full.test("input")).thenReturn(OptionalBoolean.of(true));
 		BooleanSupplier fallback = mock(BooleanSupplier.class);
@@ -17,7 +18,8 @@ public class FallbackPredicateTest {
 		verify(full, only()).test("input");
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		@SuppressWarnings("unchecked") OptionalPredicate<String> empty = mock(OptionalPredicate.class);
 		when(empty.test("input")).thenReturn(OptionalBoolean.empty());
 		BooleanSupplier fallback = mock(BooleanSupplier.class);

@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromDoubleFunction(DoubleFunction)
  * @see DoubleFunction
  */
-@FunctionalInterface public interface OptionalDoubleFunction<R> extends DoubleFunction<Optional<R>> {
+@FunctionalInterface
+public interface OptionalDoubleFunction<R> extends DoubleFunction<Optional<R>> {
 	/**
 	 * Variation of {@link DoubleFunction#apply(double)} that returns {@link Optional}.
 	 * If this {@code OptionalDoubleFunction} is obtained from {@link ExceptionHandler#fromDoubleFunction(DoubleFunction)},
@@ -31,7 +32,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromDoubleFunction(DoubleFunction)
 	 * @see DoubleFunction#apply(double)
 	 */
-	@Override Optional<R> apply(double value);
+	@Override
+	Optional<R> apply(double value);
 	/**
 	 * Converts this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using default value.
 	 * The returned {@code DoubleFunction} will unwrap present value from the {@code Optional} if possible,

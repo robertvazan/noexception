@@ -8,13 +8,15 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class DefaultIntUnaryOperatorTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalIntUnaryOperator full = mock(OptionalIntUnaryOperator.class);
 		when(full.apply(1)).thenReturn(OptionalInt.of(2));
 		assertEquals(2, new DefaultIntUnaryOperator(full, 3).applyAsInt(1));
 		verify(full, only()).apply(1);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalIntUnaryOperator empty = mock(OptionalIntUnaryOperator.class);
 		when(empty.apply(1)).thenReturn(OptionalInt.empty());
 		assertEquals(3, new DefaultIntUnaryOperator(empty, 3).applyAsInt(1));

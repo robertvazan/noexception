@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackBinaryOperatorTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		@SuppressWarnings("unchecked") OptionalBinaryOperator<String> full = mock(OptionalBinaryOperator.class);
 		when(full.apply("input1", "input2")).thenReturn(Optional.of("value"));
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);
@@ -18,7 +19,8 @@ public class FallbackBinaryOperatorTest {
 		verify(full, only()).apply("input1", "input2");
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		@SuppressWarnings("unchecked") OptionalBinaryOperator<String> empty = mock(OptionalBinaryOperator.class);
 		when(empty.apply("input1", "input2")).thenReturn(Optional.empty());
 		@SuppressWarnings("unchecked") Supplier<String> fallback = mock(Supplier.class);

@@ -11,7 +11,8 @@ final class FallbackLongToIntFunction implements LongToIntFunction {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public int applyAsInt(long value) {
+	@Override
+	public int applyAsInt(long value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

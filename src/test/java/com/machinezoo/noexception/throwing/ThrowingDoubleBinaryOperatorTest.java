@@ -12,7 +12,8 @@ public class ThrowingDoubleBinaryOperatorTest {
 	}
 	void takeNonThrowing(DoubleBinaryOperator functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((l, r) -> 2.0);
 		takeThrowing((l, r) -> 2.0);
 		takeThrowing((l, r) -> {

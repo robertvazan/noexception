@@ -11,7 +11,8 @@ final class FallbackDoubleToLongFunction implements DoubleToLongFunction {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public long applyAsLong(double value) {
+	@Override
+	public long applyAsLong(double value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

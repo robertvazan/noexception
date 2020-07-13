@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromIntFunction(IntFunction)
  * @see IntFunction
  */
-@FunctionalInterface public interface OptionalIntFunction<R> extends IntFunction<Optional<R>> {
+@FunctionalInterface
+public interface OptionalIntFunction<R> extends IntFunction<Optional<R>> {
 	/**
 	 * Variation of {@link IntFunction#apply(int)} that returns {@link Optional}.
 	 * If this {@code OptionalIntFunction} is obtained from {@link ExceptionHandler#fromIntFunction(IntFunction)},
@@ -31,7 +32,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromIntFunction(IntFunction)
 	 * @see IntFunction#apply(int)
 	 */
-	@Override Optional<R> apply(int value);
+	@Override
+	Optional<R> apply(int value);
 	/**
 	 * Converts this {@code OptionalIntFunction} to plain {@code IntFunction} using default value.
 	 * The returned {@code IntFunction} will unwrap present value from the {@code Optional} if possible,

@@ -11,7 +11,8 @@ final class DefaultBinaryOperator<T> implements BinaryOperator<T> {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public T apply(T left, T right) {
+	@Override
+	public T apply(T left, T right) {
 		return inner.apply(left, right).orElse(result);
 	}
 }

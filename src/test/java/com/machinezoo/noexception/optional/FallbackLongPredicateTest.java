@@ -8,7 +8,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackLongPredicateTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalLongPredicate full = mock(OptionalLongPredicate.class);
 		when(full.test(1L)).thenReturn(OptionalBoolean.of(true));
 		BooleanSupplier fallback = mock(BooleanSupplier.class);
@@ -17,7 +18,8 @@ public class FallbackLongPredicateTest {
 		verify(full, only()).test(1L);
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalLongPredicate empty = mock(OptionalLongPredicate.class);
 		when(empty.test(1L)).thenReturn(OptionalBoolean.empty());
 		BooleanSupplier fallback = mock(BooleanSupplier.class);

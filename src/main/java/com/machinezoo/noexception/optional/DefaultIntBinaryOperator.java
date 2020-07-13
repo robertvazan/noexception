@@ -11,7 +11,8 @@ final class DefaultIntBinaryOperator implements IntBinaryOperator {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public int applyAsInt(int left, int right) {
+	@Override
+	public int applyAsInt(int left, int right) {
 		return inner.apply(left, right).orElse(result);
 	}
 }

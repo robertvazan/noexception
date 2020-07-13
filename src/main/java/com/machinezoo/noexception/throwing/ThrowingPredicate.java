@@ -16,7 +16,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#predicate(ThrowingPredicate)
  * @see Predicate
  */
-@FunctionalInterface public interface ThrowingPredicate<T> {
+@FunctionalInterface
+public interface ThrowingPredicate<T> {
 	/**
 	 * Variation of {@link Predicate#test(Object)} that allows throwing checked exceptions.
 	 * 

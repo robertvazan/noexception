@@ -12,7 +12,8 @@ public class ThrowingComparatorTest {
 	}
 	void takeNonThrowing(Comparator<String> functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing((l, r) -> 2);
 		takeThrowing((l, r) -> 2);
 		takeThrowing((l, r) -> {

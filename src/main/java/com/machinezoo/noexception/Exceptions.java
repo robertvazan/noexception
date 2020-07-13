@@ -40,7 +40,8 @@ public final class Exceptions {
 	 * @return pass-through exception handler
 	 * @deprecated
 	 */
-	@Deprecated public static ExceptionHandler pass() {
+	@Deprecated
+	public static ExceptionHandler pass() {
 		return ignore();
 	}
 	/**

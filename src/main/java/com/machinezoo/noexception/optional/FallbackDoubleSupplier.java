@@ -11,7 +11,8 @@ final class FallbackDoubleSupplier implements DoubleSupplier {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public double getAsDouble() {
+	@Override
+	public double getAsDouble() {
 		return inner.get().orElseGet(source);
 	}
 }

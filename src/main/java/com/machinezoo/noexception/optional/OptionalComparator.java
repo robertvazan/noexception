@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#comparator(Comparator)
  * @see Comparator
  */
-@FunctionalInterface public interface OptionalComparator<T> {
+@FunctionalInterface
+public interface OptionalComparator<T> {
 	/**
 	 * Variation of {@link Comparator#compare(Object, Object)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalComparator} is obtained from {@link ExceptionHandler#comparator(Comparator)},

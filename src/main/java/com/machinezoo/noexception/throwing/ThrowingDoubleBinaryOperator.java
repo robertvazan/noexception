@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator)
  * @see DoubleBinaryOperator
  */
-@FunctionalInterface public interface ThrowingDoubleBinaryOperator {
+@FunctionalInterface
+public interface ThrowingDoubleBinaryOperator {
 	/**
 	 * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that allows throwing checked exceptions.
 	 * 

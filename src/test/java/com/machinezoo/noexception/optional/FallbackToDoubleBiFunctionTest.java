@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackToDoubleBiFunctionTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		@SuppressWarnings("unchecked") OptionalToDoubleBiFunction<String, String> full = mock(OptionalToDoubleBiFunction.class);
 		when(full.apply("input1", "input2")).thenReturn(OptionalDouble.of(2.0));
 		DoubleSupplier fallback = mock(DoubleSupplier.class);
@@ -18,7 +19,8 @@ public class FallbackToDoubleBiFunctionTest {
 		verify(full, only()).apply("input1", "input2");
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		@SuppressWarnings("unchecked") OptionalToDoubleBiFunction<String, String> empty = mock(OptionalToDoubleBiFunction.class);
 		when(empty.apply("input1", "input2")).thenReturn(OptionalDouble.empty());
 		DoubleSupplier fallback = mock(DoubleSupplier.class);

@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromLongSupplier(ThrowingLongSupplier)
  * @see LongSupplier
  */
-@FunctionalInterface public interface ThrowingLongSupplier {
+@FunctionalInterface
+public interface ThrowingLongSupplier {
 	/**
 	 * Variation of {@link LongSupplier#getAsLong()} that allows throwing checked exceptions.
 	 * 

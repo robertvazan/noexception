@@ -80,7 +80,8 @@ public abstract class ExceptionFilter {
 		FilteredRunnable(Runnable runnable) {
 			this.runnable = runnable;
 		}
-		@Override public void run() {
+		@Override
+		public void run() {
 			try {
 				runnable.run();
 			} catch (Throwable exception) {
@@ -112,7 +113,8 @@ public abstract class ExceptionFilter {
 		FilteredSupplier(Supplier<T> supplier) {
 			this.supplier = supplier;
 		}
-		@Override public T get() {
+		@Override
+		public T get() {
 			try {
 				return supplier.get();
 			} catch (Throwable exception) {
@@ -144,7 +146,8 @@ public abstract class ExceptionFilter {
 		FilteredIntSupplier(IntSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public int getAsInt() {
+		@Override
+		public int getAsInt() {
 			try {
 				return supplier.getAsInt();
 			} catch (Throwable exception) {
@@ -176,7 +179,8 @@ public abstract class ExceptionFilter {
 		FilteredLongSupplier(LongSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public long getAsLong() {
+		@Override
+		public long getAsLong() {
 			try {
 				return supplier.getAsLong();
 			} catch (Throwable exception) {
@@ -208,7 +212,8 @@ public abstract class ExceptionFilter {
 		FilteredDoubleSupplier(DoubleSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public double getAsDouble() {
+		@Override
+		public double getAsDouble() {
 			try {
 				return supplier.getAsDouble();
 			} catch (Throwable exception) {
@@ -240,7 +245,8 @@ public abstract class ExceptionFilter {
 		FilteredBooleanSupplier(BooleanSupplier supplier) {
 			this.supplier = supplier;
 		}
-		@Override public boolean getAsBoolean() {
+		@Override
+		public boolean getAsBoolean() {
 			try {
 				return supplier.getAsBoolean();
 			} catch (Throwable exception) {
@@ -272,7 +278,8 @@ public abstract class ExceptionFilter {
 		FilteredConsumer(Consumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t) {
+		@Override
+		public void accept(T t) {
 			try {
 				consumer.accept(t);
 			} catch (Throwable exception) {
@@ -304,7 +311,8 @@ public abstract class ExceptionFilter {
 		FilteredIntConsumer(IntConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(int value) {
+		@Override
+		public void accept(int value) {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
@@ -336,7 +344,8 @@ public abstract class ExceptionFilter {
 		FilteredLongConsumer(LongConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(long value) {
+		@Override
+		public void accept(long value) {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
@@ -368,7 +377,8 @@ public abstract class ExceptionFilter {
 		FilteredDoubleConsumer(DoubleConsumer consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(double value) {
+		@Override
+		public void accept(double value) {
 			try {
 				consumer.accept(value);
 			} catch (Throwable exception) {
@@ -400,7 +410,8 @@ public abstract class ExceptionFilter {
 		FilteredBiConsumer(BiConsumer<T, U> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, U u) {
+		@Override
+		public void accept(T t, U u) {
 			try {
 				consumer.accept(t, u);
 			} catch (Throwable exception) {
@@ -432,7 +443,8 @@ public abstract class ExceptionFilter {
 		FilteredObjIntConsumer(ObjIntConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, int value) {
+		@Override
+		public void accept(T t, int value) {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
@@ -464,7 +476,8 @@ public abstract class ExceptionFilter {
 		FilteredObjLongConsumer(ObjLongConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, long value) {
+		@Override
+		public void accept(T t, long value) {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
@@ -496,7 +509,8 @@ public abstract class ExceptionFilter {
 		FilteredObjDoubleConsumer(ObjDoubleConsumer<T> consumer) {
 			this.consumer = consumer;
 		}
-		@Override public void accept(T t, double value) {
+		@Override
+		public void accept(T t, double value) {
 			try {
 				consumer.accept(t, value);
 			} catch (Throwable exception) {
@@ -528,7 +542,8 @@ public abstract class ExceptionFilter {
 		FilteredPredicate(Predicate<T> predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(T t) {
+		@Override
+		public boolean test(T t) {
 			try {
 				return predicate.test(t);
 			} catch (Throwable exception) {
@@ -560,7 +575,8 @@ public abstract class ExceptionFilter {
 		FilteredIntPredicate(IntPredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(int value) {
+		@Override
+		public boolean test(int value) {
 			try {
 				return predicate.test(value);
 			} catch (Throwable exception) {
@@ -592,7 +608,8 @@ public abstract class ExceptionFilter {
 		FilteredLongPredicate(LongPredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(long value) {
+		@Override
+		public boolean test(long value) {
 			try {
 				return predicate.test(value);
 			} catch (Throwable exception) {
@@ -624,7 +641,8 @@ public abstract class ExceptionFilter {
 		FilteredDoublePredicate(DoublePredicate predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(double value) {
+		@Override
+		public boolean test(double value) {
 			try {
 				return predicate.test(value);
 			} catch (Throwable exception) {
@@ -656,7 +674,8 @@ public abstract class ExceptionFilter {
 		FilteredBiPredicate(BiPredicate<T, U> predicate) {
 			this.predicate = predicate;
 		}
-		@Override public boolean test(T t, U u) {
+		@Override
+		public boolean test(T t, U u) {
 			try {
 				return predicate.test(t, u);
 			} catch (Throwable exception) {
@@ -688,7 +707,8 @@ public abstract class ExceptionFilter {
 		FilteredFunction(Function<T, R> function) {
 			this.function = function;
 		}
-		@Override public R apply(T t) {
+		@Override
+		public R apply(T t) {
 			try {
 				return function.apply(t);
 			} catch (Throwable exception) {
@@ -720,7 +740,8 @@ public abstract class ExceptionFilter {
 		FilteredToIntFunction(ToIntFunction<T> function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(T value) {
+		@Override
+		public int applyAsInt(T value) {
 			try {
 				return function.applyAsInt(value);
 			} catch (Throwable exception) {
@@ -752,7 +773,8 @@ public abstract class ExceptionFilter {
 		FilteredIntFunction(IntFunction<R> function) {
 			this.function = function;
 		}
-		@Override public R apply(int value) {
+		@Override
+		public R apply(int value) {
 			try {
 				return function.apply(value);
 			} catch (Throwable exception) {
@@ -784,7 +806,8 @@ public abstract class ExceptionFilter {
 		FilteredIntToLongFunction(IntToLongFunction function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(int value) {
+		@Override
+		public long applyAsLong(int value) {
 			try {
 				return function.applyAsLong(value);
 			} catch (Throwable exception) {
@@ -816,7 +839,8 @@ public abstract class ExceptionFilter {
 		FilteredIntToDoubleFunction(IntToDoubleFunction function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(int value) {
+		@Override
+		public double applyAsDouble(int value) {
 			try {
 				return function.applyAsDouble(value);
 			} catch (Throwable exception) {
@@ -848,7 +872,8 @@ public abstract class ExceptionFilter {
 		FilteredToLongFunction(ToLongFunction<T> function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(T value) {
+		@Override
+		public long applyAsLong(T value) {
 			try {
 				return function.applyAsLong(value);
 			} catch (Throwable exception) {
@@ -880,7 +905,8 @@ public abstract class ExceptionFilter {
 		FilteredLongFunction(LongFunction<R> function) {
 			this.function = function;
 		}
-		@Override public R apply(long value) {
+		@Override
+		public R apply(long value) {
 			try {
 				return function.apply(value);
 			} catch (Throwable exception) {
@@ -912,7 +938,8 @@ public abstract class ExceptionFilter {
 		FilteredLongToIntFunction(LongToIntFunction function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(long value) {
+		@Override
+		public int applyAsInt(long value) {
 			try {
 				return function.applyAsInt(value);
 			} catch (Throwable exception) {
@@ -944,7 +971,8 @@ public abstract class ExceptionFilter {
 		FilteredLongToDoubleFunction(LongToDoubleFunction function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(long value) {
+		@Override
+		public double applyAsDouble(long value) {
 			try {
 				return function.applyAsDouble(value);
 			} catch (Throwable exception) {
@@ -976,7 +1004,8 @@ public abstract class ExceptionFilter {
 		FilteredToDoubleFunction(ToDoubleFunction<T> function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(T value) {
+		@Override
+		public double applyAsDouble(T value) {
 			try {
 				return function.applyAsDouble(value);
 			} catch (Throwable exception) {
@@ -1008,7 +1037,8 @@ public abstract class ExceptionFilter {
 		FilteredDoubleFunction(DoubleFunction<R> function) {
 			this.function = function;
 		}
-		@Override public R apply(double value) {
+		@Override
+		public R apply(double value) {
 			try {
 				return function.apply(value);
 			} catch (Throwable exception) {
@@ -1040,7 +1070,8 @@ public abstract class ExceptionFilter {
 		FilteredDoubleToIntFunction(DoubleToIntFunction function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(double value) {
+		@Override
+		public int applyAsInt(double value) {
 			try {
 				return function.applyAsInt(value);
 			} catch (Throwable exception) {
@@ -1072,7 +1103,8 @@ public abstract class ExceptionFilter {
 		FilteredDoubleToLongFunction(DoubleToLongFunction function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(double value) {
+		@Override
+		public long applyAsLong(double value) {
 			try {
 				return function.applyAsLong(value);
 			} catch (Throwable exception) {
@@ -1104,7 +1136,8 @@ public abstract class ExceptionFilter {
 		FilteredUnaryOperator(UnaryOperator<T> operator) {
 			this.operator = operator;
 		}
-		@Override public T apply(T operand) {
+		@Override
+		public T apply(T operand) {
 			try {
 				return operator.apply(operand);
 			} catch (Throwable exception) {
@@ -1136,7 +1169,8 @@ public abstract class ExceptionFilter {
 		FilteredIntUnaryOperator(IntUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public int applyAsInt(int operand) {
+		@Override
+		public int applyAsInt(int operand) {
 			try {
 				return operator.applyAsInt(operand);
 			} catch (Throwable exception) {
@@ -1168,7 +1202,8 @@ public abstract class ExceptionFilter {
 		FilteredLongUnaryOperator(LongUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public long applyAsLong(long operand) {
+		@Override
+		public long applyAsLong(long operand) {
 			try {
 				return operator.applyAsLong(operand);
 			} catch (Throwable exception) {
@@ -1200,7 +1235,8 @@ public abstract class ExceptionFilter {
 		FilteredDoubleUnaryOperator(DoubleUnaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public double applyAsDouble(double operand) {
+		@Override
+		public double applyAsDouble(double operand) {
 			try {
 				return operator.applyAsDouble(operand);
 			} catch (Throwable exception) {
@@ -1232,7 +1268,8 @@ public abstract class ExceptionFilter {
 		FilteredBiFunction(BiFunction<T, U, R> function) {
 			this.function = function;
 		}
-		@Override public R apply(T t, U u) {
+		@Override
+		public R apply(T t, U u) {
 			try {
 				return function.apply(t, u);
 			} catch (Throwable exception) {
@@ -1264,7 +1301,8 @@ public abstract class ExceptionFilter {
 		FilteredToIntBiFunction(ToIntBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public int applyAsInt(T t, U u) {
+		@Override
+		public int applyAsInt(T t, U u) {
 			try {
 				return function.applyAsInt(t, u);
 			} catch (Throwable exception) {
@@ -1296,7 +1334,8 @@ public abstract class ExceptionFilter {
 		FilteredToLongBiFunction(ToLongBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public long applyAsLong(T t, U u) {
+		@Override
+		public long applyAsLong(T t, U u) {
 			try {
 				return function.applyAsLong(t, u);
 			} catch (Throwable exception) {
@@ -1328,7 +1367,8 @@ public abstract class ExceptionFilter {
 		FilteredToDoubleBiFunction(ToDoubleBiFunction<T, U> function) {
 			this.function = function;
 		}
-		@Override public double applyAsDouble(T t, U u) {
+		@Override
+		public double applyAsDouble(T t, U u) {
 			try {
 				return function.applyAsDouble(t, u);
 			} catch (Throwable exception) {
@@ -1360,7 +1400,8 @@ public abstract class ExceptionFilter {
 		FilteredBinaryOperator(BinaryOperator<T> operator) {
 			this.operator = operator;
 		}
-		@Override public T apply(T left, T right) {
+		@Override
+		public T apply(T left, T right) {
 			try {
 				return operator.apply(left, right);
 			} catch (Throwable exception) {
@@ -1392,7 +1433,8 @@ public abstract class ExceptionFilter {
 		FilteredIntBinaryOperator(IntBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public int applyAsInt(int left, int right) {
+		@Override
+		public int applyAsInt(int left, int right) {
 			try {
 				return operator.applyAsInt(left, right);
 			} catch (Throwable exception) {
@@ -1424,7 +1466,8 @@ public abstract class ExceptionFilter {
 		FilteredLongBinaryOperator(LongBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public long applyAsLong(long left, long right) {
+		@Override
+		public long applyAsLong(long left, long right) {
 			try {
 				return operator.applyAsLong(left, right);
 			} catch (Throwable exception) {
@@ -1456,7 +1499,8 @@ public abstract class ExceptionFilter {
 		FilteredDoubleBinaryOperator(DoubleBinaryOperator operator) {
 			this.operator = operator;
 		}
-		@Override public double applyAsDouble(double left, double right) {
+		@Override
+		public double applyAsDouble(double left, double right) {
 			try {
 				return operator.applyAsDouble(left, right);
 			} catch (Throwable exception) {
@@ -1488,7 +1532,8 @@ public abstract class ExceptionFilter {
 		FilteredComparator(Comparator<T> comparator) {
 			this.comparator = comparator;
 		}
-		@Override public int compare(T left, T right) {
+		@Override
+		public int compare(T left, T right) {
 			try {
 				return comparator.compare(left, right);
 			} catch (Throwable exception) {

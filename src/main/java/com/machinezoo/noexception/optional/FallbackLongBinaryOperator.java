@@ -11,7 +11,8 @@ final class FallbackLongBinaryOperator implements LongBinaryOperator {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public long applyAsLong(long left, long right) {
+	@Override
+	public long applyAsLong(long left, long right) {
 		return inner.apply(left, right).orElseGet(source);
 	}
 }

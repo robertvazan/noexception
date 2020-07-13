@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromToDoubleFunction(ToDoubleFunction)
  * @see ToDoubleFunction
  */
-@FunctionalInterface public interface OptionalToDoubleFunction<T> extends Function<T, OptionalDouble> {
+@FunctionalInterface
+public interface OptionalToDoubleFunction<T> extends Function<T, OptionalDouble> {
 	/**
 	 * Variation of {@link ToDoubleFunction#applyAsDouble(Object)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalToDoubleFunction} is obtained from {@link ExceptionHandler#fromToDoubleFunction(ToDoubleFunction)},
@@ -31,7 +32,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromToDoubleFunction(ToDoubleFunction)
 	 * @see ToDoubleFunction#applyAsDouble(Object)
 	 */
-	@Override OptionalDouble apply(T value);
+	@Override
+	OptionalDouble apply(T value);
 	/**
 	 * Converts this {@code OptionalToDoubleFunction} to plain {@code ToDoubleFunction} using default value.
 	 * The returned {@code ToDoubleFunction} will unwrap present value from the {@code OptionalDouble} if possible,

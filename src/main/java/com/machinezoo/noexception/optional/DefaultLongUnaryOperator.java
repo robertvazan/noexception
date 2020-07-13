@@ -11,7 +11,8 @@ final class DefaultLongUnaryOperator implements LongUnaryOperator {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public long applyAsLong(long operand) {
+	@Override
+	public long applyAsLong(long operand) {
 		return inner.apply(operand).orElse(result);
 	}
 }

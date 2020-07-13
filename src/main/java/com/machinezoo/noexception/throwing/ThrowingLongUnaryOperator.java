@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromLongUnaryOperator(ThrowingLongUnaryOperator)
  * @see LongUnaryOperator
  */
-@FunctionalInterface public interface ThrowingLongUnaryOperator {
+@FunctionalInterface
+public interface ThrowingLongUnaryOperator {
 	/**
 	 * Variation of {@link LongUnaryOperator#applyAsLong(long)} that allows throwing checked exceptions.
 	 * 

@@ -12,7 +12,8 @@ public class ThrowingIntSupplierTest {
 	}
 	void takeNonThrowing(IntSupplier functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(() -> 2);
 		takeThrowing(() -> 2);
 		takeThrowing(() -> {

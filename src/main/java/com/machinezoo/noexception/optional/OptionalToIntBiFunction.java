@@ -19,7 +19,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)
  * @see ToIntBiFunction
  */
-@FunctionalInterface public interface OptionalToIntBiFunction<T, U> extends BiFunction<T, U, OptionalInt> {
+@FunctionalInterface
+public interface OptionalToIntBiFunction<T, U> extends BiFunction<T, U, OptionalInt> {
 	/**
 	 * Variation of {@link ToIntBiFunction#applyAsInt(Object, Object)} that returns {@link OptionalInt}.
 	 * If this {@code OptionalToIntBiFunction} is obtained from {@link ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)},
@@ -35,7 +36,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)
 	 * @see ToIntBiFunction#applyAsInt(Object, Object)
 	 */
-	@Override OptionalInt apply(T t, U u);
+	@Override
+	OptionalInt apply(T t, U u);
 	/**
 	 * Converts this {@code OptionalToIntBiFunction} to plain {@code ToIntBiFunction} using default value.
 	 * The returned {@code ToIntBiFunction} will unwrap present value from the {@code OptionalInt} if possible,

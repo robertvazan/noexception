@@ -11,7 +11,8 @@ final class FallbackBiPredicate<T, U> implements BiPredicate<T, U> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public boolean test(T t, U u) {
+	@Override
+	public boolean test(T t, U u) {
 		return inner.test(t, u).orElseGet(source);
 	}
 }

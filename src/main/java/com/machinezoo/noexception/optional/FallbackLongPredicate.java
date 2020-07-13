@@ -11,7 +11,8 @@ final class FallbackLongPredicate implements LongPredicate {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public boolean test(long value) {
+	@Override
+	public boolean test(long value) {
 		return inner.test(value).orElseGet(source);
 	}
 }

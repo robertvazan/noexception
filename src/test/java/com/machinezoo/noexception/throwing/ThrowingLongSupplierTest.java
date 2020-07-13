@@ -12,7 +12,8 @@ public class ThrowingLongSupplierTest {
 	}
 	void takeNonThrowing(LongSupplier functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(() -> 2L);
 		takeThrowing(() -> 2L);
 		takeThrowing(() -> {

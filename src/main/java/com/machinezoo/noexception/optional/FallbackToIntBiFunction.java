@@ -11,7 +11,8 @@ final class FallbackToIntBiFunction<T, U> implements ToIntBiFunction<T, U> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public int applyAsInt(T t, U u) {
+	@Override
+	public int applyAsInt(T t, U u) {
 		return inner.apply(t, u).orElseGet(source);
 	}
 }

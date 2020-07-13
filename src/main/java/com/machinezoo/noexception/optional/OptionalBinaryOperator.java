@@ -17,7 +17,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromBinaryOperator(BinaryOperator)
  * @see BinaryOperator
  */
-@FunctionalInterface public interface OptionalBinaryOperator<T> extends BiFunction<T, T, Optional<T>> {
+@FunctionalInterface
+public interface OptionalBinaryOperator<T> extends BiFunction<T, T, Optional<T>> {
 	/**
 	 * Variation of {@link BinaryOperator#apply(Object, Object)} that returns {@link Optional}.
 	 * If this {@code OptionalBinaryOperator} is obtained from {@link ExceptionHandler#fromBinaryOperator(BinaryOperator)},
@@ -33,7 +34,8 @@ import com.machinezoo.noexception.*;
 	 * @see ExceptionHandler#fromBinaryOperator(BinaryOperator)
 	 * @see BinaryOperator#apply(Object, Object)
 	 */
-	@Override Optional<T> apply(T left, T right);
+	@Override
+	Optional<T> apply(T left, T right);
 	/**
 	 * Converts this {@code OptionalBinaryOperator} to plain {@code BinaryOperator} using default value.
 	 * The returned {@code BinaryOperator} will unwrap present value from the {@code Optional} if possible,

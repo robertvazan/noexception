@@ -12,7 +12,8 @@ final class FallbackComparator<T> implements Comparator<T> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public int compare(T left, T right) {
+	@Override
+	public int compare(T left, T right) {
 		return inner.compare(left, right).orElseGet(source);
 	}
 }

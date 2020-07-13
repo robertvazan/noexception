@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromLongPredicate(ThrowingLongPredicate)
  * @see LongPredicate
  */
-@FunctionalInterface public interface ThrowingLongPredicate {
+@FunctionalInterface
+public interface ThrowingLongPredicate {
 	/**
 	 * Variation of {@link LongPredicate#test(long)} that allows throwing checked exceptions.
 	 * 

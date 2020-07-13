@@ -7,7 +7,8 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalToDoubleBiFunctionTest {
-	@Test public void conversions() {
+	@Test
+	public void conversions() {
 		assertEquals(OptionalDouble.of(2.0), create((t, u) -> OptionalDouble.of(2.0)).apply("input1", "input2"));
 		assertEquals(2.0, create((t, u) -> OptionalDouble.of(2.0)).orElse(3.0).applyAsDouble("input1", "input2"), 0.1);
 		assertEquals(2.0, create((t, u) -> OptionalDouble.of(2.0)).orElseGet(() -> 2.0).applyAsDouble("input1", "input2"), 0.1);

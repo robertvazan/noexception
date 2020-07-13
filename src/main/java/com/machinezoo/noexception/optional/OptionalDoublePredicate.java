@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see ExceptionHandler#fromDoublePredicate(DoublePredicate)
  * @see DoublePredicate
  */
-@FunctionalInterface public interface OptionalDoublePredicate {
+@FunctionalInterface
+public interface OptionalDoublePredicate {
 	/**
 	 * Variation of {@link DoublePredicate#test(double)} that returns {@link OptionalBoolean}.
 	 * If this {@code OptionalDoublePredicate} is obtained from {@link ExceptionHandler#fromDoublePredicate(DoublePredicate)},

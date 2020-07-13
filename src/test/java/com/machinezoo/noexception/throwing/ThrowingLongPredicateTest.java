@@ -12,7 +12,8 @@ public class ThrowingLongPredicateTest {
 	}
 	void takeNonThrowing(LongPredicate functional) {
 	}
-	@Test public void lambdas() {
+	@Test
+	public void lambdas() {
 		takeNonThrowing(v -> true);
 		takeThrowing(v -> true);
 		takeThrowing(v -> {

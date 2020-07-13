@@ -9,7 +9,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackDoubleSupplierTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalDoubleSupplier full = mock(OptionalDoubleSupplier.class);
 		when(full.get()).thenReturn(OptionalDouble.of(2.0));
 		DoubleSupplier fallback = mock(DoubleSupplier.class);
@@ -18,7 +19,8 @@ public class FallbackDoubleSupplierTest {
 		verify(full, only()).get();
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalDoubleSupplier empty = mock(OptionalDoubleSupplier.class);
 		when(empty.get()).thenReturn(OptionalDouble.empty());
 		DoubleSupplier fallback = mock(DoubleSupplier.class);

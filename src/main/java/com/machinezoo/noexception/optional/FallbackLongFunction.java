@@ -11,7 +11,8 @@ final class FallbackLongFunction<R> implements LongFunction<R> {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public R apply(long value) {
+	@Override
+	public R apply(long value) {
 		return inner.apply(value).orElseGet(source);
 	}
 }

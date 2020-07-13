@@ -11,7 +11,8 @@ final class DefaultLongSupplier implements LongSupplier {
 		this.inner = inner;
 		this.result = result;
 	}
-	@Override public long getAsLong() {
+	@Override
+	public long getAsLong() {
 		return inner.get().orElse(result);
 	}
 }

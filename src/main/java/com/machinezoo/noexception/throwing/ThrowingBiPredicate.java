@@ -18,7 +18,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromBiPredicate(ThrowingBiPredicate)
  * @see BiPredicate
  */
-@FunctionalInterface public interface ThrowingBiPredicate<T, U> {
+@FunctionalInterface
+public interface ThrowingBiPredicate<T, U> {
 	/**
 	 * Variation of {@link BiPredicate#test(Object, Object)} that allows throwing checked exceptions.
 	 * 

@@ -8,7 +8,8 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class FallbackBooleanSupplierTest {
-	@Test public void full() {
+	@Test
+	public void full() {
 		OptionalBooleanSupplier full = mock(OptionalBooleanSupplier.class);
 		when(full.get()).thenReturn(OptionalBoolean.of(true));
 		BooleanSupplier fallback = mock(BooleanSupplier.class);
@@ -17,7 +18,8 @@ public class FallbackBooleanSupplierTest {
 		verify(full, only()).get();
 		verifyNoMoreInteractions(fallback);
 	}
-	@Test public void empty() {
+	@Test
+	public void empty() {
 		OptionalBooleanSupplier empty = mock(OptionalBooleanSupplier.class);
 		when(empty.get()).thenReturn(OptionalBoolean.empty());
 		BooleanSupplier fallback = mock(BooleanSupplier.class);

@@ -14,7 +14,8 @@ import com.machinezoo.noexception.*;
  * @see CheckedExceptionHandler#fromBooleanSupplier(ThrowingBooleanSupplier)
  * @see BooleanSupplier
  */
-@FunctionalInterface public interface ThrowingBooleanSupplier {
+@FunctionalInterface
+public interface ThrowingBooleanSupplier {
 	/**
 	 * Variation of {@link BooleanSupplier#getAsBoolean()} that allows throwing checked exceptions.
 	 * 

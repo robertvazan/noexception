@@ -11,7 +11,8 @@ final class FallbackIntBinaryOperator implements IntBinaryOperator {
 		this.inner = inner;
 		this.source = source;
 	}
-	@Override public int applyAsInt(int left, int right) {
+	@Override
+	public int applyAsInt(int left, int right) {
 		return inner.apply(left, right).orElseGet(source);
 	}
 }
