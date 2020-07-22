@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.machinezoo.noexception/noexception)](https://search.maven.org/artifact/com.machinezoo.noexception/noexception)
 [![Build Status](https://travis-ci.com/robertvazan/noexception.svg?branch=master)](https://travis-ci.com/robertvazan/noexception)
-[![Coverage Status](https://coveralls.io/repos/github/robertvazan/noexception/badge.svg?branch=master)](https://coveralls.io/github/robertvazan/noexception?branch=master)
+[![Coverage Status](https://codecov.io/gh/robertvazan/noexception/branch/master/graph/badge.svg)](https://codecov.io/gh/robertvazan/noexception)
 [![Mentioned in Awesome Java 8](https://awesome.re/mentioned-badge.svg)](https://github.com/tedyoung/awesome-java8)
 
 NoException is a Java library for handling exceptions in concise, unified, and architecturally clean way.
