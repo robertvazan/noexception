@@ -1654,6 +1654,40 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
+	 * Wraps {@code CloseableScope} in a try-catch block.
+	 * <p>
+	 * If {@code closeable} throws, the exception is caught and passed to {@link #handle(Throwable)},
+	 * which applies exception handling policy (log, ignore, pass, custom).
+	 * {@code NullPointerException} from null {@code closeable} is caught too.
+	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
+	 * <p>
+	 * Typical usage: {@code try (var scope = Exceptions.log().closeable(openSomething()))}
+	 * 
+	 * @param closeable
+	 *            the {@code CloseableScope} to wrap
+	 * @return wrapper that runs {@code closeable} in a try-catch block
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
+	 * @see Exceptions
+	 */
+	public final CloseableScope closeable(CloseableScope closeable) {
+		return new CatchingCloseableScope(closeable);
+	}
+	private final class CatchingCloseableScope implements CloseableScope {
+		private final CloseableScope closeable;
+		CatchingCloseableScope(CloseableScope closeable) {
+			this.closeable = closeable;
+		}
+		@Override
+		public void close() {
+			try {
+				closeable.close();
+			} catch (Throwable exception) {
+				if (!handle(exception))
+					throw exception;
+			}
+		}
+	}
+	/**
 	 * Runs {@code Runnable} in a try-catch block.
 	 * <p>
 	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)},

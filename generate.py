@@ -53,6 +53,7 @@ def functional_types():
     for type in primitives:
         yield type + 'BinaryOperator'
     yield 'Comparator'
+    yield 'CloseableScope'
 
 def nonvoid_functional_types():
     for functional in functional_types():
@@ -73,7 +74,7 @@ def is_primitive(type):
 #    'T' == return_type('Supplier')
 def return_type(functional):
     cases = [
-        ('void', 'Runnable|.*Consumer'),
+        ('void', 'Runnable|.*Consumer|CloseableScope'),
         ('T', 'Supplier|UnaryOperator|BinaryOperator'),
         ('int', 'IntSupplier|.*ToInt.*|Int.*Operator|Comparator'),
         ('long', 'LongSupplier|.*ToLong.*|Long.*Operator'),
@@ -106,6 +107,7 @@ def method_verb(functional):
         ('apply', '.*Function|.*Operator'),
         ('test', '.*Predicate'),
         ('compare', 'Comparator'),
+        ('close', 'CloseableScope'),
     ]
     return next(c[0] for c in cases if re.fullmatch(c[1], functional))
 
@@ -122,7 +124,7 @@ def as_method(functional):
 # Example: 'T t, int value' == declared_params('ObjIntConsumer')
 def declared_params(functional):
     cases = [
-        ('', 'Runnable|.*Supplier'),
+        ('', 'Runnable|.*Supplier|CloseableScope'),
         ('T t, U u', 'BiConsumer|BiPredicate|.*BiFunction'),
         ('T t', 'Consumer|Predicate|Function'),
         ('T value', 'To.*Function'),
@@ -172,7 +174,7 @@ def type_parameter_section(functional):
         ('<T>', 'Consumer|Predicate|Supplier|To.*Function|Obj.*Consumer|UnaryOperator|BinaryOperator|Comparator'),
         ('', '.*To.*Function'),
         ('<R>', '.*Function'),
-        ('', 'Runnable|.*Supplier|.*Consumer|.*Predicate|.*Operator'),
+        ('', 'Runnable|.*Supplier|.*Consumer|.*Predicate|.*Operator|CloseableScope'),
     ]
     return next(c[0] for c in cases if re.fullmatch(c[1], functional))
 
@@ -191,13 +193,30 @@ def extends_type(functional):
         return 'BiFunction<T, T, T>'
     return None
 
+# Example: 'ThrowingFunction' == throwing_variant('Function')
+def throwing_variant(functional):
+    if functional == 'CloseableScope':
+        return 'AutoCloseable'
+    return 'Throwing' + functional
+
+# Example: 'ThrowingSupplier<T>' == parameterized_throwing_variant('Supplier')
+def parameterized_throwing_variant(functional):
+    return throwing_variant(functional) + type_parameter_section(functional)
+
 # We will now define noexception conventions that are a matter of choice.
+
+def executable_functional_types():
+    for functional in parameterless_functional_types():
+        if functional not in ['CloseableScope']:
+            yield functional
 
 # Example:
 #    'runnable' == from_method('Runnable')
 #    'fromIntFunction' == from_method('IntFunction')
 def from_method(functional):
-    if functional[1:] == functional[1:].lower():
+    if functional == 'CloseableScope':
+        return 'closeable'
+    elif functional[1:] == functional[1:].lower():
         # Functional interfaces with one-word names have short method names, e.g. 'runnable()'. This makes the API nicer.
         return functional.lower()
     else:
@@ -206,7 +225,7 @@ def from_method(functional):
 
 # Example: 'function' == short_name('DoubleToIntFunction')
 def short_name(functional):
-    return re.fullmatch('.*(Function|Consumer|Predicate|Supplier|Operator|Runnable|Comparator)', functional).group(1).lower()
+    return re.fullmatch('.*(Function|Consumer|Predicate|Supplier|Operator|Runnable|Comparator|Closeable).*', functional).group(1).lower()
 
 # Example: 'Function<T, OptionalInt>' == optional_base('ToIntFunction')
 # This is not strictly a matter of choice. The best possible base class was picked for all Optional* classes.
@@ -234,6 +253,10 @@ def test_type_parameter_section(functional):
 # Example: 'Function<String, String>' == test_type_parameter_section('Function')
 def test_parameterized_type(functional):
     return functional + test_type_parameter_section(functional)
+
+# Example: 'ThrowingSupplier<String>' == test_parameterized_throwing_variant('Supplier')
+def test_parameterized_throwing_variant(functional):
+    return throwing_variant(functional) + test_type_parameter_section(functional)
 
 def test_return_type(functional):
     return re.sub('T|R', 'String', return_type(functional))
@@ -292,6 +315,9 @@ def file_header(subpackage=''):
         package com.machinezoo.noexception''' + subpackage + ''';
 
     '''
+
+def usually_a_lambda(functional):
+    return ', usually a lambda' if functional not in ['CloseableScope'] else ''
 
 # Numerous utility functions used in various parts of the code are defined here.
 
@@ -661,13 +687,17 @@ def handler_source():
         else:
             output(' * Wrapper then returns empty {@code ' + raw_optional_return(fn) + '} unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
         wrapper_interface = ('' if void_functional(fn) else 'Optional') + parameterized_type(fn)
+        def typical_usage():
+            if fn == 'CloseableScope':
+                return 'try (var scope = Exceptions.log().closeable(openSomething()))'
+            orelse = '.orElse(fallback)' if 'void' != return_type(fn) else ''
+            return 'Exceptions.log().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda)' + orelse
         output('''\
              * <p>
-             * Typical usage: {@code Exceptions.log().''' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda)'
-                + ('.orElse(fallback)' if 'void' != return_type(fn) else '') + '''}
+             * Typical usage: {@code ''' + typical_usage() + '''}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to wrap, usually a lambda
+             *            the {@code ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
              * @return wrapper that runs {@code ''' + short_name(fn) + '''} in a try-catch block
              * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
              * @see Exceptions
@@ -697,7 +727,7 @@ def handler_source():
                 }
             }
         ''', indent=1)
-    for fn in parameterless_functional_types():
+    for fn in executable_functional_types():
         output('''\
             /**
              * Runs {@code ''' + fn + '''} in a try-catch block.
@@ -715,7 +745,7 @@ def handler_source():
              * Typical usage: {@code Exceptions.log().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda)}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to run, usually a lambda
+             *            the {@code ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
         if not void_functional(fn):
             output(' * @return an {@code ' + raw_optional_return(fn) + '} carrying {@code ' + short_name(fn)
@@ -800,6 +830,10 @@ def filter_source():
             }
     ''')
     for fn in functional_types():
+        def typical_usage():
+            if fn == 'CloseableScope':
+                return 'try (var scope = Exceptions.log().passing().closeable(openSomething()))'
+            return 'methodTaking' + fn + '(Exceptions.log().passing().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda))'
         output('''\
             /**
              * Applies exception filter to {@code ''' + fn + '''}.
@@ -808,10 +842,10 @@ def filter_source():
              * {@code NullPointerException} from null {@code ''' + short_name(fn) + '''} is caught too.
              * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
              * <p>
-             * Typical usage: {@code methodTaking''' + fn + '(Exceptions.log().passing().' + from_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda))}
+             * Typical usage: {@code ''' + typical_usage() + '''}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to wrap, usually a lambda
+             *            the {@code ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
              * @return wrapper that runs {@code ''' + fn + '''} in a try-catch block
              * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
              * @see Exceptions
@@ -836,7 +870,7 @@ def filter_source():
                 }
             }
         ''', indent=1)
-    for fn in parameterless_functional_types():
+    for fn in executable_functional_types():
         output('''\
             /**
              * Filters exceptions while running {@code ''' + fn + '''}.
@@ -848,7 +882,7 @@ def filter_source():
              * Typical usage: {@code Exceptions.log().passing().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to run, usually a lambda
+             *            the {@code ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
         if not void_functional(fn):
             output(' * @return value returned from {@code ' + short_name(fn) + '}', indent=1)
@@ -943,29 +977,33 @@ def checked_source():
             }
     ''')
     for fn in functional_types():
+        def typical_usage():
+            if fn == 'CloseableScope':
+                return 'try (var scope = Exceptions.sneak().closeable(openSomething()))'
+            return 'methodTaking' + fn + '(Exceptions.sneak().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda))'
         output('''\
             /**
-             * Removes checked exceptions from method signature of {@code ''' + fn + '''}.
+             * Removes checked exceptions from method signature of {@code ''' + throwing_variant(fn) + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
              * which usually converts it to an unchecked exception, which is then thrown by this method.
              * Null {@code ''' + short_name(fn) + '''} is silently wrapped and causes {@code NullPointerException} when executed.
              * <p>
-             * Typical usage: {@code methodTaking''' + fn + '(Exceptions.sneak().' + from_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda))}
+             * Typical usage: {@code ''' + typical_usage() + '''}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code Throwing''' + fn + '''} to be converted, usually a lambda
+             *            the {@code ''' + throwing_variant(fn) + '''} to be converted''' + usually_a_lambda(fn) + '''
              * @return converted {@code ''' + fn + '''} free of checked exceptions
              * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
              * @see Exceptions
              */
             public final''' + space_left(type_parameter_section(fn)) + ' ' + parameterized_type(fn) + ' '
-                + from_method(fn) + '(Throwing' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
+                + from_method(fn) + '(' + parameterized_throwing_variant(fn) + ' ' + short_name(fn) + ''') {
                 return new Checked''' + parameterized_type(fn) + '(' + short_name(fn) + ''');
             }
             private final class Checked''' + parameterized_type(fn) + ' implements ' + parameterized_type(fn) + ''' {
-                private final Throwing''' + parameterized_type(fn) + ' ' + short_name(fn) + ''';
-                Checked''' + fn + '(Throwing' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
+                private final ''' + parameterized_throwing_variant(fn) + ' ' + short_name(fn) + ''';
+                Checked''' + fn + '(' + parameterized_throwing_variant(fn) + ' ' + short_name(fn) + ''') {
                     this.''' + short_name(fn) + ' = ' + short_name(fn) + ''';
                 }
                 @Override
@@ -982,10 +1020,10 @@ def checked_source():
                 }
             }
         ''', indent=1)
-    for fn in parameterless_functional_types():
+    for fn in executable_functional_types():
         output('''\
             /**
-             * Filters out checked exceptions while running {@code ''' + fn + '''}.
+             * Filters out checked exceptions while running {@code ''' + throwing_variant(fn) + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
              * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -993,7 +1031,7 @@ def checked_source():
              * Typical usage: {@code Exceptions.sneak().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code Throwing''' + fn + '''} to run, usually a lambda
+             *            the {@code ''' + throwing_variant(fn) + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
         if not void_functional(fn):
             output(' * @return value returned from {@code ' + short_name(fn) + '}', indent=1)
@@ -1004,7 +1042,7 @@ def checked_source():
              * @see Exceptions
              */
             public final''' + space_left(type_parameter_section(fn)) + ' ' + return_type(fn) + ' '
-                + as_method(fn) + '(Throwing' + parameterized_type(fn) + ' ' + short_name(fn) + ''') {
+                + as_method(fn) + '(' + parameterized_throwing_variant(fn) + ' ' + short_name(fn) + ''') {
                 try {
                     ''' + return_if_needed(return_type(fn)) + short_name(fn) + '.' + as_method(fn) + '''();
                 } catch (RuntimeException exception) {
@@ -1212,7 +1250,7 @@ def handler_test():
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
         ''', indent=1)
-    for fn in parameterless_functional_types():
+    for fn in executable_functional_types():
         output('''\
             @Test
             public void ''' + as_method(fn) + '''_complete() {
@@ -1308,7 +1346,7 @@ def filter_test():
                 assertThat(collector.single(), instanceOf(NumberFormatException.class));
             }
         ''', indent=1)
-    for fn in parameterless_functional_types():
+    for fn in executable_functional_types():
         output('''\
             @Test
             public void ''' + as_method(fn) + '''_complete() {
@@ -1364,7 +1402,7 @@ def checked_test():
             @Test
             public void ''' + from_method(fn) + '''_complete() throws Throwable {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
-                ''' + test_unchecked(fn) + 'Throwing' + test_parameterized_type(fn) + ' lambda = mock(Throwing' + fn + '''.class);
+                ''' + test_unchecked(fn) + test_parameterized_throwing_variant(fn) + ' lambda = mock(' + throwing_variant(fn) + '''.class);
         ''', indent=1)
         if void_functional(fn):
             output('collector.' + from_method(fn) + '(lambda).' + as_method(fn) + '(' + test_input(fn) + ');', indent=2)
@@ -1399,12 +1437,12 @@ def checked_test():
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
             }
         ''', indent=1)
-    for fn in parameterless_functional_types():
+    for fn in executable_functional_types():
         output('''\
             @Test
             public void ''' + as_method(fn) + '''_complete() throws Throwable {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
-                ''' + test_unchecked(fn) + 'Throwing' + test_parameterized_type(fn) + ' lambda = mock(Throwing' + fn + '''.class);
+                ''' + test_unchecked(fn) + test_parameterized_throwing_variant(fn) + ' lambda = mock(' + throwing_variant(fn) + '''.class);
         ''', indent=1)
         if void_functional(fn):
             output('collector.' + as_method(fn) + '(lambda);', indent=2)
@@ -1443,8 +1481,9 @@ def checked_test():
 # Finally, we run all the code generators.
 
 for functional in functional_types():
-    redirect(sources + '/throwing/Throwing' + functional + '.java', lambda: throwing_source(functional))
-    redirect(tests + '/throwing/Throwing' + functional + 'Test.java', lambda: throwing_test(functional))
+    if functional not in ['CloseableScope']:
+        redirect(sources + '/throwing/Throwing' + functional + '.java', lambda: throwing_source(functional))
+        redirect(tests + '/throwing/Throwing' + functional + 'Test.java', lambda: throwing_test(functional))
 for functional in nonvoid_functional_types():
     redirect(sources + '/optional/Default' + functional + '.java', lambda: default_source(functional))
     redirect(sources + '/optional/Fallback' + functional + '.java', lambda: fallback_source(functional))

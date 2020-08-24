@@ -1129,6 +1129,30 @@ public class ExceptionHandlerTest {
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
 	@Test
+	public void closeable_complete() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		CloseableScope lambda = mock(CloseableScope.class);
+		collector.closeable(lambda).close();
+		verify(lambda, only()).close();
+		assertTrue(collector.empty());
+	}
+	@Test
+	public void closeable_swallowException() {
+		ExceptionCollector collector = new ExceptionCollector(true);
+		collector.closeable(() -> {
+			throw new NumberFormatException();
+		}).close();
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test
+	public void closeable_passException() {
+		ExceptionCollector collector = new ExceptionCollector(false);
+		assertThrows(NumberFormatException.class, () -> collector.closeable(() -> {
+			throw new NumberFormatException();
+		}).close());
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test
 	public void run_complete() {
 		ExceptionCollector collector = new ExceptionCollector(true);
 		Runnable lambda = mock(Runnable.class);

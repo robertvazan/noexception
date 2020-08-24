@@ -71,7 +71,7 @@ public abstract class CheckedExceptionHandler {
 	protected CheckedExceptionHandler() {
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code Runnable}.
+	 * Removes checked exceptions from method signature of {@code ThrowingRunnable}.
 	 * <p>
 	 * If {@code runnable} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -107,7 +107,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code Supplier}.
+	 * Removes checked exceptions from method signature of {@code ThrowingSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -143,7 +143,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntSupplier}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -179,7 +179,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongSupplier}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -215,7 +215,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoubleSupplier}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoubleSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -251,7 +251,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code BooleanSupplier}.
+	 * Removes checked exceptions from method signature of {@code ThrowingBooleanSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -287,7 +287,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code Consumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -323,7 +323,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntConsumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -359,7 +359,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongConsumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -395,7 +395,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoubleConsumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoubleConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -431,7 +431,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code BiConsumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingBiConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -467,7 +467,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ObjIntConsumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingObjIntConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -503,7 +503,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ObjLongConsumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingObjLongConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -539,7 +539,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ObjDoubleConsumer}.
+	 * Removes checked exceptions from method signature of {@code ThrowingObjDoubleConsumer}.
 	 * <p>
 	 * If {@code consumer} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -575,7 +575,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code Predicate}.
+	 * Removes checked exceptions from method signature of {@code ThrowingPredicate}.
 	 * <p>
 	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -611,7 +611,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntPredicate}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntPredicate}.
 	 * <p>
 	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -647,7 +647,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongPredicate}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongPredicate}.
 	 * <p>
 	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -683,7 +683,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoublePredicate}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoublePredicate}.
 	 * <p>
 	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -719,7 +719,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code BiPredicate}.
+	 * Removes checked exceptions from method signature of {@code ThrowingBiPredicate}.
 	 * <p>
 	 * If {@code predicate} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -755,7 +755,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code Function}.
+	 * Removes checked exceptions from method signature of {@code ThrowingFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -791,7 +791,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ToIntFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingToIntFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -827,7 +827,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -863,7 +863,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntToLongFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntToLongFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -899,7 +899,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntToDoubleFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntToDoubleFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -935,7 +935,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ToLongFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingToLongFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -971,7 +971,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1007,7 +1007,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongToIntFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongToIntFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1043,7 +1043,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongToDoubleFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongToDoubleFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1079,7 +1079,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ToDoubleFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingToDoubleFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1115,7 +1115,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoubleFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoubleFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1151,7 +1151,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoubleToIntFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoubleToIntFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1187,7 +1187,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoubleToLongFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoubleToLongFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1223,7 +1223,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code UnaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingUnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1259,7 +1259,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntUnaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntUnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1295,7 +1295,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongUnaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongUnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1331,7 +1331,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoubleUnaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoubleUnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1367,7 +1367,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code BiFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingBiFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1403,7 +1403,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ToIntBiFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingToIntBiFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1439,7 +1439,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ToLongBiFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingToLongBiFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1475,7 +1475,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code ToDoubleBiFunction}.
+	 * Removes checked exceptions from method signature of {@code ThrowingToDoubleBiFunction}.
 	 * <p>
 	 * If {@code function} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1511,7 +1511,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code BinaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingBinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1547,7 +1547,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code IntBinaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingIntBinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1583,7 +1583,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code LongBinaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingLongBinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1619,7 +1619,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code DoubleBinaryOperator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingDoubleBinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1655,7 +1655,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Removes checked exceptions from method signature of {@code Comparator}.
+	 * Removes checked exceptions from method signature of {@code ThrowingComparator}.
 	 * <p>
 	 * If {@code comparator} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1691,7 +1691,43 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Filters out checked exceptions while running {@code Runnable}.
+	 * Removes checked exceptions from method signature of {@code AutoCloseable}.
+	 * <p>
+	 * If {@code closeable} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
+	 * which usually converts it to an unchecked exception, which is then thrown by this method.
+	 * Null {@code closeable} is silently wrapped and causes {@code NullPointerException} when executed.
+	 * <p>
+	 * Typical usage: {@code try (var scope = Exceptions.sneak().closeable(openSomething()))}
+	 * 
+	 * @param closeable
+	 *            the {@code AutoCloseable} to be converted
+	 * @return converted {@code CloseableScope} free of checked exceptions
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
+	 * @see Exceptions
+	 */
+	public final CloseableScope closeable(AutoCloseable closeable) {
+		return new CheckedCloseableScope(closeable);
+	}
+	private final class CheckedCloseableScope implements CloseableScope {
+		private final AutoCloseable closeable;
+		CheckedCloseableScope(AutoCloseable closeable) {
+			this.closeable = closeable;
+		}
+		@Override
+		public void close() {
+			try {
+				closeable.close();
+			} catch (RuntimeException exception) {
+				throw exception;
+			} catch (Exception exception) {
+				throw handle(exception);
+			} catch (Throwable exception) {
+				throw SneakingHandler.sneak(exception);
+			}
+		}
+	}
+	/**
+	 * Filters out checked exceptions while running {@code ThrowingRunnable}.
 	 * <p>
 	 * If {@code runnable} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1717,7 +1753,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Filters out checked exceptions while running {@code Supplier}.
+	 * Filters out checked exceptions while running {@code ThrowingSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1744,7 +1780,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Filters out checked exceptions while running {@code IntSupplier}.
+	 * Filters out checked exceptions while running {@code ThrowingIntSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1771,7 +1807,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Filters out checked exceptions while running {@code LongSupplier}.
+	 * Filters out checked exceptions while running {@code ThrowingLongSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1798,7 +1834,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Filters out checked exceptions while running {@code DoubleSupplier}.
+	 * Filters out checked exceptions while running {@code ThrowingDoubleSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1825,7 +1861,7 @@ public abstract class CheckedExceptionHandler {
 		}
 	}
 	/**
-	 * Filters out checked exceptions while running {@code BooleanSupplier}.
+	 * Filters out checked exceptions while running {@code ThrowingBooleanSupplier}.
 	 * <p>
 	 * If {@code supplier} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
 	 * which usually converts it to an unchecked exception, which is then thrown by this method.

@@ -1128,6 +1128,30 @@ public class ExceptionFilterTest {
 		assertThat(collector.single(), instanceOf(NumberFormatException.class));
 	}
 	@Test
+	public void closeable_complete() {
+		FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+		CloseableScope lambda = mock(CloseableScope.class);
+		collector.closeable(lambda).close();
+		verify(lambda, only()).close();
+		assertTrue(collector.empty());
+	}
+	@Test
+	public void closeable_rethrow() {
+		FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+		assertThrows(NumberFormatException.class, () -> collector.closeable(() -> {
+			throw new NumberFormatException();
+		}).close());
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test
+	public void closeable_replace() {
+		FilteredExceptionCollector collector = new FilteredExceptionCollector(true);
+		assertThrows(CollectedException.class, () -> collector.closeable(() -> {
+			throw new NumberFormatException();
+		}).close());
+		assertThat(collector.single(), instanceOf(NumberFormatException.class));
+	}
+	@Test
 	public void run_complete() {
 		FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
 		Runnable lambda = mock(Runnable.class);

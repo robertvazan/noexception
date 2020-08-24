@@ -1543,6 +1543,39 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
+	 * Applies exception filter to {@code CloseableScope}.
+	 * <p>
+	 * If {@code closeable} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
+	 * {@code NullPointerException} from null {@code closeable} is caught too.
+	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
+	 * <p>
+	 * Typical usage: {@code try (var scope = Exceptions.log().passing().closeable(openSomething()))}
+	 * 
+	 * @param closeable
+	 *            the {@code CloseableScope} to wrap
+	 * @return wrapper that runs {@code CloseableScope} in a try-catch block
+	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
+	 * @see Exceptions
+	 */
+	public final CloseableScope closeable(CloseableScope closeable) {
+		return new FilteredCloseableScope(closeable);
+	}
+	private final class FilteredCloseableScope implements CloseableScope {
+		private final CloseableScope closeable;
+		FilteredCloseableScope(CloseableScope closeable) {
+			this.closeable = closeable;
+		}
+		@Override
+		public void close() {
+			try {
+				closeable.close();
+			} catch (Throwable exception) {
+				handle(exception);
+				throw exception;
+			}
+		}
+	}
+	/**
 	 * Filters exceptions while running {@code Runnable}.
 	 * <p>
 	 * If {@code runnable} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.

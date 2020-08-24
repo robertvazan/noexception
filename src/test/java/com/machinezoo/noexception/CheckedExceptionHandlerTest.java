@@ -1309,6 +1309,34 @@ public class CheckedExceptionHandlerTest {
 		}).compare("input1", "input2"));
 	}
 	@Test
+	public void closeable_complete() throws Throwable {
+		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		AutoCloseable lambda = mock(AutoCloseable.class);
+		collector.closeable(lambda).close();
+		verify(lambda, only()).close();
+		assertTrue(collector.empty());
+	}
+	@Test
+	public void closeable_exception() {
+		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		assertThrows(CollectedException.class, () -> collector.closeable(() -> {
+			throw new PrinterException();
+		}).close());
+		assertThat(collector.single(), instanceOf(PrinterException.class));
+	}
+	@Test
+	public void closeable_runtime() {
+		assertThrows(NumberFormatException.class, () -> new CheckedExceptionCollector().closeable(() -> {
+			throw new NumberFormatException();
+		}).close());
+	}
+	@Test
+	public void closeable_error() {
+		assertThrows(ServiceConfigurationError.class, () -> new CheckedExceptionCollector().closeable(() -> {
+			throw new ServiceConfigurationError("");
+		}).close());
+	}
+	@Test
 	public void run_complete() throws Throwable {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		ThrowingRunnable lambda = mock(ThrowingRunnable.class);
