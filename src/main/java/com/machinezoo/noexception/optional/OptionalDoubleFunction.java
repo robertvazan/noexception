@@ -9,7 +9,7 @@ import com.machinezoo.noexception.*;
 /**
  * Variation of {@link DoubleFunction} that returns {@link Optional} instead of the raw value.
  * {@code OptionalDoubleFunction} is typically obtained from {@link ExceptionHandler#fromDoubleFunction(DoubleFunction)},
- * in which case its return value is empty when the underlying {@code DoubleFunction} throws an exception.
+ * in which case its return value is empty when the underlying {@link DoubleFunction} throws an exception.
  * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <R>
@@ -22,26 +22,26 @@ public interface OptionalDoubleFunction<R> extends DoubleFunction<Optional<R>> {
 	/**
 	 * Variation of {@link DoubleFunction#apply(double)} that returns {@link Optional}.
 	 * If this {@code OptionalDoubleFunction} is obtained from {@link ExceptionHandler#fromDoubleFunction(DoubleFunction)},
-	 * the {@code Optional} will be empty only if the underlying {@code DoubleFunction} throws.
-	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code DoubleFunction} (possibly {@code null}).
+	 * the {@link Optional} will be empty only if the underlying {@link DoubleFunction} throws.
+	 * Otherwise the returned {@link Optional} just wraps the return value of underlying {@link DoubleFunction} (possibly {@code null}).
 	 * 
 	 * @param value
 	 *            see {@link DoubleFunction#apply(double)}
- * @return {@code Optional} typically wrapping return value of {@link DoubleFunction#apply(double)},
- *         or an empty {@code Optional} (typically signifying an exception)
+ * @return {@link Optional} typically wrapping return value of {@link DoubleFunction#apply(double)},
+ *         or an empty {@link Optional} (typically signifying an exception)
  * @see ExceptionHandler#fromDoubleFunction(DoubleFunction)
  * @see DoubleFunction#apply(double)
  */
 	@Override
 	Optional<R> apply(double value);
 	/**
-	 * Converts this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using default value.
-	 * The returned {@code DoubleFunction} will unwrap present value from the {@code Optional} if possible,
-	 * or return {@code result} if the {@code Optional} is empty.
+	 * Converts this {@code OptionalDoubleFunction} to plain {@link DoubleFunction} using default value.
+	 * The returned {@link DoubleFunction} will unwrap present value from the {@link Optional} if possible,
+	 * or return {@code result} if the {@link Optional} is empty.
 	 * 
 	 * @param result
-	 *            default value to return instead of an empty {@code Optional}
-	 * @return plain {@code DoubleFunction} that either unwraps {@code Optional} or returns default value
+	 *            default value to return instead of an empty {@link Optional}
+	 * @return plain {@link DoubleFunction} that either unwraps {@link Optional} or returns default value
 	 * @see #orElseGet(Supplier)
 	 * @see Optional#orElse(Object)
 	 */
@@ -49,13 +49,13 @@ public interface OptionalDoubleFunction<R> extends DoubleFunction<Optional<R>> {
 		return new DefaultDoubleFunction<R>(this, result);
 	}
 	/**
-	 * Converts this {@code OptionalDoubleFunction} to plain {@code DoubleFunction} using fallback {@code Supplier}.
-	 * The returned {@code DoubleFunction} will unwrap present value from the {@code Optional} if possible,
-	 * or fall back to calling {@code source} if the {@code Optional} is empty.
+	 * Converts this {@code OptionalDoubleFunction} to plain {@link DoubleFunction} using fallback {@link Supplier}.
+	 * The returned {@link DoubleFunction} will unwrap present value from the {@link Optional} if possible,
+	 * or fall back to calling {@code source} if the {@link Optional} is empty.
 	 * 
 	 * @param source
-	 *            {@code Supplier} to query for fallback value when {@code Optional} is empty
-	 * @return plain {@code DoubleFunction} that either unwraps {@code Optional} or falls back to {@code source}
+	 *            {@link Supplier} to query for fallback value when {@link Optional} is empty
+	 * @return plain {@link DoubleFunction} that either unwraps {@link Optional} or falls back to {@code source}
 	 * @see #orElse(Object)
 	 * @see Optional#orElseGet(Supplier)
 	 */

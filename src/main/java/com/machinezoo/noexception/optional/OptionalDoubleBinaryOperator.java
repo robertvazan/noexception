@@ -9,7 +9,7 @@ import com.machinezoo.noexception.*;
 /**
  * Variation of {@link DoubleBinaryOperator} that returns {@link OptionalDouble} instead of the raw value.
  * {@code OptionalDoubleBinaryOperator} is typically obtained from {@link ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)},
- * in which case its return value is empty when the underlying {@code DoubleBinaryOperator} throws an exception.
+ * in which case its return value is empty when the underlying {@link DoubleBinaryOperator} throws an exception.
  * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @see ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)
@@ -20,27 +20,27 @@ public interface OptionalDoubleBinaryOperator {
 	/**
 	 * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that returns {@link OptionalDouble}.
 	 * If this {@code OptionalDoubleBinaryOperator} is obtained from {@link ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)},
-	 * the {@code OptionalDouble} will be empty only if the underlying {@code DoubleBinaryOperator} throws.
-	 * Otherwise the returned {@code OptionalDouble} just wraps the return value of underlying {@code DoubleBinaryOperator}.
+	 * the {@link OptionalDouble} will be empty only if the underlying {@link DoubleBinaryOperator} throws.
+	 * Otherwise the returned {@link OptionalDouble} just wraps the return value of underlying {@link DoubleBinaryOperator}.
 	 * 
 	 * @param left
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
 	 * @param right
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
- * @return {@code OptionalDouble} typically wrapping return value of {@link DoubleBinaryOperator#applyAsDouble(double, double)},
- *         or an empty {@code OptionalDouble} (typically signifying an exception)
+ * @return {@link OptionalDouble} typically wrapping return value of {@link DoubleBinaryOperator#applyAsDouble(double, double)},
+ *         or an empty {@link OptionalDouble} (typically signifying an exception)
  * @see ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)
  * @see DoubleBinaryOperator#applyAsDouble(double, double)
  */
 	OptionalDouble apply(double left, double right);
 	/**
-	 * Converts this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using default value.
-	 * The returned {@code DoubleBinaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
-	 * or return {@code result} if the {@code OptionalDouble} is empty.
+	 * Converts this {@code OptionalDoubleBinaryOperator} to plain {@link DoubleBinaryOperator} using default value.
+	 * The returned {@link DoubleBinaryOperator} will unwrap present value from the {@link OptionalDouble} if possible,
+	 * or return {@code result} if the {@link OptionalDouble} is empty.
 	 * 
 	 * @param result
-	 *            default value to return instead of an empty {@code OptionalDouble}
-	 * @return plain {@code DoubleBinaryOperator} that either unwraps {@code OptionalDouble} or returns default value
+	 *            default value to return instead of an empty {@link OptionalDouble}
+	 * @return plain {@link DoubleBinaryOperator} that either unwraps {@link OptionalDouble} or returns default value
 	 * @see #orElseGet(DoubleSupplier)
 	 * @see OptionalDouble#orElse(double)
 	 */
@@ -48,13 +48,13 @@ public interface OptionalDoubleBinaryOperator {
 		return new DefaultDoubleBinaryOperator(this, result);
 	}
 	/**
-	 * Converts this {@code OptionalDoubleBinaryOperator} to plain {@code DoubleBinaryOperator} using fallback {@code DoubleSupplier}.
-	 * The returned {@code DoubleBinaryOperator} will unwrap present value from the {@code OptionalDouble} if possible,
-	 * or fall back to calling {@code source} if the {@code OptionalDouble} is empty.
+	 * Converts this {@code OptionalDoubleBinaryOperator} to plain {@link DoubleBinaryOperator} using fallback {@link DoubleSupplier}.
+	 * The returned {@link DoubleBinaryOperator} will unwrap present value from the {@link OptionalDouble} if possible,
+	 * or fall back to calling {@code source} if the {@link OptionalDouble} is empty.
 	 * 
 	 * @param source
-	 *            {@code DoubleSupplier} to query for fallback value when {@code OptionalDouble} is empty
-	 * @return plain {@code DoubleBinaryOperator} that either unwraps {@code OptionalDouble} or falls back to {@code source}
+	 *            {@link DoubleSupplier} to query for fallback value when {@link OptionalDouble} is empty
+	 * @return plain {@link DoubleBinaryOperator} that either unwraps {@link OptionalDouble} or falls back to {@code source}
 	 * @see #orElse(double)
 	 * @see OptionalDouble#orElseGet(DoubleSupplier)
 	 */

@@ -9,7 +9,7 @@ import com.machinezoo.noexception.*;
 /**
  * Variation of {@link IntFunction} that returns {@link Optional} instead of the raw value.
  * {@code OptionalIntFunction} is typically obtained from {@link ExceptionHandler#fromIntFunction(IntFunction)},
- * in which case its return value is empty when the underlying {@code IntFunction} throws an exception.
+ * in which case its return value is empty when the underlying {@link IntFunction} throws an exception.
  * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * 
  * @param <R>
@@ -22,26 +22,26 @@ public interface OptionalIntFunction<R> extends IntFunction<Optional<R>> {
 	/**
 	 * Variation of {@link IntFunction#apply(int)} that returns {@link Optional}.
 	 * If this {@code OptionalIntFunction} is obtained from {@link ExceptionHandler#fromIntFunction(IntFunction)},
-	 * the {@code Optional} will be empty only if the underlying {@code IntFunction} throws.
-	 * Otherwise the returned {@code Optional} just wraps the return value of underlying {@code IntFunction} (possibly {@code null}).
+	 * the {@link Optional} will be empty only if the underlying {@link IntFunction} throws.
+	 * Otherwise the returned {@link Optional} just wraps the return value of underlying {@link IntFunction} (possibly {@code null}).
 	 * 
 	 * @param value
 	 *            see {@link IntFunction#apply(int)}
- * @return {@code Optional} typically wrapping return value of {@link IntFunction#apply(int)},
- *         or an empty {@code Optional} (typically signifying an exception)
+ * @return {@link Optional} typically wrapping return value of {@link IntFunction#apply(int)},
+ *         or an empty {@link Optional} (typically signifying an exception)
  * @see ExceptionHandler#fromIntFunction(IntFunction)
  * @see IntFunction#apply(int)
  */
 	@Override
 	Optional<R> apply(int value);
 	/**
-	 * Converts this {@code OptionalIntFunction} to plain {@code IntFunction} using default value.
-	 * The returned {@code IntFunction} will unwrap present value from the {@code Optional} if possible,
-	 * or return {@code result} if the {@code Optional} is empty.
+	 * Converts this {@code OptionalIntFunction} to plain {@link IntFunction} using default value.
+	 * The returned {@link IntFunction} will unwrap present value from the {@link Optional} if possible,
+	 * or return {@code result} if the {@link Optional} is empty.
 	 * 
 	 * @param result
-	 *            default value to return instead of an empty {@code Optional}
-	 * @return plain {@code IntFunction} that either unwraps {@code Optional} or returns default value
+	 *            default value to return instead of an empty {@link Optional}
+	 * @return plain {@link IntFunction} that either unwraps {@link Optional} or returns default value
 	 * @see #orElseGet(Supplier)
 	 * @see Optional#orElse(Object)
 	 */
@@ -49,13 +49,13 @@ public interface OptionalIntFunction<R> extends IntFunction<Optional<R>> {
 		return new DefaultIntFunction<R>(this, result);
 	}
 	/**
-	 * Converts this {@code OptionalIntFunction} to plain {@code IntFunction} using fallback {@code Supplier}.
-	 * The returned {@code IntFunction} will unwrap present value from the {@code Optional} if possible,
-	 * or fall back to calling {@code source} if the {@code Optional} is empty.
+	 * Converts this {@code OptionalIntFunction} to plain {@link IntFunction} using fallback {@link Supplier}.
+	 * The returned {@link IntFunction} will unwrap present value from the {@link Optional} if possible,
+	 * or fall back to calling {@code source} if the {@link Optional} is empty.
 	 * 
 	 * @param source
-	 *            {@code Supplier} to query for fallback value when {@code Optional} is empty
-	 * @return plain {@code IntFunction} that either unwraps {@code Optional} or falls back to {@code source}
+	 *            {@link Supplier} to query for fallback value when {@link Optional} is empty
+	 * @return plain {@link IntFunction} that either unwraps {@link Optional} or falls back to {@code source}
 	 * @see #orElse(Object)
 	 * @see Optional#orElseGet(Supplier)
 	 */

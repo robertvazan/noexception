@@ -17,7 +17,7 @@ import com.machinezoo.noexception.optional.*;
  * All wrapping methods surround the functional interface with a try-catch block.
  * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
  * which applies exception handling policy (log, silence, ignore, custom).
- * {@code NullPointerException} from null functional interface is caught too.
+ * {@link NullPointerException} from {@code null} functional interface is caught too.
  * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
  * while non-void functional interfaces return empty {@link Optional}.
  * <p>
@@ -28,8 +28,8 @@ import com.machinezoo.noexception.optional.*;
  * and the various {@code getAsX} variants.
  * <p>
  * All non-void wrappers conform to some {@code OptionalX} functional interface, for example {@link OptionalSupplier},
- * that is identical to its non-optional variant from JDK except it returns {@code Optional} instead of raw value.
- * This {@code Optional} is empty in case of exception.
+ * that is identical to its non-optional variant from JDK except it returns {@link Optional} instead of raw value.
+ * This {@link Optional} is empty in case of exception.
  * Callers can use {@link Optional#orElse(Object)} and {@link Optional#orElseGet(Supplier)} and their
  * equivalents on {@code OptionalX} interfaces to provide fallback values.
  * 
@@ -88,17 +88,17 @@ public abstract class ExceptionHandler {
 		return new PassingFilter(this);
 	}
 	/**
-	 * Wraps {@code Runnable} in a try-catch block.
+	 * Wraps {@link Runnable} in a try-catch block.
 	 * <p>
 	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code runnable} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code runnable} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().runnable(() -> my_throwing_lambda)}
 	 * 
 	 * @param runnable
-	 *            the {@code Runnable} to wrap, usually a lambda
+	 *            the {@link Runnable} to wrap, usually a lambda
 	 * @return wrapper that runs {@code runnable} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -122,17 +122,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code Supplier} in a try-catch block.
+	 * Wraps {@link Supplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().supplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
-	 *            the {@code Supplier} to wrap, usually a lambda
+	 *            the {@link Supplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -157,17 +157,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntSupplier} in a try-catch block.
+	 * Wraps {@link IntSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
-	 *            the {@code IntSupplier} to wrap, usually a lambda
+	 *            the {@link IntSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -192,17 +192,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongSupplier} in a try-catch block.
+	 * Wraps {@link LongSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * Wrapper then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
-	 *            the {@code LongSupplier} to wrap, usually a lambda
+	 *            the {@link LongSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -227,17 +227,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoubleSupplier} in a try-catch block.
+	 * Wraps {@link DoubleSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * Wrapper then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
-	 *            the {@code DoubleSupplier} to wrap, usually a lambda
+	 *            the {@link DoubleSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -262,17 +262,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code BooleanSupplier} in a try-catch block.
+	 * Wraps {@link BooleanSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * Wrapper then returns empty {@link OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromBooleanSupplier(() -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param supplier
-	 *            the {@code BooleanSupplier} to wrap, usually a lambda
+	 *            the {@link BooleanSupplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@code supplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -297,17 +297,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code Consumer} in a try-catch block.
+	 * Wraps {@link Consumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().consumer(t -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code Consumer} to wrap, usually a lambda
+	 *            the {@link Consumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -331,17 +331,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntConsumer} in a try-catch block.
+	 * Wraps {@link IntConsumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntConsumer(v -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code IntConsumer} to wrap, usually a lambda
+	 *            the {@link IntConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -365,17 +365,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongConsumer} in a try-catch block.
+	 * Wraps {@link LongConsumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongConsumer(v -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code LongConsumer} to wrap, usually a lambda
+	 *            the {@link LongConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -399,17 +399,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoubleConsumer} in a try-catch block.
+	 * Wraps {@link DoubleConsumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleConsumer(v -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code DoubleConsumer} to wrap, usually a lambda
+	 *            the {@link DoubleConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -433,17 +433,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code BiConsumer} in a try-catch block.
+	 * Wraps {@link BiConsumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromBiConsumer((t, u) -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code BiConsumer} to wrap, usually a lambda
+	 *            the {@link BiConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -467,17 +467,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ObjIntConsumer} in a try-catch block.
+	 * Wraps {@link ObjIntConsumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromObjIntConsumer((t, v) -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code ObjIntConsumer} to wrap, usually a lambda
+	 *            the {@link ObjIntConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -501,17 +501,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ObjLongConsumer} in a try-catch block.
+	 * Wraps {@link ObjLongConsumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromObjLongConsumer((t, v) -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code ObjLongConsumer} to wrap, usually a lambda
+	 *            the {@link ObjLongConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -535,17 +535,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ObjDoubleConsumer} in a try-catch block.
+	 * Wraps {@link ObjDoubleConsumer} in a try-catch block.
 	 * <p>
 	 * If {@code consumer} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromObjDoubleConsumer((t, v) -> my_throwing_lambda)}
 	 * 
 	 * @param consumer
-	 *            the {@code ObjDoubleConsumer} to wrap, usually a lambda
+	 *            the {@link ObjDoubleConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@code consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -569,17 +569,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code Predicate} in a try-catch block.
+	 * Wraps {@link Predicate} in a try-catch block.
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
+	 * Wrapper then returns empty {@link OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().predicate(t -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
-	 *            the {@code Predicate} to wrap, usually a lambda
+	 *            the {@link Predicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -604,17 +604,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntPredicate} in a try-catch block.
+	 * Wraps {@link IntPredicate} in a try-catch block.
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
+	 * Wrapper then returns empty {@link OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntPredicate(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
-	 *            the {@code IntPredicate} to wrap, usually a lambda
+	 *            the {@link IntPredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -639,17 +639,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongPredicate} in a try-catch block.
+	 * Wraps {@link LongPredicate} in a try-catch block.
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
+	 * Wrapper then returns empty {@link OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongPredicate(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
-	 *            the {@code LongPredicate} to wrap, usually a lambda
+	 *            the {@link LongPredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -674,17 +674,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoublePredicate} in a try-catch block.
+	 * Wraps {@link DoublePredicate} in a try-catch block.
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
+	 * Wrapper then returns empty {@link OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoublePredicate(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
-	 *            the {@code DoublePredicate} to wrap, usually a lambda
+	 *            the {@link DoublePredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -709,17 +709,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code BiPredicate} in a try-catch block.
+	 * Wraps {@link BiPredicate} in a try-catch block.
 	 * <p>
 	 * If {@code predicate} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
-	 * Wrapper then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
+	 * Wrapper then returns empty {@link OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromBiPredicate((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param predicate
-	 *            the {@code BiPredicate} to wrap, usually a lambda
+	 *            the {@link BiPredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@code predicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -744,17 +744,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code Function} in a try-catch block.
+	 * Wraps {@link Function} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().function(t -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code Function} to wrap, usually a lambda
+	 *            the {@link Function} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -779,17 +779,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ToIntFunction} in a try-catch block.
+	 * Wraps {@link ToIntFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromToIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code ToIntFunction} to wrap, usually a lambda
+	 *            the {@link ToIntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -814,17 +814,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntFunction} in a try-catch block.
+	 * Wraps {@link IntFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code IntFunction} to wrap, usually a lambda
+	 *            the {@link IntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -849,17 +849,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntToLongFunction} in a try-catch block.
+	 * Wraps {@link IntToLongFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntToLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code IntToLongFunction} to wrap, usually a lambda
+	 *            the {@link IntToLongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -884,17 +884,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntToDoubleFunction} in a try-catch block.
+	 * Wraps {@link IntToDoubleFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntToDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code IntToDoubleFunction} to wrap, usually a lambda
+	 *            the {@link IntToDoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -919,17 +919,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ToLongFunction} in a try-catch block.
+	 * Wraps {@link ToLongFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromToLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code ToLongFunction} to wrap, usually a lambda
+	 *            the {@link ToLongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -954,17 +954,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongFunction} in a try-catch block.
+	 * Wraps {@link LongFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code LongFunction} to wrap, usually a lambda
+	 *            the {@link LongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -989,17 +989,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongToIntFunction} in a try-catch block.
+	 * Wraps {@link LongToIntFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongToIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code LongToIntFunction} to wrap, usually a lambda
+	 *            the {@link LongToIntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1024,17 +1024,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongToDoubleFunction} in a try-catch block.
+	 * Wraps {@link LongToDoubleFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongToDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code LongToDoubleFunction} to wrap, usually a lambda
+	 *            the {@link LongToDoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1059,17 +1059,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ToDoubleFunction} in a try-catch block.
+	 * Wraps {@link ToDoubleFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromToDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code ToDoubleFunction} to wrap, usually a lambda
+	 *            the {@link ToDoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1094,17 +1094,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoubleFunction} in a try-catch block.
+	 * Wraps {@link DoubleFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code DoubleFunction} to wrap, usually a lambda
+	 *            the {@link DoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1129,17 +1129,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoubleToIntFunction} in a try-catch block.
+	 * Wraps {@link DoubleToIntFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleToIntFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code DoubleToIntFunction} to wrap, usually a lambda
+	 *            the {@link DoubleToIntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1164,17 +1164,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoubleToLongFunction} in a try-catch block.
+	 * Wraps {@link DoubleToLongFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleToLongFunction(v -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code DoubleToLongFunction} to wrap, usually a lambda
+	 *            the {@link DoubleToLongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1199,17 +1199,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code UnaryOperator} in a try-catch block.
+	 * Wraps {@link UnaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code UnaryOperator} to wrap, usually a lambda
+	 *            the {@link UnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1234,17 +1234,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntUnaryOperator} in a try-catch block.
+	 * Wraps {@link IntUnaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code IntUnaryOperator} to wrap, usually a lambda
+	 *            the {@link IntUnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1269,17 +1269,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongUnaryOperator} in a try-catch block.
+	 * Wraps {@link LongUnaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code LongUnaryOperator} to wrap, usually a lambda
+	 *            the {@link LongUnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1304,17 +1304,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoubleUnaryOperator} in a try-catch block.
+	 * Wraps {@link DoubleUnaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleUnaryOperator(o -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code DoubleUnaryOperator} to wrap, usually a lambda
+	 *            the {@link DoubleUnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1339,17 +1339,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code BiFunction} in a try-catch block.
+	 * Wraps {@link BiFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code BiFunction} to wrap, usually a lambda
+	 *            the {@link BiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1374,17 +1374,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ToIntBiFunction} in a try-catch block.
+	 * Wraps {@link ToIntBiFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromToIntBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code ToIntBiFunction} to wrap, usually a lambda
+	 *            the {@link ToIntBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1409,17 +1409,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ToLongBiFunction} in a try-catch block.
+	 * Wraps {@link ToLongBiFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromToLongBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code ToLongBiFunction} to wrap, usually a lambda
+	 *            the {@link ToLongBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1444,17 +1444,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code ToDoubleBiFunction} in a try-catch block.
+	 * Wraps {@link ToDoubleBiFunction} in a try-catch block.
 	 * <p>
 	 * If {@code function} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code function} is caught too.
-	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
+	 * Wrapper then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromToDoubleBiFunction((t, u) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param function
-	 *            the {@code ToDoubleBiFunction} to wrap, usually a lambda
+	 *            the {@link ToDoubleBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@code function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1479,17 +1479,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code BinaryOperator} in a try-catch block.
+	 * Wraps {@link BinaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code BinaryOperator} to wrap, usually a lambda
+	 *            the {@link BinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1514,17 +1514,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code IntBinaryOperator} in a try-catch block.
+	 * Wraps {@link IntBinaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromIntBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code IntBinaryOperator} to wrap, usually a lambda
+	 *            the {@link IntBinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1549,17 +1549,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code LongBinaryOperator} in a try-catch block.
+	 * Wraps {@link LongBinaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromLongBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code LongBinaryOperator} to wrap, usually a lambda
+	 *            the {@link LongBinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1584,17 +1584,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code DoubleBinaryOperator} in a try-catch block.
+	 * Wraps {@link DoubleBinaryOperator} in a try-catch block.
 	 * <p>
 	 * If {@code operator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code operator} is caught too.
-	 * Wrapper then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
+	 * Wrapper then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().fromDoubleBinaryOperator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param operator
-	 *            the {@code DoubleBinaryOperator} to wrap, usually a lambda
+	 *            the {@link DoubleBinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code operator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1619,17 +1619,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code Comparator} in a try-catch block.
+	 * Wraps {@link Comparator} in a try-catch block.
 	 * <p>
 	 * If {@code comparator} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code comparator} is caught too.
-	 * Wrapper then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code comparator} is caught too.
+	 * Wrapper then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().comparator((l, r) -> my_throwing_lambda).orElse(fallback)}
 	 * 
 	 * @param comparator
-	 *            the {@code Comparator} to wrap, usually a lambda
+	 *            the {@link Comparator} to wrap, usually a lambda
 	 * @return wrapper that runs {@code comparator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1654,17 +1654,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Wraps {@code CloseableScope} in a try-catch block.
+	 * Wraps {@link CloseableScope} in a try-catch block.
 	 * <p>
 	 * If {@code closeable} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code closeable} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code closeable} is caught too.
 	 * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code try (var scope = Exceptions.log().closeable(openSomething()))}
 	 * 
 	 * @param closeable
-	 *            the {@code CloseableScope} to wrap
+	 *            the {@link CloseableScope} to wrap
 	 * @return wrapper that runs {@code closeable} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
@@ -1688,17 +1688,17 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Runs {@code Runnable} in a try-catch block.
+	 * Runs {@link Runnable} in a try-catch block.
 	 * <p>
 	 * If {@code runnable} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code runnable} is caught too.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code runnable} is caught too.
 	 * This method then completes normally unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().run(() -> my_throwing_lambda)}
 	 * 
 	 * @param runnable
-	 *            the {@code Runnable} to run, usually a lambda
+	 *            the {@link Runnable} to run, usually a lambda
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1711,18 +1711,18 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Runs {@code Supplier} in a try-catch block.
+	 * Runs {@link Supplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * This method then returns empty {@code Optional} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * This method then returns empty {@link Optional} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda)}
 	 * 
 	 * @param supplier
-	 *            the {@code Supplier} to run, usually a lambda
-	 * @return an {@code Optional} carrying {@code supplier} result or an empty {@code Optional} if exception was caught
+	 *            the {@link Supplier} to run, usually a lambda
+	 * @return an {@link Optional} carrying {@code supplier} result or an empty {@link Optional} if exception was caught
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1736,18 +1736,18 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Runs {@code IntSupplier} in a try-catch block.
+	 * Runs {@link IntSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * This method then returns empty {@code OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * This method then returns empty {@link OptionalInt} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().getAsInt(() -> my_throwing_lambda)}
 	 * 
 	 * @param supplier
-	 *            the {@code IntSupplier} to run, usually a lambda
-	 * @return an {@code OptionalInt} carrying {@code supplier} result or an empty {@code OptionalInt} if exception was caught
+	 *            the {@link IntSupplier} to run, usually a lambda
+	 * @return an {@link OptionalInt} carrying {@code supplier} result or an empty {@link OptionalInt} if exception was caught
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1761,18 +1761,18 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Runs {@code LongSupplier} in a try-catch block.
+	 * Runs {@link LongSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * This method then returns empty {@code OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * This method then returns empty {@link OptionalLong} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().getAsLong(() -> my_throwing_lambda)}
 	 * 
 	 * @param supplier
-	 *            the {@code LongSupplier} to run, usually a lambda
-	 * @return an {@code OptionalLong} carrying {@code supplier} result or an empty {@code OptionalLong} if exception was caught
+	 *            the {@link LongSupplier} to run, usually a lambda
+	 * @return an {@link OptionalLong} carrying {@code supplier} result or an empty {@link OptionalLong} if exception was caught
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1786,18 +1786,18 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Runs {@code DoubleSupplier} in a try-catch block.
+	 * Runs {@link DoubleSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * This method then returns empty {@code OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * This method then returns empty {@link OptionalDouble} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().getAsDouble(() -> my_throwing_lambda)}
 	 * 
 	 * @param supplier
-	 *            the {@code DoubleSupplier} to run, usually a lambda
-	 * @return an {@code OptionalDouble} carrying {@code supplier} result or an empty {@code OptionalDouble} if exception was caught
+	 *            the {@link DoubleSupplier} to run, usually a lambda
+	 * @return an {@link OptionalDouble} carrying {@code supplier} result or an empty {@link OptionalDouble} if exception was caught
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1811,18 +1811,18 @@ public abstract class ExceptionHandler {
 		}
 	}
 	/**
-	 * Runs {@code BooleanSupplier} in a try-catch block.
+	 * Runs {@link BooleanSupplier} in a try-catch block.
 	 * <p>
 	 * If {@code supplier} throws, the exception is caught and passed to {@link #handle(Throwable)},
-	 * which applies exception handling policy (log, ignore, pass, custom).
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
-	 * This method then returns empty {@code OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
+	 * which applies exception handling policy (log, silence, ignore, custom).
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
+	 * This method then returns empty {@link OptionalBoolean} unless {@link #handle(Throwable)} requests a rethrow.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().getAsBoolean(() -> my_throwing_lambda)}
 	 * 
 	 * @param supplier
-	 *            the {@code BooleanSupplier} to run, usually a lambda
-	 * @return an {@code OptionalBoolean} carrying {@code supplier} result or an empty {@code OptionalBoolean} if exception was caught
+	 *            the {@link BooleanSupplier} to run, usually a lambda
+	 * @return an {@link OptionalBoolean} carrying {@code supplier} result or an empty {@link OptionalBoolean} if exception was caught
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */

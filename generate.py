@@ -511,7 +511,7 @@ def optional_source(fn):
         /**
          * Variation of {@link ''' + fn + '} that returns {@link ' + raw_optional_return(fn) + '''} instead of the raw value.
          * {@code Optional''' + fn + '} is typically obtained from {@link ExceptionHandler#' + from_method(fn) + '(' + fn + ''')},
-         * in which case its return value is empty when the underlying {@code ''' + fn + '''} throws an exception.
+         * in which case its return value is empty when the underlying {@link ''' + fn + '''} throws an exception.
          * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
          * 
     ''')
@@ -531,8 +531,8 @@ def optional_source(fn):
             /**
              * Variation of {@link ''' + original_method_ref + '} that returns {@link ' + raw_optional_return(fn) + '''}.
              * If this {@code Optional''' + fn + '} is obtained from {@link ' + handler_method_ref + '''},
-             * the {@code ''' + raw_optional_return(fn) + '} will be empty only if the underlying {@code ' + fn + '''} throws.
-             * Otherwise the returned {@code ''' + raw_optional_return(fn) + '} just wraps the return value of underlying {@code ' + fn
+             * the {@link ''' + raw_optional_return(fn) + '} will be empty only if the underlying {@link ' + fn + '''} throws.
+             * Otherwise the returned {@link ''' + raw_optional_return(fn) + '} just wraps the return value of underlying {@link ' + fn
                 + '}' + (' (possibly {@code null})' if not is_primitive(return_type(fn)) else '') + '''.
              * 
     ''')
@@ -543,8 +543,8 @@ def optional_source(fn):
         ''', indent=1)
     raw_supplier = raw_type(supplier_of(return_type(fn)))
     output('''\
-             * @return {@code ''' + raw_optional_return(fn) + '} typically wrapping return value of {@link ' + original_method_ref + '''},
-             *         or an empty {@code ''' + raw_optional_return(fn) + '''} (typically signifying an exception)
+             * @return {@link ''' + raw_optional_return(fn) + '} typically wrapping return value of {@link ' + original_method_ref + '''},
+             *         or an empty {@link ''' + raw_optional_return(fn) + '''} (typically signifying an exception)
              * @see ''' + handler_method_ref + '''
              * @see ''' + original_method_ref + '''
              */
@@ -554,13 +554,13 @@ def optional_source(fn):
     output('''\
             ''' + optional_type(return_type(fn)) + ' ' + method_verb(fn) + '(' + declared_params(fn) + ''');
             /**
-             * Converts this {@code Optional''' + fn + '} to plain {@code ' + fn + '''} using default value.
-             * The returned {@code ''' + fn + '} will unwrap present value from the {@code ' + raw_optional_return(fn) + '''} if possible,
-             * or return {@code result} if the {@code ''' + raw_optional_return(fn) + '''} is empty.
+             * Converts this {@code Optional''' + fn + '} to plain {@link ' + fn + '''} using default value.
+             * The returned {@link ''' + fn + '} will unwrap present value from the {@link ' + raw_optional_return(fn) + '''} if possible,
+             * or return {@code result} if the {@link ''' + raw_optional_return(fn) + '''} is empty.
              * 
              * @param result
-             *            default value to return instead of an empty {@code ''' + raw_optional_return(fn) + '''}
-             * @return plain {@code ''' + fn + '} that either unwraps {@code ' + raw_optional_return(fn) + '''} or returns default value
+             *            default value to return instead of an empty {@link ''' + raw_optional_return(fn) + '''}
+             * @return plain {@link ''' + fn + '} that either unwraps {@link ' + raw_optional_return(fn) + '''} or returns default value
              * @see #orElseGet(''' + raw_supplier + ''')
              * @see ''' + raw_optional_return(fn) + '#orElse(' + erased_return(fn) + ''')
              */
@@ -568,13 +568,13 @@ def optional_source(fn):
                 return new Default''' + parameterized_type(fn) + '''(this, result);
             }
             /**
-             * Converts this {@code Optional''' + fn + '} to plain {@code ' + fn + '} using fallback {@code ' + raw_supplier + '''}.
-             * The returned {@code ''' + fn + '} will unwrap present value from the {@code ' + raw_optional_return(fn) + '''} if possible,
-             * or fall back to calling {@code source} if the {@code ''' + raw_optional_return(fn) + '''} is empty.
+             * Converts this {@code Optional''' + fn + '} to plain {@link ' + fn + '} using fallback {@link ' + raw_supplier + '''}.
+             * The returned {@link ''' + fn + '} will unwrap present value from the {@link ' + raw_optional_return(fn) + '''} if possible,
+             * or fall back to calling {@code source} if the {@link ''' + raw_optional_return(fn) + '''} is empty.
              * 
              * @param source
-             *            {@code ''' + raw_supplier + '} to query for fallback value when {@code ' + raw_optional_return(fn) + '''} is empty
-             * @return plain {@code ''' + fn + '} that either unwraps {@code ' + raw_optional_return(fn) + '''} or falls back to {@code source}
+             *            {@link ''' + raw_supplier + '} to query for fallback value when {@link ' + raw_optional_return(fn) + '''} is empty
+             * @return plain {@link ''' + fn + '} that either unwraps {@link ' + raw_optional_return(fn) + '''} or falls back to {@code source}
              * @see #orElse(''' + erased_return(fn) + ''')
              * @see ''' + raw_optional_return(fn) + '#orElseGet(' + raw_supplier + ''')
              */
@@ -602,7 +602,7 @@ def handler_source():
          * All wrapping methods surround the functional interface with a try-catch block.
          * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
          * which applies exception handling policy (log, silence, ignore, custom).
-         * {@code NullPointerException} from null functional interface is caught too.
+         * {@link NullPointerException} from {@code null} functional interface is caught too.
          * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
          * while non-void functional interfaces return empty {@link Optional}.
          * <p>
@@ -613,8 +613,8 @@ def handler_source():
          * and the various {@code getAsX} variants.
          * <p>
          * All non-void wrappers conform to some {@code OptionalX} functional interface, for example {@link OptionalSupplier},
-         * that is identical to its non-optional variant from JDK except it returns {@code Optional} instead of raw value.
-         * This {@code Optional} is empty in case of exception.
+         * that is identical to its non-optional variant from JDK except it returns {@link Optional} instead of raw value.
+         * This {@link Optional} is empty in case of exception.
          * Callers can use {@link Optional#orElse(Object)} and {@link Optional#orElseGet(Supplier)} and their
          * equivalents on {@code OptionalX} interfaces to provide fallback values.
          * 
@@ -676,16 +676,16 @@ def handler_source():
     for fn in functional_types():
         output('''\
             /**
-             * Wraps {@code ''' + fn + '''} in a try-catch block.
+             * Wraps {@link ''' + fn + '''} in a try-catch block.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws, the exception is caught and passed to {@link #handle(Throwable)},
-             * which applies exception handling policy (log, ignore, pass, custom).
-             * {@code NullPointerException} from null {@code ''' + short_name(fn) + '''} is caught too.
+             * which applies exception handling policy (log, silence, ignore, custom).
+             * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
         ''', indent=1)
         if void_functional(fn):
             output(' * Wrapper then completes normally unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
         else:
-            output(' * Wrapper then returns empty {@code ' + raw_optional_return(fn) + '} unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
+            output(' * Wrapper then returns empty {@link ' + raw_optional_return(fn) + '} unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
         wrapper_interface = ('' if void_functional(fn) else 'Optional') + parameterized_type(fn)
         def typical_usage():
             if fn == 'CloseableScope':
@@ -697,7 +697,7 @@ def handler_source():
              * Typical usage: {@code ''' + typical_usage() + '''}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
+             *            the {@link ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
              * @return wrapper that runs {@code ''' + short_name(fn) + '''} in a try-catch block
              * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
              * @see Exceptions
@@ -730,26 +730,26 @@ def handler_source():
     for fn in executable_functional_types():
         output('''\
             /**
-             * Runs {@code ''' + fn + '''} in a try-catch block.
+             * Runs {@link ''' + fn + '''} in a try-catch block.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws, the exception is caught and passed to {@link #handle(Throwable)},
-             * which applies exception handling policy (log, ignore, pass, custom).
-             * {@code NullPointerException} from null {@code ''' + short_name(fn) + '''} is caught too.
+             * which applies exception handling policy (log, silence, ignore, custom).
+             * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
         ''', indent=1)
         if void_functional(fn):
             output(' * This method then completes normally unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
         else:
-            output(' * This method then returns empty {@code ' + raw_optional_return(fn) + '} unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
+            output(' * This method then returns empty {@link ' + raw_optional_return(fn) + '} unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
         output('''\
              * <p>
              * Typical usage: {@code Exceptions.log().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda)}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
+             *            the {@link ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
         if not void_functional(fn):
-            output(' * @return an {@code ' + raw_optional_return(fn) + '} carrying {@code ' + short_name(fn)
-                   + '} result or an empty {@code ' + raw_optional_return(fn) + '} if exception was caught', indent=1)
+            output(' * @return an {@link ' + raw_optional_return(fn) + '} carrying {@code ' + short_name(fn)
+                   + '} result or an empty {@link ' + raw_optional_return(fn) + '} if exception was caught', indent=1)
         output('''\
              * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
              * @see Exceptions
@@ -786,7 +786,7 @@ def filter_source():
          * <p>
          * All wrapping methods surround the functional interface with a try-catch block.
          * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
-         * {@code NullPointerException} from null functional interface is caught too.
+         * {@link NullPointerException} from {@code null} functional interface is caught too.
          * Method {@link #handle(Throwable)} applies exception handling policy (log, count, ignore, etc.) and
          * throws a replacement or wrapping exception.
          * If it returns without throwing any exception, the original exception is rethrown.
@@ -836,17 +836,17 @@ def filter_source():
             return 'methodTaking' + fn + '(Exceptions.log().passing().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda))'
         output('''\
             /**
-             * Applies exception filter to {@code ''' + fn + '''}.
+             * Applies exception filter to {@link ''' + fn + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-             * {@code NullPointerException} from null {@code ''' + short_name(fn) + '''} is caught too.
+             * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
              * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
              * <p>
              * Typical usage: {@code ''' + typical_usage() + '''}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
-             * @return wrapper that runs {@code ''' + fn + '''} in a try-catch block
+             *            the {@link ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
+             * @return wrapper that runs {@link ''' + fn + '''} in a try-catch block
              * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
              * @see Exceptions
              */
@@ -873,16 +873,16 @@ def filter_source():
     for fn in executable_functional_types():
         output('''\
             /**
-             * Filters exceptions while running {@code ''' + fn + '''}.
+             * Filters exceptions while running {@link ''' + fn + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-             * {@code NullPointerException} from null {@code ''' + short_name(fn) + '''} is caught too.
+             * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
              * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
              * <p>
              * Typical usage: {@code Exceptions.log().passing().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
+             *            the {@link ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
         if not void_functional(fn):
             output(' * @return value returned from {@code ' + short_name(fn) + '}', indent=1)
@@ -924,7 +924,7 @@ def checked_source():
          * {@code CheckedExceptionHandler} does not stop propagation of any exceptions (checked or unchecked).
          * {@link ExceptionHandler} is used for that purpose.
          * The two classes can be used together by first downgrading checked exceptions with {@code CheckedExceptionHandler}
-         * and then applying exception handling policy with {@code ExceptionHandler}.
+         * and then applying exception handling policy with {@link ExceptionHandler}.
          * <p>
          * Combined usage: {@code Exceptions.log().get(Exceptions.sneak().supplier(() -> my_throwing_lambda)).orElse(fallback)}
          * <p>
@@ -957,7 +957,7 @@ def checked_source():
              * Caller is then expected to throw the returned exception.
              * There can be special cases like {@link Exceptions#sneak()}, which don't return at all.
              * <p>
-             * Callers should not pass in {@code RuntimeException} or other unchecked exceptions.
+             * Callers should not pass in {@link RuntimeException} or other unchecked exceptions.
              * This method might erroneously wrap such exceptions as if they are checked exceptions.
              * Methods of this class never pass unchecked exceptions to this method.
              * 
@@ -983,17 +983,17 @@ def checked_source():
             return 'methodTaking' + fn + '(Exceptions.sneak().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda))'
         output('''\
             /**
-             * Removes checked exceptions from method signature of {@code ''' + throwing_variant(fn) + '''}.
+             * Removes checked exceptions from method signature of {@link ''' + throwing_variant(fn) + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
              * which usually converts it to an unchecked exception, which is then thrown by this method.
-             * Null {@code ''' + short_name(fn) + '''} is silently wrapped and causes {@code NullPointerException} when executed.
+             * Null {@code ''' + short_name(fn) + '''} is silently wrapped and causes {@link NullPointerException} when executed.
              * <p>
              * Typical usage: {@code ''' + typical_usage() + '''}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + throwing_variant(fn) + '''} to be converted''' + usually_a_lambda(fn) + '''
-             * @return converted {@code ''' + fn + '''} free of checked exceptions
+             *            the {@link ''' + throwing_variant(fn) + '''} to be converted''' + usually_a_lambda(fn) + '''
+             * @return converted {@link ''' + fn + '''} free of checked exceptions
              * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
              * @see Exceptions
              */
@@ -1023,7 +1023,7 @@ def checked_source():
     for fn in executable_functional_types():
         output('''\
             /**
-             * Filters out checked exceptions while running {@code ''' + throwing_variant(fn) + '''}.
+             * Filters out checked exceptions while running {@link ''' + throwing_variant(fn) + '''}.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws a checked exception, the exception is caught and passed to {@link #handle(Exception)},
              * which usually converts it to an unchecked exception, which is then thrown by this method.
@@ -1031,7 +1031,7 @@ def checked_source():
              * Typical usage: {@code Exceptions.sneak().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
              * @param ''' + short_name(fn) + '''
-             *            the {@code ''' + throwing_variant(fn) + '''} to run''' + usually_a_lambda(fn) + '''
+             *            the {@link ''' + throwing_variant(fn) + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
         if not void_functional(fn):
             output(' * @return value returned from {@code ' + short_name(fn) + '}', indent=1)

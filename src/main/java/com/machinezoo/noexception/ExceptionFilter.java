@@ -15,7 +15,7 @@ import java.util.function.*;
  * <p>
  * All wrapping methods surround the functional interface with a try-catch block.
  * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
- * {@code NullPointerException} from null functional interface is caught too.
+ * {@link NullPointerException} from {@code null} functional interface is caught too.
  * Method {@link #handle(Throwable)} applies exception handling policy (log, count, ignore, etc.) and
  * throws a replacement or wrapping exception.
  * If it returns without throwing any exception, the original exception is rethrown.
@@ -58,17 +58,17 @@ public abstract class ExceptionFilter {
 	protected ExceptionFilter() {
 	}
 	/**
-	 * Applies exception filter to {@code Runnable}.
+	 * Applies exception filter to {@link Runnable}.
 	 * <p>
 	 * If {@code runnable} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code runnable} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code runnable} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingRunnable(Exceptions.log().passing().runnable(() -> my_throwing_lambda))}
 	 * 
 	 * @param runnable
-	 *            the {@code Runnable} to wrap, usually a lambda
-	 * @return wrapper that runs {@code Runnable} in a try-catch block
+	 *            the {@link Runnable} to wrap, usually a lambda
+	 * @return wrapper that runs {@link Runnable} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -91,17 +91,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code Supplier}.
+	 * Applies exception filter to {@link Supplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingSupplier(Exceptions.log().passing().supplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code Supplier} to wrap, usually a lambda
-	 * @return wrapper that runs {@code Supplier} in a try-catch block
+	 *            the {@link Supplier} to wrap, usually a lambda
+	 * @return wrapper that runs {@link Supplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -124,17 +124,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntSupplier}.
+	 * Applies exception filter to {@link IntSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntSupplier(Exceptions.log().passing().fromIntSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code IntSupplier} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntSupplier} in a try-catch block
+	 *            the {@link IntSupplier} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntSupplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -157,17 +157,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongSupplier}.
+	 * Applies exception filter to {@link LongSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongSupplier(Exceptions.log().passing().fromLongSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code LongSupplier} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongSupplier} in a try-catch block
+	 *            the {@link LongSupplier} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongSupplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -190,17 +190,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoubleSupplier}.
+	 * Applies exception filter to {@link DoubleSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleSupplier(Exceptions.log().passing().fromDoubleSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code DoubleSupplier} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoubleSupplier} in a try-catch block
+	 *            the {@link DoubleSupplier} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoubleSupplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -223,17 +223,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code BooleanSupplier}.
+	 * Applies exception filter to {@link BooleanSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingBooleanSupplier(Exceptions.log().passing().fromBooleanSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code BooleanSupplier} to wrap, usually a lambda
-	 * @return wrapper that runs {@code BooleanSupplier} in a try-catch block
+	 *            the {@link BooleanSupplier} to wrap, usually a lambda
+	 * @return wrapper that runs {@link BooleanSupplier} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -256,17 +256,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code Consumer}.
+	 * Applies exception filter to {@link Consumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingConsumer(Exceptions.log().passing().consumer(t -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code Consumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code Consumer} in a try-catch block
+	 *            the {@link Consumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link Consumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -289,17 +289,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntConsumer}.
+	 * Applies exception filter to {@link IntConsumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntConsumer(Exceptions.log().passing().fromIntConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code IntConsumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntConsumer} in a try-catch block
+	 *            the {@link IntConsumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntConsumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -322,17 +322,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongConsumer}.
+	 * Applies exception filter to {@link LongConsumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongConsumer(Exceptions.log().passing().fromLongConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code LongConsumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongConsumer} in a try-catch block
+	 *            the {@link LongConsumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongConsumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -355,17 +355,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoubleConsumer}.
+	 * Applies exception filter to {@link DoubleConsumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleConsumer(Exceptions.log().passing().fromDoubleConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code DoubleConsumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoubleConsumer} in a try-catch block
+	 *            the {@link DoubleConsumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoubleConsumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -388,17 +388,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code BiConsumer}.
+	 * Applies exception filter to {@link BiConsumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingBiConsumer(Exceptions.log().passing().fromBiConsumer((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code BiConsumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code BiConsumer} in a try-catch block
+	 *            the {@link BiConsumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link BiConsumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -421,17 +421,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ObjIntConsumer}.
+	 * Applies exception filter to {@link ObjIntConsumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingObjIntConsumer(Exceptions.log().passing().fromObjIntConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code ObjIntConsumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ObjIntConsumer} in a try-catch block
+	 *            the {@link ObjIntConsumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ObjIntConsumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -454,17 +454,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ObjLongConsumer}.
+	 * Applies exception filter to {@link ObjLongConsumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingObjLongConsumer(Exceptions.log().passing().fromObjLongConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code ObjLongConsumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ObjLongConsumer} in a try-catch block
+	 *            the {@link ObjLongConsumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ObjLongConsumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -487,17 +487,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ObjDoubleConsumer}.
+	 * Applies exception filter to {@link ObjDoubleConsumer}.
 	 * <p>
 	 * If {@code consumer} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code consumer} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingObjDoubleConsumer(Exceptions.log().passing().fromObjDoubleConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
-	 *            the {@code ObjDoubleConsumer} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ObjDoubleConsumer} in a try-catch block
+	 *            the {@link ObjDoubleConsumer} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ObjDoubleConsumer} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -520,17 +520,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code Predicate}.
+	 * Applies exception filter to {@link Predicate}.
 	 * <p>
 	 * If {@code predicate} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingPredicate(Exceptions.log().passing().predicate(t -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
-	 *            the {@code Predicate} to wrap, usually a lambda
-	 * @return wrapper that runs {@code Predicate} in a try-catch block
+	 *            the {@link Predicate} to wrap, usually a lambda
+	 * @return wrapper that runs {@link Predicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -553,17 +553,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntPredicate}.
+	 * Applies exception filter to {@link IntPredicate}.
 	 * <p>
 	 * If {@code predicate} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntPredicate(Exceptions.log().passing().fromIntPredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
-	 *            the {@code IntPredicate} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntPredicate} in a try-catch block
+	 *            the {@link IntPredicate} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntPredicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -586,17 +586,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongPredicate}.
+	 * Applies exception filter to {@link LongPredicate}.
 	 * <p>
 	 * If {@code predicate} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongPredicate(Exceptions.log().passing().fromLongPredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
-	 *            the {@code LongPredicate} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongPredicate} in a try-catch block
+	 *            the {@link LongPredicate} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongPredicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -619,17 +619,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoublePredicate}.
+	 * Applies exception filter to {@link DoublePredicate}.
 	 * <p>
 	 * If {@code predicate} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoublePredicate(Exceptions.log().passing().fromDoublePredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
-	 *            the {@code DoublePredicate} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoublePredicate} in a try-catch block
+	 *            the {@link DoublePredicate} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoublePredicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -652,17 +652,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code BiPredicate}.
+	 * Applies exception filter to {@link BiPredicate}.
 	 * <p>
 	 * If {@code predicate} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code predicate} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingBiPredicate(Exceptions.log().passing().fromBiPredicate((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
-	 *            the {@code BiPredicate} to wrap, usually a lambda
-	 * @return wrapper that runs {@code BiPredicate} in a try-catch block
+	 *            the {@link BiPredicate} to wrap, usually a lambda
+	 * @return wrapper that runs {@link BiPredicate} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -685,17 +685,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code Function}.
+	 * Applies exception filter to {@link Function}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingFunction(Exceptions.log().passing().function(t -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code Function} to wrap, usually a lambda
-	 * @return wrapper that runs {@code Function} in a try-catch block
+	 *            the {@link Function} to wrap, usually a lambda
+	 * @return wrapper that runs {@link Function} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -718,17 +718,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ToIntFunction}.
+	 * Applies exception filter to {@link ToIntFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingToIntFunction(Exceptions.log().passing().fromToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code ToIntFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ToIntFunction} in a try-catch block
+	 *            the {@link ToIntFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ToIntFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -751,17 +751,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntFunction}.
+	 * Applies exception filter to {@link IntFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntFunction(Exceptions.log().passing().fromIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code IntFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntFunction} in a try-catch block
+	 *            the {@link IntFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -784,17 +784,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntToLongFunction}.
+	 * Applies exception filter to {@link IntToLongFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntToLongFunction(Exceptions.log().passing().fromIntToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code IntToLongFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntToLongFunction} in a try-catch block
+	 *            the {@link IntToLongFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntToLongFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -817,17 +817,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntToDoubleFunction}.
+	 * Applies exception filter to {@link IntToDoubleFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntToDoubleFunction(Exceptions.log().passing().fromIntToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code IntToDoubleFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntToDoubleFunction} in a try-catch block
+	 *            the {@link IntToDoubleFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntToDoubleFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -850,17 +850,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ToLongFunction}.
+	 * Applies exception filter to {@link ToLongFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingToLongFunction(Exceptions.log().passing().fromToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code ToLongFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ToLongFunction} in a try-catch block
+	 *            the {@link ToLongFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ToLongFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -883,17 +883,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongFunction}.
+	 * Applies exception filter to {@link LongFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongFunction(Exceptions.log().passing().fromLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code LongFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongFunction} in a try-catch block
+	 *            the {@link LongFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -916,17 +916,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongToIntFunction}.
+	 * Applies exception filter to {@link LongToIntFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongToIntFunction(Exceptions.log().passing().fromLongToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code LongToIntFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongToIntFunction} in a try-catch block
+	 *            the {@link LongToIntFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongToIntFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -949,17 +949,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongToDoubleFunction}.
+	 * Applies exception filter to {@link LongToDoubleFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongToDoubleFunction(Exceptions.log().passing().fromLongToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code LongToDoubleFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongToDoubleFunction} in a try-catch block
+	 *            the {@link LongToDoubleFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongToDoubleFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -982,17 +982,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ToDoubleFunction}.
+	 * Applies exception filter to {@link ToDoubleFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingToDoubleFunction(Exceptions.log().passing().fromToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code ToDoubleFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ToDoubleFunction} in a try-catch block
+	 *            the {@link ToDoubleFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ToDoubleFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1015,17 +1015,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoubleFunction}.
+	 * Applies exception filter to {@link DoubleFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleFunction(Exceptions.log().passing().fromDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code DoubleFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoubleFunction} in a try-catch block
+	 *            the {@link DoubleFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoubleFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1048,17 +1048,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoubleToIntFunction}.
+	 * Applies exception filter to {@link DoubleToIntFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleToIntFunction(Exceptions.log().passing().fromDoubleToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code DoubleToIntFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoubleToIntFunction} in a try-catch block
+	 *            the {@link DoubleToIntFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoubleToIntFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1081,17 +1081,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoubleToLongFunction}.
+	 * Applies exception filter to {@link DoubleToLongFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleToLongFunction(Exceptions.log().passing().fromDoubleToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code DoubleToLongFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoubleToLongFunction} in a try-catch block
+	 *            the {@link DoubleToLongFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoubleToLongFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1114,17 +1114,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code UnaryOperator}.
+	 * Applies exception filter to {@link UnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingUnaryOperator(Exceptions.log().passing().fromUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code UnaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code UnaryOperator} in a try-catch block
+	 *            the {@link UnaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link UnaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1147,17 +1147,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntUnaryOperator}.
+	 * Applies exception filter to {@link IntUnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntUnaryOperator(Exceptions.log().passing().fromIntUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code IntUnaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntUnaryOperator} in a try-catch block
+	 *            the {@link IntUnaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntUnaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1180,17 +1180,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongUnaryOperator}.
+	 * Applies exception filter to {@link LongUnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongUnaryOperator(Exceptions.log().passing().fromLongUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code LongUnaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongUnaryOperator} in a try-catch block
+	 *            the {@link LongUnaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongUnaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1213,17 +1213,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoubleUnaryOperator}.
+	 * Applies exception filter to {@link DoubleUnaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleUnaryOperator(Exceptions.log().passing().fromDoubleUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code DoubleUnaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoubleUnaryOperator} in a try-catch block
+	 *            the {@link DoubleUnaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoubleUnaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1246,17 +1246,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code BiFunction}.
+	 * Applies exception filter to {@link BiFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingBiFunction(Exceptions.log().passing().fromBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code BiFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code BiFunction} in a try-catch block
+	 *            the {@link BiFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link BiFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1279,17 +1279,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ToIntBiFunction}.
+	 * Applies exception filter to {@link ToIntBiFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingToIntBiFunction(Exceptions.log().passing().fromToIntBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code ToIntBiFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ToIntBiFunction} in a try-catch block
+	 *            the {@link ToIntBiFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ToIntBiFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1312,17 +1312,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ToLongBiFunction}.
+	 * Applies exception filter to {@link ToLongBiFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingToLongBiFunction(Exceptions.log().passing().fromToLongBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code ToLongBiFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ToLongBiFunction} in a try-catch block
+	 *            the {@link ToLongBiFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ToLongBiFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1345,17 +1345,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code ToDoubleBiFunction}.
+	 * Applies exception filter to {@link ToDoubleBiFunction}.
 	 * <p>
 	 * If {@code function} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code function} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingToDoubleBiFunction(Exceptions.log().passing().fromToDoubleBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param function
-	 *            the {@code ToDoubleBiFunction} to wrap, usually a lambda
-	 * @return wrapper that runs {@code ToDoubleBiFunction} in a try-catch block
+	 *            the {@link ToDoubleBiFunction} to wrap, usually a lambda
+	 * @return wrapper that runs {@link ToDoubleBiFunction} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1378,17 +1378,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code BinaryOperator}.
+	 * Applies exception filter to {@link BinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingBinaryOperator(Exceptions.log().passing().fromBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code BinaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code BinaryOperator} in a try-catch block
+	 *            the {@link BinaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link BinaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1411,17 +1411,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code IntBinaryOperator}.
+	 * Applies exception filter to {@link IntBinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingIntBinaryOperator(Exceptions.log().passing().fromIntBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code IntBinaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code IntBinaryOperator} in a try-catch block
+	 *            the {@link IntBinaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link IntBinaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1444,17 +1444,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code LongBinaryOperator}.
+	 * Applies exception filter to {@link LongBinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingLongBinaryOperator(Exceptions.log().passing().fromLongBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code LongBinaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code LongBinaryOperator} in a try-catch block
+	 *            the {@link LongBinaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link LongBinaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1477,17 +1477,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code DoubleBinaryOperator}.
+	 * Applies exception filter to {@link DoubleBinaryOperator}.
 	 * <p>
 	 * If {@code operator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code operator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleBinaryOperator(Exceptions.log().passing().fromDoubleBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
-	 *            the {@code DoubleBinaryOperator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code DoubleBinaryOperator} in a try-catch block
+	 *            the {@link DoubleBinaryOperator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link DoubleBinaryOperator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1510,17 +1510,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code Comparator}.
+	 * Applies exception filter to {@link Comparator}.
 	 * <p>
 	 * If {@code comparator} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code comparator} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code comparator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code methodTakingComparator(Exceptions.log().passing().comparator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param comparator
-	 *            the {@code Comparator} to wrap, usually a lambda
-	 * @return wrapper that runs {@code Comparator} in a try-catch block
+	 *            the {@link Comparator} to wrap, usually a lambda
+	 * @return wrapper that runs {@link Comparator} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1543,17 +1543,17 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Applies exception filter to {@code CloseableScope}.
+	 * Applies exception filter to {@link CloseableScope}.
 	 * <p>
 	 * If {@code closeable} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code closeable} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code closeable} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code try (var scope = Exceptions.log().passing().closeable(openSomething()))}
 	 * 
 	 * @param closeable
-	 *            the {@code CloseableScope} to wrap
-	 * @return wrapper that runs {@code CloseableScope} in a try-catch block
+	 *            the {@link CloseableScope} to wrap
+	 * @return wrapper that runs {@link CloseableScope} in a try-catch block
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
 	 * @see Exceptions
 	 */
@@ -1576,16 +1576,16 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Filters exceptions while running {@code Runnable}.
+	 * Filters exceptions while running {@link Runnable}.
 	 * <p>
 	 * If {@code runnable} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code runnable} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code runnable} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().passing().run(() -> my_throwing_lambda))}
 	 * 
 	 * @param runnable
-	 *            the {@code Runnable} to run, usually a lambda
+	 *            the {@link Runnable} to run, usually a lambda
 	 * @throws NullPointerException
 	 *             if {@code runnable} is {@code null}
 	 * @see <a href="https://noexception.machinezoo.com/">Tutorial</a>
@@ -1600,16 +1600,16 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Filters exceptions while running {@code Supplier}.
+	 * Filters exceptions while running {@link Supplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code Supplier} to run, usually a lambda
+	 *            the {@link Supplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1625,16 +1625,16 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Filters exceptions while running {@code IntSupplier}.
+	 * Filters exceptions while running {@link IntSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().passing().getAsInt(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code IntSupplier} to run, usually a lambda
+	 *            the {@link IntSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1650,16 +1650,16 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Filters exceptions while running {@code LongSupplier}.
+	 * Filters exceptions while running {@link LongSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().passing().getAsLong(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code LongSupplier} to run, usually a lambda
+	 *            the {@link LongSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1675,16 +1675,16 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Filters exceptions while running {@code DoubleSupplier}.
+	 * Filters exceptions while running {@link DoubleSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().passing().getAsDouble(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code DoubleSupplier} to run, usually a lambda
+	 *            the {@link DoubleSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
@@ -1700,16 +1700,16 @@ public abstract class ExceptionFilter {
 		}
 	}
 	/**
-	 * Filters exceptions while running {@code BooleanSupplier}.
+	 * Filters exceptions while running {@link BooleanSupplier}.
 	 * <p>
 	 * If {@code supplier} throws an exception, the exception is caught and passed to {@link #handle(Throwable)}.
-	 * {@code NullPointerException} from null {@code supplier} is caught too.
+	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().passing().getAsBoolean(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
-	 *            the {@code BooleanSupplier} to run, usually a lambda
+	 *            the {@link BooleanSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}
 	 * @throws NullPointerException
 	 *             if {@code supplier} is {@code null}
