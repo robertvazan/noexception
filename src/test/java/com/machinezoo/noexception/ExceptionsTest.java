@@ -5,6 +5,8 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.*;
+import java.security.*;
+import java.util.function.*;
 import org.junit.jupiter.api.*;
 import uk.org.lidalia.slf4jtest.*;
 
@@ -171,7 +173,7 @@ public class ExceptionsTest {
 		assertEquals(1, sharedLogger.getLoggingEvents().size());
 		LoggingEvent event = sharedLogger.getLoggingEvents().get(0);
 		assertThat(event.getThrowable().orNull(), instanceOf(NumberFormatException.class));
-		assertEquals("Caught exception", event.getMessage());
+		assertEquals("Caught exception.", event.getMessage());
 	}
 	@Test
 	public void log_error() {
@@ -197,13 +199,48 @@ public class ExceptionsTest {
 		});
 		assertEquals(0, sharedLogger.getLoggingEvents().size());
 		assertEquals(1, customLogger.getLoggingEvents().size());
+		assertThrows(NullPointerException.class, () -> Exceptions.log(null));
 	}
 	@Test
-	public void logToWithMessage() {
-		Exceptions.log(customLogger, "Commented exception").run(() -> {
+	public void logWithMessage() {
+		Exceptions.log(customLogger, "Commented exception.").run(() -> {
 			throw new NumberFormatException();
 		});
 		assertEquals(1, customLogger.getLoggingEvents().size());
-		assertEquals("Commented exception", customLogger.getLoggingEvents().get(0).getMessage());
+		assertEquals("Commented exception.", customLogger.getLoggingEvents().get(0).getMessage());
+		assertThrows(NullPointerException.class, () -> Exceptions.log(null, "Message."));
+		assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (String)null));
+	}
+	@Test
+	public void logWithLazyMessage() {
+		Exceptions.log(customLogger, () -> "Lazy message.").run(() -> {
+			throw new NumberFormatException();
+		});
+		assertEquals(1, customLogger.getLoggingEvents().size());
+		assertEquals("Lazy message.", customLogger.getLoggingEvents().get(0).getMessage());
+		assertThrows(NullPointerException.class, () -> Exceptions.log(null, () -> "Message."));
+		assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (Supplier<String>)null));
+	}
+	@Test
+	public void logWithLazyMessage_null() {
+		Exceptions.log(customLogger, () -> null).run(() -> {
+			throw new NumberFormatException();
+		});
+		assertEquals(1, customLogger.getLoggingEvents().size());
+		LoggingEvent event = customLogger.getLoggingEvents().get(0);
+		assertThat(event.getThrowable().orNull(), instanceOf(NumberFormatException.class));
+	}
+	@Test
+	public void logWithLazyMessage_throwing() {
+		Exceptions.log(customLogger, () -> {
+			throw new InvalidParameterException();
+		}).run(() -> {
+			throw new NumberFormatException();
+		});
+		assertEquals(2, customLogger.getLoggingEvents().size());
+		LoggingEvent event1 = customLogger.getLoggingEvents().get(0);
+		assertThat(event1.getThrowable().orNull(), instanceOf(InvalidParameterException.class));
+		LoggingEvent event2 = customLogger.getLoggingEvents().get(1);
+		assertThat(event2.getThrowable().orNull(), instanceOf(NumberFormatException.class));
 	}
 }

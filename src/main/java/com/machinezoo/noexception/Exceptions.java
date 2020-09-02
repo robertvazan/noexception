@@ -1,6 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import java.util.*;
 import java.util.function.*;
 import org.slf4j.*;
 
@@ -17,7 +18,7 @@ import org.slf4j.*;
 public final class Exceptions {
 	private static final Logger logger = LoggerFactory.getLogger(Exceptions.class);
 	private static final IgnoringHandler ignore = new IgnoringHandler();
-	private static final LoggingHandler log = new LoggingHandler(logger, "Caught exception");
+	private static final LoggingHandler log = new LoggingHandler(logger, () -> "Caught exception.");
 	private static final SilencingHandler silence = new SilencingHandler();
 	private static final SneakingHandler sneak = new SneakingHandler();
 	private static final WrappingHandler wrap = new WrappingHandler();
@@ -81,15 +82,15 @@ public final class Exceptions {
 	 * @see #log(Logger, String)
 	 */
 	public static ExceptionHandler log(Logger logger) {
-		return new LoggingHandler(logger, "Caught exception.");
+		return new LoggingHandler(logger, () -> "Caught exception.");
 	}
 	/**
 	 * Creates {@code ExceptionHandler} that writes all exceptions to the specified {@code logger} with the specified {@code message}.
-	 * Most application code can use the more convenient {@link #log()} method.
-	 * This overload allows for differentiating or explanatory message.
 	 * If you just need to specify custom logger, use {@link #log(Logger)}.
+	 * This overload allows for differentiating or explanatory message.
+	 * If the message is expensive to construct, use {@link #log(Logger, Supplier)} method.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log(logger, "Caught exception").run(() -> my_throwing_lambda)}
+	 * Typical usage: {@code Exceptions.log(logger, "Failed to do X.").run(() -> my_throwing_lambda)}
 	 * <p>
 	 * No exceptions are allowed through, not even {@code Error}s.
 	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
@@ -101,10 +102,34 @@ public final class Exceptions {
 	 * @return exception handler with custom logger and message
 	 * @throws NullPointerException
 	 *             if {@code logger} or {@code message} is {@code null}
-	 * @see #log()
 	 * @see #log(Logger)
+	 * @see #log(Logger, Supplier)
 	 */
 	public static ExceptionHandler log(Logger logger, String message) {
+		Objects.requireNonNull(message);
+		return new LoggingHandler(logger, () -> message);
+	}
+	/**
+	 * Creates {@code ExceptionHandler} that writes all exceptions to the specified {@code logger} with lazily evaluated {@code message}.
+	 * If the message does not need lazy evaluation, use the {@link #log(Logger, String)} method.
+	 * This overload constructs expensive messages lazily only when exception is caught.
+	 * If {@code message} throws, the exception is logged and fallback message is used to log the original exception.
+	 * <p>
+	 * Typical usage: {@code Exceptions.log(logger, () -> "Exception in " + this).run(() -> my_throwing_lambda)}
+	 * <p>
+	 * No exceptions are allowed through, not even {@code Error}s.
+	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
+	 * 
+	 * @param logger
+	 *            where all exceptions are logged
+	 * @param message
+	 *            a {@link Supplier} that is lazily evaluated to generate log message
+	 * @return exception handler with custom logger and lazily evaluated message
+	 * @throws NullPointerException
+	 *             if {@code logger} or {@code message} is {@code null}
+	 * @see #log(Logger, String)
+	 */
+	public static ExceptionHandler log(Logger logger, Supplier<String> message) {
 		return new LoggingHandler(logger, message);
 	}
 	/**
