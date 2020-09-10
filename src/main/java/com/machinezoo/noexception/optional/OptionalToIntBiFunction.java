@@ -31,11 +31,11 @@ public interface OptionalToIntBiFunction<T, U> extends BiFunction<T, U, Optional
 	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
 	 * @param u
 	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
- * @return {@link OptionalInt} typically wrapping return value of {@link ToIntBiFunction#applyAsInt(Object, Object)},
- *         or an empty {@link OptionalInt} (typically signifying an exception)
- * @see ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)
- * @see ToIntBiFunction#applyAsInt(Object, Object)
- */
+	 * @return {@link OptionalInt} typically wrapping return value of {@link ToIntBiFunction#applyAsInt(Object, Object)},
+	 *         or an empty {@link OptionalInt} (typically signifying an exception)
+	 * @see ExceptionHandler#fromToIntBiFunction(ToIntBiFunction)
+	 * @see ToIntBiFunction#applyAsInt(Object, Object)
+	 */
 	@Override
 	OptionalInt apply(T t, U u);
 	/**

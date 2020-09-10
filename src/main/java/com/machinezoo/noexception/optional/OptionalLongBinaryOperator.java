@@ -27,11 +27,11 @@ public interface OptionalLongBinaryOperator {
 	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
 	 * @param right
 	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
- * @return {@link OptionalLong} typically wrapping return value of {@link LongBinaryOperator#applyAsLong(long, long)},
- *         or an empty {@link OptionalLong} (typically signifying an exception)
- * @see ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)
- * @see LongBinaryOperator#applyAsLong(long, long)
- */
+	 * @return {@link OptionalLong} typically wrapping return value of {@link LongBinaryOperator#applyAsLong(long, long)},
+	 *         or an empty {@link OptionalLong} (typically signifying an exception)
+	 * @see ExceptionHandler#fromLongBinaryOperator(LongBinaryOperator)
+	 * @see LongBinaryOperator#applyAsLong(long, long)
+	 */
 	OptionalLong apply(long left, long right);
 	/**
 	 * Converts this {@code OptionalLongBinaryOperator} to plain {@link LongBinaryOperator} using default value.

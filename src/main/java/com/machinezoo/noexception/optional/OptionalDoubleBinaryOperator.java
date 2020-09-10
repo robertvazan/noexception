@@ -27,11 +27,11 @@ public interface OptionalDoubleBinaryOperator {
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
 	 * @param right
 	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
- * @return {@link OptionalDouble} typically wrapping return value of {@link DoubleBinaryOperator#applyAsDouble(double, double)},
- *         or an empty {@link OptionalDouble} (typically signifying an exception)
- * @see ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)
- * @see DoubleBinaryOperator#applyAsDouble(double, double)
- */
+	 * @return {@link OptionalDouble} typically wrapping return value of {@link DoubleBinaryOperator#applyAsDouble(double, double)},
+	 *         or an empty {@link OptionalDouble} (typically signifying an exception)
+	 * @see ExceptionHandler#fromDoubleBinaryOperator(DoubleBinaryOperator)
+	 * @see DoubleBinaryOperator#applyAsDouble(double, double)
+	 */
 	OptionalDouble apply(double left, double right);
 	/**
 	 * Converts this {@code OptionalDoubleBinaryOperator} to plain {@link DoubleBinaryOperator} using default value.

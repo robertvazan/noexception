@@ -24,11 +24,11 @@ public interface OptionalLongPredicate {
 	 * 
 	 * @param value
 	 *            see {@link LongPredicate#test(long)}
- * @return {@link OptionalBoolean} typically wrapping return value of {@link LongPredicate#test(long)},
- *         or an empty {@link OptionalBoolean} (typically signifying an exception)
- * @see ExceptionHandler#fromLongPredicate(LongPredicate)
- * @see LongPredicate#test(long)
- */
+	 * @return {@link OptionalBoolean} typically wrapping return value of {@link LongPredicate#test(long)},
+	 *         or an empty {@link OptionalBoolean} (typically signifying an exception)
+	 * @see ExceptionHandler#fromLongPredicate(LongPredicate)
+	 * @see LongPredicate#test(long)
+	 */
 	OptionalBoolean test(long value);
 	/**
 	 * Converts this {@code OptionalLongPredicate} to plain {@link LongPredicate} using default value.

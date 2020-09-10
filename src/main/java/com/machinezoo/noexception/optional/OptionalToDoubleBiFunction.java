@@ -31,11 +31,11 @@ public interface OptionalToDoubleBiFunction<T, U> extends BiFunction<T, U, Optio
 	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
 	 * @param u
 	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
- * @return {@link OptionalDouble} typically wrapping return value of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)},
- *         or an empty {@link OptionalDouble} (typically signifying an exception)
- * @see ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)
- * @see ToDoubleBiFunction#applyAsDouble(Object, Object)
- */
+	 * @return {@link OptionalDouble} typically wrapping return value of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)},
+	 *         or an empty {@link OptionalDouble} (typically signifying an exception)
+	 * @see ExceptionHandler#fromToDoubleBiFunction(ToDoubleBiFunction)
+	 * @see ToDoubleBiFunction#applyAsDouble(Object, Object)
+	 */
 	@Override
 	OptionalDouble apply(T t, U u);
 	/**

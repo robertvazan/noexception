@@ -25,11 +25,11 @@ public interface OptionalDoubleUnaryOperator extends DoubleFunction<OptionalDoub
 	 * 
 	 * @param operand
 	 *            see {@link DoubleUnaryOperator#applyAsDouble(double)}
- * @return {@link OptionalDouble} typically wrapping return value of {@link DoubleUnaryOperator#applyAsDouble(double)},
- *         or an empty {@link OptionalDouble} (typically signifying an exception)
- * @see ExceptionHandler#fromDoubleUnaryOperator(DoubleUnaryOperator)
- * @see DoubleUnaryOperator#applyAsDouble(double)
- */
+	 * @return {@link OptionalDouble} typically wrapping return value of {@link DoubleUnaryOperator#applyAsDouble(double)},
+	 *         or an empty {@link OptionalDouble} (typically signifying an exception)
+	 * @see ExceptionHandler#fromDoubleUnaryOperator(DoubleUnaryOperator)
+	 * @see DoubleUnaryOperator#applyAsDouble(double)
+	 */
 	@Override
 	OptionalDouble apply(double operand);
 	/**

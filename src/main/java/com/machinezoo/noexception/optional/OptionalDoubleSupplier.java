@@ -23,11 +23,11 @@ public interface OptionalDoubleSupplier extends Supplier<OptionalDouble> {
 	 * the {@link OptionalDouble} will be empty only if the underlying {@link DoubleSupplier} throws.
 	 * Otherwise the returned {@link OptionalDouble} just wraps the return value of underlying {@link DoubleSupplier}.
 	 * 
- * @return {@link OptionalDouble} typically wrapping return value of {@link DoubleSupplier#getAsDouble()},
- *         or an empty {@link OptionalDouble} (typically signifying an exception)
- * @see ExceptionHandler#fromDoubleSupplier(DoubleSupplier)
- * @see DoubleSupplier#getAsDouble()
- */
+	 * @return {@link OptionalDouble} typically wrapping return value of {@link DoubleSupplier#getAsDouble()},
+	 *         or an empty {@link OptionalDouble} (typically signifying an exception)
+	 * @see ExceptionHandler#fromDoubleSupplier(DoubleSupplier)
+	 * @see DoubleSupplier#getAsDouble()
+	 */
 	@Override
 	OptionalDouble get();
 	/**

@@ -25,11 +25,11 @@ public interface OptionalSupplier<T> extends Supplier<Optional<T>> {
 	 * the {@link Optional} will be empty only if the underlying {@link Supplier} throws.
 	 * Otherwise the returned {@link Optional} just wraps the return value of underlying {@link Supplier} (possibly {@code null}).
 	 * 
- * @return {@link Optional} typically wrapping return value of {@link Supplier#get()},
- *         or an empty {@link Optional} (typically signifying an exception)
- * @see ExceptionHandler#supplier(Supplier)
- * @see Supplier#get()
- */
+	 * @return {@link Optional} typically wrapping return value of {@link Supplier#get()},
+	 *         or an empty {@link Optional} (typically signifying an exception)
+	 * @see ExceptionHandler#supplier(Supplier)
+	 * @see Supplier#get()
+	 */
 	@Override
 	Optional<T> get();
 	/**

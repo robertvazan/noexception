@@ -29,11 +29,11 @@ public interface OptionalComparator<T> {
 	 *            see {@link Comparator#compare(Object, Object)}
 	 * @param right
 	 *            see {@link Comparator#compare(Object, Object)}
- * @return {@link OptionalInt} typically wrapping return value of {@link Comparator#compare(Object, Object)},
- *         or an empty {@link OptionalInt} (typically signifying an exception)
- * @see ExceptionHandler#comparator(Comparator)
- * @see Comparator#compare(Object, Object)
- */
+	 * @return {@link OptionalInt} typically wrapping return value of {@link Comparator#compare(Object, Object)},
+	 *         or an empty {@link OptionalInt} (typically signifying an exception)
+	 * @see ExceptionHandler#comparator(Comparator)
+	 * @see Comparator#compare(Object, Object)
+	 */
 	OptionalInt compare(T left, T right);
 	/**
 	 * Converts this {@code OptionalComparator} to plain {@link Comparator} using default value.

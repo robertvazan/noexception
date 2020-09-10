@@ -22,11 +22,11 @@ public interface OptionalBooleanSupplier extends Supplier<OptionalBoolean> {
 	 * the {@link OptionalBoolean} will be empty only if the underlying {@link BooleanSupplier} throws.
 	 * Otherwise the returned {@link OptionalBoolean} just wraps the return value of underlying {@link BooleanSupplier}.
 	 * 
- * @return {@link OptionalBoolean} typically wrapping return value of {@link BooleanSupplier#getAsBoolean()},
- *         or an empty {@link OptionalBoolean} (typically signifying an exception)
- * @see ExceptionHandler#fromBooleanSupplier(BooleanSupplier)
- * @see BooleanSupplier#getAsBoolean()
- */
+	 * @return {@link OptionalBoolean} typically wrapping return value of {@link BooleanSupplier#getAsBoolean()},
+	 *         or an empty {@link OptionalBoolean} (typically signifying an exception)
+	 * @see ExceptionHandler#fromBooleanSupplier(BooleanSupplier)
+	 * @see BooleanSupplier#getAsBoolean()
+	 */
 	@Override
 	OptionalBoolean get();
 	/**

@@ -115,6 +115,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingSupplier(Exceptions.sneak().supplier(() -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Supplier}
 	 * @param supplier
 	 *            the {@link ThrowingSupplier} to be converted, usually a lambda
 	 * @return converted {@link Supplier} free of checked exceptions
@@ -295,6 +297,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingConsumer(Exceptions.sneak().consumer(t -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Consumer}
 	 * @param consumer
 	 *            the {@link ThrowingConsumer} to be converted, usually a lambda
 	 * @return converted {@link Consumer} free of checked exceptions
@@ -439,6 +443,10 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingBiConsumer(Exceptions.sneak().fromBiConsumer((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BiConsumer}
+	 * @param <U>
+	 *            see {@link BiConsumer}
 	 * @param consumer
 	 *            the {@link ThrowingBiConsumer} to be converted, usually a lambda
 	 * @return converted {@link BiConsumer} free of checked exceptions
@@ -475,6 +483,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingObjIntConsumer(Exceptions.sneak().fromObjIntConsumer((t, v) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ObjIntConsumer}
 	 * @param consumer
 	 *            the {@link ThrowingObjIntConsumer} to be converted, usually a lambda
 	 * @return converted {@link ObjIntConsumer} free of checked exceptions
@@ -511,6 +521,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingObjLongConsumer(Exceptions.sneak().fromObjLongConsumer((t, v) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ObjLongConsumer}
 	 * @param consumer
 	 *            the {@link ThrowingObjLongConsumer} to be converted, usually a lambda
 	 * @return converted {@link ObjLongConsumer} free of checked exceptions
@@ -547,6 +559,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingObjDoubleConsumer(Exceptions.sneak().fromObjDoubleConsumer((t, v) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ObjDoubleConsumer}
 	 * @param consumer
 	 *            the {@link ThrowingObjDoubleConsumer} to be converted, usually a lambda
 	 * @return converted {@link ObjDoubleConsumer} free of checked exceptions
@@ -583,6 +597,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingPredicate(Exceptions.sneak().predicate(t -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Predicate}
 	 * @param predicate
 	 *            the {@link ThrowingPredicate} to be converted, usually a lambda
 	 * @return converted {@link Predicate} free of checked exceptions
@@ -727,6 +743,10 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingBiPredicate(Exceptions.sneak().fromBiPredicate((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BiPredicate}
+	 * @param <U>
+	 *            see {@link BiPredicate}
 	 * @param predicate
 	 *            the {@link ThrowingBiPredicate} to be converted, usually a lambda
 	 * @return converted {@link BiPredicate} free of checked exceptions
@@ -763,6 +783,10 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingFunction(Exceptions.sneak().function(t -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Function}
+	 * @param <R>
+	 *            see {@link Function}
 	 * @param function
 	 *            the {@link ThrowingFunction} to be converted, usually a lambda
 	 * @return converted {@link Function} free of checked exceptions
@@ -799,6 +823,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingToIntFunction(Exceptions.sneak().fromToIntFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToIntFunction}
 	 * @param function
 	 *            the {@link ThrowingToIntFunction} to be converted, usually a lambda
 	 * @return converted {@link ToIntFunction} free of checked exceptions
@@ -835,6 +861,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingIntFunction(Exceptions.sneak().fromIntFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <R>
+	 *            see {@link IntFunction}
 	 * @param function
 	 *            the {@link ThrowingIntFunction} to be converted, usually a lambda
 	 * @return converted {@link IntFunction} free of checked exceptions
@@ -943,6 +971,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingToLongFunction(Exceptions.sneak().fromToLongFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToLongFunction}
 	 * @param function
 	 *            the {@link ThrowingToLongFunction} to be converted, usually a lambda
 	 * @return converted {@link ToLongFunction} free of checked exceptions
@@ -979,6 +1009,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingLongFunction(Exceptions.sneak().fromLongFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <R>
+	 *            see {@link LongFunction}
 	 * @param function
 	 *            the {@link ThrowingLongFunction} to be converted, usually a lambda
 	 * @return converted {@link LongFunction} free of checked exceptions
@@ -1087,6 +1119,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingToDoubleFunction(Exceptions.sneak().fromToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToDoubleFunction}
 	 * @param function
 	 *            the {@link ThrowingToDoubleFunction} to be converted, usually a lambda
 	 * @return converted {@link ToDoubleFunction} free of checked exceptions
@@ -1123,6 +1157,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleFunction(Exceptions.sneak().fromDoubleFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <R>
+	 *            see {@link DoubleFunction}
 	 * @param function
 	 *            the {@link ThrowingDoubleFunction} to be converted, usually a lambda
 	 * @return converted {@link DoubleFunction} free of checked exceptions
@@ -1231,6 +1267,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingUnaryOperator(Exceptions.sneak().fromUnaryOperator(o -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link UnaryOperator}
 	 * @param operator
 	 *            the {@link ThrowingUnaryOperator} to be converted, usually a lambda
 	 * @return converted {@link UnaryOperator} free of checked exceptions
@@ -1375,6 +1413,12 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingBiFunction(Exceptions.sneak().fromBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BiFunction}
+	 * @param <U>
+	 *            see {@link BiFunction}
+	 * @param <R>
+	 *            see {@link BiFunction}
 	 * @param function
 	 *            the {@link ThrowingBiFunction} to be converted, usually a lambda
 	 * @return converted {@link BiFunction} free of checked exceptions
@@ -1411,6 +1455,10 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingToIntBiFunction(Exceptions.sneak().fromToIntBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToIntBiFunction}
+	 * @param <U>
+	 *            see {@link ToIntBiFunction}
 	 * @param function
 	 *            the {@link ThrowingToIntBiFunction} to be converted, usually a lambda
 	 * @return converted {@link ToIntBiFunction} free of checked exceptions
@@ -1447,6 +1495,10 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingToLongBiFunction(Exceptions.sneak().fromToLongBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToLongBiFunction}
+	 * @param <U>
+	 *            see {@link ToLongBiFunction}
 	 * @param function
 	 *            the {@link ThrowingToLongBiFunction} to be converted, usually a lambda
 	 * @return converted {@link ToLongBiFunction} free of checked exceptions
@@ -1483,6 +1535,10 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingToDoubleBiFunction(Exceptions.sneak().fromToDoubleBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToDoubleBiFunction}
+	 * @param <U>
+	 *            see {@link ToDoubleBiFunction}
 	 * @param function
 	 *            the {@link ThrowingToDoubleBiFunction} to be converted, usually a lambda
 	 * @return converted {@link ToDoubleBiFunction} free of checked exceptions
@@ -1519,6 +1575,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingBinaryOperator(Exceptions.sneak().fromBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BinaryOperator}
 	 * @param operator
 	 *            the {@link ThrowingBinaryOperator} to be converted, usually a lambda
 	 * @return converted {@link BinaryOperator} free of checked exceptions
@@ -1663,6 +1721,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code methodTakingComparator(Exceptions.sneak().comparator((l, r) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Comparator}
 	 * @param comparator
 	 *            the {@link ThrowingComparator} to be converted, usually a lambda
 	 * @return converted {@link Comparator} free of checked exceptions
@@ -1760,6 +1820,8 @@ public abstract class CheckedExceptionHandler {
 	 * <p>
 	 * Typical usage: {@code Exceptions.sneak().get(() -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Supplier}
 	 * @param supplier
 	 *            the {@link ThrowingSupplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}

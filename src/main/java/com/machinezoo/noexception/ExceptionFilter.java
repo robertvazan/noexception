@@ -99,6 +99,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingSupplier(Exceptions.log().passing().supplier(() -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Supplier}
 	 * @param supplier
 	 *            the {@link Supplier} to wrap, usually a lambda
 	 * @return wrapper that runs {@link Supplier} in a try-catch block
@@ -264,6 +266,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingConsumer(Exceptions.log().passing().consumer(t -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Consumer}
 	 * @param consumer
 	 *            the {@link Consumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@link Consumer} in a try-catch block
@@ -396,6 +400,10 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingBiConsumer(Exceptions.log().passing().fromBiConsumer((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BiConsumer}
+	 * @param <U>
+	 *            see {@link BiConsumer}
 	 * @param consumer
 	 *            the {@link BiConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@link BiConsumer} in a try-catch block
@@ -429,6 +437,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingObjIntConsumer(Exceptions.log().passing().fromObjIntConsumer((t, v) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ObjIntConsumer}
 	 * @param consumer
 	 *            the {@link ObjIntConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ObjIntConsumer} in a try-catch block
@@ -462,6 +472,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingObjLongConsumer(Exceptions.log().passing().fromObjLongConsumer((t, v) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ObjLongConsumer}
 	 * @param consumer
 	 *            the {@link ObjLongConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ObjLongConsumer} in a try-catch block
@@ -495,6 +507,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingObjDoubleConsumer(Exceptions.log().passing().fromObjDoubleConsumer((t, v) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ObjDoubleConsumer}
 	 * @param consumer
 	 *            the {@link ObjDoubleConsumer} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ObjDoubleConsumer} in a try-catch block
@@ -528,6 +542,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingPredicate(Exceptions.log().passing().predicate(t -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Predicate}
 	 * @param predicate
 	 *            the {@link Predicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@link Predicate} in a try-catch block
@@ -660,6 +676,10 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingBiPredicate(Exceptions.log().passing().fromBiPredicate((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BiPredicate}
+	 * @param <U>
+	 *            see {@link BiPredicate}
 	 * @param predicate
 	 *            the {@link BiPredicate} to wrap, usually a lambda
 	 * @return wrapper that runs {@link BiPredicate} in a try-catch block
@@ -693,6 +713,10 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingFunction(Exceptions.log().passing().function(t -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Function}
+	 * @param <R>
+	 *            see {@link Function}
 	 * @param function
 	 *            the {@link Function} to wrap, usually a lambda
 	 * @return wrapper that runs {@link Function} in a try-catch block
@@ -726,6 +750,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingToIntFunction(Exceptions.log().passing().fromToIntFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToIntFunction}
 	 * @param function
 	 *            the {@link ToIntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ToIntFunction} in a try-catch block
@@ -759,6 +785,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingIntFunction(Exceptions.log().passing().fromIntFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <R>
+	 *            see {@link IntFunction}
 	 * @param function
 	 *            the {@link IntFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link IntFunction} in a try-catch block
@@ -858,6 +886,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingToLongFunction(Exceptions.log().passing().fromToLongFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToLongFunction}
 	 * @param function
 	 *            the {@link ToLongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ToLongFunction} in a try-catch block
@@ -891,6 +921,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingLongFunction(Exceptions.log().passing().fromLongFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <R>
+	 *            see {@link LongFunction}
 	 * @param function
 	 *            the {@link LongFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link LongFunction} in a try-catch block
@@ -990,6 +1022,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingToDoubleFunction(Exceptions.log().passing().fromToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToDoubleFunction}
 	 * @param function
 	 *            the {@link ToDoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ToDoubleFunction} in a try-catch block
@@ -1023,6 +1057,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingDoubleFunction(Exceptions.log().passing().fromDoubleFunction(v -> my_throwing_lambda))}
 	 * 
+	 * @param <R>
+	 *            see {@link DoubleFunction}
 	 * @param function
 	 *            the {@link DoubleFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link DoubleFunction} in a try-catch block
@@ -1122,6 +1158,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingUnaryOperator(Exceptions.log().passing().fromUnaryOperator(o -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link UnaryOperator}
 	 * @param operator
 	 *            the {@link UnaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@link UnaryOperator} in a try-catch block
@@ -1254,6 +1292,12 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingBiFunction(Exceptions.log().passing().fromBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BiFunction}
+	 * @param <U>
+	 *            see {@link BiFunction}
+	 * @param <R>
+	 *            see {@link BiFunction}
 	 * @param function
 	 *            the {@link BiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link BiFunction} in a try-catch block
@@ -1287,6 +1331,10 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingToIntBiFunction(Exceptions.log().passing().fromToIntBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToIntBiFunction}
+	 * @param <U>
+	 *            see {@link ToIntBiFunction}
 	 * @param function
 	 *            the {@link ToIntBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ToIntBiFunction} in a try-catch block
@@ -1320,6 +1368,10 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingToLongBiFunction(Exceptions.log().passing().fromToLongBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToLongBiFunction}
+	 * @param <U>
+	 *            see {@link ToLongBiFunction}
 	 * @param function
 	 *            the {@link ToLongBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ToLongBiFunction} in a try-catch block
@@ -1353,6 +1405,10 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingToDoubleBiFunction(Exceptions.log().passing().fromToDoubleBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link ToDoubleBiFunction}
+	 * @param <U>
+	 *            see {@link ToDoubleBiFunction}
 	 * @param function
 	 *            the {@link ToDoubleBiFunction} to wrap, usually a lambda
 	 * @return wrapper that runs {@link ToDoubleBiFunction} in a try-catch block
@@ -1386,6 +1442,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingBinaryOperator(Exceptions.log().passing().fromBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link BinaryOperator}
 	 * @param operator
 	 *            the {@link BinaryOperator} to wrap, usually a lambda
 	 * @return wrapper that runs {@link BinaryOperator} in a try-catch block
@@ -1518,6 +1576,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code methodTakingComparator(Exceptions.log().passing().comparator((l, r) -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Comparator}
 	 * @param comparator
 	 *            the {@link Comparator} to wrap, usually a lambda
 	 * @return wrapper that runs {@link Comparator} in a try-catch block
@@ -1608,6 +1668,8 @@ public abstract class ExceptionFilter {
 	 * <p>
 	 * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda))}
 	 * 
+	 * @param <T>
+	 *            see {@link Supplier}
 	 * @param supplier
 	 *            the {@link Supplier} to run, usually a lambda
 	 * @return value returned from {@code supplier}

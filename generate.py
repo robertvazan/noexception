@@ -380,6 +380,13 @@ def return_if_needed(type):
 def test_unchecked(functional):
     return '@SuppressWarnings("unchecked") ' if type_parameter_section(functional) else ''
 
+def type_param_javadoc(functional, *, indent=0):
+    for type in type_params(functional):
+        output('''\
+             * @param <''' + type+ '''>
+             *            see {@link ''' + functional + '''}
+        ''', indent=indent)
+
 # We can now proceed to generate the individual files.
 # We will first define some helper functions that simplify our code generators.
 
@@ -419,11 +426,7 @@ def throwing_source(fn):
          * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
          * 
     ''')
-    for type in type_params(fn):
-        output('''\
-             * @param <''' + type + '''>
-             *            see {@link ''' + fn + '''}
-        ''')
+    type_param_javadoc(fn)
     extends = extends_type(fn)
     throwing_extends = ' extends Throwing' + extends if extends else ''
     output('''\
@@ -515,11 +518,7 @@ def optional_source(fn):
          * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
          * 
     ''')
-    for type in type_params(fn):
-        output('''\
-             * @param <''' + type + '''>
-             *            see {@link ''' + fn + '''}
-        ''')
+    type_param_javadoc(fn)
     original_method_ref = fn + '#' + as_method(fn) + '(' + erased_params(fn) + ')'
     handler_method_ref = 'ExceptionHandler#' + from_method(fn) + '(' + fn + ')'
     output('''\
@@ -548,7 +547,7 @@ def optional_source(fn):
              * @see ''' + handler_method_ref + '''
              * @see ''' + original_method_ref + '''
              */
-            ''')
+            ''', indent=1)
     if optional_base(fn):
         output('@Override', indent=1)
     output('''\
@@ -696,6 +695,9 @@ def handler_source():
              * <p>
              * Typical usage: {@code ''' + typical_usage() + '''}
              * 
+        ''', indent=1)
+        type_param_javadoc(fn, indent=1)
+        output('''\
              * @param ''' + short_name(fn) + '''
              *            the {@link ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
              * @return wrapper that runs {@code ''' + short_name(fn) + '''} in a try-catch block
@@ -744,6 +746,9 @@ def handler_source():
              * <p>
              * Typical usage: {@code Exceptions.log().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda)}
              * 
+        ''', indent=1)
+        type_param_javadoc(fn, indent=1)
+        output('''\
              * @param ''' + short_name(fn) + '''
              *            the {@link ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
@@ -844,6 +849,9 @@ def filter_source():
              * <p>
              * Typical usage: {@code ''' + typical_usage() + '''}
              * 
+        ''', indent=1)
+        type_param_javadoc(fn, indent=1)
+        output('''\
              * @param ''' + short_name(fn) + '''
              *            the {@link ''' + fn + '''} to wrap''' + usually_a_lambda(fn) + '''
              * @return wrapper that runs {@link ''' + fn + '''} in a try-catch block
@@ -881,6 +889,9 @@ def filter_source():
              * <p>
              * Typical usage: {@code Exceptions.log().passing().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
+        ''', indent=1)
+        type_param_javadoc(fn, indent=1)
+        output('''\
              * @param ''' + short_name(fn) + '''
              *            the {@link ''' + fn + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
@@ -991,6 +1002,9 @@ def checked_source():
              * <p>
              * Typical usage: {@code ''' + typical_usage() + '''}
              * 
+        ''', indent=1)
+        type_param_javadoc(fn, indent=1)
+        output('''\
              * @param ''' + short_name(fn) + '''
              *            the {@link ''' + throwing_variant(fn) + '''} to be converted''' + usually_a_lambda(fn) + '''
              * @return converted {@link ''' + fn + '''} free of checked exceptions
@@ -1030,6 +1044,9 @@ def checked_source():
              * <p>
              * Typical usage: {@code Exceptions.sneak().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
+        ''', indent=1)
+        type_param_javadoc(fn, indent=1)
+        output('''\
              * @param ''' + short_name(fn) + '''
              *            the {@link ''' + throwing_variant(fn) + '''} to run''' + usually_a_lambda(fn) + '''
         ''', indent=1)
