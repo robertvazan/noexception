@@ -1,6 +1,8 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import java.util.*;
+
 /*
  * This interface could be named UncheckedCloseable, which would be more explicit,
  * but we want to support returning this interface directly from methods that open something
@@ -33,10 +35,13 @@ public interface CloseableScope extends AutoCloseable {
 	 * @param action
 	 *            the operation to perform after {@link #close()} is called
 	 * @return new {@code CloseableScope} that, when closed, first closes this {@code CloseableScope} and then executes {@code action}
+	 * @throws NullPointerException
+	 *             if {@code action} is {@code null}
 	 * 
 	 * @see #andFinally(Runnable)
 	 */
 	default CloseableScope andThen(Runnable action) {
+		Objects.requireNonNull(action);
 		return () -> {
 			close();
 			action.run();
@@ -45,20 +50,36 @@ public interface CloseableScope extends AutoCloseable {
 	/**
 	 * Creates extended {@code CloseableScope} that additionally runs specified {@code action} regardless of exceptions.
 	 * This is useful for quickly creating outer scopes that add extra operations to some inner scope.
-	 * If {@link #close()} throws, {@code action} runs anyway as if in {@code finally} block.
+	 * If {@link #close()} throws, {@code action} runs anyway as if in try-with-resources block.
+	 * If both {@link #close()}} and {@code action} throw, the exception from {@code action} is added
+	 * to suppressed exception list by calling {@link Throwable#addSuppressed(Throwable)}.
 	 * 
 	 * @param action
 	 *            the operation to perform after {@link #close()} is called
 	 * @return new {@code CloseableScope} that, when closed, first closes this {@code CloseableScope} and then executes {@code action}
+	 * @throws NullPointerException
+	 *             if {@code action} is {@code null}
 	 * 
 	 * @see #andThen(Runnable)
 	 */
 	default CloseableScope andFinally(Runnable action) {
+		Objects.requireNonNull(action);
 		return () -> {
+			Throwable exception = null;
 			try {
 				close();
+			} catch (Throwable ex) {
+				exception = ex;
+				throw ex;
 			} finally {
-				action.run();
+				if (exception != null) {
+					try {
+						action.run();
+					} catch (Throwable suppressed) {
+						exception.addSuppressed(suppressed);
+					}
+				} else
+					action.run();
 			}
 		};
 	}
