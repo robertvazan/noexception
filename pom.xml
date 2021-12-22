@@ -39,8 +39,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
 
 	<dependencies>
@@ -78,6 +77,11 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<!-- Needed for Java 11. -->
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.6.2</version>
+				</plugin>
 				<plugin>
 					<!-- Older surefire versions did not support JUnit 5. -->
 					<artifactId>maven-surefire-plugin</artifactId>

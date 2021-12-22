@@ -1407,8 +1407,8 @@ def checked_test():
         import static org.hamcrest.core.IsInstanceOf.*;
         import static org.junit.jupiter.api.Assertions.*;
         import static org.mockito.Mockito.*;
-        import java.awt.print.*;
         import java.util.*;
+        import java.util.zip.*;
         import org.junit.jupiter.api.*;
         import com.machinezoo.noexception.throwing.*;
         
@@ -1437,9 +1437,9 @@ def checked_test():
             public void ''' + from_method(fn) + '''_exception() {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
                 assertThrows(CollectedException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                    throw new PrinterException();
+                    throw new DataFormatException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
-                assertThat(collector.single(), instanceOf(PrinterException.class));
+                assertThat(collector.single(), instanceOf(DataFormatException.class));
             }
             @Test
             public void ''' + from_method(fn) + '''_runtime() {
@@ -1476,9 +1476,9 @@ def checked_test():
             public void ''' + as_method(fn) + '''_exception() {
                 CheckedExceptionCollector collector = new CheckedExceptionCollector();
                 assertThrows(CollectedException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
-                    throw new PrinterException();
+                    throw new DataFormatException();
                 }));
-                assertThat(collector.single(), instanceOf(PrinterException.class));
+                assertThat(collector.single(), instanceOf(DataFormatException.class));
             }
             @Test
             public void ''' + as_method(fn) + '''_runtime() {

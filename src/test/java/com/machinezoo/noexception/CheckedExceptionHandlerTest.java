@@ -6,8 +6,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import java.awt.print.*;
 import java.util.*;
+import java.util.zip.*;
 import org.junit.jupiter.api.*;
 import com.machinezoo.noexception.throwing.*;
 
@@ -24,9 +24,9 @@ public class CheckedExceptionHandlerTest {
 	public void runnable_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.runnable(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).run());
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void runnable_runtime() {
@@ -53,9 +53,9 @@ public class CheckedExceptionHandlerTest {
 	public void supplier_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.supplier(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).get());
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void supplier_runtime() {
@@ -82,9 +82,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntSupplier_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntSupplier(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).getAsInt());
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntSupplier_runtime() {
@@ -111,9 +111,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongSupplier_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongSupplier(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).getAsLong());
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongSupplier_runtime() {
@@ -140,9 +140,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoubleSupplier_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleSupplier(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).getAsDouble());
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoubleSupplier_runtime() {
@@ -169,9 +169,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromBooleanSupplier_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBooleanSupplier(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).getAsBoolean());
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromBooleanSupplier_runtime() {
@@ -197,9 +197,9 @@ public class CheckedExceptionHandlerTest {
 	public void consumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.consumer(t -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept("input"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void consumer_runtime() {
@@ -225,9 +225,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntConsumer(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept(1));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntConsumer_runtime() {
@@ -253,9 +253,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongConsumer(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept(1L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongConsumer_runtime() {
@@ -281,9 +281,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoubleConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleConsumer(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept(1.0));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoubleConsumer_runtime() {
@@ -309,9 +309,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromBiConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBiConsumer((t, u) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromBiConsumer_runtime() {
@@ -337,9 +337,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromObjIntConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromObjIntConsumer((t, v) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept("input", 1));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromObjIntConsumer_runtime() {
@@ -365,9 +365,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromObjLongConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromObjLongConsumer((t, v) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept("input", 1L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromObjLongConsumer_runtime() {
@@ -393,9 +393,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromObjDoubleConsumer_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromObjDoubleConsumer((t, v) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).accept("input", 1.0));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromObjDoubleConsumer_runtime() {
@@ -422,9 +422,9 @@ public class CheckedExceptionHandlerTest {
 	public void predicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.predicate(t -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).test("input"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void predicate_runtime() {
@@ -451,9 +451,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntPredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntPredicate(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).test(1));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntPredicate_runtime() {
@@ -480,9 +480,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongPredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongPredicate(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).test(1L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongPredicate_runtime() {
@@ -509,9 +509,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoublePredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoublePredicate(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).test(1.0));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoublePredicate_runtime() {
@@ -538,9 +538,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromBiPredicate_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBiPredicate((t, u) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).test("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromBiPredicate_runtime() {
@@ -567,9 +567,9 @@ public class CheckedExceptionHandlerTest {
 	public void function_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.function(t -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).apply("input"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void function_runtime() {
@@ -596,9 +596,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromToIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToIntFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsInt("input"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromToIntFunction_runtime() {
@@ -625,9 +625,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).apply(1));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntFunction_runtime() {
@@ -654,9 +654,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntToLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntToLongFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsLong(1));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntToLongFunction_runtime() {
@@ -683,9 +683,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntToDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntToDoubleFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsDouble(1));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntToDoubleFunction_runtime() {
@@ -712,9 +712,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromToLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToLongFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsLong("input"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromToLongFunction_runtime() {
@@ -741,9 +741,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).apply(1L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongFunction_runtime() {
@@ -770,9 +770,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongToIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongToIntFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsInt(1L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongToIntFunction_runtime() {
@@ -799,9 +799,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongToDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongToDoubleFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsDouble(1L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongToDoubleFunction_runtime() {
@@ -828,9 +828,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromToDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToDoubleFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsDouble("input"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromToDoubleFunction_runtime() {
@@ -857,9 +857,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoubleFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).apply(1.0));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoubleFunction_runtime() {
@@ -886,9 +886,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoubleToIntFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleToIntFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsInt(1.0));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoubleToIntFunction_runtime() {
@@ -915,9 +915,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoubleToLongFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleToLongFunction(v -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsLong(1.0));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoubleToLongFunction_runtime() {
@@ -944,9 +944,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromUnaryOperator(o -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).apply("input"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromUnaryOperator_runtime() {
@@ -973,9 +973,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntUnaryOperator(o -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsInt(1));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntUnaryOperator_runtime() {
@@ -1002,9 +1002,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongUnaryOperator(o -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsLong(1L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongUnaryOperator_runtime() {
@@ -1031,9 +1031,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoubleUnaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleUnaryOperator(o -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsDouble(1.0));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoubleUnaryOperator_runtime() {
@@ -1060,9 +1060,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBiFunction((t, u) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).apply("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromBiFunction_runtime() {
@@ -1089,9 +1089,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromToIntBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToIntBiFunction((t, u) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsInt("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromToIntBiFunction_runtime() {
@@ -1118,9 +1118,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromToLongBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToLongBiFunction((t, u) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsLong("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromToLongBiFunction_runtime() {
@@ -1147,9 +1147,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromToDoubleBiFunction_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToDoubleBiFunction((t, u) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsDouble("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromToDoubleBiFunction_runtime() {
@@ -1176,9 +1176,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBinaryOperator((l, r) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).apply("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromBinaryOperator_runtime() {
@@ -1205,9 +1205,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromIntBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntBinaryOperator((l, r) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsInt(11, 12));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromIntBinaryOperator_runtime() {
@@ -1234,9 +1234,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromLongBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongBinaryOperator((l, r) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsLong(11L, 12L));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromLongBinaryOperator_runtime() {
@@ -1263,9 +1263,9 @@ public class CheckedExceptionHandlerTest {
 	public void fromDoubleBinaryOperator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleBinaryOperator((l, r) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).applyAsDouble(1.1, 1.2));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void fromDoubleBinaryOperator_runtime() {
@@ -1292,9 +1292,9 @@ public class CheckedExceptionHandlerTest {
 	public void comparator_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.comparator((l, r) -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).compare("input1", "input2"));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void comparator_runtime() {
@@ -1320,9 +1320,9 @@ public class CheckedExceptionHandlerTest {
 	public void closeable_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.closeable(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}).close());
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void closeable_runtime() {
@@ -1348,9 +1348,9 @@ public class CheckedExceptionHandlerTest {
 	public void run_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.run(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void run_runtime() {
@@ -1377,9 +1377,9 @@ public class CheckedExceptionHandlerTest {
 	public void get_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.get(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void get_runtime() {
@@ -1406,9 +1406,9 @@ public class CheckedExceptionHandlerTest {
 	public void getAsInt_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsInt(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void getAsInt_runtime() {
@@ -1435,9 +1435,9 @@ public class CheckedExceptionHandlerTest {
 	public void getAsLong_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsLong(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void getAsLong_runtime() {
@@ -1464,9 +1464,9 @@ public class CheckedExceptionHandlerTest {
 	public void getAsDouble_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsDouble(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void getAsDouble_runtime() {
@@ -1493,9 +1493,9 @@ public class CheckedExceptionHandlerTest {
 	public void getAsBoolean_exception() {
 		CheckedExceptionCollector collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsBoolean(() -> {
-			throw new PrinterException();
+			throw new DataFormatException();
 		}));
-		assertThat(collector.single(), instanceOf(PrinterException.class));
+		assertThat(collector.single(), instanceOf(DataFormatException.class));
 	}
 	@Test
 	public void getAsBoolean_runtime() {
