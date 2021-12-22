@@ -14,7 +14,7 @@ import com.machinezoo.noexception.throwing.*;
 public class CheckedExceptionHandlerTest {
 	@Test
 	public void runnable_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingRunnable lambda = mock(ThrowingRunnable.class);
 		collector.runnable(lambda).run();
 		verify(lambda, only()).run();
@@ -22,7 +22,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void runnable_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.runnable(() -> {
 			throw new DataFormatException();
 		}).run());
@@ -42,7 +42,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void supplier_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingSupplier<String> lambda = mock(ThrowingSupplier.class);
 		when(lambda.get()).thenReturn("value");
 		assertEquals("value", collector.supplier(lambda).get());
@@ -51,7 +51,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void supplier_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.supplier(() -> {
 			throw new DataFormatException();
 		}).get());
@@ -71,7 +71,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntSupplier_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntSupplier lambda = mock(ThrowingIntSupplier.class);
 		when(lambda.getAsInt()).thenReturn(2);
 		assertEquals(2, collector.fromIntSupplier(lambda).getAsInt());
@@ -80,7 +80,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntSupplier_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntSupplier(() -> {
 			throw new DataFormatException();
 		}).getAsInt());
@@ -100,7 +100,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongSupplier_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongSupplier lambda = mock(ThrowingLongSupplier.class);
 		when(lambda.getAsLong()).thenReturn(2L);
 		assertEquals(2L, collector.fromLongSupplier(lambda).getAsLong());
@@ -109,7 +109,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongSupplier_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongSupplier(() -> {
 			throw new DataFormatException();
 		}).getAsLong());
@@ -129,7 +129,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleSupplier_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoubleSupplier lambda = mock(ThrowingDoubleSupplier.class);
 		when(lambda.getAsDouble()).thenReturn(2.0);
 		assertEquals(2.0, collector.fromDoubleSupplier(lambda).getAsDouble(), 0.1);
@@ -138,7 +138,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleSupplier_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleSupplier(() -> {
 			throw new DataFormatException();
 		}).getAsDouble());
@@ -158,7 +158,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBooleanSupplier_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingBooleanSupplier lambda = mock(ThrowingBooleanSupplier.class);
 		when(lambda.getAsBoolean()).thenReturn(true);
 		assertEquals(true, collector.fromBooleanSupplier(lambda).getAsBoolean());
@@ -167,7 +167,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBooleanSupplier_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBooleanSupplier(() -> {
 			throw new DataFormatException();
 		}).getAsBoolean());
@@ -187,7 +187,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void consumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingConsumer<String> lambda = mock(ThrowingConsumer.class);
 		collector.consumer(lambda).accept("input");
 		verify(lambda, only()).accept("input");
@@ -195,7 +195,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void consumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.consumer(t -> {
 			throw new DataFormatException();
 		}).accept("input"));
@@ -215,7 +215,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntConsumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntConsumer lambda = mock(ThrowingIntConsumer.class);
 		collector.fromIntConsumer(lambda).accept(1);
 		verify(lambda, only()).accept(1);
@@ -223,7 +223,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntConsumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntConsumer(v -> {
 			throw new DataFormatException();
 		}).accept(1));
@@ -243,7 +243,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongConsumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongConsumer lambda = mock(ThrowingLongConsumer.class);
 		collector.fromLongConsumer(lambda).accept(1L);
 		verify(lambda, only()).accept(1L);
@@ -251,7 +251,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongConsumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongConsumer(v -> {
 			throw new DataFormatException();
 		}).accept(1L));
@@ -271,7 +271,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleConsumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoubleConsumer lambda = mock(ThrowingDoubleConsumer.class);
 		collector.fromDoubleConsumer(lambda).accept(1.0);
 		verify(lambda, only()).accept(1.0);
@@ -279,7 +279,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleConsumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleConsumer(v -> {
 			throw new DataFormatException();
 		}).accept(1.0));
@@ -299,7 +299,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBiConsumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBiConsumer<String, String> lambda = mock(ThrowingBiConsumer.class);
 		collector.fromBiConsumer(lambda).accept("input1", "input2");
 		verify(lambda, only()).accept("input1", "input2");
@@ -307,7 +307,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBiConsumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBiConsumer((t, u) -> {
 			throw new DataFormatException();
 		}).accept("input1", "input2"));
@@ -327,7 +327,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromObjIntConsumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjIntConsumer<String> lambda = mock(ThrowingObjIntConsumer.class);
 		collector.fromObjIntConsumer(lambda).accept("input", 1);
 		verify(lambda, only()).accept("input", 1);
@@ -335,7 +335,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromObjIntConsumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromObjIntConsumer((t, v) -> {
 			throw new DataFormatException();
 		}).accept("input", 1));
@@ -355,7 +355,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromObjLongConsumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjLongConsumer<String> lambda = mock(ThrowingObjLongConsumer.class);
 		collector.fromObjLongConsumer(lambda).accept("input", 1L);
 		verify(lambda, only()).accept("input", 1L);
@@ -363,7 +363,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromObjLongConsumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromObjLongConsumer((t, v) -> {
 			throw new DataFormatException();
 		}).accept("input", 1L));
@@ -383,7 +383,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromObjDoubleConsumer_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingObjDoubleConsumer<String> lambda = mock(ThrowingObjDoubleConsumer.class);
 		collector.fromObjDoubleConsumer(lambda).accept("input", 1.0);
 		verify(lambda, only()).accept("input", 1.0);
@@ -391,7 +391,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromObjDoubleConsumer_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromObjDoubleConsumer((t, v) -> {
 			throw new DataFormatException();
 		}).accept("input", 1.0));
@@ -411,7 +411,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void predicate_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingPredicate<String> lambda = mock(ThrowingPredicate.class);
 		when(lambda.test("input")).thenReturn(true);
 		assertEquals(true, collector.predicate(lambda).test("input"));
@@ -420,7 +420,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void predicate_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.predicate(t -> {
 			throw new DataFormatException();
 		}).test("input"));
@@ -440,7 +440,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntPredicate_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntPredicate lambda = mock(ThrowingIntPredicate.class);
 		when(lambda.test(1)).thenReturn(true);
 		assertEquals(true, collector.fromIntPredicate(lambda).test(1));
@@ -449,7 +449,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntPredicate_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntPredicate(v -> {
 			throw new DataFormatException();
 		}).test(1));
@@ -469,7 +469,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongPredicate_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongPredicate lambda = mock(ThrowingLongPredicate.class);
 		when(lambda.test(1L)).thenReturn(true);
 		assertEquals(true, collector.fromLongPredicate(lambda).test(1L));
@@ -478,7 +478,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongPredicate_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongPredicate(v -> {
 			throw new DataFormatException();
 		}).test(1L));
@@ -498,7 +498,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoublePredicate_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoublePredicate lambda = mock(ThrowingDoublePredicate.class);
 		when(lambda.test(1.0)).thenReturn(true);
 		assertEquals(true, collector.fromDoublePredicate(lambda).test(1.0));
@@ -507,7 +507,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoublePredicate_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoublePredicate(v -> {
 			throw new DataFormatException();
 		}).test(1.0));
@@ -527,7 +527,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBiPredicate_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBiPredicate<String, String> lambda = mock(ThrowingBiPredicate.class);
 		when(lambda.test("input1", "input2")).thenReturn(true);
 		assertEquals(true, collector.fromBiPredicate(lambda).test("input1", "input2"));
@@ -536,7 +536,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBiPredicate_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBiPredicate((t, u) -> {
 			throw new DataFormatException();
 		}).test("input1", "input2"));
@@ -556,7 +556,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void function_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingFunction<String, String> lambda = mock(ThrowingFunction.class);
 		when(lambda.apply("input")).thenReturn("value");
 		assertEquals("value", collector.function(lambda).apply("input"));
@@ -565,7 +565,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void function_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.function(t -> {
 			throw new DataFormatException();
 		}).apply("input"));
@@ -585,7 +585,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToIntFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToIntFunction<String> lambda = mock(ThrowingToIntFunction.class);
 		when(lambda.applyAsInt("input")).thenReturn(2);
 		assertEquals(2, collector.fromToIntFunction(lambda).applyAsInt("input"));
@@ -594,7 +594,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToIntFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToIntFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsInt("input"));
@@ -614,7 +614,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingIntFunction<String> lambda = mock(ThrowingIntFunction.class);
 		when(lambda.apply(1)).thenReturn("value");
 		assertEquals("value", collector.fromIntFunction(lambda).apply(1));
@@ -623,7 +623,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntFunction(v -> {
 			throw new DataFormatException();
 		}).apply(1));
@@ -643,7 +643,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntToLongFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntToLongFunction lambda = mock(ThrowingIntToLongFunction.class);
 		when(lambda.applyAsLong(1)).thenReturn(2L);
 		assertEquals(2L, collector.fromIntToLongFunction(lambda).applyAsLong(1));
@@ -652,7 +652,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntToLongFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntToLongFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsLong(1));
@@ -672,7 +672,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntToDoubleFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntToDoubleFunction lambda = mock(ThrowingIntToDoubleFunction.class);
 		when(lambda.applyAsDouble(1)).thenReturn(2.0);
 		assertEquals(2.0, collector.fromIntToDoubleFunction(lambda).applyAsDouble(1), 0.1);
@@ -681,7 +681,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntToDoubleFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntToDoubleFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsDouble(1));
@@ -701,7 +701,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToLongFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToLongFunction<String> lambda = mock(ThrowingToLongFunction.class);
 		when(lambda.applyAsLong("input")).thenReturn(2L);
 		assertEquals(2L, collector.fromToLongFunction(lambda).applyAsLong("input"));
@@ -710,7 +710,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToLongFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToLongFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsLong("input"));
@@ -730,7 +730,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingLongFunction<String> lambda = mock(ThrowingLongFunction.class);
 		when(lambda.apply(1L)).thenReturn("value");
 		assertEquals("value", collector.fromLongFunction(lambda).apply(1L));
@@ -739,7 +739,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongFunction(v -> {
 			throw new DataFormatException();
 		}).apply(1L));
@@ -759,7 +759,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongToIntFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongToIntFunction lambda = mock(ThrowingLongToIntFunction.class);
 		when(lambda.applyAsInt(1L)).thenReturn(2);
 		assertEquals(2, collector.fromLongToIntFunction(lambda).applyAsInt(1L));
@@ -768,7 +768,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongToIntFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongToIntFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsInt(1L));
@@ -788,7 +788,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongToDoubleFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongToDoubleFunction lambda = mock(ThrowingLongToDoubleFunction.class);
 		when(lambda.applyAsDouble(1L)).thenReturn(2.0);
 		assertEquals(2.0, collector.fromLongToDoubleFunction(lambda).applyAsDouble(1L), 0.1);
@@ -797,7 +797,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongToDoubleFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongToDoubleFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsDouble(1L));
@@ -817,7 +817,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToDoubleFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToDoubleFunction<String> lambda = mock(ThrowingToDoubleFunction.class);
 		when(lambda.applyAsDouble("input")).thenReturn(2.0);
 		assertEquals(2.0, collector.fromToDoubleFunction(lambda).applyAsDouble("input"), 0.1);
@@ -826,7 +826,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToDoubleFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToDoubleFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsDouble("input"));
@@ -846,7 +846,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingDoubleFunction<String> lambda = mock(ThrowingDoubleFunction.class);
 		when(lambda.apply(1.0)).thenReturn("value");
 		assertEquals("value", collector.fromDoubleFunction(lambda).apply(1.0));
@@ -855,7 +855,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleFunction(v -> {
 			throw new DataFormatException();
 		}).apply(1.0));
@@ -875,7 +875,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleToIntFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoubleToIntFunction lambda = mock(ThrowingDoubleToIntFunction.class);
 		when(lambda.applyAsInt(1.0)).thenReturn(2);
 		assertEquals(2, collector.fromDoubleToIntFunction(lambda).applyAsInt(1.0));
@@ -884,7 +884,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleToIntFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleToIntFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsInt(1.0));
@@ -904,7 +904,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleToLongFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoubleToLongFunction lambda = mock(ThrowingDoubleToLongFunction.class);
 		when(lambda.applyAsLong(1.0)).thenReturn(2L);
 		assertEquals(2L, collector.fromDoubleToLongFunction(lambda).applyAsLong(1.0));
@@ -913,7 +913,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleToLongFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleToLongFunction(v -> {
 			throw new DataFormatException();
 		}).applyAsLong(1.0));
@@ -933,7 +933,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromUnaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingUnaryOperator<String> lambda = mock(ThrowingUnaryOperator.class);
 		when(lambda.apply("input")).thenReturn("value");
 		assertEquals("value", collector.fromUnaryOperator(lambda).apply("input"));
@@ -942,7 +942,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromUnaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromUnaryOperator(o -> {
 			throw new DataFormatException();
 		}).apply("input"));
@@ -962,7 +962,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntUnaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntUnaryOperator lambda = mock(ThrowingIntUnaryOperator.class);
 		when(lambda.applyAsInt(1)).thenReturn(2);
 		assertEquals(2, collector.fromIntUnaryOperator(lambda).applyAsInt(1));
@@ -971,7 +971,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntUnaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntUnaryOperator(o -> {
 			throw new DataFormatException();
 		}).applyAsInt(1));
@@ -991,7 +991,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongUnaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongUnaryOperator lambda = mock(ThrowingLongUnaryOperator.class);
 		when(lambda.applyAsLong(1L)).thenReturn(2L);
 		assertEquals(2L, collector.fromLongUnaryOperator(lambda).applyAsLong(1L));
@@ -1000,7 +1000,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongUnaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongUnaryOperator(o -> {
 			throw new DataFormatException();
 		}).applyAsLong(1L));
@@ -1020,7 +1020,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleUnaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoubleUnaryOperator lambda = mock(ThrowingDoubleUnaryOperator.class);
 		when(lambda.applyAsDouble(1.0)).thenReturn(2.0);
 		assertEquals(2.0, collector.fromDoubleUnaryOperator(lambda).applyAsDouble(1.0), 0.1);
@@ -1029,7 +1029,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleUnaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleUnaryOperator(o -> {
 			throw new DataFormatException();
 		}).applyAsDouble(1.0));
@@ -1049,7 +1049,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBiFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBiFunction<String, String, String> lambda = mock(ThrowingBiFunction.class);
 		when(lambda.apply("input1", "input2")).thenReturn("value");
 		assertEquals("value", collector.fromBiFunction(lambda).apply("input1", "input2"));
@@ -1058,7 +1058,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBiFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBiFunction((t, u) -> {
 			throw new DataFormatException();
 		}).apply("input1", "input2"));
@@ -1078,7 +1078,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToIntBiFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToIntBiFunction<String, String> lambda = mock(ThrowingToIntBiFunction.class);
 		when(lambda.applyAsInt("input1", "input2")).thenReturn(2);
 		assertEquals(2, collector.fromToIntBiFunction(lambda).applyAsInt("input1", "input2"));
@@ -1087,7 +1087,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToIntBiFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToIntBiFunction((t, u) -> {
 			throw new DataFormatException();
 		}).applyAsInt("input1", "input2"));
@@ -1107,7 +1107,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToLongBiFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToLongBiFunction<String, String> lambda = mock(ThrowingToLongBiFunction.class);
 		when(lambda.applyAsLong("input1", "input2")).thenReturn(2L);
 		assertEquals(2L, collector.fromToLongBiFunction(lambda).applyAsLong("input1", "input2"));
@@ -1116,7 +1116,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToLongBiFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToLongBiFunction((t, u) -> {
 			throw new DataFormatException();
 		}).applyAsLong("input1", "input2"));
@@ -1136,7 +1136,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToDoubleBiFunction_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingToDoubleBiFunction<String, String> lambda = mock(ThrowingToDoubleBiFunction.class);
 		when(lambda.applyAsDouble("input1", "input2")).thenReturn(2.0);
 		assertEquals(2.0, collector.fromToDoubleBiFunction(lambda).applyAsDouble("input1", "input2"), 0.1);
@@ -1145,7 +1145,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromToDoubleBiFunction_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromToDoubleBiFunction((t, u) -> {
 			throw new DataFormatException();
 		}).applyAsDouble("input1", "input2"));
@@ -1165,7 +1165,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBinaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingBinaryOperator<String> lambda = mock(ThrowingBinaryOperator.class);
 		when(lambda.apply("input1", "input2")).thenReturn("value");
 		assertEquals("value", collector.fromBinaryOperator(lambda).apply("input1", "input2"));
@@ -1174,7 +1174,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromBinaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromBinaryOperator((l, r) -> {
 			throw new DataFormatException();
 		}).apply("input1", "input2"));
@@ -1194,7 +1194,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntBinaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntBinaryOperator lambda = mock(ThrowingIntBinaryOperator.class);
 		when(lambda.applyAsInt(11, 12)).thenReturn(2);
 		assertEquals(2, collector.fromIntBinaryOperator(lambda).applyAsInt(11, 12));
@@ -1203,7 +1203,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromIntBinaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromIntBinaryOperator((l, r) -> {
 			throw new DataFormatException();
 		}).applyAsInt(11, 12));
@@ -1223,7 +1223,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongBinaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongBinaryOperator lambda = mock(ThrowingLongBinaryOperator.class);
 		when(lambda.applyAsLong(11L, 12L)).thenReturn(2L);
 		assertEquals(2L, collector.fromLongBinaryOperator(lambda).applyAsLong(11L, 12L));
@@ -1232,7 +1232,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromLongBinaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromLongBinaryOperator((l, r) -> {
 			throw new DataFormatException();
 		}).applyAsLong(11L, 12L));
@@ -1252,7 +1252,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleBinaryOperator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoubleBinaryOperator lambda = mock(ThrowingDoubleBinaryOperator.class);
 		when(lambda.applyAsDouble(1.1, 1.2)).thenReturn(2.0);
 		assertEquals(2.0, collector.fromDoubleBinaryOperator(lambda).applyAsDouble(1.1, 1.2), 0.1);
@@ -1261,7 +1261,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void fromDoubleBinaryOperator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.fromDoubleBinaryOperator((l, r) -> {
 			throw new DataFormatException();
 		}).applyAsDouble(1.1, 1.2));
@@ -1281,7 +1281,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void comparator_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingComparator<String> lambda = mock(ThrowingComparator.class);
 		when(lambda.compare("input1", "input2")).thenReturn(2);
 		assertEquals(2, collector.comparator(lambda).compare("input1", "input2"));
@@ -1290,7 +1290,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void comparator_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.comparator((l, r) -> {
 			throw new DataFormatException();
 		}).compare("input1", "input2"));
@@ -1310,7 +1310,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void closeable_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		AutoCloseable lambda = mock(AutoCloseable.class);
 		collector.closeable(lambda).close();
 		verify(lambda, only()).close();
@@ -1318,7 +1318,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void closeable_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.closeable(() -> {
 			throw new DataFormatException();
 		}).close());
@@ -1338,7 +1338,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void run_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingRunnable lambda = mock(ThrowingRunnable.class);
 		collector.run(lambda);
 		verify(lambda, only()).run();
@@ -1346,7 +1346,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void run_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.run(() -> {
 			throw new DataFormatException();
 		}));
@@ -1366,7 +1366,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void get_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		@SuppressWarnings("unchecked") ThrowingSupplier<String> lambda = mock(ThrowingSupplier.class);
 		when(lambda.get()).thenReturn("value");
 		assertEquals("value", collector.get(lambda));
@@ -1375,7 +1375,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void get_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.get(() -> {
 			throw new DataFormatException();
 		}));
@@ -1395,7 +1395,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsInt_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingIntSupplier lambda = mock(ThrowingIntSupplier.class);
 		when(lambda.getAsInt()).thenReturn(2);
 		assertEquals(2, collector.getAsInt(lambda));
@@ -1404,7 +1404,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsInt_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsInt(() -> {
 			throw new DataFormatException();
 		}));
@@ -1424,7 +1424,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsLong_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingLongSupplier lambda = mock(ThrowingLongSupplier.class);
 		when(lambda.getAsLong()).thenReturn(2L);
 		assertEquals(2L, collector.getAsLong(lambda));
@@ -1433,7 +1433,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsLong_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsLong(() -> {
 			throw new DataFormatException();
 		}));
@@ -1453,7 +1453,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsDouble_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingDoubleSupplier lambda = mock(ThrowingDoubleSupplier.class);
 		when(lambda.getAsDouble()).thenReturn(2.0);
 		assertEquals(2.0, collector.getAsDouble(lambda), 0.1);
@@ -1462,7 +1462,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsDouble_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsDouble(() -> {
 			throw new DataFormatException();
 		}));
@@ -1482,7 +1482,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsBoolean_complete() throws Throwable {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		ThrowingBooleanSupplier lambda = mock(ThrowingBooleanSupplier.class);
 		when(lambda.getAsBoolean()).thenReturn(true);
 		assertEquals(true, collector.getAsBoolean(lambda));
@@ -1491,7 +1491,7 @@ public class CheckedExceptionHandlerTest {
 	}
 	@Test
 	public void getAsBoolean_exception() {
-		CheckedExceptionCollector collector = new CheckedExceptionCollector();
+		var collector = new CheckedExceptionCollector();
 		assertThrows(CollectedException.class, () -> collector.getAsBoolean(() -> {
 			throw new DataFormatException();
 		}));

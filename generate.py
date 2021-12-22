@@ -1224,7 +1224,7 @@ def handler_test():
         output('''\
             @Test
             public void ''' + from_method(fn) + '''_complete() {
-                ExceptionCollector collector = new ExceptionCollector(true);
+                var collector = new ExceptionCollector(true);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
         if void_functional(fn):
@@ -1241,7 +1241,7 @@ def handler_test():
             }
             @Test
             public void ''' + from_method(fn) + '''_swallowException() {
-                ExceptionCollector collector = new ExceptionCollector(true);
+                var collector = new ExceptionCollector(true);
         ''', indent=1)
         if void_functional(fn):
             output('''\
@@ -1260,7 +1260,7 @@ def handler_test():
             }
             @Test
             public void ''' + from_method(fn) + '''_passException() {
-                ExceptionCollector collector = new ExceptionCollector(false);
+                var collector = new ExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }).''' + method_verb(fn) + '(' + test_input(fn) + '''));
@@ -1271,7 +1271,7 @@ def handler_test():
         output('''\
             @Test
             public void ''' + as_method(fn) + '''_complete() {
-                ExceptionCollector collector = new ExceptionCollector(true);
+                var collector = new ExceptionCollector(true);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
         if void_functional(fn):
@@ -1287,7 +1287,7 @@ def handler_test():
             }
             @Test
             public void ''' + as_method(fn) + '''_swallowException() {
-                ExceptionCollector collector = new ExceptionCollector(true);
+                var collector = new ExceptionCollector(true);
         ''', indent=1)
         if void_functional(fn):
             output('''\
@@ -1306,7 +1306,7 @@ def handler_test():
             }
             @Test
             public void ''' + as_method(fn) + '''_passException() {
-                ExceptionCollector collector = new ExceptionCollector(false);
+                var collector = new ExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }));
@@ -1332,7 +1332,7 @@ def filter_test():
         output('''\
             @Test
             public void ''' + from_method(fn) + '''_complete() {
-                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                var collector = new FilteredExceptionCollector(false);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
         if void_functional(fn):
@@ -1348,7 +1348,7 @@ def filter_test():
             }
             @Test
             public void ''' + from_method(fn) + '''_rethrow() {
-                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                var collector = new FilteredExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
@@ -1356,7 +1356,7 @@ def filter_test():
             }
             @Test
             public void ''' + from_method(fn) + '''_replace() {
-                FilteredExceptionCollector collector = new FilteredExceptionCollector(true);
+                var collector = new FilteredExceptionCollector(true);
                 assertThrows(CollectedException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
@@ -1367,7 +1367,7 @@ def filter_test():
         output('''\
             @Test
             public void ''' + as_method(fn) + '''_complete() {
-                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                var collector = new FilteredExceptionCollector(false);
                 ''' + test_unchecked(fn) + test_parameterized_type(fn) + ' lambda = mock(' + fn + '''.class);
         ''', indent=1)
         if void_functional(fn):
@@ -1383,7 +1383,7 @@ def filter_test():
             }
             @Test
             public void ''' + as_method(fn) + '''_pass() {
-                FilteredExceptionCollector collector = new FilteredExceptionCollector(false);
+                var collector = new FilteredExceptionCollector(false);
                 assertThrows(NumberFormatException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }));
@@ -1391,7 +1391,7 @@ def filter_test():
             }
             @Test
             public void ''' + as_method(fn) + '''_replace() {
-                FilteredExceptionCollector collector = new FilteredExceptionCollector(true);
+                var collector = new FilteredExceptionCollector(true);
                 assertThrows(CollectedException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new NumberFormatException();
                 }));
@@ -1418,7 +1418,7 @@ def checked_test():
         output('''\
             @Test
             public void ''' + from_method(fn) + '''_complete() throws Throwable {
-                CheckedExceptionCollector collector = new CheckedExceptionCollector();
+                var collector = new CheckedExceptionCollector();
                 ''' + test_unchecked(fn) + test_parameterized_throwing_variant(fn) + ' lambda = mock(' + throwing_variant(fn) + '''.class);
         ''', indent=1)
         if void_functional(fn):
@@ -1435,7 +1435,7 @@ def checked_test():
             }
             @Test
             public void ''' + from_method(fn) + '''_exception() {
-                CheckedExceptionCollector collector = new CheckedExceptionCollector();
+                var collector = new CheckedExceptionCollector();
                 assertThrows(CollectedException.class, () -> collector.''' + from_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new DataFormatException();
                 }).''' + as_method(fn) + '(' + test_input(fn) + '''));
@@ -1458,7 +1458,7 @@ def checked_test():
         output('''\
             @Test
             public void ''' + as_method(fn) + '''_complete() throws Throwable {
-                CheckedExceptionCollector collector = new CheckedExceptionCollector();
+                var collector = new CheckedExceptionCollector();
                 ''' + test_unchecked(fn) + test_parameterized_throwing_variant(fn) + ' lambda = mock(' + throwing_variant(fn) + '''.class);
         ''', indent=1)
         if void_functional(fn):
@@ -1474,7 +1474,7 @@ def checked_test():
             }
             @Test
             public void ''' + as_method(fn) + '''_exception() {
-                CheckedExceptionCollector collector = new CheckedExceptionCollector();
+                var collector = new CheckedExceptionCollector();
                 assertThrows(CollectedException.class, () -> collector.''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> {
                     throw new DataFormatException();
                 }));
