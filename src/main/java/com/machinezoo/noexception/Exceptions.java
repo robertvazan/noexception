@@ -39,7 +39,7 @@ public final class Exceptions {
 	 * This is an old deprecated alias for {@link #ignore()}.
 	 * 
 	 * @return pass-through exception handler
-	 * @deprecated
+	 * @deprecated Use {@link #ignore()} instead.
 	 */
 	@Deprecated
 	public static ExceptionHandler pass() {
