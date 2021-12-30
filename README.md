@@ -1,7 +1,7 @@
 # NoException #
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.machinezoo.noexception/noexception)](https://search.maven.org/artifact/com.machinezoo.noexception/noexception)
-[![Build Status](https://github.com/robertvazan/noexception/actions/workflows/build.yml/badge.svg)](https://github.com/robertvazan/noexception/actions/workflows/build.yml)
+[![Build Status](https://github.com/robertvazan/noexception/actions/workflows/build/badge.svg)](https://github.com/robertvazan/noexception/actions/workflows/build.yml)
 [![Coverage Status](https://codecov.io/gh/robertvazan/noexception/branch/master/graph/badge.svg)](https://codecov.io/gh/robertvazan/noexception)
 [![Mentioned in Awesome Java 8](https://awesome.re/mentioned-badge.svg)](https://github.com/tedyoung/awesome-java8)
 
