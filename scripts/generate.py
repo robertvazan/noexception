@@ -9,7 +9,7 @@ from textwrap import indent
 # Attempting to use relative paths would mess up the file tree depending on where the script runs.
 # We will instead locate java sources relative to the running script.
 
-rootdir = os.path.dirname(os.path.realpath(__file__))
+rootdir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sources = rootdir + '/src/main/java/com/machinezoo/noexception'
 tests = rootdir + '/src/test/java/com/machinezoo/noexception'
 
