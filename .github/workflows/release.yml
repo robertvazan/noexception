@@ -1,9 +1,6 @@
-name: Maven Release
 # GitHub Actions cannot run the whole release procedure.
 # Releases are initiated by running a script on developer machine, which then triggers this workflow via REST API.
-on:
-  repository_dispatch:
-    types: [release]
+on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
