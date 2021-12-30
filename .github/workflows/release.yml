@@ -1,3 +1,4 @@
+name: release
 # GitHub Actions cannot run the whole release procedure.
 # Releases are initiated by running a script on developer machine, which then triggers this workflow via REST API.
 on: workflow_dispatch
