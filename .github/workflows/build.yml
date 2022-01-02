@@ -6,14 +6,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
-        with:
-          distribution: temurin
-          java-version: 11
-          cache: maven
-      - name: Maven
-        run: mvn install jacoco:report -Dgpg.skip=true -Dmaven.javadoc.failOnWarnings=true -B -V
-      - uses: codecov/codecov-action@v2
+    uses: robertvazan/project-config/.github/workflows/java-build.yml@master
+    with:
+      java-version: 11
+      test-coverage: true
