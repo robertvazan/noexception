@@ -19,7 +19,7 @@ def dependencies():
     use_junit()
     use_hamcrest()
     use_mockito()
-    use('uk.org.lidalia:slf4j-test:1.2.0', 'test')
+    use('com.github.valfirst:slf4j-test:2.3.0', 'test')
 
 # No link to SLF4J, because automatic modules cannot be linked.
 def javadoc_links(): return []

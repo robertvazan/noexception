@@ -8,16 +8,13 @@ import java.io.*;
 import java.security.*;
 import java.util.function.*;
 import org.junit.jupiter.api.*;
-import uk.org.lidalia.slf4jtest.*;
+import org.junit.jupiter.api.extension.*;
+import com.github.valfirst.slf4jtest.*;
 
+@ExtendWith(TestLoggerFactoryExtension.class)
 public class ExceptionsTest {
 	TestLogger sharedLogger = TestLoggerFactory.getTestLogger(Exceptions.class);
 	TestLogger customLogger = TestLoggerFactory.getTestLogger(ExceptionsTest.class);
-	@BeforeEach
-	public void initialize() {
-		sharedLogger.clear();
-		customLogger.clear();
-	}
 	@Test
 	public void ignore_runtime() {
 		assertThrows(NumberFormatException.class, () -> {
@@ -172,7 +169,7 @@ public class ExceptionsTest {
 		});
 		assertEquals(1, sharedLogger.getLoggingEvents().size());
 		LoggingEvent event = sharedLogger.getLoggingEvents().get(0);
-		assertThat(event.getThrowable().orNull(), instanceOf(NumberFormatException.class));
+		assertThat(event.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
 		assertEquals("Caught exception.", event.getMessage());
 	}
 	@Test
@@ -181,7 +178,7 @@ public class ExceptionsTest {
 			throw new IOError(new IOException());
 		});
 		assertEquals(1, sharedLogger.getLoggingEvents().size());
-		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orNull(), instanceOf(IOError.class));
+		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(IOError.class));
 	}
 	@Test
 	public void log_interrupt() {
@@ -190,7 +187,7 @@ public class ExceptionsTest {
 		}));
 		assertTrue(Thread.interrupted());
 		assertEquals(1, sharedLogger.getLoggingEvents().size());
-		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orNull(), instanceOf(InterruptedException.class));
+		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(InterruptedException.class));
 	}
 	@Test
 	public void logTo() {
@@ -228,7 +225,7 @@ public class ExceptionsTest {
 		});
 		assertEquals(1, customLogger.getLoggingEvents().size());
 		LoggingEvent event = customLogger.getLoggingEvents().get(0);
-		assertThat(event.getThrowable().orNull(), instanceOf(NumberFormatException.class));
+		assertThat(event.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
 	}
 	@Test
 	public void logWithLazyMessage_throwing() {
@@ -239,8 +236,8 @@ public class ExceptionsTest {
 		});
 		assertEquals(2, customLogger.getLoggingEvents().size());
 		LoggingEvent event1 = customLogger.getLoggingEvents().get(0);
-		assertThat(event1.getThrowable().orNull(), instanceOf(InvalidParameterException.class));
+		assertThat(event1.getThrowable().orElse(null), instanceOf(InvalidParameterException.class));
 		LoggingEvent event2 = customLogger.getLoggingEvents().get(1);
-		assertThat(event2.getThrowable().orNull(), instanceOf(NumberFormatException.class));
+		assertThat(event2.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
 	}
 }
