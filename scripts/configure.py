@@ -2,14 +2,15 @@
 
 # We are assuming that project-config is available in sibling directory.
 # Checkout from https://github.com/robertvazan/project-config
+import os.path
 import sys
-sys.path.append('../../project-config/src')
+sys.path.append(os.path.normpath(os.path.join(__file__, '../../../project-config/src')))
 
 from java import *
 
+project_script_path = __file__
 repository_name = lambda: 'noexception'
 pretty_name = lambda: 'NoException'
-pom_version = lambda: '1.7.1'
 pom_description = lambda: 'Functional programming for exception handlers.'
 inception_year = lambda: 2017
 jdk_version = lambda: 11
