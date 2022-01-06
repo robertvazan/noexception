@@ -4,6 +4,7 @@ package com.machinezoo.noexception;
 import java.util.*;
 import java.util.function.*;
 import org.slf4j.*;
+import com.machinezoo.stagean.*;
 
 /**
  * Static methods for creating predefined exception handlers.
@@ -31,6 +32,7 @@ public final class Exceptions {
 	 * 
 	 * @return pass-through exception handler
 	 */
+	@DraftApi("Name is easy to confuse with silence(). Rename to propagate().")
 	public static ExceptionHandler ignore() {
 		return ignore;
 	}
@@ -60,6 +62,7 @@ public final class Exceptions {
 	 * @return logging exception handler
 	 * @see #log(Logger)
 	 */
+	@DraftApi("Move SLF4J handlers to separate module.")
 	public static ExceptionHandler log() {
 		return log;
 	}
@@ -81,6 +84,7 @@ public final class Exceptions {
 	 * @see #log()
 	 * @see #log(Logger, String)
 	 */
+	@DraftApi("Move SLF4J handlers to separate module.")
 	public static ExceptionHandler log(Logger logger) {
 		return new LoggingHandler(logger, () -> "Caught exception.");
 	}
@@ -105,6 +109,7 @@ public final class Exceptions {
 	 * @see #log(Logger)
 	 * @see #log(Logger, Supplier)
 	 */
+	@DraftApi("Move SLF4J handlers to separate module.")
 	public static ExceptionHandler log(Logger logger, String message) {
 		Objects.requireNonNull(message);
 		return new LoggingHandler(logger, () -> message);
@@ -129,6 +134,7 @@ public final class Exceptions {
 	 *             if {@code logger} or {@code message} is {@code null}
 	 * @see #log(Logger, String)
 	 */
+	@DraftApi("Move SLF4J handlers to separate module.")
 	public static ExceptionHandler log(Logger logger, Supplier<String> message) {
 		return new LoggingHandler(logger, message);
 	}

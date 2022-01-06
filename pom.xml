@@ -44,6 +44,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.machinezoo.stagean</groupId>
+			<artifactId>stagean</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.32</version>
@@ -113,6 +118,9 @@
 					<bottom>
 						<![CDATA[<!-- No copyright message. -->]]>
 					</bottom>
+					<links>
+						<link>https://stagean.machinezoo.com/javadoc/</link>
+					</links>
 				</configuration>
 				<executions>
 					<execution>

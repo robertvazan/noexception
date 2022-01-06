@@ -5,6 +5,7 @@ package com.machinezoo.noexception;
 import java.util.*;
 import java.util.function.*;
 import com.machinezoo.noexception.optional.*;
+import com.machinezoo.stagean.*;
 
 /**
  * Represents exception handling policy.
@@ -41,6 +42,15 @@ import com.machinezoo.noexception.optional.*;
  * @see ExceptionFilter
  * @see CheckedExceptionHandler
  */
+@ApiIssue("GitHub issue #3: Add wrapped(), sneaked(), and checked(handler) that return CombinedExceptionHandler (checked -> optional).")
+/*
+ * CheckedExceptionHandler cannot have the same methods, because it must always handle checked exceptions.
+ * ExceptionFilter does not need similar methods, because it is really only used to implement passing().
+ * Rigid fluent syntax: LoggedExceptions.log().except(exclusions).run(task).
+ * Or with checked exceptions: LoggedExceptions.log().except(exclusions).sneaked().run(task).
+ * Once implemented, it can be used to improve ReactiveExceptions.
+ */
+@ApiIssue("Add only/except(Predicate<Throwable>), which return handler that rethrows selected exceptions without passing them to handle().")
 public abstract class ExceptionHandler {
 	/**
 	 * Handles exception in a generic way. This method must be defined in a derived class.

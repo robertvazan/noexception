@@ -2,6 +2,7 @@
 package com.machinezoo.noexception;
 
 import java.util.*;
+import com.machinezoo.stagean.*;
 
 /*
  * This interface could be named UncheckedCloseable, which would be more explicit,
@@ -16,6 +17,7 @@ import java.util.*;
 /**
  * Specialization of {@link AutoCloseable} that throws only unchecked exceptions.
  */
+@DraftApi("Move to separate library.")
 public interface CloseableScope extends AutoCloseable {
 	/**
 	 * Closes this scope or other closeable resource.

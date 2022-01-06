@@ -16,7 +16,7 @@ More on [homepage](https://noexception.machinezoo.com/).
 
 ## Status
 
-Stable and maintained.
+Stable and maintained. [Stagean](https://stagean.machinezoo.com/) is used to track progress on class and method level.
 
 ## Getting started
 

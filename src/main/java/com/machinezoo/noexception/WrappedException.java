@@ -1,6 +1,8 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import com.machinezoo.stagean.*;
+
 /**
  * General-purpose checked exception wrapper.
  * It is thrown by checked exception handler returned from {@link Exceptions#wrap()},
@@ -9,6 +11,7 @@ package com.machinezoo.noexception;
  * 
  * @see Exceptions#wrap()
  */
+@DraftApi("Replace with UndeclaredThrowableException.")
 public class WrappedException extends RuntimeException {
 	private static final long serialVersionUID = -1535521026317618861L;
 	/**

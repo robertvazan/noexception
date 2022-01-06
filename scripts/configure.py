@@ -14,16 +14,17 @@ pretty_name = lambda: 'NoException'
 pom_description = lambda: 'Functional programming for exception handlers.'
 inception_year = lambda: 2017
 jdk_version = lambda: 11
+stagean_annotations = lambda: True
 
 def dependencies():
     use_slf4j()
     use_junit()
     use_hamcrest()
     use_mockito()
-    use('com.github.valfirst:slf4j-test:2.3.0', 'test')
+    use_slf4j_test()
 
 # No link to SLF4J, because automatic modules cannot be linked.
-def javadoc_links(): return []
+javadoc_links = lambda: standard_javadoc_links()
 
 def badges():
     standard_badges()

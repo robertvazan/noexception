@@ -9,5 +9,6 @@ module com.machinezoo.noexception {
 	exports com.machinezoo.noexception;
 	exports com.machinezoo.noexception.optional;
 	exports com.machinezoo.noexception.throwing;
+	requires com.machinezoo.stagean;
 	requires transitive org.slf4j;
 }
