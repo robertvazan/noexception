@@ -5,7 +5,7 @@
 
 	<groupId>com.machinezoo.noexception</groupId>
 	<artifactId>noexception</artifactId>
-	<version>1.7.1</version>
+	<version>1.8.0</version>
 
 	<name>NoException</name>
 	<description>Functional programming for exception handlers.</description>
