@@ -1,6 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.*;
 import org.slf4j.*;
@@ -186,7 +187,7 @@ public final class Exceptions {
 	/**
 	 * Returns {@code CheckedExceptionHandler} that wraps all checked exceptions.
 	 * Unchecked exceptions are passed through unmodified.
-	 * Checked exceptions are wrapped in {@link WrappedException}.
+	 * Checked exceptions are wrapped in {@link UndeclaredThrowableException}.
 	 * Use {@link #sneak()} to avoid wrapping.
 	 * Use {@link #wrap(Function)} to specify a custom wrapper.
 	 * <p>

@@ -1,6 +1,7 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
+import java.lang.reflect.*;
 import java.util.*;
 
 final class WrappingHandler extends CheckedExceptionHandler {
@@ -9,6 +10,6 @@ final class WrappingHandler extends CheckedExceptionHandler {
 		Objects.requireNonNull(exception);
 		if (exception instanceof InterruptedException)
 			Thread.currentThread().interrupt();
-		return new WrappedException(exception);
+		return new UndeclaredThrowableException(exception);
 	}
 }

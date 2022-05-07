@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.core.IsInstanceOf.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.*;
+import java.lang.reflect.*;
 import java.security.*;
 import java.util.function.*;
 import org.junit.jupiter.api.*;
@@ -128,7 +129,7 @@ public class ExceptionsTest {
 	}
 	@Test
 	public void wrap_checked() {
-		WrappedException ex = assertThrows(WrappedException.class, () -> {
+		var ex = assertThrows(UndeclaredThrowableException.class, () -> {
 			Exceptions.wrap().run(() -> {
 				throw new IOException();
 			});
@@ -137,7 +138,7 @@ public class ExceptionsTest {
 	}
 	@Test
 	public void wrap_interrupt() {
-		WrappedException ex = assertThrows(WrappedException.class, () -> {
+		var ex = assertThrows(UndeclaredThrowableException.class, () -> {
 			Exceptions.wrap().run(() -> {
 				throw new InterruptedException();
 			});

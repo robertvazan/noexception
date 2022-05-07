@@ -1,17 +1,15 @@
 // Part of NoException: https://noexception.machinezoo.com
 package com.machinezoo.noexception;
 
-import com.machinezoo.stagean.*;
+import java.lang.reflect.*;
 
 /**
  * General-purpose checked exception wrapper.
- * It is thrown by checked exception handler returned from {@link Exceptions#wrap()},
- * but it can be created directly for any purpose.
- * Wrapped checked exception can be retrieved using {@link #getCause()} method.
+ * Please use JDK's {@link UndeclaredThrowableException} instead.
  * 
- * @see Exceptions#wrap()
+ * @deprecated Use {@link UndeclaredThrowableException} instead.
  */
-@DraftApi("Replace with UndeclaredThrowableException.")
+@Deprecated
 public class WrappedException extends RuntimeException {
 	private static final long serialVersionUID = -1535521026317618861L;
 	/**
