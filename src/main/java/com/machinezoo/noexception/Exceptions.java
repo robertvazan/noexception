@@ -18,7 +18,7 @@ import com.machinezoo.stagean.*;
  */
 public final class Exceptions {
 	private static final Logger logger = LoggerFactory.getLogger(Exceptions.class);
-	private static final IgnoringHandler ignore = new IgnoringHandler();
+	private static final PropagatingHandler propagate = new PropagatingHandler();
 	private static final LoggingHandler log = new LoggingHandler(logger, () -> "Caught exception.");
 	private static final SilencingHandler silence = new SilencingHandler();
 	private static final SneakingHandler sneak = new SneakingHandler();
@@ -26,26 +26,36 @@ public final class Exceptions {
 	private Exceptions() {
 	}
 	/**
-	 * Returns {@code ExceptionHandler} that lets all exceptions through.
+	 * Returns {@code ExceptionHandler} that propagates (lets through) all exceptions.
 	 * This exception handler is equivalent to having no exception handler at all.
 	 * It is useful when switching among several exception handlers at runtime.
 	 * 
-	 * @return pass-through exception handler
+	 * @return propagating exception handler
 	 */
-	@DraftApi("Name is easy to confuse with silence(). Rename to propagate().")
-	public static ExceptionHandler ignore() {
-		return ignore;
+	public static ExceptionHandler propagate() {
+		return propagate;
 	}
 	/**
 	 * Returns {@code ExceptionHandler} that lets all exceptions through.
-	 * This is an old deprecated alias for {@link #ignore()}.
+	 * This is an old deprecated alias for {@link #propagate()}.
 	 * 
 	 * @return pass-through exception handler
-	 * @deprecated Use {@link #ignore()} instead.
+	 * @deprecated Use {@link #propagate()} instead.
+	 */
+	@Deprecated
+	public static ExceptionHandler ignore() {
+		return propagate();
+	}
+	/**
+	 * Returns {@code ExceptionHandler} that lets all exceptions through.
+	 * This is an old deprecated alias for {@link #propagate()}.
+	 * 
+	 * @return pass-through exception handler
+	 * @deprecated Use {@link #propagate()} instead.
 	 */
 	@Deprecated
 	public static ExceptionHandler pass() {
-		return ignore();
+		return propagate();
 	}
 	/**
 	 * Returns {@code ExceptionHandler} that writes all exceptions to common logger.

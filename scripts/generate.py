@@ -601,7 +601,7 @@ def handler_source():
          * <p>
          * All wrapping methods surround the functional interface with a try-catch block.
          * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
-         * which applies exception handling policy (log, silence, ignore, custom).
+         * which applies exception handling policy (log, silence, propagate, custom).
          * {@link NullPointerException} from {@code null} functional interface is caught too.
          * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
          * while non-void functional interfaces return empty {@link Optional}.
@@ -688,7 +688,7 @@ def handler_source():
              * Wraps {@link ''' + fn + '''} in a try-catch block.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws, the exception is caught and passed to {@link #handle(Throwable)},
-             * which applies exception handling policy (log, silence, ignore, custom).
+             * which applies exception handling policy (log, silence, propagate, custom).
              * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
         ''', indent=1)
         if void_functional(fn):
@@ -745,7 +745,7 @@ def handler_source():
              * Runs {@link ''' + fn + '''} in a try-catch block.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws, the exception is caught and passed to {@link #handle(Throwable)},
-             * which applies exception handling policy (log, silence, ignore, custom).
+             * which applies exception handling policy (log, silence, propagate, custom).
              * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
         ''', indent=1)
         if void_functional(fn):
@@ -802,7 +802,7 @@ def filter_source():
          * All wrapping methods surround the functional interface with a try-catch block.
          * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
          * {@link NullPointerException} from {@code null} functional interface is caught too.
-         * Method {@link #handle(Throwable)} applies exception handling policy (log, count, ignore, etc.) and
+         * Method {@link #handle(Throwable)} applies exception handling policy (log, count, propagate, etc.) and
          * throws a replacement or wrapping exception.
          * If it returns without throwing any exception, the original exception is rethrown.
          * <p>

@@ -16,7 +16,7 @@ import java.util.function.*;
  * All wrapping methods surround the functional interface with a try-catch block.
  * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
  * {@link NullPointerException} from {@code null} functional interface is caught too.
- * Method {@link #handle(Throwable)} applies exception handling policy (log, count, ignore, etc.) and
+ * Method {@link #handle(Throwable)} applies exception handling policy (log, count, propagate, etc.) and
  * throws a replacement or wrapping exception.
  * If it returns without throwing any exception, the original exception is rethrown.
  * <p>

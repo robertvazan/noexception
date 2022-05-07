@@ -16,6 +16,23 @@ public class ExceptionsTest {
 	TestLogger sharedLogger = TestLoggerFactory.getTestLogger(Exceptions.class);
 	TestLogger customLogger = TestLoggerFactory.getTestLogger(ExceptionsTest.class);
 	@Test
+	public void propagate_runtime() {
+		assertThrows(NumberFormatException.class, () -> {
+			Exceptions.propagate().run(() -> {
+				throw new NumberFormatException();
+			});
+		});
+	}
+	@Test
+	public void propagate_error() {
+		assertThrows(IOError.class, () -> {
+			Exceptions.propagate().run(() -> {
+				throw new IOError(new IOException());
+			});
+		});
+	}
+	@SuppressWarnings("deprecation")
+	@Test
 	public void ignore_runtime() {
 		assertThrows(NumberFormatException.class, () -> {
 			Exceptions.ignore().run(() -> {
@@ -23,6 +40,7 @@ public class ExceptionsTest {
 			});
 		});
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void ignore_error() {
 		assertThrows(IOError.class, () -> {
