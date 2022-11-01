@@ -27,7 +27,7 @@ See [homepage](https://noexception.machinezoo.com/).
 ## Documentation
 
 * [Homepage](https://noexception.machinezoo.com/)
-* [Javadoc](https://noexception.machinezoo.com/javadoc/com.machinezoo.noexception/module-summary.html)
+* [Javadoc](https://noexception.machinezoo.com/javadocs/core/com.machinezoo.noexception/module-summary.html)
 
 ## Feedback
 

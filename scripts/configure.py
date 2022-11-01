@@ -9,11 +9,13 @@ exec((config_directory()/'src'/'java.py').read_text())
 
 project_script_path = __file__
 repository_name = lambda: 'noexception'
+is_member_project = lambda: True
 pretty_name = lambda: 'NoException'
 pom_description = lambda: 'Functional programming for exception handlers.'
 inception_year = lambda: 2017
 jdk_version = lambda: 11
 stagean_annotations = lambda: True
+project_status = lambda: stable_status()
 
 def dependencies():
     use_slf4j()
