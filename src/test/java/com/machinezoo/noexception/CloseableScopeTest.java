@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.concurrent.atomic.*;
 import org.junit.jupiter.api.*;
 
+@Deprecated
 public class CloseableScopeTest {
 	@Test
 	@SuppressWarnings("resource")

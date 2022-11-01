@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.function.*;
 import org.slf4j.*;
 
+@Deprecated
 final class LoggingHandler extends ExceptionHandler {
 	private final Logger logger;
 	private final Supplier<String> supplier;

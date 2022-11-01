@@ -32,8 +32,9 @@ public class ExceptionsTest {
 			});
 		});
 	}
-	@SuppressWarnings("deprecation")
 	@Test
+	@Deprecated
+	@SuppressWarnings("deprecation")
 	public void ignore_runtime() {
 		assertThrows(NumberFormatException.class, () -> {
 			Exceptions.ignore().run(() -> {
@@ -41,8 +42,9 @@ public class ExceptionsTest {
 			});
 		});
 	}
-	@SuppressWarnings("deprecation")
 	@Test
+	@Deprecated
+	@SuppressWarnings("deprecation")
 	public void ignore_error() {
 		assertThrows(IOError.class, () -> {
 			Exceptions.ignore().run(() -> {
@@ -50,8 +52,9 @@ public class ExceptionsTest {
 			});
 		});
 	}
-	@SuppressWarnings("deprecation")
 	@Test
+	@Deprecated
+	@SuppressWarnings("deprecation")
 	public void pass_runtime() {
 		assertThrows(NumberFormatException.class, () -> {
 			Exceptions.pass().run(() -> {
@@ -59,8 +62,9 @@ public class ExceptionsTest {
 			});
 		});
 	}
-	@SuppressWarnings("deprecation")
 	@Test
+	@Deprecated
+	@SuppressWarnings("deprecation")
 	public void pass_error() {
 		assertThrows(IOError.class, () -> {
 			Exceptions.pass().run(() -> {
@@ -182,6 +186,7 @@ public class ExceptionsTest {
 		assertTrue(Thread.interrupted());
 	}
 	@Test
+	@Deprecated
 	public void log_runtime() {
 		Exceptions.log().run(() -> {
 			throw new NumberFormatException();
@@ -192,6 +197,7 @@ public class ExceptionsTest {
 		assertEquals("Caught exception.", event.getMessage());
 	}
 	@Test
+	@Deprecated
 	public void log_error() {
 		Exceptions.log().run(() -> {
 			throw new IOError(new IOException());
@@ -200,6 +206,7 @@ public class ExceptionsTest {
 		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(IOError.class));
 	}
 	@Test
+	@Deprecated
 	public void log_interrupt() {
 		Exceptions.log().run(Exceptions.sneak().runnable(() -> {
 			throw new InterruptedException();
@@ -209,6 +216,8 @@ public class ExceptionsTest {
 		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(InterruptedException.class));
 	}
 	@Test
+	@Deprecated
+	@SuppressWarnings("deprecation")
 	public void logTo() {
 		Exceptions.log(customLogger).run(() -> {
 			throw new NumberFormatException();
@@ -218,6 +227,8 @@ public class ExceptionsTest {
 		assertThrows(NullPointerException.class, () -> Exceptions.log(null));
 	}
 	@Test
+	@Deprecated
+	@SuppressWarnings("deprecation")
 	public void logWithMessage() {
 		Exceptions.log(customLogger, "Commented exception.").run(() -> {
 			throw new NumberFormatException();
@@ -228,6 +239,8 @@ public class ExceptionsTest {
 		assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (String)null));
 	}
 	@Test
+	@Deprecated
+	@SuppressWarnings("deprecation")
 	public void logWithLazyMessage() {
 		Exceptions.log(customLogger, () -> "Lazy message.").run(() -> {
 			throw new NumberFormatException();
@@ -238,6 +251,7 @@ public class ExceptionsTest {
 		assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (Supplier<String>)null));
 	}
 	@Test
+	@Deprecated
 	public void logWithLazyMessage_null() {
 		Exceptions.log(customLogger, () -> null).run(() -> {
 			throw new NumberFormatException();
@@ -247,6 +261,7 @@ public class ExceptionsTest {
 		assertThat(event.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
 	}
 	@Test
+	@Deprecated
 	public void logWithLazyMessage_throwing() {
 		Exceptions.log(customLogger, () -> {
 			throw new InvalidParameterException();

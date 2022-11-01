@@ -4,6 +4,7 @@ package com.machinezoo.noexception;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.closeablescope.CloseableScope;
 import com.machinezoo.noexception.throwing.*;
 
 /**
@@ -21,7 +22,7 @@ import com.machinezoo.noexception.throwing.*;
  * The two classes can be used together by first downgrading checked exceptions with {@code CheckedExceptionHandler}
  * and then applying exception handling policy with {@link ExceptionHandler}.
  * <p>
- * Combined usage: {@code Exceptions.log().get(Exceptions.sneak().supplier(() -> my_throwing_lambda)).orElse(fallback)}
+ * Combined usage: {@code Exceptions.silence().get(Exceptions.sneak().supplier(() -> my_throwing_lambda)).orElse(fallback)}
  * <p>
  * All wrapping methods surround the functional interface with a try-catch block.
  * Only checked exceptions are handled. Unchecked exceptions are propagated to caller.

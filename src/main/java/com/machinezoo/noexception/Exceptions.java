@@ -5,21 +5,21 @@ import java.lang.reflect.*;
 import java.util.*;
 import java.util.function.*;
 import org.slf4j.*;
-import com.machinezoo.stagean.*;
 
 /**
  * Static methods for creating predefined exception handlers.
  * Custom exception handlers can be created by inheriting from {@link ExceptionHandler} and {@link CheckedExceptionHandler}.
  * <p>
- * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda).orElse(fallback)}
+ * Typical usage: {@code Exceptions.silence().get(() -> my_throwing_lambda).orElse(fallback)}
  * <p>
- * Usage with checked exceptions: {@code Exceptions.log().run(Exceptions.sneak().runnable(() -> my_throwing_lambda))}
+ * Usage with checked exceptions: {@code Exceptions.silence().run(Exceptions.sneak().runnable(() -> my_throwing_lambda))}
  * 
  * @see <a href="https://noexception.machinezoo.com/">NoException tutorial</a>
  */
 public final class Exceptions {
 	private static final Logger logger = LoggerFactory.getLogger(Exceptions.class);
 	private static final PropagatingHandler propagate = new PropagatingHandler();
+	@Deprecated
 	private static final LoggingHandler log = new LoggingHandler(logger, () -> "Caught exception.");
 	private static final SilencingHandler silence = new SilencingHandler();
 	private static final SneakingHandler sneak = new SneakingHandler();
@@ -72,8 +72,9 @@ public final class Exceptions {
 	 * 
 	 * @return logging exception handler
 	 * @see #log(Logger)
+	 * @deprecated Use <a href="https://noexception.machinezoo.com/slf4j">SLF4J extension</a> instead.
 	 */
-	@DraftApi("Move SLF4J handlers to separate module.")
+	@Deprecated
 	public static ExceptionHandler log() {
 		return log;
 	}
@@ -94,8 +95,9 @@ public final class Exceptions {
 	 *             if {@code logger} is {@code null}
 	 * @see #log()
 	 * @see #log(Logger, String)
+	 * @deprecated Use <a href="https://noexception.machinezoo.com/slf4j">SLF4J extension</a> instead.
 	 */
-	@DraftApi("Move SLF4J handlers to separate module.")
+	@Deprecated
 	public static ExceptionHandler log(Logger logger) {
 		return new LoggingHandler(logger, () -> "Caught exception.");
 	}
@@ -119,8 +121,9 @@ public final class Exceptions {
 	 *             if {@code logger} or {@code message} is {@code null}
 	 * @see #log(Logger)
 	 * @see #log(Logger, Supplier)
+	 * @deprecated Use <a href="https://noexception.machinezoo.com/slf4j">SLF4J extension</a> instead.
 	 */
-	@DraftApi("Move SLF4J handlers to separate module.")
+	@Deprecated
 	public static ExceptionHandler log(Logger logger, String message) {
 		Objects.requireNonNull(message);
 		return new LoggingHandler(logger, () -> message);
@@ -144,15 +147,16 @@ public final class Exceptions {
 	 * @throws NullPointerException
 	 *             if {@code logger} or {@code message} is {@code null}
 	 * @see #log(Logger, String)
+	 * @deprecated Use <a href="https://noexception.machinezoo.com/slf4j">SLF4J extension</a> instead.
 	 */
-	@DraftApi("Move SLF4J handlers to separate module.")
+	@Deprecated
 	public static ExceptionHandler log(Logger logger, Supplier<String> message) {
 		return new LoggingHandler(logger, message);
 	}
 	/**
 	 * Returns {@code ExceptionHandler} that silently ignores all exceptions.
 	 * This handler is useful when some code is known to produce junk exceptions.
-	 * Most application code should use {@link #log()} instead.
+	 * Most application code should use logging or counting handler instead.
 	 * <p>
 	 * Typical usage: {@code Exceptions.silence().run(() -> my_throwing_lambda)}
 	 * <p>
@@ -160,7 +164,6 @@ public final class Exceptions {
 	 * If {@link InterruptedException} is caught, {@link Thread#interrupt()} is called.
 	 * 
 	 * @return exception handler that ignores all exceptions
-	 * @see #log()
 	 */
 	public static ExceptionHandler silence() {
 		return silence;

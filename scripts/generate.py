@@ -588,6 +588,7 @@ def handler_source():
     output('''\
         import java.util.*;
         import java.util.function.*;
+        import com.machinezoo.closeablescope.CloseableScope;
         import com.machinezoo.noexception.optional.*;
         import com.machinezoo.stagean.*;
         
@@ -597,11 +598,11 @@ def handler_source():
          * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
          * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
          * <p>
-         * Typical usage: {@code Exceptions.log().get(() -> my_throwing_lambda).orElse(fallback)}
+         * Typical usage: {@code Exceptions.silence().get(() -> my_throwing_lambda).orElse(fallback)}
          * <p>
          * All wrapping methods surround the functional interface with a try-catch block.
          * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)},
-         * which applies exception handling policy (log, silence, propagate, custom).
+         * which applies exception handling policy (silence, propagate, logging, custom).
          * {@link NullPointerException} from {@code null} functional interface is caught too.
          * Unless {@link #handle(Throwable)} requests a rethrow, void functional interfaces complete normally
          * while non-void functional interfaces return empty {@link Optional}.
@@ -630,8 +631,8 @@ def handler_source():
         /*
          * CheckedExceptionHandler cannot have the same methods, because it must always handle checked exceptions.
          * ExceptionFilter does not need similar methods, because it is really only used to implement passing().
-         * Rigid fluent syntax: LoggedExceptions.log().except(exclusions).run(task).
-         * Or with checked exceptions: LoggedExceptions.log().except(exclusions).sneaked().run(task).
+         * Rigid fluent syntax: Exceptions.silence().except(exclusions).run(task).
+         * Or with checked exceptions: Exceptions.silence().except(exclusions).sneaked().run(task).
          * Once implemented, it can be used to improve ReactiveExceptions.
          */
         @ApiIssue("Add only/except(Predicate<Throwable>), which return handler that rethrows selected exceptions without passing them to handle().")
@@ -674,7 +675,7 @@ def handler_source():
              * If method {@link #handle(Throwable)} throws, the returned {@link ExceptionFilter} will pass through that exception.
              * It only rethrows the original exception if {@link #handle(Throwable)} returns normally (regardless of return value).
              * <p>
-             * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda)}
+             * Typical usage: {@code ExceptionLogging.log().passing().get(() -> my_throwing_lambda)}
              *
              * @return pass-through modification of this exception handler
              */
@@ -688,7 +689,7 @@ def handler_source():
              * Wraps {@link ''' + fn + '''} in a try-catch block.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws, the exception is caught and passed to {@link #handle(Throwable)},
-             * which applies exception handling policy (log, silence, propagate, custom).
+             * which applies exception handling policy (silence, propagate, log, custom).
              * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
         ''', indent=1)
         if void_functional(fn):
@@ -698,9 +699,9 @@ def handler_source():
         wrapper_interface = ('' if void_functional(fn) else 'Optional') + parameterized_type(fn)
         def typical_usage():
             if fn == 'CloseableScope':
-                return 'try (var scope = Exceptions.log().closeable(openSomething()))'
+                return 'try (var scope = Exceptions.silence().closeable(openSomething()))'
             orelse = '.orElse(fallback)' if 'void' != return_type(fn) else ''
-            return 'Exceptions.log().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda)' + orelse
+            return 'Exceptions.silence().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda)' + orelse
         output('''\
              * <p>
              * Typical usage: {@code ''' + typical_usage() + '''}
@@ -745,7 +746,7 @@ def handler_source():
              * Runs {@link ''' + fn + '''} in a try-catch block.
              * <p>
              * If {@code ''' + short_name(fn) + '''} throws, the exception is caught and passed to {@link #handle(Throwable)},
-             * which applies exception handling policy (log, silence, propagate, custom).
+             * which applies exception handling policy (silence, propagate, log, custom).
              * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
         ''', indent=1)
         if void_functional(fn):
@@ -754,7 +755,7 @@ def handler_source():
             output(' * This method then returns empty {@link ' + raw_optional_return(fn) + '} unless {@link #handle(Throwable)} requests a rethrow.', indent=1)
         output('''\
              * <p>
-             * Typical usage: {@code Exceptions.log().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda)}
+             * Typical usage: {@code Exceptions.silence().''' + as_method(fn) + '(' + lambda_params(fn) + ''' -> my_throwing_lambda)}
              * 
         ''', indent=1)
         type_param_javadoc(fn, indent=1)
@@ -790,6 +791,7 @@ def filter_source():
     output('''\
         import java.util.*;
         import java.util.function.*;
+        import com.machinezoo.closeablescope.CloseableScope;
         
         /**
          * Represents exception handling policy that always ends with throwing another exception.
@@ -797,7 +799,7 @@ def filter_source():
          * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
          * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
          * <p>
-         * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda)}
+         * Typical usage: {@code ExceptionLogging.log().passing().get(() -> my_throwing_lambda)}
          * <p>
          * All wrapping methods surround the functional interface with a try-catch block.
          * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
@@ -847,8 +849,8 @@ def filter_source():
     for fn in functional_types():
         def typical_usage():
             if fn == 'CloseableScope':
-                return 'try (var scope = Exceptions.log().passing().closeable(openSomething()))'
-            return 'methodTaking' + fn + '(Exceptions.log().passing().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda))'
+                return 'try (var scope = ExceptionLogging.log().passing().closeable(openSomething()))'
+            return 'methodTaking' + fn + '(ExceptionLogging.log().passing().' + from_method(fn) + '(' + lambda_params(fn) + ' -> my_throwing_lambda))'
         output('''\
             /**
              * Applies exception filter to {@link ''' + fn + '''}.
@@ -897,7 +899,7 @@ def filter_source():
              * {@link NullPointerException} from {@code null} {@code ''' + short_name(fn) + '''} is caught too.
              * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
              * <p>
-             * Typical usage: {@code Exceptions.log().passing().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
+             * Typical usage: {@code ExceptionLogging.log().passing().''' + as_method(fn) + '''(() -> my_throwing_lambda))}
              * 
         ''', indent=1)
         type_param_javadoc(fn, indent=1)
@@ -930,6 +932,7 @@ def checked_source():
     output('''\
         import java.util.*;
         import java.util.function.*;
+        import com.machinezoo.closeablescope.CloseableScope;
         import com.machinezoo.noexception.throwing.*;
         
         /**
@@ -947,7 +950,7 @@ def checked_source():
          * The two classes can be used together by first downgrading checked exceptions with {@code CheckedExceptionHandler}
          * and then applying exception handling policy with {@link ExceptionHandler}.
          * <p>
-         * Combined usage: {@code Exceptions.log().get(Exceptions.sneak().supplier(() -> my_throwing_lambda)).orElse(fallback)}
+         * Combined usage: {@code Exceptions.silence().get(Exceptions.sneak().supplier(() -> my_throwing_lambda)).orElse(fallback)}
          * <p>
          * All wrapping methods surround the functional interface with a try-catch block.
          * Only checked exceptions are handled. Unchecked exceptions are propagated to caller.
@@ -1226,6 +1229,7 @@ def handler_test():
         import java.util.*;
         import java.util.function.*;
         import org.junit.jupiter.api.*;
+        import com.machinezoo.closeablescope.CloseableScope;
         import com.machinezoo.noexception.optional.*;
         
         public class ExceptionHandlerTest {
@@ -1335,6 +1339,7 @@ def filter_test():
         import java.util.*;
         import java.util.function.*;
         import org.junit.jupiter.api.*;
+        import com.machinezoo.closeablescope.CloseableScope;
         
         public class ExceptionFilterTest {
     ''')

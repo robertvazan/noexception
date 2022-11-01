@@ -4,6 +4,7 @@ package com.machinezoo.noexception;
 
 import java.util.*;
 import java.util.function.*;
+import com.machinezoo.closeablescope.CloseableScope;
 
 /**
  * Represents exception handling policy that always ends with throwing another exception.
@@ -11,7 +12,7 @@ import java.util.function.*;
  * Method {@link #handle(Throwable)} defines the exception handling policy when implemented in derived class.
  * See <a href="https://noexception.machinezoo.com/">noexception tutorial</a>.
  * <p>
- * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda)}
+ * Typical usage: {@code ExceptionLogging.log().passing().get(() -> my_throwing_lambda)}
  * <p>
  * All wrapping methods surround the functional interface with a try-catch block.
  * If the functional interface throws, the exception is caught and passed to {@link #handle(Throwable)}.
@@ -64,7 +65,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code runnable} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingRunnable(Exceptions.log().passing().runnable(() -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingRunnable(ExceptionLogging.log().passing().runnable(() -> my_throwing_lambda))}
 	 * 
 	 * @param runnable
 	 *            the {@link Runnable} to wrap, usually a lambda
@@ -97,7 +98,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingSupplier(Exceptions.log().passing().supplier(() -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingSupplier(ExceptionLogging.log().passing().supplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link Supplier}
@@ -132,7 +133,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntSupplier(Exceptions.log().passing().fromIntSupplier(() -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntSupplier(ExceptionLogging.log().passing().fromIntSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link IntSupplier} to wrap, usually a lambda
@@ -165,7 +166,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongSupplier(Exceptions.log().passing().fromLongSupplier(() -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongSupplier(ExceptionLogging.log().passing().fromLongSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link LongSupplier} to wrap, usually a lambda
@@ -198,7 +199,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleSupplier(Exceptions.log().passing().fromDoubleSupplier(() -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleSupplier(ExceptionLogging.log().passing().fromDoubleSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link DoubleSupplier} to wrap, usually a lambda
@@ -231,7 +232,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingBooleanSupplier(Exceptions.log().passing().fromBooleanSupplier(() -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBooleanSupplier(ExceptionLogging.log().passing().fromBooleanSupplier(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link BooleanSupplier} to wrap, usually a lambda
@@ -264,7 +265,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingConsumer(Exceptions.log().passing().consumer(t -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingConsumer(ExceptionLogging.log().passing().consumer(t -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link Consumer}
@@ -299,7 +300,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntConsumer(Exceptions.log().passing().fromIntConsumer(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntConsumer(ExceptionLogging.log().passing().fromIntConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@link IntConsumer} to wrap, usually a lambda
@@ -332,7 +333,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongConsumer(Exceptions.log().passing().fromLongConsumer(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongConsumer(ExceptionLogging.log().passing().fromLongConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@link LongConsumer} to wrap, usually a lambda
@@ -365,7 +366,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleConsumer(Exceptions.log().passing().fromDoubleConsumer(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleConsumer(ExceptionLogging.log().passing().fromDoubleConsumer(v -> my_throwing_lambda))}
 	 * 
 	 * @param consumer
 	 *            the {@link DoubleConsumer} to wrap, usually a lambda
@@ -398,7 +399,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingBiConsumer(Exceptions.log().passing().fromBiConsumer((t, u) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBiConsumer(ExceptionLogging.log().passing().fromBiConsumer((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link BiConsumer}
@@ -435,7 +436,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingObjIntConsumer(Exceptions.log().passing().fromObjIntConsumer((t, v) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingObjIntConsumer(ExceptionLogging.log().passing().fromObjIntConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ObjIntConsumer}
@@ -470,7 +471,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingObjLongConsumer(Exceptions.log().passing().fromObjLongConsumer((t, v) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingObjLongConsumer(ExceptionLogging.log().passing().fromObjLongConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ObjLongConsumer}
@@ -505,7 +506,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code consumer} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingObjDoubleConsumer(Exceptions.log().passing().fromObjDoubleConsumer((t, v) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingObjDoubleConsumer(ExceptionLogging.log().passing().fromObjDoubleConsumer((t, v) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ObjDoubleConsumer}
@@ -540,7 +541,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingPredicate(Exceptions.log().passing().predicate(t -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingPredicate(ExceptionLogging.log().passing().predicate(t -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link Predicate}
@@ -575,7 +576,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntPredicate(Exceptions.log().passing().fromIntPredicate(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntPredicate(ExceptionLogging.log().passing().fromIntPredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
 	 *            the {@link IntPredicate} to wrap, usually a lambda
@@ -608,7 +609,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongPredicate(Exceptions.log().passing().fromLongPredicate(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongPredicate(ExceptionLogging.log().passing().fromLongPredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
 	 *            the {@link LongPredicate} to wrap, usually a lambda
@@ -641,7 +642,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoublePredicate(Exceptions.log().passing().fromDoublePredicate(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoublePredicate(ExceptionLogging.log().passing().fromDoublePredicate(v -> my_throwing_lambda))}
 	 * 
 	 * @param predicate
 	 *            the {@link DoublePredicate} to wrap, usually a lambda
@@ -674,7 +675,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code predicate} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingBiPredicate(Exceptions.log().passing().fromBiPredicate((t, u) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBiPredicate(ExceptionLogging.log().passing().fromBiPredicate((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link BiPredicate}
@@ -711,7 +712,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingFunction(Exceptions.log().passing().function(t -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingFunction(ExceptionLogging.log().passing().function(t -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link Function}
@@ -748,7 +749,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingToIntFunction(Exceptions.log().passing().fromToIntFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToIntFunction(ExceptionLogging.log().passing().fromToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ToIntFunction}
@@ -783,7 +784,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntFunction(Exceptions.log().passing().fromIntFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntFunction(ExceptionLogging.log().passing().fromIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param <R>
 	 *            see {@link IntFunction}
@@ -818,7 +819,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntToLongFunction(Exceptions.log().passing().fromIntToLongFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntToLongFunction(ExceptionLogging.log().passing().fromIntToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@link IntToLongFunction} to wrap, usually a lambda
@@ -851,7 +852,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntToDoubleFunction(Exceptions.log().passing().fromIntToDoubleFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntToDoubleFunction(ExceptionLogging.log().passing().fromIntToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@link IntToDoubleFunction} to wrap, usually a lambda
@@ -884,7 +885,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingToLongFunction(Exceptions.log().passing().fromToLongFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToLongFunction(ExceptionLogging.log().passing().fromToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ToLongFunction}
@@ -919,7 +920,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongFunction(Exceptions.log().passing().fromLongFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongFunction(ExceptionLogging.log().passing().fromLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param <R>
 	 *            see {@link LongFunction}
@@ -954,7 +955,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongToIntFunction(Exceptions.log().passing().fromLongToIntFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongToIntFunction(ExceptionLogging.log().passing().fromLongToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@link LongToIntFunction} to wrap, usually a lambda
@@ -987,7 +988,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongToDoubleFunction(Exceptions.log().passing().fromLongToDoubleFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongToDoubleFunction(ExceptionLogging.log().passing().fromLongToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@link LongToDoubleFunction} to wrap, usually a lambda
@@ -1020,7 +1021,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingToDoubleFunction(Exceptions.log().passing().fromToDoubleFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToDoubleFunction(ExceptionLogging.log().passing().fromToDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ToDoubleFunction}
@@ -1055,7 +1056,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleFunction(Exceptions.log().passing().fromDoubleFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleFunction(ExceptionLogging.log().passing().fromDoubleFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param <R>
 	 *            see {@link DoubleFunction}
@@ -1090,7 +1091,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleToIntFunction(Exceptions.log().passing().fromDoubleToIntFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleToIntFunction(ExceptionLogging.log().passing().fromDoubleToIntFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@link DoubleToIntFunction} to wrap, usually a lambda
@@ -1123,7 +1124,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleToLongFunction(Exceptions.log().passing().fromDoubleToLongFunction(v -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleToLongFunction(ExceptionLogging.log().passing().fromDoubleToLongFunction(v -> my_throwing_lambda))}
 	 * 
 	 * @param function
 	 *            the {@link DoubleToLongFunction} to wrap, usually a lambda
@@ -1156,7 +1157,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingUnaryOperator(Exceptions.log().passing().fromUnaryOperator(o -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingUnaryOperator(ExceptionLogging.log().passing().fromUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link UnaryOperator}
@@ -1191,7 +1192,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntUnaryOperator(Exceptions.log().passing().fromIntUnaryOperator(o -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntUnaryOperator(ExceptionLogging.log().passing().fromIntUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@link IntUnaryOperator} to wrap, usually a lambda
@@ -1224,7 +1225,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongUnaryOperator(Exceptions.log().passing().fromLongUnaryOperator(o -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongUnaryOperator(ExceptionLogging.log().passing().fromLongUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@link LongUnaryOperator} to wrap, usually a lambda
@@ -1257,7 +1258,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleUnaryOperator(Exceptions.log().passing().fromDoubleUnaryOperator(o -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleUnaryOperator(ExceptionLogging.log().passing().fromDoubleUnaryOperator(o -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@link DoubleUnaryOperator} to wrap, usually a lambda
@@ -1290,7 +1291,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingBiFunction(Exceptions.log().passing().fromBiFunction((t, u) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBiFunction(ExceptionLogging.log().passing().fromBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link BiFunction}
@@ -1329,7 +1330,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingToIntBiFunction(Exceptions.log().passing().fromToIntBiFunction((t, u) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToIntBiFunction(ExceptionLogging.log().passing().fromToIntBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ToIntBiFunction}
@@ -1366,7 +1367,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingToLongBiFunction(Exceptions.log().passing().fromToLongBiFunction((t, u) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToLongBiFunction(ExceptionLogging.log().passing().fromToLongBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ToLongBiFunction}
@@ -1403,7 +1404,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code function} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingToDoubleBiFunction(Exceptions.log().passing().fromToDoubleBiFunction((t, u) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingToDoubleBiFunction(ExceptionLogging.log().passing().fromToDoubleBiFunction((t, u) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link ToDoubleBiFunction}
@@ -1440,7 +1441,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingBinaryOperator(Exceptions.log().passing().fromBinaryOperator((l, r) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingBinaryOperator(ExceptionLogging.log().passing().fromBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link BinaryOperator}
@@ -1475,7 +1476,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingIntBinaryOperator(Exceptions.log().passing().fromIntBinaryOperator((l, r) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingIntBinaryOperator(ExceptionLogging.log().passing().fromIntBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@link IntBinaryOperator} to wrap, usually a lambda
@@ -1508,7 +1509,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingLongBinaryOperator(Exceptions.log().passing().fromLongBinaryOperator((l, r) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingLongBinaryOperator(ExceptionLogging.log().passing().fromLongBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@link LongBinaryOperator} to wrap, usually a lambda
@@ -1541,7 +1542,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code operator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingDoubleBinaryOperator(Exceptions.log().passing().fromDoubleBinaryOperator((l, r) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingDoubleBinaryOperator(ExceptionLogging.log().passing().fromDoubleBinaryOperator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param operator
 	 *            the {@link DoubleBinaryOperator} to wrap, usually a lambda
@@ -1574,7 +1575,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code comparator} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code methodTakingComparator(Exceptions.log().passing().comparator((l, r) -> my_throwing_lambda))}
+	 * Typical usage: {@code methodTakingComparator(ExceptionLogging.log().passing().comparator((l, r) -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link Comparator}
@@ -1609,7 +1610,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code closeable} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code try (var scope = Exceptions.log().passing().closeable(openSomething()))}
+	 * Typical usage: {@code try (var scope = ExceptionLogging.log().passing().closeable(openSomething()))}
 	 * 
 	 * @param closeable
 	 *            the {@link CloseableScope} to wrap
@@ -1642,7 +1643,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code runnable} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().passing().run(() -> my_throwing_lambda))}
+	 * Typical usage: {@code ExceptionLogging.log().passing().run(() -> my_throwing_lambda))}
 	 * 
 	 * @param runnable
 	 *            the {@link Runnable} to run, usually a lambda
@@ -1666,7 +1667,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().passing().get(() -> my_throwing_lambda))}
+	 * Typical usage: {@code ExceptionLogging.log().passing().get(() -> my_throwing_lambda))}
 	 * 
 	 * @param <T>
 	 *            see {@link Supplier}
@@ -1693,7 +1694,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().passing().getAsInt(() -> my_throwing_lambda))}
+	 * Typical usage: {@code ExceptionLogging.log().passing().getAsInt(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link IntSupplier} to run, usually a lambda
@@ -1718,7 +1719,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().passing().getAsLong(() -> my_throwing_lambda))}
+	 * Typical usage: {@code ExceptionLogging.log().passing().getAsLong(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link LongSupplier} to run, usually a lambda
@@ -1743,7 +1744,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().passing().getAsDouble(() -> my_throwing_lambda))}
+	 * Typical usage: {@code ExceptionLogging.log().passing().getAsDouble(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link DoubleSupplier} to run, usually a lambda
@@ -1768,7 +1769,7 @@ public abstract class ExceptionFilter {
 	 * {@link NullPointerException} from {@code null} {@code supplier} is caught too.
 	 * Method {@link #handle(Throwable)} is free to throw any replacement exception. If it returns, the original exception is rethrown.
 	 * <p>
-	 * Typical usage: {@code Exceptions.log().passing().getAsBoolean(() -> my_throwing_lambda))}
+	 * Typical usage: {@code ExceptionLogging.log().passing().getAsBoolean(() -> my_throwing_lambda))}
 	 * 
 	 * @param supplier
 	 *            the {@link BooleanSupplier} to run, usually a lambda

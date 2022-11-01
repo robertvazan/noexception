@@ -18,14 +18,20 @@ stagean_annotations = lambda: True
 project_status = lambda: stable_status()
 
 def dependencies():
+    use_closeablescope()
+    # Used only in deprecated APIs.
     use_slf4j()
     use_junit()
     use_hamcrest()
     use_mockito()
+    # Used only in deprecated APIs.
     use_slf4j_test()
 
 # No link to SLF4J, because automatic modules cannot be linked.
-javadoc_links = lambda: standard_javadoc_links()
+javadoc_links = lambda: [
+    *standard_javadoc_links(),
+    'https://closeablescope.machinezoo.com/javadoc/'
+]
 
 def badges():
     standard_badges()

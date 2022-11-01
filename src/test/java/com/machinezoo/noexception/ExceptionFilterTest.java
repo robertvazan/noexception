@@ -9,6 +9,7 @@ import static org.mockito.Mockito.*;
 import java.util.*;
 import java.util.function.*;
 import org.junit.jupiter.api.*;
+import com.machinezoo.closeablescope.CloseableScope;
 
 public class ExceptionFilterTest {
 	@Test

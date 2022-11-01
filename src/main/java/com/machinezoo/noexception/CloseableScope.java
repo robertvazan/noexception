@@ -2,7 +2,6 @@
 package com.machinezoo.noexception;
 
 import java.util.*;
-import com.machinezoo.stagean.*;
 
 /*
  * This interface could be named UncheckedCloseable, which would be more explicit,
@@ -16,13 +15,16 @@ import com.machinezoo.stagean.*;
  */
 /**
  * Specialization of {@link AutoCloseable} that throws only unchecked exceptions.
+ * 
+ * @deprecated Use {@link com.machinezoo.closeablescope.CloseableScope} from dedicated library instead.
  */
-@DraftApi("Move to separate library.")
+@Deprecated
 public interface CloseableScope extends AutoCloseable {
 	/**
 	 * Closes this scope or other closeable resource.
 	 * This is a specialization of {@link AutoCloseable#close()} that throws only unchecked exceptions.
 	 */
+	@Override
 	void close();
 	/*
 	 * We could also take CloseableScope as a parameter, which would be more consistent with andThen methods in Consumer and such,
