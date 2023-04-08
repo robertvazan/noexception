@@ -1,40 +1,36 @@
 # This script generates and updates project configuration files.
 
-# We are assuming that project-config is available in sibling directory.
-# Checkout from https://github.com/robertvazan/project-config
-import pathlib
-project_directory = lambda: pathlib.Path(__file__).parent.parent
-config_directory = lambda: project_directory().parent/'project-config'
-exec((config_directory()/'src'/'java.py').read_text())
+# Run this script with rvscaffold in PYTHONPATH
+import rvscaffold as scaffold
 
-project_script_path = __file__
-repository_name = lambda: 'noexception'
-is_member_project = lambda: True
-pretty_name = lambda: 'NoException'
-pom_description = lambda: 'Functional programming for exception handlers.'
-inception_year = lambda: 2017
-jdk_version = lambda: 11
-stagean_annotations = lambda: True
-project_status = lambda: stable_status()
+class Project(scaffold.Java):
+    def script_path_text(self): return __file__
+    def repository_name(self): return 'noexception'
+    def is_member_project(self): return True
+    def pretty_name(self): return 'NoException'
+    def pom_description(self): return 'Functional programming for exception handlers.'
+    def inception_year(self): return 2017
+    def stagean_annotations(self): return True
+    def project_status(self): return self.stable_status()
+    
+    def dependencies(self):
+        yield from super().dependencies()
+        yield self.use_closeablescope()
+        # Used only in deprecated APIs.
+        yield self.use_slf4j()
+        yield self.use_junit()
+        yield self.use_hamcrest()
+        yield self.use_mockito()
+        # Used only in deprecated APIs.
+        yield self.use_slf4j_test()
 
-def dependencies():
-    use_closeablescope()
-    # Used only in deprecated APIs.
-    use_slf4j()
-    use_junit()
-    use_hamcrest()
-    use_mockito()
-    # Used only in deprecated APIs.
-    use_slf4j_test()
+    # No link to SLF4J, because automatic modules cannot be linked.
+    def javadoc_links(self):
+        yield from super().javadoc_links()
+        yield 'https://closeablescope.machinezoo.com/javadoc/'
 
-# No link to SLF4J, because automatic modules cannot be linked.
-javadoc_links = lambda: [
-    *standard_javadoc_links(),
-    'https://closeablescope.machinezoo.com/javadoc/'
-]
+    def print_badges(self):
+        super().print_badges()
+        print('[![Mentioned in Awesome Java 8](https://awesome.re/mentioned-badge.svg)](https://github.com/tedyoung/awesome-java8)')
 
-def badges():
-    standard_badges()
-    print('[![Mentioned in Awesome Java 8](https://awesome.re/mentioned-badge.svg)](https://github.com/tedyoung/awesome-java8)')
-
-generate()
+Project().generate()
