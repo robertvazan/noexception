@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingDoubleUnaryOperator {
-	/**
-	 * Variation of {@link DoubleUnaryOperator#applyAsDouble(double)} that allows throwing checked exceptions.
-	 * 
-	 * @param operand
-	 *            see {@link DoubleUnaryOperator#applyAsDouble(double)}
-	 * @return see {@link DoubleUnaryOperator#applyAsDouble(double)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator)
-	 * @see DoubleUnaryOperator#applyAsDouble(double)
-	 */
-	double applyAsDouble(double operand) throws Throwable;
+    /**
+     * Variation of {@link DoubleUnaryOperator#applyAsDouble(double)} that allows throwing checked exceptions.
+     * 
+     * @param operand
+     *            see {@link DoubleUnaryOperator#applyAsDouble(double)}
+     * @return see {@link DoubleUnaryOperator#applyAsDouble(double)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromDoubleUnaryOperator(ThrowingDoubleUnaryOperator)
+     * @see DoubleUnaryOperator#applyAsDouble(double)
+     */
+    double applyAsDouble(double operand) throws Throwable;
 }

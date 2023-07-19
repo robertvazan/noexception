@@ -8,18 +8,18 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class DefaultLongSupplierTest {
-	@Test
-	public void full() {
-		OptionalLongSupplier full = mock(OptionalLongSupplier.class);
-		when(full.get()).thenReturn(OptionalLong.of(2L));
-		assertEquals(2L, new DefaultLongSupplier(full, 3L).getAsLong());
-		verify(full, only()).get();
-	}
-	@Test
-	public void empty() {
-		OptionalLongSupplier empty = mock(OptionalLongSupplier.class);
-		when(empty.get()).thenReturn(OptionalLong.empty());
-		assertEquals(3L, new DefaultLongSupplier(empty, 3L).getAsLong());
-		verify(empty, only()).get();
-	}
+    @Test
+    public void full() {
+        OptionalLongSupplier full = mock(OptionalLongSupplier.class);
+        when(full.get()).thenReturn(OptionalLong.of(2L));
+        assertEquals(2L, new DefaultLongSupplier(full, 3L).getAsLong());
+        verify(full, only()).get();
+    }
+    @Test
+    public void empty() {
+        OptionalLongSupplier empty = mock(OptionalLongSupplier.class);
+        when(empty.get()).thenReturn(OptionalLong.empty());
+        assertEquals(3L, new DefaultLongSupplier(empty, 3L).getAsLong());
+        verify(empty, only()).get();
+    }
 }

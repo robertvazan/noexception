@@ -18,17 +18,17 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingObjDoubleConsumer<T> {
-	/**
-	 * Variation of {@link ObjDoubleConsumer#accept(Object, double)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link ObjDoubleConsumer#accept(Object, double)}
-	 * @param value
-	 *            see {@link ObjDoubleConsumer#accept(Object, double)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromObjDoubleConsumer(ThrowingObjDoubleConsumer)
-	 * @see ObjDoubleConsumer#accept(Object, double)
-	 */
-	void accept(T t, double value) throws Throwable;
+    /**
+     * Variation of {@link ObjDoubleConsumer#accept(Object, double)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link ObjDoubleConsumer#accept(Object, double)}
+     * @param value
+     *            see {@link ObjDoubleConsumer#accept(Object, double)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromObjDoubleConsumer(ThrowingObjDoubleConsumer)
+     * @see ObjDoubleConsumer#accept(Object, double)
+     */
+    void accept(T t, double value) throws Throwable;
 }

@@ -8,26 +8,26 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class ThrowingToLongFunctionTest {
-	void takeThrowing(ThrowingToLongFunction<String> functional) {
-	}
-	void takeNonThrowing(ToLongFunction<String> functional) {
-	}
-	@Test
-	public void lambdas() {
-		takeNonThrowing(v -> 2L);
-		takeThrowing(v -> 2L);
-		takeThrowing(v -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw new IOException();
-			else
-				return 2L;
-		});
-		Throwable throwable = new IOException();
-		takeThrowing(v -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw throwable;
-			else
-				return 2L;
-		});
-	}
+    void takeThrowing(ThrowingToLongFunction<String> functional) {
+    }
+    void takeNonThrowing(ToLongFunction<String> functional) {
+    }
+    @Test
+    public void lambdas() {
+        takeNonThrowing(v -> 2L);
+        takeThrowing(v -> 2L);
+        takeThrowing(v -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw new IOException();
+            else
+                return 2L;
+        });
+        Throwable throwable = new IOException();
+        takeThrowing(v -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw throwable;
+            else
+                return 2L;
+        });
+    }
 }

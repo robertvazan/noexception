@@ -16,15 +16,15 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingIntConsumer {
-	/**
-	 * Variation of {@link IntConsumer#accept(int)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link IntConsumer#accept(int)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromIntConsumer(ThrowingIntConsumer)
-	 * @see IntConsumer#accept(int)
-	 */
-	void accept(int value) throws Throwable;
+    /**
+     * Variation of {@link IntConsumer#accept(int)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link IntConsumer#accept(int)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromIntConsumer(ThrowingIntConsumer)
+     * @see IntConsumer#accept(int)
+     */
+    void accept(int value) throws Throwable;
 }

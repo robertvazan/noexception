@@ -20,16 +20,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingFunction<T, R> {
-	/**
-	 * Variation of {@link Function#apply(Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link Function#apply(Object)}
-	 * @return see {@link Function#apply(Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#function(ThrowingFunction)
-	 * @see Function#apply(Object)
-	 */
-	R apply(T t) throws Throwable;
+    /**
+     * Variation of {@link Function#apply(Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link Function#apply(Object)}
+     * @return see {@link Function#apply(Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#function(ThrowingFunction)
+     * @see Function#apply(Object)
+     */
+    R apply(T t) throws Throwable;
 }

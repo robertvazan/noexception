@@ -8,26 +8,26 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class ThrowingDoubleUnaryOperatorTest {
-	void takeThrowing(ThrowingDoubleUnaryOperator functional) {
-	}
-	void takeNonThrowing(DoubleUnaryOperator functional) {
-	}
-	@Test
-	public void lambdas() {
-		takeNonThrowing(o -> 2.0);
-		takeThrowing(o -> 2.0);
-		takeThrowing(o -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw new IOException();
-			else
-				return 2.0;
-		});
-		Throwable throwable = new IOException();
-		takeThrowing(o -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw throwable;
-			else
-				return 2.0;
-		});
-	}
+    void takeThrowing(ThrowingDoubleUnaryOperator functional) {
+    }
+    void takeNonThrowing(DoubleUnaryOperator functional) {
+    }
+    @Test
+    public void lambdas() {
+        takeNonThrowing(o -> 2.0);
+        takeThrowing(o -> 2.0);
+        takeThrowing(o -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw new IOException();
+            else
+                return 2.0;
+        });
+        Throwable throwable = new IOException();
+        takeThrowing(o -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw throwable;
+            else
+                return 2.0;
+        });
+    }
 }

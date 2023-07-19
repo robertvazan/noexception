@@ -18,16 +18,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingToIntFunction<T> {
-	/**
-	 * Variation of {@link ToIntFunction#applyAsInt(Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link ToIntFunction#applyAsInt(Object)}
-	 * @return see {@link ToIntFunction#applyAsInt(Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromToIntFunction(ThrowingToIntFunction)
-	 * @see ToIntFunction#applyAsInt(Object)
-	 */
-	int applyAsInt(T value) throws Throwable;
+    /**
+     * Variation of {@link ToIntFunction#applyAsInt(Object)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link ToIntFunction#applyAsInt(Object)}
+     * @return see {@link ToIntFunction#applyAsInt(Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromToIntFunction(ThrowingToIntFunction)
+     * @see ToIntFunction#applyAsInt(Object)
+     */
+    int applyAsInt(T value) throws Throwable;
 }

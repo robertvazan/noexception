@@ -18,16 +18,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingLongFunction<R> {
-	/**
-	 * Variation of {@link LongFunction#apply(long)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link LongFunction#apply(long)}
-	 * @return see {@link LongFunction#apply(long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromLongFunction(ThrowingLongFunction)
-	 * @see LongFunction#apply(long)
-	 */
-	R apply(long value) throws Throwable;
+    /**
+     * Variation of {@link LongFunction#apply(long)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link LongFunction#apply(long)}
+     * @return see {@link LongFunction#apply(long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromLongFunction(ThrowingLongFunction)
+     * @see LongFunction#apply(long)
+     */
+    R apply(long value) throws Throwable;
 }

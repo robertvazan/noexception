@@ -18,16 +18,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingToLongFunction<T> {
-	/**
-	 * Variation of {@link ToLongFunction#applyAsLong(Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link ToLongFunction#applyAsLong(Object)}
-	 * @return see {@link ToLongFunction#applyAsLong(Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromToLongFunction(ThrowingToLongFunction)
-	 * @see ToLongFunction#applyAsLong(Object)
-	 */
-	long applyAsLong(T value) throws Throwable;
+    /**
+     * Variation of {@link ToLongFunction#applyAsLong(Object)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link ToLongFunction#applyAsLong(Object)}
+     * @return see {@link ToLongFunction#applyAsLong(Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromToLongFunction(ThrowingToLongFunction)
+     * @see ToLongFunction#applyAsLong(Object)
+     */
+    long applyAsLong(T value) throws Throwable;
 }

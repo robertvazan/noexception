@@ -20,18 +20,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingBiPredicate<T, U> {
-	/**
-	 * Variation of {@link BiPredicate#test(Object, Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link BiPredicate#test(Object, Object)}
-	 * @param u
-	 *            see {@link BiPredicate#test(Object, Object)}
-	 * @return see {@link BiPredicate#test(Object, Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromBiPredicate(ThrowingBiPredicate)
-	 * @see BiPredicate#test(Object, Object)
-	 */
-	boolean test(T t, U u) throws Throwable;
+    /**
+     * Variation of {@link BiPredicate#test(Object, Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link BiPredicate#test(Object, Object)}
+     * @param u
+     *            see {@link BiPredicate#test(Object, Object)}
+     * @return see {@link BiPredicate#test(Object, Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromBiPredicate(ThrowingBiPredicate)
+     * @see BiPredicate#test(Object, Object)
+     */
+    boolean test(T t, U u) throws Throwable;
 }

@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingLongUnaryOperator {
-	/**
-	 * Variation of {@link LongUnaryOperator#applyAsLong(long)} that allows throwing checked exceptions.
-	 * 
-	 * @param operand
-	 *            see {@link LongUnaryOperator#applyAsLong(long)}
-	 * @return see {@link LongUnaryOperator#applyAsLong(long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromLongUnaryOperator(ThrowingLongUnaryOperator)
-	 * @see LongUnaryOperator#applyAsLong(long)
-	 */
-	long applyAsLong(long operand) throws Throwable;
+    /**
+     * Variation of {@link LongUnaryOperator#applyAsLong(long)} that allows throwing checked exceptions.
+     * 
+     * @param operand
+     *            see {@link LongUnaryOperator#applyAsLong(long)}
+     * @return see {@link LongUnaryOperator#applyAsLong(long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromLongUnaryOperator(ThrowingLongUnaryOperator)
+     * @see LongUnaryOperator#applyAsLong(long)
+     */
+    long applyAsLong(long operand) throws Throwable;
 }

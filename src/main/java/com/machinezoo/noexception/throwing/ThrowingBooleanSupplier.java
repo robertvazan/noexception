@@ -16,14 +16,14 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingBooleanSupplier {
-	/**
-	 * Variation of {@link BooleanSupplier#getAsBoolean()} that allows throwing checked exceptions.
-	 * 
-	 * @return see {@link BooleanSupplier#getAsBoolean()}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromBooleanSupplier(ThrowingBooleanSupplier)
-	 * @see BooleanSupplier#getAsBoolean()
-	 */
-	boolean getAsBoolean() throws Throwable;
+    /**
+     * Variation of {@link BooleanSupplier#getAsBoolean()} that allows throwing checked exceptions.
+     * 
+     * @return see {@link BooleanSupplier#getAsBoolean()}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromBooleanSupplier(ThrowingBooleanSupplier)
+     * @see BooleanSupplier#getAsBoolean()
+     */
+    boolean getAsBoolean() throws Throwable;
 }

@@ -18,16 +18,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingDoubleFunction<R> {
-	/**
-	 * Variation of {@link DoubleFunction#apply(double)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link DoubleFunction#apply(double)}
-	 * @return see {@link DoubleFunction#apply(double)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromDoubleFunction(ThrowingDoubleFunction)
-	 * @see DoubleFunction#apply(double)
-	 */
-	R apply(double value) throws Throwable;
+    /**
+     * Variation of {@link DoubleFunction#apply(double)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link DoubleFunction#apply(double)}
+     * @return see {@link DoubleFunction#apply(double)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromDoubleFunction(ThrowingDoubleFunction)
+     * @see DoubleFunction#apply(double)
+     */
+    R apply(double value) throws Throwable;
 }

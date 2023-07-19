@@ -8,28 +8,28 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class ThrowingIntConsumerTest {
-	void takeThrowing(ThrowingIntConsumer functional) {
-	}
-	void takeNonThrowing(IntConsumer functional) {
-	}
-	@Test
-	public void lambdas() {
-		takeNonThrowing(v -> {
-		});
-		takeThrowing(v -> {
-		});
-		takeThrowing(v -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw new IOException();
-			else
-				return;
-		});
-		Throwable throwable = new IOException();
-		takeThrowing(v -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw throwable;
-			else
-				return;
-		});
-	}
+    void takeThrowing(ThrowingIntConsumer functional) {
+    }
+    void takeNonThrowing(IntConsumer functional) {
+    }
+    @Test
+    public void lambdas() {
+        takeNonThrowing(v -> {
+        });
+        takeThrowing(v -> {
+        });
+        takeThrowing(v -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw new IOException();
+            else
+                return;
+        });
+        Throwable throwable = new IOException();
+        takeThrowing(v -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw throwable;
+            else
+                return;
+        });
+    }
 }

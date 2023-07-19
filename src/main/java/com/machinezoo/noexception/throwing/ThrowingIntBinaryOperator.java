@@ -16,18 +16,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingIntBinaryOperator {
-	/**
-	 * Variation of {@link IntBinaryOperator#applyAsInt(int, int)} that allows throwing checked exceptions.
-	 * 
-	 * @param left
-	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
-	 * @param right
-	 *            see {@link IntBinaryOperator#applyAsInt(int, int)}
-	 * @return see {@link IntBinaryOperator#applyAsInt(int, int)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromIntBinaryOperator(ThrowingIntBinaryOperator)
-	 * @see IntBinaryOperator#applyAsInt(int, int)
-	 */
-	int applyAsInt(int left, int right) throws Throwable;
+    /**
+     * Variation of {@link IntBinaryOperator#applyAsInt(int, int)} that allows throwing checked exceptions.
+     * 
+     * @param left
+     *            see {@link IntBinaryOperator#applyAsInt(int, int)}
+     * @param right
+     *            see {@link IntBinaryOperator#applyAsInt(int, int)}
+     * @return see {@link IntBinaryOperator#applyAsInt(int, int)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromIntBinaryOperator(ThrowingIntBinaryOperator)
+     * @see IntBinaryOperator#applyAsInt(int, int)
+     */
+    int applyAsInt(int left, int right) throws Throwable;
 }

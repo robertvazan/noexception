@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingLongPredicate {
-	/**
-	 * Variation of {@link LongPredicate#test(long)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link LongPredicate#test(long)}
-	 * @return see {@link LongPredicate#test(long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromLongPredicate(ThrowingLongPredicate)
-	 * @see LongPredicate#test(long)
-	 */
-	boolean test(long value) throws Throwable;
+    /**
+     * Variation of {@link LongPredicate#test(long)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link LongPredicate#test(long)}
+     * @return see {@link LongPredicate#test(long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromLongPredicate(ThrowingLongPredicate)
+     * @see LongPredicate#test(long)
+     */
+    boolean test(long value) throws Throwable;
 }

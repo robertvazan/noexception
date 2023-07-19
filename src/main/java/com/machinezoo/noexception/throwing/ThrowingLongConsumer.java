@@ -16,15 +16,15 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingLongConsumer {
-	/**
-	 * Variation of {@link LongConsumer#accept(long)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link LongConsumer#accept(long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromLongConsumer(ThrowingLongConsumer)
-	 * @see LongConsumer#accept(long)
-	 */
-	void accept(long value) throws Throwable;
+    /**
+     * Variation of {@link LongConsumer#accept(long)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link LongConsumer#accept(long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromLongConsumer(ThrowingLongConsumer)
+     * @see LongConsumer#accept(long)
+     */
+    void accept(long value) throws Throwable;
 }

@@ -18,17 +18,17 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingObjLongConsumer<T> {
-	/**
-	 * Variation of {@link ObjLongConsumer#accept(Object, long)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link ObjLongConsumer#accept(Object, long)}
-	 * @param value
-	 *            see {@link ObjLongConsumer#accept(Object, long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromObjLongConsumer(ThrowingObjLongConsumer)
-	 * @see ObjLongConsumer#accept(Object, long)
-	 */
-	void accept(T t, long value) throws Throwable;
+    /**
+     * Variation of {@link ObjLongConsumer#accept(Object, long)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link ObjLongConsumer#accept(Object, long)}
+     * @param value
+     *            see {@link ObjLongConsumer#accept(Object, long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromObjLongConsumer(ThrowingObjLongConsumer)
+     * @see ObjLongConsumer#accept(Object, long)
+     */
+    void accept(T t, long value) throws Throwable;
 }

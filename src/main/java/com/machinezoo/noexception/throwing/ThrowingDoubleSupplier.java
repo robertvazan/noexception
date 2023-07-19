@@ -16,14 +16,14 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingDoubleSupplier {
-	/**
-	 * Variation of {@link DoubleSupplier#getAsDouble()} that allows throwing checked exceptions.
-	 * 
-	 * @return see {@link DoubleSupplier#getAsDouble()}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromDoubleSupplier(ThrowingDoubleSupplier)
-	 * @see DoubleSupplier#getAsDouble()
-	 */
-	double getAsDouble() throws Throwable;
+    /**
+     * Variation of {@link DoubleSupplier#getAsDouble()} that allows throwing checked exceptions.
+     * 
+     * @return see {@link DoubleSupplier#getAsDouble()}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromDoubleSupplier(ThrowingDoubleSupplier)
+     * @see DoubleSupplier#getAsDouble()
+     */
+    double getAsDouble() throws Throwable;
 }

@@ -18,16 +18,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingIntFunction<R> {
-	/**
-	 * Variation of {@link IntFunction#apply(int)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link IntFunction#apply(int)}
-	 * @return see {@link IntFunction#apply(int)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromIntFunction(ThrowingIntFunction)
-	 * @see IntFunction#apply(int)
-	 */
-	R apply(int value) throws Throwable;
+    /**
+     * Variation of {@link IntFunction#apply(int)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link IntFunction#apply(int)}
+     * @return see {@link IntFunction#apply(int)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromIntFunction(ThrowingIntFunction)
+     * @see IntFunction#apply(int)
+     */
+    R apply(int value) throws Throwable;
 }

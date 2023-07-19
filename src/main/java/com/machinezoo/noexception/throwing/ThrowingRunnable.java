@@ -15,13 +15,13 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingRunnable {
-	/**
-	 * Variation of {@link Runnable#run()} that allows throwing checked exceptions.
-	 * 
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#runnable(ThrowingRunnable)
-	 * @see Runnable#run()
-	 */
-	void run() throws Throwable;
+    /**
+     * Variation of {@link Runnable#run()} that allows throwing checked exceptions.
+     * 
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#runnable(ThrowingRunnable)
+     * @see Runnable#run()
+     */
+    void run() throws Throwable;
 }

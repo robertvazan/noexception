@@ -20,18 +20,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingToIntBiFunction<T, U> {
-	/**
-	 * Variation of {@link ToIntBiFunction#applyAsInt(Object, Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
-	 * @param u
-	 *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
-	 * @return see {@link ToIntBiFunction#applyAsInt(Object, Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromToIntBiFunction(ThrowingToIntBiFunction)
-	 * @see ToIntBiFunction#applyAsInt(Object, Object)
-	 */
-	int applyAsInt(T t, U u) throws Throwable;
+    /**
+     * Variation of {@link ToIntBiFunction#applyAsInt(Object, Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
+     * @param u
+     *            see {@link ToIntBiFunction#applyAsInt(Object, Object)}
+     * @return see {@link ToIntBiFunction#applyAsInt(Object, Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromToIntBiFunction(ThrowingToIntBiFunction)
+     * @see ToIntBiFunction#applyAsInt(Object, Object)
+     */
+    int applyAsInt(T t, U u) throws Throwable;
 }

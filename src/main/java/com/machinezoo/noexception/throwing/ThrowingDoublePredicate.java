@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingDoublePredicate {
-	/**
-	 * Variation of {@link DoublePredicate#test(double)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link DoublePredicate#test(double)}
-	 * @return see {@link DoublePredicate#test(double)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromDoublePredicate(ThrowingDoublePredicate)
-	 * @see DoublePredicate#test(double)
-	 */
-	boolean test(double value) throws Throwable;
+    /**
+     * Variation of {@link DoublePredicate#test(double)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link DoublePredicate#test(double)}
+     * @return see {@link DoublePredicate#test(double)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromDoublePredicate(ThrowingDoublePredicate)
+     * @see DoublePredicate#test(double)
+     */
+    boolean test(double value) throws Throwable;
 }

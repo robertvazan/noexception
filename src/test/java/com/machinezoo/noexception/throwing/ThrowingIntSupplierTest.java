@@ -8,26 +8,26 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class ThrowingIntSupplierTest {
-	void takeThrowing(ThrowingIntSupplier functional) {
-	}
-	void takeNonThrowing(IntSupplier functional) {
-	}
-	@Test
-	public void lambdas() {
-		takeNonThrowing(() -> 2);
-		takeThrowing(() -> 2);
-		takeThrowing(() -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw new IOException();
-			else
-				return 2;
-		});
-		Throwable throwable = new IOException();
-		takeThrowing(() -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw throwable;
-			else
-				return 2;
-		});
-	}
+    void takeThrowing(ThrowingIntSupplier functional) {
+    }
+    void takeNonThrowing(IntSupplier functional) {
+    }
+    @Test
+    public void lambdas() {
+        takeNonThrowing(() -> 2);
+        takeThrowing(() -> 2);
+        takeThrowing(() -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw new IOException();
+            else
+                return 2;
+        });
+        Throwable throwable = new IOException();
+        takeThrowing(() -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw throwable;
+            else
+                return 2;
+        });
+    }
 }

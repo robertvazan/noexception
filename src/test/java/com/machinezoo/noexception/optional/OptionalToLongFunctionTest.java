@@ -7,16 +7,16 @@ import java.util.*;
 import org.junit.jupiter.api.*;
 
 public class OptionalToLongFunctionTest {
-	@Test
-	public void conversions() {
-		assertEquals(OptionalLong.of(2L), create(v -> OptionalLong.of(2L)).apply("input"));
-		assertEquals(2L, create(v -> OptionalLong.of(2L)).orElse(3L).applyAsLong("input"));
-		assertEquals(2L, create(v -> OptionalLong.of(2L)).orElseGet(() -> 2L).applyAsLong("input"));
-		assertEquals(OptionalLong.empty(), create(v -> OptionalLong.empty()).apply("input"));
-		assertEquals(3L, create(v -> OptionalLong.empty()).orElse(3L).applyAsLong("input"));
-		assertEquals(3L, create(v -> OptionalLong.empty()).orElseGet(() -> 3L).applyAsLong("input"));
-	}
-	private OptionalToLongFunction<String> create(OptionalToLongFunction<String> lambda) {
-		return lambda;
-	}
+    @Test
+    public void conversions() {
+        assertEquals(OptionalLong.of(2L), create(v -> OptionalLong.of(2L)).apply("input"));
+        assertEquals(2L, create(v -> OptionalLong.of(2L)).orElse(3L).applyAsLong("input"));
+        assertEquals(2L, create(v -> OptionalLong.of(2L)).orElseGet(() -> 2L).applyAsLong("input"));
+        assertEquals(OptionalLong.empty(), create(v -> OptionalLong.empty()).apply("input"));
+        assertEquals(3L, create(v -> OptionalLong.empty()).orElse(3L).applyAsLong("input"));
+        assertEquals(3L, create(v -> OptionalLong.empty()).orElseGet(() -> 3L).applyAsLong("input"));
+    }
+    private OptionalToLongFunction<String> create(OptionalToLongFunction<String> lambda) {
+        return lambda;
+    }
 }

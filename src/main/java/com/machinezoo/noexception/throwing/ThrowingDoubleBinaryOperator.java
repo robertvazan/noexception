@@ -16,18 +16,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingDoubleBinaryOperator {
-	/**
-	 * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that allows throwing checked exceptions.
-	 * 
-	 * @param left
-	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
-	 * @param right
-	 *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
-	 * @return see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator)
-	 * @see DoubleBinaryOperator#applyAsDouble(double, double)
-	 */
-	double applyAsDouble(double left, double right) throws Throwable;
+    /**
+     * Variation of {@link DoubleBinaryOperator#applyAsDouble(double, double)} that allows throwing checked exceptions.
+     * 
+     * @param left
+     *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
+     * @param right
+     *            see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
+     * @return see {@link DoubleBinaryOperator#applyAsDouble(double, double)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromDoubleBinaryOperator(ThrowingDoubleBinaryOperator)
+     * @see DoubleBinaryOperator#applyAsDouble(double, double)
+     */
+    double applyAsDouble(double left, double right) throws Throwable;
 }

@@ -18,16 +18,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingPredicate<T> {
-	/**
-	 * Variation of {@link Predicate#test(Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link Predicate#test(Object)}
-	 * @return see {@link Predicate#test(Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#predicate(ThrowingPredicate)
-	 * @see Predicate#test(Object)
-	 */
-	boolean test(T t) throws Throwable;
+    /**
+     * Variation of {@link Predicate#test(Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link Predicate#test(Object)}
+     * @return see {@link Predicate#test(Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#predicate(ThrowingPredicate)
+     * @see Predicate#test(Object)
+     */
+    boolean test(T t) throws Throwable;
 }

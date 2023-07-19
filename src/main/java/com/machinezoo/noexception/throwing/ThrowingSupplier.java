@@ -18,14 +18,14 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingSupplier<T> {
-	/**
-	 * Variation of {@link Supplier#get()} that allows throwing checked exceptions.
-	 * 
-	 * @return see {@link Supplier#get()}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#supplier(ThrowingSupplier)
-	 * @see Supplier#get()
-	 */
-	T get() throws Throwable;
+    /**
+     * Variation of {@link Supplier#get()} that allows throwing checked exceptions.
+     * 
+     * @return see {@link Supplier#get()}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#supplier(ThrowingSupplier)
+     * @see Supplier#get()
+     */
+    T get() throws Throwable;
 }

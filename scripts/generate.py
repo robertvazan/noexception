@@ -396,9 +396,8 @@ def output(text, indent=0):
         text += '\n'
     if re.fullmatch('(?:[*].*\n)+', text):
         text = textwrap.indent(text, ' ')
-    for i in range(0, 5):
-        text = re.sub('^(\t*) {4}', r'\1\t', text, flags=re.MULTILINE)
-    text = textwrap.indent(text, indent * '\t')
+    text = text.replace('\t', '    ')
+    text = textwrap.indent(text, indent * '    ')
     print(text, end='')
 
 def redirect(path, generator):

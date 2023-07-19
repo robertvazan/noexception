@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingIntToDoubleFunction {
-	/**
-	 * Variation of {@link IntToDoubleFunction#applyAsDouble(int)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link IntToDoubleFunction#applyAsDouble(int)}
-	 * @return see {@link IntToDoubleFunction#applyAsDouble(int)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromIntToDoubleFunction(ThrowingIntToDoubleFunction)
-	 * @see IntToDoubleFunction#applyAsDouble(int)
-	 */
-	double applyAsDouble(int value) throws Throwable;
+    /**
+     * Variation of {@link IntToDoubleFunction#applyAsDouble(int)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link IntToDoubleFunction#applyAsDouble(int)}
+     * @return see {@link IntToDoubleFunction#applyAsDouble(int)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromIntToDoubleFunction(ThrowingIntToDoubleFunction)
+     * @see IntToDoubleFunction#applyAsDouble(int)
+     */
+    double applyAsDouble(int value) throws Throwable;
 }

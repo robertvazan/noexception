@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingIntPredicate {
-	/**
-	 * Variation of {@link IntPredicate#test(int)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link IntPredicate#test(int)}
-	 * @return see {@link IntPredicate#test(int)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromIntPredicate(ThrowingIntPredicate)
-	 * @see IntPredicate#test(int)
-	 */
-	boolean test(int value) throws Throwable;
+    /**
+     * Variation of {@link IntPredicate#test(int)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link IntPredicate#test(int)}
+     * @return see {@link IntPredicate#test(int)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromIntPredicate(ThrowingIntPredicate)
+     * @see IntPredicate#test(int)
+     */
+    boolean test(int value) throws Throwable;
 }

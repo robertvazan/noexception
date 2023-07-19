@@ -16,18 +16,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingLongBinaryOperator {
-	/**
-	 * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that allows throwing checked exceptions.
-	 * 
-	 * @param left
-	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
-	 * @param right
-	 *            see {@link LongBinaryOperator#applyAsLong(long, long)}
-	 * @return see {@link LongBinaryOperator#applyAsLong(long, long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromLongBinaryOperator(ThrowingLongBinaryOperator)
-	 * @see LongBinaryOperator#applyAsLong(long, long)
-	 */
-	long applyAsLong(long left, long right) throws Throwable;
+    /**
+     * Variation of {@link LongBinaryOperator#applyAsLong(long, long)} that allows throwing checked exceptions.
+     * 
+     * @param left
+     *            see {@link LongBinaryOperator#applyAsLong(long, long)}
+     * @param right
+     *            see {@link LongBinaryOperator#applyAsLong(long, long)}
+     * @return see {@link LongBinaryOperator#applyAsLong(long, long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromLongBinaryOperator(ThrowingLongBinaryOperator)
+     * @see LongBinaryOperator#applyAsLong(long, long)
+     */
+    long applyAsLong(long left, long right) throws Throwable;
 }

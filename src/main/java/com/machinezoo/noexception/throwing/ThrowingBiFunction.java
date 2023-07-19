@@ -22,18 +22,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingBiFunction<T, U, R> {
-	/**
-	 * Variation of {@link BiFunction#apply(Object, Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link BiFunction#apply(Object, Object)}
-	 * @param u
-	 *            see {@link BiFunction#apply(Object, Object)}
-	 * @return see {@link BiFunction#apply(Object, Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromBiFunction(ThrowingBiFunction)
-	 * @see BiFunction#apply(Object, Object)
-	 */
-	R apply(T t, U u) throws Throwable;
+    /**
+     * Variation of {@link BiFunction#apply(Object, Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link BiFunction#apply(Object, Object)}
+     * @param u
+     *            see {@link BiFunction#apply(Object, Object)}
+     * @return see {@link BiFunction#apply(Object, Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromBiFunction(ThrowingBiFunction)
+     * @see BiFunction#apply(Object, Object)
+     */
+    R apply(T t, U u) throws Throwable;
 }

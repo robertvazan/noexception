@@ -20,18 +20,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingToDoubleBiFunction<T, U> {
-	/**
-	 * Variation of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
-	 * @param u
-	 *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
-	 * @return see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromToDoubleBiFunction(ThrowingToDoubleBiFunction)
-	 * @see ToDoubleBiFunction#applyAsDouble(Object, Object)
-	 */
-	double applyAsDouble(T t, U u) throws Throwable;
+    /**
+     * Variation of {@link ToDoubleBiFunction#applyAsDouble(Object, Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
+     * @param u
+     *            see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
+     * @return see {@link ToDoubleBiFunction#applyAsDouble(Object, Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromToDoubleBiFunction(ThrowingToDoubleBiFunction)
+     * @see ToDoubleBiFunction#applyAsDouble(Object, Object)
+     */
+    double applyAsDouble(T t, U u) throws Throwable;
 }

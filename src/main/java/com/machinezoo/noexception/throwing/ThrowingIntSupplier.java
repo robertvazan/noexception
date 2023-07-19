@@ -16,14 +16,14 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingIntSupplier {
-	/**
-	 * Variation of {@link IntSupplier#getAsInt()} that allows throwing checked exceptions.
-	 * 
-	 * @return see {@link IntSupplier#getAsInt()}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromIntSupplier(ThrowingIntSupplier)
-	 * @see IntSupplier#getAsInt()
-	 */
-	int getAsInt() throws Throwable;
+    /**
+     * Variation of {@link IntSupplier#getAsInt()} that allows throwing checked exceptions.
+     * 
+     * @return see {@link IntSupplier#getAsInt()}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromIntSupplier(ThrowingIntSupplier)
+     * @see IntSupplier#getAsInt()
+     */
+    int getAsInt() throws Throwable;
 }

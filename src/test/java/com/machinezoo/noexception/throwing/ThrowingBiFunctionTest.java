@@ -8,26 +8,26 @@ import java.util.function.*;
 import org.junit.jupiter.api.*;
 
 public class ThrowingBiFunctionTest {
-	void takeThrowing(ThrowingBiFunction<String, String, String> functional) {
-	}
-	void takeNonThrowing(BiFunction<String, String, String> functional) {
-	}
-	@Test
-	public void lambdas() {
-		takeNonThrowing((t, u) -> "value");
-		takeThrowing((t, u) -> "value");
-		takeThrowing((t, u) -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw new IOException();
-			else
-				return "value";
-		});
-		Throwable throwable = new IOException();
-		takeThrowing((t, u) -> {
-			if (ThreadLocalRandom.current().nextBoolean())
-				throw throwable;
-			else
-				return "value";
-		});
-	}
+    void takeThrowing(ThrowingBiFunction<String, String, String> functional) {
+    }
+    void takeNonThrowing(BiFunction<String, String, String> functional) {
+    }
+    @Test
+    public void lambdas() {
+        takeNonThrowing((t, u) -> "value");
+        takeThrowing((t, u) -> "value");
+        takeThrowing((t, u) -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw new IOException();
+            else
+                return "value";
+        });
+        Throwable throwable = new IOException();
+        takeThrowing((t, u) -> {
+            if (ThreadLocalRandom.current().nextBoolean())
+                throw throwable;
+            else
+                return "value";
+        });
+    }
 }

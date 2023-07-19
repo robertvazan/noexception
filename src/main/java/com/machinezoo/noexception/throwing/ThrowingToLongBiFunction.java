@@ -20,18 +20,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingToLongBiFunction<T, U> {
-	/**
-	 * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
-	 * @param u
-	 *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
-	 * @return see {@link ToLongBiFunction#applyAsLong(Object, Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromToLongBiFunction(ThrowingToLongBiFunction)
-	 * @see ToLongBiFunction#applyAsLong(Object, Object)
-	 */
-	long applyAsLong(T t, U u) throws Throwable;
+    /**
+     * Variation of {@link ToLongBiFunction#applyAsLong(Object, Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
+     * @param u
+     *            see {@link ToLongBiFunction#applyAsLong(Object, Object)}
+     * @return see {@link ToLongBiFunction#applyAsLong(Object, Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromToLongBiFunction(ThrowingToLongBiFunction)
+     * @see ToLongBiFunction#applyAsLong(Object, Object)
+     */
+    long applyAsLong(T t, U u) throws Throwable;
 }

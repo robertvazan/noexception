@@ -20,17 +20,17 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingBiConsumer<T, U> {
-	/**
-	 * Variation of {@link BiConsumer#accept(Object, Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param t
-	 *            see {@link BiConsumer#accept(Object, Object)}
-	 * @param u
-	 *            see {@link BiConsumer#accept(Object, Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromBiConsumer(ThrowingBiConsumer)
-	 * @see BiConsumer#accept(Object, Object)
-	 */
-	void accept(T t, U u) throws Throwable;
+    /**
+     * Variation of {@link BiConsumer#accept(Object, Object)} that allows throwing checked exceptions.
+     * 
+     * @param t
+     *            see {@link BiConsumer#accept(Object, Object)}
+     * @param u
+     *            see {@link BiConsumer#accept(Object, Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromBiConsumer(ThrowingBiConsumer)
+     * @see BiConsumer#accept(Object, Object)
+     */
+    void accept(T t, U u) throws Throwable;
 }

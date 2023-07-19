@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingLongToIntFunction {
-	/**
-	 * Variation of {@link LongToIntFunction#applyAsInt(long)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link LongToIntFunction#applyAsInt(long)}
-	 * @return see {@link LongToIntFunction#applyAsInt(long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromLongToIntFunction(ThrowingLongToIntFunction)
-	 * @see LongToIntFunction#applyAsInt(long)
-	 */
-	int applyAsInt(long value) throws Throwable;
+    /**
+     * Variation of {@link LongToIntFunction#applyAsInt(long)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link LongToIntFunction#applyAsInt(long)}
+     * @return see {@link LongToIntFunction#applyAsInt(long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromLongToIntFunction(ThrowingLongToIntFunction)
+     * @see LongToIntFunction#applyAsInt(long)
+     */
+    int applyAsInt(long value) throws Throwable;
 }

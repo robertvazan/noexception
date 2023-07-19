@@ -16,16 +16,16 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingLongToDoubleFunction {
-	/**
-	 * Variation of {@link LongToDoubleFunction#applyAsDouble(long)} that allows throwing checked exceptions.
-	 * 
-	 * @param value
-	 *            see {@link LongToDoubleFunction#applyAsDouble(long)}
-	 * @return see {@link LongToDoubleFunction#applyAsDouble(long)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#fromLongToDoubleFunction(ThrowingLongToDoubleFunction)
-	 * @see LongToDoubleFunction#applyAsDouble(long)
-	 */
-	double applyAsDouble(long value) throws Throwable;
+    /**
+     * Variation of {@link LongToDoubleFunction#applyAsDouble(long)} that allows throwing checked exceptions.
+     * 
+     * @param value
+     *            see {@link LongToDoubleFunction#applyAsDouble(long)}
+     * @return see {@link LongToDoubleFunction#applyAsDouble(long)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#fromLongToDoubleFunction(ThrowingLongToDoubleFunction)
+     * @see LongToDoubleFunction#applyAsDouble(long)
+     */
+    double applyAsDouble(long value) throws Throwable;
 }

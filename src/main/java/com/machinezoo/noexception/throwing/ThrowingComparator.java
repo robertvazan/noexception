@@ -18,18 +18,18 @@ import com.machinezoo.noexception.*;
  */
 @FunctionalInterface
 public interface ThrowingComparator<T> {
-	/**
-	 * Variation of {@link Comparator#compare(Object, Object)} that allows throwing checked exceptions.
-	 * 
-	 * @param left
-	 *            see {@link Comparator#compare(Object, Object)}
-	 * @param right
-	 *            see {@link Comparator#compare(Object, Object)}
-	 * @return see {@link Comparator#compare(Object, Object)}
-	 * @throws Throwable
-	 *             if unable to complete
-	 * @see CheckedExceptionHandler#comparator(ThrowingComparator)
-	 * @see Comparator#compare(Object, Object)
-	 */
-	int compare(T left, T right) throws Throwable;
+    /**
+     * Variation of {@link Comparator#compare(Object, Object)} that allows throwing checked exceptions.
+     * 
+     * @param left
+     *            see {@link Comparator#compare(Object, Object)}
+     * @param right
+     *            see {@link Comparator#compare(Object, Object)}
+     * @return see {@link Comparator#compare(Object, Object)}
+     * @throws Throwable
+     *             if unable to complete
+     * @see CheckedExceptionHandler#comparator(ThrowingComparator)
+     * @see Comparator#compare(Object, Object)
+     */
+    int compare(T left, T right) throws Throwable;
 }
