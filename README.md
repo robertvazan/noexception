@@ -3,7 +3,7 @@
 
 # NoException
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.machinezoo.noexception/noexception)](https://search.maven.org/artifact/com.machinezoo.noexception/noexception)
+[![Maven Central](https://img.shields.io/maven-central/v/com.machinezoo.noexception/noexception)](https://central.sonatype.com/artifact/com.machinezoo.noexception/noexception)
 [![Build status](https://github.com/robertvazan/noexception/workflows/build/badge.svg)](https://github.com/robertvazan/noexception/actions/workflows/build.yml)
 [![Test coverage](https://codecov.io/gh/robertvazan/noexception/branch/master/graph/badge.svg)](https://codecov.io/gh/robertvazan/noexception)
 [![Mentioned in Awesome Java 8](https://awesome.re/mentioned-badge.svg)](https://github.com/tedyoung/awesome-java8)
