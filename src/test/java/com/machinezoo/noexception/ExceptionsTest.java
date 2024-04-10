@@ -14,264 +14,222 @@ import com.github.valfirst.slf4jtest.*;
 
 @ExtendWith(TestLoggerFactoryExtension.class)
 public class ExceptionsTest {
-	TestLogger sharedLogger = TestLoggerFactory.getTestLogger(Exceptions.class);
-	TestLogger customLogger = TestLoggerFactory.getTestLogger(ExceptionsTest.class);
-	@Test
-	public void propagate_runtime() {
-		assertThrows(NumberFormatException.class, () -> {
-			Exceptions.propagate().run(() -> {
-				throw new NumberFormatException();
-			});
-		});
-	}
-	@Test
-	public void propagate_error() {
-		assertThrows(IOError.class, () -> {
-			Exceptions.propagate().run(() -> {
-				throw new IOError(new IOException());
-			});
-		});
-	}
-	@Test
-	@Deprecated
-	@SuppressWarnings("deprecation")
-	public void ignore_runtime() {
-		assertThrows(NumberFormatException.class, () -> {
-			Exceptions.ignore().run(() -> {
-				throw new NumberFormatException();
-			});
-		});
-	}
-	@Test
-	@Deprecated
-	@SuppressWarnings("deprecation")
-	public void ignore_error() {
-		assertThrows(IOError.class, () -> {
-			Exceptions.ignore().run(() -> {
-				throw new IOError(new IOException());
-			});
-		});
-	}
-	@Test
-	@Deprecated
-	@SuppressWarnings("deprecation")
-	public void pass_runtime() {
-		assertThrows(NumberFormatException.class, () -> {
-			Exceptions.pass().run(() -> {
-				throw new NumberFormatException();
-			});
-		});
-	}
-	@Test
-	@Deprecated
-	@SuppressWarnings("deprecation")
-	public void pass_error() {
-		assertThrows(IOError.class, () -> {
-			Exceptions.pass().run(() -> {
-				throw new IOError(new IOException());
-			});
-		});
-	}
-	@Test
-	public void silence_runtime() {
-		Exceptions.silence().run(() -> {
-			throw new NumberFormatException();
-		});
-	}
-	@Test
-	public void silence_error() {
-		Exceptions.silence().run(() -> {
-			throw new IOError(new IOException());
-		});
-	}
-	@Test
-	public void silence_interrupt() {
-		Exceptions.silence().run(Exceptions.sneak().runnable(() -> {
-			throw new InterruptedException();
-		}));
-		assertTrue(Thread.interrupted());
-	}
-	@Test
-	public void sneak_runtime() {
-		assertThrows(NumberFormatException.class, () -> {
-			Exceptions.sneak().run(() -> {
-				throw new NumberFormatException();
-			});
-		});
-	}
-	@Test
-	public void sneak_error() {
-		assertThrows(IOError.class, () -> {
-			Exceptions.sneak().run(() -> {
-				throw new IOError(new IOException());
-			});
-		});
-	}
-	@Test
-	public void sneak_checked() {
-		assertThrows(IOException.class, () -> {
-			Exceptions.sneak().run(() -> {
-				throw new IOException();
-			});
-		});
-	}
-	@Test
-	public void wrap_runtime() {
-		assertThrows(NumberFormatException.class, () -> {
-			Exceptions.wrap().run(() -> {
-				throw new NumberFormatException();
-			});
-		});
-	}
-	@Test
-	public void wrap_error() {
-		assertThrows(IOError.class, () -> {
-			Exceptions.wrap().run(() -> {
-				throw new IOError(new IOException());
-			});
-		});
-	}
-	@Test
-	public void wrap_checked() {
-		var ex = assertThrows(UndeclaredThrowableException.class, () -> {
-			Exceptions.wrap().run(() -> {
-				throw new IOException();
-			});
-		});
-		assertThat(ex.getCause(), instanceOf(IOException.class));
-	}
-	@Test
-	public void wrap_interrupt() {
-		var ex = assertThrows(UndeclaredThrowableException.class, () -> {
-			Exceptions.wrap().run(() -> {
-				throw new InterruptedException();
-			});
-		});
-		assertThat(ex.getCause(), instanceOf(InterruptedException.class));
-		assertTrue(Thread.interrupted());
-	}
-	@Test
-	public void wrapIn_runtime() {
-		assertThrows(NumberFormatException.class, () -> {
-			Exceptions.wrap(CollectedException::new).run(() -> {
-				throw new NumberFormatException();
-			});
-		});
-	}
-	@Test
-	public void wrapIn_error() {
-		assertThrows(IOError.class, () -> {
-			Exceptions.wrap(CollectedException::new).run(() -> {
-				throw new IOError(new IOException());
-			});
-		});
-	}
-	@Test
-	public void wrapIn_checked() {
-		CollectedException ex = assertThrows(CollectedException.class, () -> {
-			Exceptions.wrap(CollectedException::new).run(() -> {
-				throw new IOException();
-			});
-		});
-		assertThat(ex.getCause(), instanceOf(IOException.class));
-	}
-	@Test
-	public void wrapIn_interrupt() {
-		CollectedException ex = assertThrows(CollectedException.class, () -> {
-			Exceptions.wrap(CollectedException::new).run(() -> {
-				throw new InterruptedException();
-			});
-		});
-		assertThat(ex.getCause(), instanceOf(InterruptedException.class));
-		assertTrue(Thread.interrupted());
-	}
-	@Test
-	@Deprecated
-	public void log_runtime() {
-		Exceptions.log().run(() -> {
-			throw new NumberFormatException();
-		});
-		assertEquals(1, sharedLogger.getLoggingEvents().size());
-		LoggingEvent event = sharedLogger.getLoggingEvents().get(0);
-		assertThat(event.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
-		assertEquals("Caught exception.", event.getMessage());
-	}
-	@Test
-	@Deprecated
-	public void log_error() {
-		Exceptions.log().run(() -> {
-			throw new IOError(new IOException());
-		});
-		assertEquals(1, sharedLogger.getLoggingEvents().size());
-		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(IOError.class));
-	}
-	@Test
-	@Deprecated
-	public void log_interrupt() {
-		Exceptions.log().run(Exceptions.sneak().runnable(() -> {
-			throw new InterruptedException();
-		}));
-		assertTrue(Thread.interrupted());
-		assertEquals(1, sharedLogger.getLoggingEvents().size());
-		assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(InterruptedException.class));
-	}
-	@Test
-	@Deprecated
-	@SuppressWarnings("deprecation")
-	public void logTo() {
-		Exceptions.log(customLogger).run(() -> {
-			throw new NumberFormatException();
-		});
-		assertEquals(0, sharedLogger.getLoggingEvents().size());
-		assertEquals(1, customLogger.getLoggingEvents().size());
-		assertThrows(NullPointerException.class, () -> Exceptions.log(null));
-	}
-	@Test
-	@Deprecated
-	@SuppressWarnings("deprecation")
-	public void logWithMessage() {
-		Exceptions.log(customLogger, "Commented exception.").run(() -> {
-			throw new NumberFormatException();
-		});
-		assertEquals(1, customLogger.getLoggingEvents().size());
-		assertEquals("Commented exception.", customLogger.getLoggingEvents().get(0).getMessage());
-		assertThrows(NullPointerException.class, () -> Exceptions.log(null, "Message."));
-		assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (String)null));
-	}
-	@Test
-	@Deprecated
-	@SuppressWarnings("deprecation")
-	public void logWithLazyMessage() {
-		Exceptions.log(customLogger, () -> "Lazy message.").run(() -> {
-			throw new NumberFormatException();
-		});
-		assertEquals(1, customLogger.getLoggingEvents().size());
-		assertEquals("Lazy message.", customLogger.getLoggingEvents().get(0).getMessage());
-		assertThrows(NullPointerException.class, () -> Exceptions.log(null, () -> "Message."));
-		assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (Supplier<String>)null));
-	}
-	@Test
-	@Deprecated
-	public void logWithLazyMessage_null() {
-		Exceptions.log(customLogger, () -> null).run(() -> {
-			throw new NumberFormatException();
-		});
-		assertEquals(1, customLogger.getLoggingEvents().size());
-		LoggingEvent event = customLogger.getLoggingEvents().get(0);
-		assertThat(event.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
-	}
-	@Test
-	@Deprecated
-	public void logWithLazyMessage_throwing() {
-		Exceptions.log(customLogger, () -> {
-			throw new InvalidParameterException();
-		}).run(() -> {
-			throw new NumberFormatException();
-		});
-		assertEquals(2, customLogger.getLoggingEvents().size());
-		LoggingEvent event1 = customLogger.getLoggingEvents().get(0);
-		assertThat(event1.getThrowable().orElse(null), instanceOf(InvalidParameterException.class));
-		LoggingEvent event2 = customLogger.getLoggingEvents().get(1);
-		assertThat(event2.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
-	}
+    TestLogger sharedLogger = TestLoggerFactory.getTestLogger(Exceptions.class);
+    TestLogger customLogger = TestLoggerFactory.getTestLogger(ExceptionsTest.class);
+    @Test public void propagate_runtime() {
+        assertThrows(NumberFormatException.class, () -> {
+            Exceptions.propagate().run(() -> {
+                throw new NumberFormatException();
+            });
+        });
+    }
+    @Test public void propagate_error() {
+        assertThrows(IOError.class, () -> {
+            Exceptions.propagate().run(() -> {
+                throw new IOError(new IOException());
+            });
+        });
+    }
+    @Deprecated @Test public void ignore_runtime() {
+        assertThrows(NumberFormatException.class, () -> {
+            Exceptions.ignore().run(() -> {
+                throw new NumberFormatException();
+            });
+        });
+    }
+    @Deprecated @Test public void ignore_error() {
+        assertThrows(IOError.class, () -> {
+            Exceptions.ignore().run(() -> {
+                throw new IOError(new IOException());
+            });
+        });
+    }
+    @Deprecated @Test public void pass_runtime() {
+        assertThrows(NumberFormatException.class, () -> {
+            Exceptions.pass().run(() -> {
+                throw new NumberFormatException();
+            });
+        });
+    }
+    @Deprecated @Test public void pass_error() {
+        assertThrows(IOError.class, () -> {
+            Exceptions.pass().run(() -> {
+                throw new IOError(new IOException());
+            });
+        });
+    }
+    @Test public void silence_runtime() {
+        Exceptions.silence().run(() -> {
+            throw new NumberFormatException();
+        });
+    }
+    @Test public void silence_error() {
+        Exceptions.silence().run(() -> {
+            throw new IOError(new IOException());
+        });
+    }
+    @Test public void silence_interrupt() {
+        Exceptions.silence().run(Exceptions.sneak().runnable(() -> {
+            throw new InterruptedException();
+        }));
+        assertTrue(Thread.interrupted());
+    }
+    @Test public void sneak_runtime() {
+        assertThrows(NumberFormatException.class, () -> {
+            Exceptions.sneak().run(() -> {
+                throw new NumberFormatException();
+            });
+        });
+    }
+    @Test public void sneak_error() {
+        assertThrows(IOError.class, () -> {
+            Exceptions.sneak().run(() -> {
+                throw new IOError(new IOException());
+            });
+        });
+    }
+    @Test public void sneak_checked() {
+        assertThrows(IOException.class, () -> {
+            Exceptions.sneak().run(() -> {
+                throw new IOException();
+            });
+        });
+    }
+    @Test public void wrap_runtime() {
+        assertThrows(NumberFormatException.class, () -> {
+            Exceptions.wrap().run(() -> {
+                throw new NumberFormatException();
+            });
+        });
+    }
+    @Test public void wrap_error() {
+        assertThrows(IOError.class, () -> {
+            Exceptions.wrap().run(() -> {
+                throw new IOError(new IOException());
+            });
+        });
+    }
+    @Test public void wrap_checked() {
+        var ex = assertThrows(UndeclaredThrowableException.class, () -> {
+            Exceptions.wrap().run(() -> {
+                throw new IOException();
+            });
+        });
+        assertThat(ex.getCause(), instanceOf(IOException.class));
+    }
+    @Test public void wrap_interrupt() {
+        var ex = assertThrows(UndeclaredThrowableException.class, () -> {
+            Exceptions.wrap().run(() -> {
+                throw new InterruptedException();
+            });
+        });
+        assertThat(ex.getCause(), instanceOf(InterruptedException.class));
+        assertTrue(Thread.interrupted());
+    }
+    @Test public void wrapIn_runtime() {
+        assertThrows(NumberFormatException.class, () -> {
+            Exceptions.wrap(CollectedException::new).run(() -> {
+                throw new NumberFormatException();
+            });
+        });
+    }
+    @Test public void wrapIn_error() {
+        assertThrows(IOError.class, () -> {
+            Exceptions.wrap(CollectedException::new).run(() -> {
+                throw new IOError(new IOException());
+            });
+        });
+    }
+    @Test public void wrapIn_checked() {
+        CollectedException ex = assertThrows(CollectedException.class, () -> {
+            Exceptions.wrap(CollectedException::new).run(() -> {
+                throw new IOException();
+            });
+        });
+        assertThat(ex.getCause(), instanceOf(IOException.class));
+    }
+    @Test public void wrapIn_interrupt() {
+        CollectedException ex = assertThrows(CollectedException.class, () -> {
+            Exceptions.wrap(CollectedException::new).run(() -> {
+                throw new InterruptedException();
+            });
+        });
+        assertThat(ex.getCause(), instanceOf(InterruptedException.class));
+        assertTrue(Thread.interrupted());
+    }
+    @Test
+    @Deprecated public void log_runtime() {
+        Exceptions.log().run(() -> {
+            throw new NumberFormatException();
+        });
+        assertEquals(1, sharedLogger.getLoggingEvents().size());
+        LoggingEvent event = sharedLogger.getLoggingEvents().get(0);
+        assertThat(event.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
+        assertEquals("Caught exception.", event.getMessage());
+    }
+    @Test
+    @Deprecated public void log_error() {
+        Exceptions.log().run(() -> {
+            throw new IOError(new IOException());
+        });
+        assertEquals(1, sharedLogger.getLoggingEvents().size());
+        assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(IOError.class));
+    }
+    @Test
+    @Deprecated public void log_interrupt() {
+        Exceptions.log().run(Exceptions.sneak().runnable(() -> {
+            throw new InterruptedException();
+        }));
+        assertTrue(Thread.interrupted());
+        assertEquals(1, sharedLogger.getLoggingEvents().size());
+        assertThat(sharedLogger.getLoggingEvents().get(0).getThrowable().orElse(null), instanceOf(InterruptedException.class));
+    }
+    @Deprecated @Test public void logTo() {
+        Exceptions.log(customLogger).run(() -> {
+            throw new NumberFormatException();
+        });
+        assertEquals(0, sharedLogger.getLoggingEvents().size());
+        assertEquals(1, customLogger.getLoggingEvents().size());
+        assertThrows(NullPointerException.class, () -> Exceptions.log(null));
+    }
+    @Deprecated @Test public void logWithMessage() {
+        Exceptions.log(customLogger, "Commented exception.").run(() -> {
+            throw new NumberFormatException();
+        });
+        assertEquals(1, customLogger.getLoggingEvents().size());
+        assertEquals("Commented exception.", customLogger.getLoggingEvents().get(0).getMessage());
+        assertThrows(NullPointerException.class, () -> Exceptions.log(null, "Message."));
+        assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (String)null));
+    }
+    @Deprecated @Test public void logWithLazyMessage() {
+        Exceptions.log(customLogger, () -> "Lazy message.").run(() -> {
+            throw new NumberFormatException();
+        });
+        assertEquals(1, customLogger.getLoggingEvents().size());
+        assertEquals("Lazy message.", customLogger.getLoggingEvents().get(0).getMessage());
+        assertThrows(NullPointerException.class, () -> Exceptions.log(null, () -> "Message."));
+        assertThrows(NullPointerException.class, () -> Exceptions.log(customLogger, (Supplier<String>)null));
+    }
+    @Test
+    @Deprecated public void logWithLazyMessage_null() {
+        Exceptions.log(customLogger, () -> null).run(() -> {
+            throw new NumberFormatException();
+        });
+        assertEquals(1, customLogger.getLoggingEvents().size());
+        LoggingEvent event = customLogger.getLoggingEvents().get(0);
+        assertThat(event.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
+    }
+    @Test
+    @Deprecated public void logWithLazyMessage_throwing() {
+        Exceptions.log(customLogger, () -> {
+            throw new InvalidParameterException();
+        }).run(() -> {
+            throw new NumberFormatException();
+        });
+        assertEquals(2, customLogger.getLoggingEvents().size());
+        LoggingEvent event1 = customLogger.getLoggingEvents().get(0);
+        assertThat(event1.getThrowable().orElse(null), instanceOf(InvalidParameterException.class));
+        LoggingEvent event2 = customLogger.getLoggingEvents().get(1);
+        assertThat(event2.getThrowable().orElse(null), instanceOf(NumberFormatException.class));
+    }
 }
